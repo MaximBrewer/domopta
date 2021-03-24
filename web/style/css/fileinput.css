@@ -1,0 +1,73 @@
+.fl-content {
+    min-height: 250px;
+    border: 1px solid gray;
+    background-color: #eeeeee;
+    margin-top: 10px;
+}
+
+.fl-js-input{
+    min-height: 250px;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+}
+
+
+
+.fl-item{
+    display: block;
+    width: 264px;
+    height: 250px;
+    padding: 9px;
+    margin: 10px;
+    box-shadow: 0px 0px 10px black;
+    float: left;
+    background-color: #fff;
+    position: relative;
+    cursor: pointer;
+}
+
+.fl-btns {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+.fl-item img {
+	max-width: 100%;
+    max-height: 100%;
+    margin: 0 auto;
+    display: block;
+}
+
+.fl-item-default {
+    display: none;
+}
+
+.fl-clear-photo{
+    display: none;
+}
+
+.fl-progress{
+    display: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.fl-remove{
+    cursor: pointer;
+    border: 1px solid #222;
+    padding: 3px 6px;
+    margin: 3px;
+    border-radius: 2px;
+    display: inline-block;
+}
+
+#modal_image{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.fl-item-notuploaded{
+    border: 1px solid green;
+}

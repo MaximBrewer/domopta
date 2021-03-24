@@ -1,0 +1,119 @@
+.noactive{
+    background-color: #eeeeee;
+}
+
+.blocked{
+    background-color: #ffaaaa;
+}
+
+.ignored{
+    background-color: #ffee99;
+}
+
+.activated{
+    background-color: #ddffdd;
+}
+
+.absend{
+    background-color: #ffaaaa;
+}
+
+.navbar-nav li.active{
+    background-color: #00b3ee;
+}
+
+.navbar-nav li.active a{
+    color: #ffffff;
+}
+
+.navbar-nav li.active a:hover{
+    color: #111111;
+}
+
+.total-products{
+    background: #c7ffc7;
+    margin-top: 6px;
+    padding: 5px 7px;
+}
+
+.product-link{
+    padding-top:10px;
+}
+
+.fa{
+    font-size: 18px;
+}
+
+.modal-body .form-group{
+    text-align: right;
+}
+
+.node-result{
+    background-color: #cccccc;
+}
+
+.node-result a{
+    color: black;
+}
+
+th {
+    vertical-align: top;
+}
+.admin-bg_active {
+    background: #d4ffd4;
+  }
+
+.form-group-product{
+    margin-bottom: 20px;
+}
+
+.product_sale{
+    background-color: #ffd6d6 !important;
+}
+
+.btn[disabled]{
+    pointer-events: none;
+}
+
+.file-input {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.file-input__icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    bottom: -5px;
+}
+
+.file-input__svg {
+    width: 100%;
+    height: 100%;
+}
+
+.file-input__text2 {
+    padding: 5px 0;
+    color: #6b6b6b;
+}
+
+#file-input-field{
+    display: none;
+}
+
+div.radio{
+    display: inline-block;
+}
+
+.input-group-addon{
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.search-class2{
+    margin-left: 5px;
+}
