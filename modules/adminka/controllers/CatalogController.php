@@ -17,7 +17,7 @@ use app\models\ProductsBackup;
 use app\models\ProductsImages;
 use app\models\ProductsSearch;
 use Codeception\Module\Yii2;
-use yii\helpers\Inflector;
+use app\helpers\Inflector;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use dektrium\user\filters\AccessRule;

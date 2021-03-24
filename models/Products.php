@@ -4,7 +4,7 @@ namespace app\models;
 
 use Imagine\Image\ManipulatorInterface;
 use Yii;
-use yii\helpers\Inflector;
+use app\helpers\Inflector;
 use yii\imagine\Image;
 use yii\rbac\ManagerInterface;
 use yii\web\UploadedFile;

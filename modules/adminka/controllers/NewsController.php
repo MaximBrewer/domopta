@@ -10,7 +10,7 @@ namespace app\modules\adminka\controllers;
 
 use app\models\News;
 use app\models\NewsSearch;
-use yii\helpers\Inflector;
+use app\helpers\Inflector;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use dektrium\user\filters\AccessRule;

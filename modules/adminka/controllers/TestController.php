@@ -11,7 +11,7 @@ namespace app\modules\adminka\controllers;
 
 
 use app\models\Products;
-use yii\helpers\Inflector;
+use app\helpers\Inflector;
 use app\models\ProductsImages;
 use yii\httpclient\Client;
 use yii\web\Controller;

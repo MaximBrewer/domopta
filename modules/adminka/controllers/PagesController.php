@@ -11,7 +11,7 @@ namespace app\modules\adminka\controllers;
 use app\models\Page;
 use app\models\PageSearch;
 use yii\behaviors\SluggableBehavior;
-use yii\helpers\Inflector;
+use app\helpers\Inflector;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use dektrium\user\filters\AccessRule;

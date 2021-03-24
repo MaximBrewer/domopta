@@ -6,7 +6,7 @@ use mohorev\file\UploadImageBehavior;
 use Yii;
 use yii\behaviors\SluggableBehavior;
 use yii\behaviors\TimestampBehavior;
-use yii\helpers\Inflector;
+use app\helpers\Inflector;
 use yii\validators\UniqueValidator;
 use yii\imagine\Image;
 use yii\rbac\ManagerInterface;

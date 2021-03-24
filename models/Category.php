@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use yii\helpers\Inflector;
+use app\helpers\Inflector;
 
 use mohorev\file\UploadImageBehavior;
 use Yii;
