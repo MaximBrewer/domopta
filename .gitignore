@@ -31,7 +31,7 @@ phpunit.phar
 tests/_output/*
 tests/_support/_generated
 
-/web/upload/product
+/web/upload
 /runtime
 
 .env
