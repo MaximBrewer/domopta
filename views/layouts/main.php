@@ -17,6 +17,15 @@ use app\models\SearchForm;
 $searchModel = new SearchForm();
 $searchModel->load(Yii::$app->request->queryParams);
 MainAsset::register($this);
+
+
+if (!isset(Yii::$app->params['page'])) {
+    Yii::$app->params['page'] = new app\models\Page();
+    Yii::$app->params['page']->title = "Легкий ветер";
+    Yii::$app->params['page']->keywords = "Легкий ветер";
+    Yii::$app->params['page']->description = "Легкий ветер";
+}
+
 if (Yii::$app->params['page']->title) {
     $this->title = Yii::$app->params['page']->title;
 }
@@ -63,18 +72,25 @@ $this->registerJsFile('/js/lightslider.js', ['depends' => \yii\web\JqueryAsset::
 
 <body>
     <!-- Yandex.Metrika counter -->
-    <script type="text/javascript" >
-       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-       m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-    
-       ym(74353687, "init", {
-            clickmap:true,
-            trackLinks:true,
-            accurateTrackBounce:true
-       });
+    <script type="text/javascript">
+        (function(m, e, t, r, i, k, a) {
+            m[i] = m[i] || function() {
+                (m[i].a = m[i].a || []).push(arguments)
+            };
+            m[i].l = 1 * new Date();
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+        ym(74353687, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true
+        });
     </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/74353687" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/74353687" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
     <!-- /Yandex.Metrika counter -->
     <?php $this->beginBody() ?>
     <div id="preloader">
