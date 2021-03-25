@@ -151,7 +151,7 @@ class Products extends \yii\db\ActiveRecord
     {
         $slug = $this->slug;
         if (!$slug) {
-            $slug = generateSlugForInport($this->article_index);
+            $slug = $this->generateSlugForInport($this->article_index);
             // $iteration = 0;
             // do {
             //     $slug = $iteration ? $iteration . '-' : "";
