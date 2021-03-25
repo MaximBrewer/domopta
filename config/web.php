@@ -8,6 +8,9 @@ $config = [
     'bootstrap' => ['log'],
     'language' => 'ru',
     'components' => [
+        'errorHandler' => [
+            'errorAction' => 'site/error',
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'tIeB_MY1BTFLTTt97kj8oUDvJZcncdjK',
@@ -19,10 +22,6 @@ $config = [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
             'loginUrl' => '/signin'
-        ],
-        'errorHandler' => [
-            // 'errorAction' => 'site/error',
-            'errorAction' => '', 
         ],
         'mailer' => function () {
             return \Yii::createObject([

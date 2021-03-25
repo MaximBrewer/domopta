@@ -1,5 +1,12 @@
 <?php
 /* @var $this \yii\web\View */
+
+
+Yii::$app->params['page'] = new app\models\Page();
+Yii::$app->params['page']->title = "Контакты";
+Yii::$app->params['page']->keywords = "Контакты";
+Yii::$app->params['page']->description = "Контакты";
+
 ?>
 
         <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>

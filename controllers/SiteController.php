@@ -53,11 +53,11 @@ class SiteController extends Controller
                     ],
                 ],
             ],
-//            'cache' => [
-//                'class' => PageCache::className(),
-//                'only' => ['index'],
-//                'duration' => 60*60*24*30
-//            ]
+            //            'cache' => [
+            //                'class' => PageCache::className(),
+            //                'only' => ['index'],
+            //                'duration' => 60*60*24*30
+            //            ]
         ];
     }
 
@@ -67,20 +67,26 @@ class SiteController extends Controller
     public function actions()
     {
         return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
+            // 'error' => [
+            //     'class' => 'yii\web\ErrorAction',
+            // ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
-//                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+                //                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
     }
 
-    public function actionError(){
-    	return $this->redirect(['/']);
+    public function actionError()
+    {
+        $exception = Yii::$app->errorHandler->exception;
+        if ($exception !== null) {
+            if ($exception->statusCode == 404)
+                return $this->render('error', ['exception' => $exception]);
+            else
+                return $this->render('error', ['exception' => $exception]);
+        }
     }
-
     /**
      * Displays homepage.
      *
@@ -88,7 +94,6 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-
         $model = \Yii::createObject(\dektrium\user\models\LoginForm::className());
         $event = $this->getFormEvent($model);
 
@@ -98,7 +103,7 @@ class SiteController extends Controller
 
         if ($model->load(\Yii::$app->getRequest()->post()) && $model->login()) {
             $this->trigger(self::EVENT_AFTER_LOGIN, $event);
-            if(!Yii::$app->user->identity->getIsActive()){
+            if (!Yii::$app->user->identity->getIsActive()) {
                 Yii::$app->session->setFlash('login', Yii::$app->settings->get('Settings.notify_unactive'));
             }
             return $this->goBack();
@@ -116,7 +121,7 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
-    	return $this->redirect('/#login');
+        return $this->redirect('/#login');
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -142,65 +147,50 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
-    /**
-     * Displays contact page.
-     *
-     * @return string
-     */
-    public function actionContact()
+    public function actionSlug($slug = '')
     {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact()) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }
-
-    public function actionSlug($slug = ''){
         $page = Page::find()->where(['slug' => '/' . $slug])->one();
-        if(!$page){
+        if (!$page) {
             throw new NotFoundHttpException('Страница не найдена');
         }
         return Yii::$app->runAction($page->route);
     }
 
-    public function actionForgot(){
-	    $model = new ForgotForm();
-	    $model->scenario = 'step1';
-	    return $this->renderAjax('forgot', ['model' => $model]);
+    public function actionForgot()
+    {
+        $model = new ForgotForm();
+        $model->scenario = 'step1';
+        return $this->renderAjax('forgot', ['model' => $model]);
     }
 
-	public function actionForgotvalidation(){
-		$model = new ForgotForm();
-		$model->scenario = 'step1';
-		$model->load(\Yii::$app->request->post());
-		$errors = ActiveForm::validate($model);
-		if(!empty($errors)) {
-			return Json::encode( $errors );
-		}
+    public function actionForgotvalidation()
+    {
+        $model = new ForgotForm();
+        $model->scenario = 'step1';
+        $model->load(\Yii::$app->request->post());
+        $errors = ActiveForm::validate($model);
+        if (!empty($errors)) {
+            return Json::encode($errors);
+        }
 
-		$phone = str_replace('-', '', $model->phone);
-		$phone = str_replace('(', '', $phone);
-		$phone = str_replace(')', '', $phone);
-		$phone = str_replace(' ', '', $phone);
+        $phone = str_replace('-', '', $model->phone);
+        $phone = str_replace('(', '', $phone);
+        $phone = str_replace(')', '', $phone);
+        $phone = str_replace(' ', '', $phone);
 
-		$user = User::findOne(['username' => $phone]);
-		$user->mailer->mailerComponent = null;
+        $user = User::findOne(['username' => $phone]);
+        $user->mailer->mailerComponent = null;
 
-		$user->resetPass();
+        $user->resetPass();
 
-		return Json::encode([
-			'success' => 1,
-			'popup' => $this->renderPartial('ok')
-		]);
+        return Json::encode([
+            'success' => 1,
+            'popup' => $this->renderPartial('ok')
+        ]);
+    }
 
-	}
-
-	public function actionSitemap(){
+    public function actionSitemap()
+    {
         $sitemap = new Sitemap();
         //Если в кэше нет карты сайта
         if (!$xml_sitemap = \Yii::$app->cache->get('sitemap')) {
@@ -209,15 +199,15 @@ class SiteController extends Controller
             //Формируем XML файл
             $xml_sitemap = $sitemap->getXml($urls);
             // кэшируем результат
-            \Yii::$app->cache->set('sitemap', $xml_sitemap, 3600*6);
+            \Yii::$app->cache->set('sitemap', $xml_sitemap, 3600 * 6);
         }
         //Выводим карту сайта
         $sitemap->showXml($xml_sitemap);
     }
 
-    public function actionClear(){
-        Products::delete('is_deleted=1 and deleted_date<' . (time() - 60*60*24*30*6));
+    public function actionClear()
+    {
+        Products::delete('is_deleted=1 and deleted_date<' . (time() - 60 * 60 * 24 * 30 * 6));
         //Products::deleteAll('is_deleted=1 and deleted_date<' . (time() - 60));
     }
-
 }

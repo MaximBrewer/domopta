@@ -509,18 +509,18 @@ $(document).ready(function () {
   });
   $("#sort").click(function (e) {
     e.preventDefault();
-    e.target.closest(".drop-content").classList.toggle("drop-content_show");
+    e.target.closest(".drop-content").length && e.target.closest(".drop-content").classList.toggle("drop-content_show");
   });
   $("#cat").click(function (e) {
     e.preventDefault();
-    e.target.closest(".drop-content").classList.toggle("drop-content_show");
+    e.target.closest(".drop-content").length && e.target.closest(".drop-content").classList.toggle("drop-content_show");
     document
       .querySelector(".category__list")
       .classList.toggle("category__list_show");
   });
   $("#cab").click(function (e) {
     e.preventDefault();
-    e.target.closest(".drop-content").classList.toggle("drop-content_show");
+    e.target.closest(".drop-content").length && e.target.closest(".drop-content").classList.toggle("drop-content_show");
     document
       .querySelector(".user-btns__list")
       .classList.toggle("user-btns__list_show");

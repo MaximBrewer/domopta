@@ -77,8 +77,6 @@ class UrlManager extends \yii\web\UrlManager
         if($page){
             \Yii::$app->params['page'] = $page;
             return [$page->route, []];
-        } else {
-            \Yii::$app->params['page'] = new Page();
         }
         return parent::parseRequest($request);
     }
