@@ -151,13 +151,14 @@ class Products extends \yii\db\ActiveRecord
     {
         $slug = $this->slug;
         if (!$slug) {
-            $iteration = 0;
-            do {
-                $slug = $iteration ? $iteration . '-' : "";
-                $slug .= Inflector::slug($this->name) . '-' . Inflector::slug($this->article);
-                $model = Products::find()->where(['slug' => $slug])->andWhere(['<>', 'id', $this->id])->one();
-                $iteration++;
-            } while ($model);
+            $slug = generateSlugForInport($this->article_index);
+            // $iteration = 0;
+            // do {
+            //     $slug = $iteration ? $iteration . '-' : "";
+            //     $slug .= Inflector::slug($this->name) . '-' . Inflector::slug($this->article);
+            //     $model = Products::find()->where(['slug' => $slug])->andWhere(['<>', 'id', $this->id])->one();
+            //     $iteration++;
+            // } while ($model);
         }
         $this->slug = $slug;
     }

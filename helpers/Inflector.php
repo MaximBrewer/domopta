@@ -47,6 +47,14 @@ class Inflector extends \yii\helpers\Inflector
     ];
     public static function transliterate($string, $transliterator = null)
     {
+        // if (static::hasIntl()) {
+        //     if ($transliterator === null) {
+        //         $transliterator = static::$transliterator;
+        //     }
+
+        //     return transliterator_transliterate($transliterator, $string);
+        // }
+
         return strtr($string, static::$transliteration);
     }
 }
