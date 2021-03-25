@@ -5356,9 +5356,9 @@ img.reg-step2-item-img {
   color: #24a0c7;
 }
 
-.subcategory__item.active::marker {
+.subcategory__item::marker {
   background: #000;
-  content: "Note";
+  content: none;
   text-align: left;
 }
 
