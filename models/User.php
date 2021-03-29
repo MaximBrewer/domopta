@@ -201,7 +201,7 @@ class User extends \dektrium\user\models\User
         $transaction = $this->getDb()->beginTransaction();
 
         try {
-            //$this->password = ($this->password == null && $this->module->enableGeneratingPassword) ? Password::generate(8) : $this->password;
+            $this->password = ($this->password == null && $this->module->enableGeneratingPassword) ? Password::generate(8) : $this->password;
 
             $this->trigger(self::BEFORE_CREATE);
 
@@ -210,7 +210,7 @@ class User extends \dektrium\user\models\User
                 return false;
             }
 
-            //			$this->confirm();
+            			// $this->confirm();
 
             $this->trigger(self::AFTER_CREATE);
 
