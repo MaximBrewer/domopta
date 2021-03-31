@@ -67,6 +67,7 @@ class TestController extends Controller
                 @mkdir($path);
                 $file->saveAs($path . $fname);
 
+                
                 $suff = "-domopta.ru";
                 copy($path . $fname, $path . 'big-' . $fcleanname . $suff . '.' . $file->extension);
                 $model->createThumb($path, $fname, 'thumb-', $suff, 240, 330);
