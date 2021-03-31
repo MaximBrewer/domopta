@@ -198,6 +198,10 @@ class User extends \dektrium\user\models\User
         //     throw new \RuntimeException('Calling "' . __CLASS__ . '::' . __METHOD__ . '" on existing user');
         // }
 
+
+
+        
+
         $transaction = $this->getDb()->beginTransaction();
 
         try {
