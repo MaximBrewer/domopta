@@ -202,7 +202,7 @@ class User extends \dektrium\user\models\User
 
         try {
             $this->password = ($this->password == null && $this->module->enableGeneratingPassword) ? Password::generate(8) : $this->password;
-var_dump($this->password);die;
+            
             $this->trigger(self::BEFORE_CREATE);
 
             if (!$this->save()) {
