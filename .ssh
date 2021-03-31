@@ -1,0 +1,21 @@
+
+ssh root@89.108.64.68
+9JBXqanHnO9q0!
+cd /var/www/domopta/data/www/domopta.ru
+sudo -u domopta git pull
+
+
+
+
+
+
+
+
+Адрес сервера
+IPv4: 89.108.64.68
+IPv6: 2A00:F940:2:1:2:0:1:1C17
+Доступ к серверу
+Сбросить пароль
+Логин: root
+Пароль: 9JBXqanHnO9q0!
+Адрес панели: https://89.108.64.68:1500
