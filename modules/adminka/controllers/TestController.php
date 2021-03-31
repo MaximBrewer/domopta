@@ -61,7 +61,7 @@ class TestController extends Controller
             $files = UploadedFile::getInstances($model, 'images');
             foreach ($files as $k => $file) {
                 $fcleanname = Inflector::slug($model->article_index);
-                if ($max_order + $k) $fcleanname .= '-' . $max_order + $k;
+                if ($max_order + $k) $fcleanname = str_pad($max_order + $k, 3, "0", STR_PAD_LEFT) . '-' . $fcleanname;
                 $fname = $fcleanname . '.' . $file->extension;
                 $path = \Yii::getAlias('@webroot/upload/product/' . Inflector::slug($model->article_index) . '/');
                 @mkdir($path);
@@ -82,6 +82,7 @@ class TestController extends Controller
                 $arr['ids'][$k] = $model1->id;
                 $output = [];
                 @exec("jpegoptim --all-progressive -ptm80 " . $path . $fname, $output);
+                $arr['output'] = $output;
             }
         }
         return json_encode($arr);

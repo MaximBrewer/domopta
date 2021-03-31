@@ -198,6 +198,8 @@ class User extends \dektrium\user\models\User
         //     throw new \RuntimeException('Calling "' . __CLASS__ . '::' . __METHOD__ . '" on existing user');
         // }
 
+
+
         $transaction = $this->getDb()->beginTransaction();
 
         try {
@@ -209,6 +211,18 @@ class User extends \dektrium\user\models\User
                 $transaction->rollBack();
                 return false;
             }
+
+
+// $pass = Password::generate(8);
+
+// if($this->password == null && $this->module->enableGeneratingPassword){
+//     $this->password = $pass;
+//     $this->password_repeat = $pass;
+// }
+
+
+// $this->password = ($this->password == null && $this->module->enableGeneratingPassword) ? Password::generate(8) : $this->password;
+// var_dump($this->password);die;
 
             			// $this->confirm();
 
