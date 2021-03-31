@@ -51,4 +51,4 @@ phpunit.phar
 /web/assets/
 /web/upload/
 /runtime/
-/.ssh
+.ssh
