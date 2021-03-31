@@ -200,7 +200,6 @@ class User extends \dektrium\user\models\User
 
 
 
-        
 
         $transaction = $this->getDb()->beginTransaction();
 
