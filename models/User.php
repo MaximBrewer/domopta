@@ -210,6 +210,20 @@ class User extends \dektrium\user\models\User
                 return false;
             }
 
+
+// <<<<<<< HEAD
+// $pass = Password::generate(8);
+
+// if($this->password == null && $this->module->enableGeneratingPassword){
+//     $this->password = $pass;
+//     $this->password_repeat = $pass;
+// }
+
+// =======
+// $this->password = ($this->password == null && $this->module->enableGeneratingPassword) ? Password::generate(8) : $this->password;
+// var_dump($this->password);die;
+// >>>>>>> 4372eede749995055a6710968bed8bbe7fa67202
+
             			// $this->confirm();
 
             $this->trigger(self::AFTER_CREATE);
