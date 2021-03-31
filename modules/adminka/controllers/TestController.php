@@ -66,7 +66,7 @@ class TestController extends Controller
                 $path = \Yii::getAlias('@webroot/upload/product/' . Inflector::slug($model->article_index) . '/');
                 @mkdir($path);
                 $file->saveAs($path . $fname);
-
+                @exec("jpegoptim --all-progressive -ptm80 " . $path . $fname, $output);
 
                 $suff = "-domopta.ru";
                 copy($path . $fname, $path . 'big-' . $fcleanname . $suff . '.' . $file->extension);
@@ -82,8 +82,8 @@ class TestController extends Controller
 
                 $arr['ids'][$k] = $model1->id;
                 $output = [];
-                @exec("jpegoptim --all-progressive -ptm80 " . $path . $fname, $output);
                 $arr['output'] = $output;
+                
             }
         }
         return json_encode($arr);
