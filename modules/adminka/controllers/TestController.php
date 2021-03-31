@@ -61,13 +61,13 @@ class TestController extends Controller
             $files = UploadedFile::getInstances($model, 'images');
             foreach ($files as $k => $file) {
                 $fcleanname = Inflector::slug($model->article_index);
-                if ($max_order + $k) $fcleanname = str_pad($max_order + $k, 3, "0", STR_PAD_LEFT) . '-' . $fcleanname;
+                if ($max_order + $k) $fcleanname .= '-' . str_pad($max_order + $k, 3, "0", STR_PAD_LEFT);
                 $fname = $fcleanname . '.' . $file->extension;
                 $path = \Yii::getAlias('@webroot/upload/product/' . Inflector::slug($model->article_index) . '/');
                 @mkdir($path);
                 $file->saveAs($path . $fname);
 
-                
+
                 $suff = "-domopta.ru";
                 copy($path . $fname, $path . 'big-' . $fcleanname . $suff . '.' . $file->extension);
                 $model->createThumb($path, $fname, 'thumb-', $suff, 240, 330);
