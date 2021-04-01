@@ -63,18 +63,17 @@ class RegController extends Controller
 		$phone = str_replace(' ', '', $phone);
 
 		$user = User::find()->where(['username' => $phone])->one();
-		if(!$user){
+		if (!$user) {
 			$user = new User();
 			$user->mailer->mailerComponent = null;
 			$user->username = $phone;
 			$user->phone_code = rand(100000, 999999);
 		}
-		$user->createMob($user);
-
-		return Json::encode([
-			'success' => 1,
-			'phone' => $user->username
-		]);
+		if ($user->createMob($user))
+			return Json::encode([
+				'success' => 1,
+				'phone' => $user->username
+			]);
 	}
 
 

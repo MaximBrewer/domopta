@@ -194,37 +194,34 @@ class User extends \dektrium\user\models\User
 
     public function createMob()
     {
-        // if ($this->getIsNewRecord() == false) {
-        //     throw new \RuntimeException('Calling "' . __CLASS__ . '::' . __METHOD__ . '" on existing user');
-        // }
-
-
+        if ($this->getIsNewRecord() == false) {
+            throw new \RuntimeException('Calling "' . __CLASS__ . '::' . __METHOD__ . '" on existing user');
+        }
 
         $transaction = $this->getDb()->beginTransaction();
 
         try {
-            $this->password = ($this->password == null && $this->module->enableGeneratingPassword) ? Password::generate(8) : $this->password;
-            
+
+            $this->password = $this->password == null && $this->module->enableGeneratingPassword ? Password::generate(8) : $this->password;
+            $this->password_repeat = $this->password;
+
             $this->trigger(self::BEFORE_CREATE);
 
-            if (!$this->save()) {
+            if (!$this->validate()) {
                 $transaction->rollBack();
                 return false;
             }
+            $this->save();
+            // $pass = Password::generate(8);
+
+            // if($this->password == null && $this->module->enableGeneratingPassword){
+            //     $this->password = $pass;
+            //     $this->password_repeat = $pass;
+            // }
 
 
-// $pass = Password::generate(8);
-
-// if($this->password == null && $this->module->enableGeneratingPassword){
-//     $this->password = $pass;
-//     $this->password_repeat = $pass;
-// }
-
-
-// $this->password = ($this->password == null && $this->module->enableGeneratingPassword) ? Password::generate(8) : $this->password;
-// var_dump($this->password);die;
-
-            			// $this->confirm();
+            // $this->password = ($this->password == null && $this->module->enableGeneratingPassword) ? Password::generate(8) : $this->password;
+            // var_dump($this->password);die;
 
             $this->trigger(self::AFTER_CREATE);
 
@@ -233,7 +230,6 @@ class User extends \dektrium\user\models\User
             $number = str_replace('+', '', $this->username);
 
             \Yii::$app->sms->send_sms($number, "Ваш код для подтверждения регистрации на сайте:\n"  . $this->phone_code . "\ndomopta.ru");
-
 
             return true;
         } catch (\Exception $e) {
@@ -300,7 +296,7 @@ class User extends \dektrium\user\models\User
         parent::beforeSave($insert);
         if (!$insert) {
             $this->username = $this->getOldAttribute('username');
-            if ($this->getOldAttribute('password_hash') && $this->getOldAttribute('password_hash') != $this->password_hash) {
+            if ($this->getOldAttribute('confirmed_at') && $this->getOldAttribute('password_hash') && $this->getOldAttribute('password_hash') != $this->password_hash) {
                 $number = str_replace('+', '', $this->username);
                 \YII::$app->session->setFlash('password_changed');
                 \YII::$app->session->setFlash('no_success');
