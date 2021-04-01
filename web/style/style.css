@@ -3665,8 +3665,17 @@ input:-webkit-autofill {
 }
 
 @media screen and (max-width: 768px) {
+  .mobile-hidden {
+    display: none;
+  }
   .contacts__item {
     width: 50%;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .only-mobile {
+    display: none;
   }
 }
 

@@ -362,12 +362,6 @@ $(document).ready(function () {
     ymaps.ready(init);
   }
   function init() {
-    var map = new ymaps.Map("map", {
-      center: [44.93335454, 34.11270504],
-      zoom: 16,
-      controls: ["zoomControl"],
-      behaviors: ["drag", "scrollZoom"],
-    });
     var placemark = new ymaps.Placemark(
       [44.93335454, 34.11270504],
       {},
@@ -375,8 +369,22 @@ $(document).ready(function () {
         iconColor: "#ff0000",
       }
     );
+    var map = new ymaps.Map("map", {
+      center: [44.93335454, 34.11270504],
+      zoom: 16,
+      controls: ["zoomControl"],
+      behaviors: ["drag", "scrollZoom"],
+    });
 
     map.geoObjects.add(placemark);
+    var mapMobile = new ymaps.Map("map-mobile", {
+      center: [44.93335454, 34.11270504],
+      zoom: 16,
+      controls: ["zoomControl"],
+      behaviors: ["drag", "scrollZoom"],
+    });
+
+    mapMobile.geoObjects.add(placemark);
   }
 
   //-------------------------------------------------------------- check-box
@@ -494,7 +502,7 @@ $(document).ready(function () {
   });
 
   if (window.innerWidth < 1200) {
-    $(".common__heading").click(function (e) {
+    $(".common__heading:not(.mobile-open)").click(function (e) {
       e.preventDefault();
       e.target
         .closest(".common")
@@ -509,22 +517,32 @@ $(document).ready(function () {
   });
   $("#sort").click(function (e) {
     e.preventDefault();
-    $(e.target).closest(".drop-content").length && 
-    $(e.target).closest(".drop-content").toggleClass("drop-content_show");
+    $(e.target).closest(".drop-content").length &&
+      $(e.target).closest(".drop-content").toggleClass("drop-content_show");
   });
   $("#cat").click(function (e) {
     e.preventDefault();
-    $(e.target).closest(".drop-content").length && $(e.target).closest(".drop-content").toggleClass("drop-content_show");
+    $(e.target).closest(".drop-content").length &&
+      $(e.target).closest(".drop-content").toggleClass("drop-content_show");
     document
       .querySelector(".category__list")
       .classList.toggle("category__list_show");
   });
   $("#cab").click(function (e) {
     e.preventDefault();
-    $(e.target).closest(".drop-content").length && $(e.target).closest(".drop-content").toggleClass("drop-content_show");
+    $(e.target).closest(".drop-content").length &&
+      $(e.target).closest(".drop-content").toggleClass("drop-content_show");
     document
       .querySelector(".user-btns__list")
       .classList.toggle("user-btns__list_show");
+  });
+
+  $(".common__svg_place").click(function () {
+    window.open(
+      "https://yandex.ru/maps/org/legkiy_veter/1070146733/?ll=34.112570%2C44.933257&z=16.83",
+      "_blank"
+    );
+    return false;
   });
 
   document.body.addEventListener(
@@ -726,20 +744,24 @@ $(document).ready(function () {
     return false;
   });
 
-  $("body").on("click", ".product__icon-heart, .tag-tovar-btn__link", function (
-    e
-  ) {
-    e.preventDefault();
-    if ($("#enter").length == 0) {
-      $.getJSON("/favorites/add", { product_id: $(this).data("id") }, function (
-        response
-      ) {
-        console.log(response);
-        $("body").append(response.html);
-        $(".liked-header-counter").text(response.count);
-      });
+  $("body").on(
+    "click",
+    ".product__icon-heart, .tag-tovar-btn__link",
+    function (e) {
+      e.preventDefault();
+      if ($("#enter").length == 0) {
+        $.getJSON(
+          "/favorites/add",
+          { product_id: $(this).data("id") },
+          function (response) {
+            console.log(response);
+            $("body").append(response.html);
+            $(".liked-header-counter").text(response.count);
+          }
+        );
+      }
     }
-  });
+  );
 
   $("body").on("click", ".product__icon-cross", function (e) {
     e.preventDefault();

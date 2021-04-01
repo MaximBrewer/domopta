@@ -2,8 +2,8 @@
 /* @var $this \yii\web\View */
 ?>
 
-        <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-		
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+
 <div class="content">
 	<div class="container">
 		<div class="contacts">
@@ -15,7 +15,7 @@
 					<ul class="contacts__list">
 						<li class="contacts__item">
 							<div class="common">
-								<span class="common__heading">Свяжитесь с нами</span>
+								<span class="common__heading mobile-open">Телефоны</span>
 								<ul class="common__list common__list_show">
 									<li class="common__item common__item_flex">
 										<div class="common__icon">
@@ -47,8 +47,8 @@
 						</li>
 						<li class="contacts__item">
 							<div class="common">
-								<span class="common__heading">Адрес</span>
-								<ul class="common__list">
+								<span class="common__heading mobile-open">Адрес</span>
+								<ul class="common__list common__list_show">
 									<li class="common__item common__item_flex common__item_mb">
 										<div class="common__icon">
 											<svg class="svg common__svg common__svg_place">
@@ -73,42 +73,49 @@
 								</ul>
 							</div>
 						</li>
-						<li class="contacts__item">
+						<li class="contacts__item only-mobile">
+							<div class="common">
+								<span class="common__heading mobile-open">Схема проезда</span>
+								<?php echo Yii::$app->settings->get('Settings.schema') ?>
+							</div>
+							<div class="yandex-map" id="map-mobile"></div>
+						</li>
+						<li class="contacts__item mobile-hidden">
 							<div class="common">
 								<span class="common__heading">Мы в социальных сетях</span>
 								<ul class="common__list common__list_flex common__list_pt">
-									<?php if(Yii::$app->settings->get('Settings.social_instagram')): ?>
+									<?php if (Yii::$app->settings->get('Settings.social_instagram')) : ?>
 										<li class="common__item">
 											<a href="<?php echo Yii::$app->settings->get('Settings.social_instagram') ?>" class="common__link common__icon" target="_blank" rel="nofollow">
 												<svg class="common__svg common__svg_insta">
-													<use xlink:href="/img/sprite-sheet.svg#insta"/>
+													<use xlink:href="/img/sprite-sheet.svg#insta" />
 												</svg>
 											</a>
 										</li>
 									<?php endif; ?>
-									<?php if(Yii::$app->settings->get('Settings.social_vk')): ?>
+									<?php if (Yii::$app->settings->get('Settings.social_vk')) : ?>
 										<li class="common__item">
 											<a href="<?php echo Yii::$app->settings->get('Settings.social_vk') ?>" class="common__link common__icon" target="_blank" rel="nofollow">
 												<svg class="common__svg common__svg_vk">
-													<use xlink:href="/img/sprite-sheet.svg#vk"/>
+													<use xlink:href="/img/sprite-sheet.svg#vk" />
 												</svg>
 											</a>
 										</li>
 									<?php endif; ?>
-									<?php if(Yii::$app->settings->get('Settings.social_viber')): ?>
+									<?php if (Yii::$app->settings->get('Settings.social_viber')) : ?>
 										<li class="common__item">
 											<a href="<?php echo Yii::$app->settings->get('Settings.social_viber') ?>" class="common__link common__icon" target="_blank" rel="nofollow">
 												<svg class="common__svg common__svg_viber">
-													<use xlink:href="/img/sprite-sheet.svg#viber"/>
+													<use xlink:href="/img/sprite-sheet.svg#viber" />
 												</svg>
 											</a>
 										</li>
 									<?php endif; ?>
-									<?php if(Yii::$app->settings->get('Settings.social_whatsapp')): ?>
+									<?php if (Yii::$app->settings->get('Settings.social_whatsapp')) : ?>
 										<li class="common__item">
 											<a href="<?php echo Yii::$app->settings->get('Settings.social_whatsapp') ?>" class="common__link common__icon" target="_blank" rel="nofollow">
 												<svg class="common__svg common__svg_watsapp">
-													<use xlink:href="/img/sprite-sheet.svg#watsapp"/>
+													<use xlink:href="/img/sprite-sheet.svg#watsapp" />
 												</svg>
 											</a>
 										</li>
@@ -116,7 +123,7 @@
 								</ul>
 							</div>
 						</li>
-						<li class="contacts__item">
+						<li class="contacts__item mobile-hidden">
 							<div class="common">
 								<span class="common__heading">Реквизиты</span>
 								<?php echo Yii::$app->settings->get('Settings.rekvizit') ?>
@@ -124,8 +131,8 @@
 						</li>
 						<li class="contacts__item">
 							<div class="common">
-                                <span class="common__heading">&nbsp;</span>
-								<ul class="common__list">
+								<span class="common__heading mobile-open">&nbsp;</span>
+								<ul class="common__list common__list_show">
 									<li class="common__item">
 										<a href="/feedback" class="common__link common__link_bb">Написать администрации</a>
 									</li>
@@ -140,12 +147,12 @@
 						</li>
 					</ul>
 				</div>
-				<div class="contacts-right">
+				<div class="contacts-right mobile-hidden">
 					<div class="common">
 						<span class="common__heading">Схема проезда</span>
 						<?php echo Yii::$app->settings->get('Settings.schema') ?>
 					</div>
-                    <div class="yandex-map" id="map"></div>   
+					<div class="yandex-map" id="map"></div>
 				</div>
 			</div>
 		</div>

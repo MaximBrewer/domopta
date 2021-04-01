@@ -426,7 +426,7 @@ $this->registerJsFile('/js/lightslider.js', ['depends' => \yii\web\JqueryAsset::
                         </li>
                         <li class="footer__item">
                             <div class="common footer__common">
-                                <a href="#" class="common__heading">Свяжитесь с нами</a>
+                                <a href="#" class="common__heading">Телефоны</a>
                                 <ul class="common__list common__list_show">
                                     <li class="common__item common__item_flex">
                                         <div class="common__icon">
@@ -695,7 +695,7 @@ $this->registerJsFile('/js/lightslider.js', ['depends' => \yii\web\JqueryAsset::
                     <ul class="contacts-pop__list">
                         <li class="contacts-pop__item">
                             <div class="common">
-                                <a href="#" class="common__heading">Свяжитесь с нами</a>
+                                <a href="#" class="common__heading">Телефоны</a>
                                 <ul class="common__list">
                                     <li class="common__item common__item_flex">
                                         <div class="common__icon">
