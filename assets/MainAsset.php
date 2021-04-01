@@ -18,10 +18,10 @@ class MainAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'style/style.css?v=4',
+        'style/style.css?v=5',
     ];
     public $js = [
-        'js/main.js',
+        'js/main.js?v=5',
         'js/jquery.mCustomScrollbar.js',
 //        'js/common.js'
     ];

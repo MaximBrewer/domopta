@@ -21,9 +21,9 @@ MainAsset::register($this);
 
 if (!isset(Yii::$app->params['page'])) {
     Yii::$app->params['page'] = new app\models\Page();
-    Yii::$app->params['page']->title = "Легкий ветер";
-    Yii::$app->params['page']->keywords = "Легкий ветер";
-    Yii::$app->params['page']->description = "Легкий ветер";
+    Yii::$app->params['page']->title = "Оптовый Комплекс \"Легкий Ветер\"";
+    Yii::$app->params['page']->keywords = "Оптовый Комплекс \"Легкий Ветер\"";
+    Yii::$app->params['page']->description = "Оптовый Комплекс \"Легкий Ветер\"";
 }
 
 if (Yii::$app->params['page']->title) {
