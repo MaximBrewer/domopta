@@ -61,7 +61,7 @@ class TestController extends Controller
             $files = UploadedFile::getInstances($model, 'images');
             foreach ($files as $k => $file) {
                 $fcleanname = Inflector::slug($model->article_index);
-                if ($max_order + $k) $fcleanname .= '-' . str_pad($max_order + $k, 3, "0", STR_PAD_LEFT);
+                $fcleanname .= '-' . str_pad($max_order + ($k + 1), 3, "0", STR_PAD_LEFT);
                 $fname = $fcleanname . '.' . $file->extension;
                 $path = \Yii::getAlias('@webroot/upload/product/' . Inflector::slug($model->article_index) . '/');
                 @mkdir($path);
@@ -77,7 +77,7 @@ class TestController extends Controller
                 $model1->image = $fname;
                 $model1->folder = Inflector::slug($model->article_index);
                 $model1->category_id = $model->category_id;
-                $model1->order = $max_order + $k;
+                $model1->order = $max_order + $k + 1;
                 $model1->save();
 
                 $arr['ids'][$k] = $model1->id;
