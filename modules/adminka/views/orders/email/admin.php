@@ -21,15 +21,15 @@ $types = [
             <?php if ($order->user->profile->type == 3) : ?>
                 <div style="font-size: 24px; font-weight: bold;text-transform:uppercase;">
                     ООО <?php echo str_replace("ООО", "", $order->user->profile->organization_name); ?>
+                    <span style="font-weight: bold">(<?php echo $types[$order->user->profile->type] ?>)</span>
                 </div>
                 <div style="font-size: 21px; font-weight: bold;text-transform:uppercase;">
                     <?php echo $order->user->profile->lastname ?> <?php echo $order->user->profile->name ?> <?php echo $order->user->profile->surname ?>
-                    <span style="font-size: 18px; font-weight: bold">(<?php echo $types[$order->user->profile->type] ?>)</span>
                 </div>
             <?php else : ?>
                 <div style="font-size: 24px; font-weight: bold;text-transform:uppercase;">
                     <?php echo $order->user->profile->lastname ?> <?php echo $order->user->profile->name ?> <?php echo $order->user->profile->surname ?>
-                    <span style="font-size: 18px; font-weight: bold">(<?php echo $types[$order->user->profile->type] ?>)</span>
+                    <span style="font-weight: bold">(<?php echo $types[$order->user->profile->type] ?>)</span>
                 </div>
             <?php endif; ?>
             <br />
@@ -39,7 +39,7 @@ $types = [
 </table>
 <table style="width: 100%;font-size: 14px; ">
     <tr style="vertical-align: top;">
-        <td style="padding-right:20px;">
+        <td style="padding-right:20px;width:40%;">
             <table style="vertical-align: top;" width="100%">
                 <tr>
                     <td>
@@ -56,7 +56,7 @@ $types = [
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td style="text-transform:uppercase;">
                         <?php echo $order->user->profile->city; ?>, <?php echo $order->user->profile->region; ?>
                     </td>
                 </tr>
@@ -125,13 +125,20 @@ $types = [
                 <?php if ($order->passport_series) : ?>
                     <tr>
                         <td>
-                            <?php echo $order->passport_series; ?> <?php echo $order->passport_id; ?>
+                            Паспорт: <?php echo $order->passport_series; ?> <?php echo $order->passport_id; ?>
+                        </td>
+                    </tr>
+                <?php endif; ?>
+                <?php if ($order->user->profile->order_comment) : ?>
+                    <tr>
+                        <td style="font-size: 18px; font-weight: bold;text-transform:uppercase;">
+                            <?php echo $order->user->profile->order_comment; ?> <?php echo $order->user->profile->order_comment; ?>
                         </td>
                     </tr>
                 <?php endif; ?>
             </table>
         </td>
-        <td width="100%">
+        <td style="width:60%;">
             <table width="100%;" style="border: 1px solid grey; border-collapse: collapse; width: 100%;">
                 <tr style="text-align: center; font-weight: bold;">
                     <td style="border: 1px solid grey" width="60%">Категория</td>
@@ -159,7 +166,7 @@ $types = [
                             'sum' => 0
                         ];
                     }
-                    $arr[$cat_name]['amount'] = $arr[$cat_name]['amount'] + $detail->amount;
+                    $arr[$cat_name]['amount'] = $arr[$cat_name]['amount'] + ($detail->amount * ($detail->product->pack_quantity ? $detail->product->pack_quantity : 1));
                     $arr[$cat_name]['sum'] = $arr[$cat_name]['sum'] + $detail->sum;
                     $total += $detail->sum;
                     if ($detail->product->ooo) {
@@ -236,7 +243,7 @@ $types = [
             <td align="center"><?php echo (int) $detail->product->pack_price ? Products::formatEmailPrice($detail->product->pack_price) : ''; ?></td>
         <?php endif; ?>
         <td align="center"><?php echo Products::formatEmailPrice($detail->price); ?></td>
-        <td align="center" style="font-weight: bold;"><?php echo $detail->amount ?></td>
+        <td align="center" style="font-weight: bold;"><?php echo $detail->amount * ($detail->product->pack_quantity ? $detail->product->pack_quantity : 1) ?></td>
         <td align="center" style="padding: 3px;"><?php echo Products::formatEmailPrice($detail->sum); ?></td>
         </tr>
     <?php
