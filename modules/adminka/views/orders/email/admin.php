@@ -19,15 +19,15 @@ $types = [
     <tr>
         <td style="font-size:15px">
             <?php if ($order->user->profile->type == 3) : ?>
-                <div style="font-size: 24px; font-weight: bold">
+                <div style="font-size: 24px; font-weight: bold;text-transform:uppercase;">
                     ООО <?php echo str_replace("ООО", "", $order->user->profile->organization_name); ?>
                 </div>
-                <div style="font-size: 21px; font-weight: bold">
+                <div style="font-size: 21px; font-weight: bold;text-transform:uppercase;">
                     <?php echo $order->user->profile->lastname ?> <?php echo $order->user->profile->name ?> <?php echo $order->user->profile->surname ?>
                     <span style="font-size: 18px; font-weight: bold">(<?php echo $types[$order->user->profile->type] ?>)</span>
                 </div>
             <?php else : ?>
-                <div style="font-size: 24px; font-weight: bold">
+                <div style="font-size: 24px; font-weight: bold;text-transform:uppercase;">
                     <?php echo $order->user->profile->lastname ?> <?php echo $order->user->profile->name ?> <?php echo $order->user->profile->surname ?>
                     <span style="font-size: 18px; font-weight: bold">(<?php echo $types[$order->user->profile->type] ?>)</span>
                 </div>
