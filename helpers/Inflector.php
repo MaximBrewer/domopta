@@ -57,4 +57,37 @@ class Inflector extends \yii\helpers\Inflector
 
         return strtr($string, static::$transliteration);
     }
+
+    /**
+     * Returns a string with all spaces converted to given replacement,
+     * non word characters removed and the rest of characters transliterated.
+     *
+     * If intl extension isn't available uses fallback that converts latin characters only
+     * and removes the rest. You may customize characters map via $transliteration property
+     * of the helper.
+     *
+     * @param string $string An arbitrary string to convert
+     * @param string $replacement The replacement to use for spaces
+     * @param bool $lowercase whether to return the string in lowercase or not. Defaults to `true`.
+     * @return string The converted string.
+     */
+    public static function slug($string, $replacement = '-', $lowercase = true)
+    {
+        if ((string)$replacement !== '') {
+            $parts = explode($replacement, static::transliterate($string));
+        } else {
+            $parts = [static::transliterate($string)];
+        }
+
+        $replaced = array_map(function ($element) use ($replacement) {
+            $element = preg_replace('~[^/a-zA-Z0-9=\s—–-]+~u', '', $element);
+            return preg_replace('~[/=\s—–-]+~u', $replacement, $element);
+        }, $parts);
+
+        $string = trim(implode($replacement, $replaced), $replacement);
+        if ((string)$replacement !== '') {
+            $string = preg_replace('#' . preg_quote($replacement) . '+#', $replacement, $string);
+        }
+        return $lowercase ? strtolower($string) : $string;
+    }
 }
