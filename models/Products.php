@@ -301,4 +301,18 @@ class Products extends \yii\db\ActiveRecord
             return '';
         return str_replace(' ', '&nbsp;', $return);
     }
+
+    public static function formatEmailItog($price, $cur = false)
+    {
+        if (!$price) {
+            $return = '0 руб.';
+        } elseif (ceil($price * 100) == intVal(ceil($price) . '00')) {
+            $return = number_format($price, 0, ',', " ");
+            if ($cur) $return .= ' руб.';
+        } else {
+            $return = number_format($price, 2, ',', " ");
+            if ($cur) $return .= ' руб.';
+        }
+        return str_replace(' ', '&nbsp;', $return);
+    }
 }

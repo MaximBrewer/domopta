@@ -74,14 +74,14 @@ $types = [
                 <?php endif; ?>
                 <?php if ($order->tc && $order->tc != 'other') : ?>
                     <tr>
-                        <td>
+                        <td style="font-size: 15px; ">
                             <?php echo Order::$tcs[$order->tc]; ?>
                         </td>
                     </tr>
                 <?php endif; ?>
                 <?php if ($order->tc && $order->tc == 'other') : ?>
                     <tr>
-                        <td>
+                        <td style="font-size: 15px; ">
                             <?php echo $order->tc_name; ?>
                         </td>
                     </tr>

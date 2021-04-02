@@ -74,14 +74,14 @@ $types = [
                 <?php endif; ?>
                 <?php if ($order->tc && $order->tc != 'other') : ?>
                     <tr>
-                        <td>
+                        <td style="font-size: 15px; ">
                             <?php echo Order::$tcs[$order->tc]; ?>
                         </td>
                     </tr>
                 <?php endif; ?>
                 <?php if ($order->tc && $order->tc == 'other') : ?>
                     <tr>
-                        <td>
+                        <td style="font-size: 15px; ">
                             <?php echo $order->tc_name; ?>
                         </td>
                     </tr>
@@ -121,7 +121,7 @@ $types = [
                 <?php endif; ?>
                 <?php if ($order->user->profile->order_comment) : ?>
                     <tr>
-                        <td style="font-size: 18px; font-weight: bold;text-transform:uppercase;">
+                        <td style="font-size: 15px; font-weight: bold;text-transform:uppercase;">
                             <?php echo $order->user->profile->order_comment; ?>
                         </td>
                     </tr>
@@ -243,6 +243,6 @@ $types = [
 <br />
 <div align="right"><strong>Итого:&nbsp;&nbsp;&nbsp;</strong><span style="letter-spacing: 1px; font-size: 15px;"><?php echo Products::formatEmailPrice($total, true); ?></span></div>
 <div align="left">
-    <p>Итого, О:&nbsp;&nbsp;&nbsp;<?php echo Products::formatEmailPrice($total_o, true); ?></p>
-    <p>Итого, Т:&nbsp;&nbsp;&nbsp;<?php echo Products::formatEmailPrice($total_t, true); ?></p>
+    <p>Итого, О:&nbsp;&nbsp;&nbsp;<?php echo Products::formatEmailItog($total_o, true); ?></p>
+    <p>Итого, Т:&nbsp;&nbsp;&nbsp;<?php echo Products::formatEmailItog($total_t, true); ?></p>
 </div>
