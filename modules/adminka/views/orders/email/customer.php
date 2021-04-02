@@ -5,8 +5,8 @@
  * @var $order \app\models\Order
  */
 
-use yii\helpers\Url;
 use app\models\Order;
+use yii\helpers\Url;
 use app\models\Products;
 
 $types = [
@@ -52,68 +52,63 @@ $types = [
                 </tr>
                 <tr>
                     <td>
-                        <?php echo $order->user->username ?>
+                        <?php echo $order->user->username; ?>
                     </td>
                 </tr>
                 <tr>
                     <td style="text-transform:uppercase;">
-                        <?php echo $order->user->profile->city ?>, <?php echo $order->user->profile->region ?>
+                        <?php echo $order->user->profile->city; ?>, <?php echo $order->user->profile->region; ?>
                     </td>
                 </tr>
                 <tr>
                     <td style="text-decoration: underline;">
-                        <?php echo $order->user->email ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-
+                        <?php echo $order->user->email; ?>
                     </td>
                 </tr>
                 <?php if ($order->delivery_method) : ?>
                     <tr>
-                        <td>
-                            <?php echo Order::$methods[$order->delivery_method] ?>
+                        <td style="font-weight:bold;">
+                            <?php echo Order::$methods[$order->delivery_method]; ?>
                         </td>
                     </tr>
                 <?php endif; ?>
                 <?php if ($order->tc && $order->tc != 'other') : ?>
                     <tr>
                         <td>
-                            <?php echo Order::$tcs[$order->tc] ?>
+                            <?php echo Order::$tcs[$order->tc]; ?>
                         </td>
                     </tr>
                 <?php endif; ?>
                 <?php if ($order->tc && $order->tc == 'other') : ?>
                     <tr>
                         <td>
-                            <?php echo $order->tc_name ?>
+                            <?php echo $order->tc_name; ?>
                         </td>
                     </tr>
                 <?php endif; ?>
                 <?php if ($order->locality) : ?>
                     <tr>
                         <td>
-                            <?php echo $order->locality ?>
+                            <?php echo $order->locality; ?>
                         </td>
                     </tr>
                 <?php endif; ?>
                 <?php if ($order->fio) : ?>
                     <tr>
                         <td>
-                            <h3>Получатель заказа:</h3>
+                            <h3 style="margin:.3rem 0;padding:0;">Получатель заказа:</h3>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <?php echo $order->fio ?>
+                            <?php echo $order->fio; ?>
                         </td>
                     </tr>
                 <?php endif; ?>
                 <?php if ($order->phone) : ?>
                     <tr>
                         <td>
-                            <?php echo $order->phone ?>
+                            <?php echo $order->phone; ?>
                         </td>
                     </tr>
                 <?php endif; ?>
@@ -121,13 +116,6 @@ $types = [
                     <tr>
                         <td>
                             Паспорт: <?php echo $order->passport_series ?> <?php echo $order->passport_id ?>
-                        </td>
-                    </tr>
-                <?php endif; ?>
-                <?php if ($order->user->profile->order_comment) : ?>
-                    <tr>
-                        <td style="font-size: 18px; font-weight: bold;text-transform:uppercase;">
-                            <?php echo $order->user->profile->order_comment; ?> <?php echo $order->user->profile->order_comment; ?>
                         </td>
                     </tr>
                 <?php endif; ?>
@@ -173,7 +161,7 @@ $types = [
                 ?>
                 <?php foreach ($arr as $k => $v) : ?>
                     <tr>
-                        <td style="border: 1px solid grey; padding-right: 10px; padding-left: 5px;"><?php echo $k; ?></td>
+                        <td style="border: 1px solid grey; padding-right: 10px;padding-left: 5px;"><?php echo $k; ?></td>
                         <td style="border: 1px solid grey; text-align: center;"><?php echo $v['amount']; ?></td>
                         <td style="border: 1px solid grey; text-align: center;padding-left:5px;padding-right:5px;"><?php echo Products::formatEmailPrice($v['sum']); ?></td>
                     </tr>
@@ -181,7 +169,7 @@ $types = [
                 <tr>
                     <td style="border: 1px solid grey; text-align: right; padding-right: 10px;">Общая сумма</td>
                     <td style="border: 1px solid grey"></td>
-                    <td style="border: 1px solid grey; text-align: center;padding-left:5px;padding-right:5px;"><?php echo Products::formatEmailPrice($total, true); ?></td>
+                    <td style="border: 1px solid grey; text-align: center;padding-left:5px;padding-right:5px;"><?php echo Products::formatEmailPrice($total); ?></td>
                 </tr>
             </table>
         </td>
@@ -227,6 +215,7 @@ $types = [
         <?php endif; ?>
         <td align="center"><?php echo $i + 1 ?></td>
         <td style="padding: 3px;"><?php echo $detail->name ?></td>
+
         <td><b style="font-size: 13px;"><?php echo $detail->product->article ?></b></td>
         <td><?php echo $detail->color == 'default' ? '' : $detail->color; ?></td>
         <td><?php if ($old != $detail->order_id . '___' . $detail->article) echo $detail->memo ?></td>
@@ -237,7 +226,7 @@ $types = [
             <td align="center"><?php echo (int) $detail->product->pack_price ? Products::formatEmailPrice($detail->product->pack_price) : ''; ?></td>
         <?php endif; ?>
         <td align="center"><?php echo Products::formatEmailPrice($detail->price); ?></td>
-        <td align="center" style="font-weight: bold;"><?php echo $detail->amount * ($detail->product->pack_quantity ? $detail->product->pack_quantity : 1) ?></td>
+        <td align="center" style="font-weight: bold;"><?php echo $detail->amount ?></td>
         <td align="center" style="padding: 3px;"><?php echo Products::formatEmailPrice($detail->sum); ?></td>
         </tr>
     <?php
@@ -245,9 +234,7 @@ $types = [
     endforeach; ?>
 </table>
 <br />
-<div align="right">
-    <strong>Итого:&nbsp;&nbsp;&nbsp;</strong><span style="letter-spacing: 1px; font-size: 15px;"> <?php echo Products::formatEmailPrice($total, true); ?></span>
-</div>
+<div align="right"><strong>Итого:&nbsp;&nbsp;&nbsp;</strong><span style="letter-spacing: 1px; font-size: 15px;"><?php echo Products::formatEmailPrice($total, true); ?></span></div>
 <div align="left">
     <p>Оптовый Комплекс "ЛЕГКИЙ ВЕТЕР"</p>
     <p><a href="https://domopta.ru">domopta.ru</a></p>

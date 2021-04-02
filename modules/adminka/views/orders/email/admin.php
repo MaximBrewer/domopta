@@ -65,19 +65,9 @@ $types = [
                         <?php echo $order->user->email; ?>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <?php echo $order->user->profile->order_comment; ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-
-                    </td>
-                </tr>
                 <?php if ($order->delivery_method) : ?>
                     <tr>
-                        <td>
+                        <td style="font-weight:bold;">
                             <?php echo Order::$methods[$order->delivery_method]; ?>
                         </td>
                     </tr>
@@ -106,7 +96,7 @@ $types = [
                 <?php if ($order->fio) : ?>
                     <tr>
                         <td>
-                            <h3>Получатель заказа:</h3>
+                            <h3 style="margin:.3rem 0;padding:0;">Получатель заказа:</h3>
                         </td>
                     </tr>
                     <tr>
@@ -132,7 +122,7 @@ $types = [
                 <?php if ($order->user->profile->order_comment) : ?>
                     <tr>
                         <td style="font-size: 18px; font-weight: bold;text-transform:uppercase;">
-                            <?php echo $order->user->profile->order_comment; ?> <?php echo $order->user->profile->order_comment; ?>
+                            <?php echo $order->user->profile->order_comment; ?>
                         </td>
                     </tr>
                 <?php endif; ?>
@@ -186,7 +176,7 @@ $types = [
                 <tr>
                     <td style="border: 1px solid grey; text-align: right; padding-right: 10px;">Общая сумма</td>
                     <td style="border: 1px solid grey"></td>
-                    <td style="border: 1px solid grey; text-align: center;padding-left:5px;padding-right:5px;"><?php echo Products::formatEmailPrice($total, true); ?></td>
+                    <td style="border: 1px solid grey; text-align: center;padding-left:5px;padding-right:5px;"><?php echo Products::formatEmailPrice($total); ?></td>
                 </tr>
             </table>
         </td>
@@ -243,7 +233,7 @@ $types = [
             <td align="center"><?php echo (int) $detail->product->pack_price ? Products::formatEmailPrice($detail->product->pack_price) : ''; ?></td>
         <?php endif; ?>
         <td align="center"><?php echo Products::formatEmailPrice($detail->price); ?></td>
-        <td align="center" style="font-weight: bold;"><?php echo $detail->amount * ($detail->product->pack_quantity ? $detail->product->pack_quantity : 1) ?></td>
+        <td align="center" style="font-weight: bold;"><?php echo $detail->amount ?></td>
         <td align="center" style="padding: 3px;"><?php echo Products::formatEmailPrice($detail->sum); ?></td>
         </tr>
     <?php
@@ -251,7 +241,7 @@ $types = [
     endforeach; ?>
 </table>
 <br />
-<div align="right"><strong>Итого:&nbsp;&nbsp;&nbsp;</strong><span style="letter-spacing: 1px; font-size: 15px;"><?php echo Products::formatEmailPrice($total, true); ?></span> </div>
+<div align="right"><strong>Итого:&nbsp;&nbsp;&nbsp;</strong><span style="letter-spacing: 1px; font-size: 15px;"><?php echo Products::formatEmailPrice($total, true); ?></span></div>
 <div align="left">
     <p>Итого, О:&nbsp;&nbsp;&nbsp;<?php echo Products::formatEmailPrice($total_o, true); ?></p>
     <p>Итого, Т:&nbsp;&nbsp;&nbsp;<?php echo Products::formatEmailPrice($total_t, true); ?></p>
