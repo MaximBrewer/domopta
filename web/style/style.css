@@ -9446,3 +9446,11 @@ img.reg-step2-item-img {
   margin-left: 0;
   margin-right: 5px;
 }
+
+.history_cancel__h2 {
+  margin-bottom: 0.5rem;
+}
+.history_cancel__btn{
+  font-size: 1.25rem;
+  padding: 6px 40px 4px;
+}

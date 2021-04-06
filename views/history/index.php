@@ -45,7 +45,7 @@ use app\models\Products;
 													<div class="btn-black history-main__btn-black">
 														<a title="Отменить заказ" href="javascript:;" onclick='cancelOrder(<?php echo $order->id ?>)' class="cancel-order">&times;</a>
 													</div>
-												<?php elseif ($order->status == 'cancel') : ?>
+												<?php elseif ($order->status == 'cancel' && false) : ?>
 													<div class="btn-black history-main__btn-black">
 														<a title="Восстановить заказ" href="/history/return?id=<?php echo $order->id ?>" class="cancel-order">+</a>
 													</div>
@@ -97,11 +97,14 @@ use app\models\Products;
 <div class="container container_pop-small cart_popup history_cancel">
 	<div class="reg-pop-inner reg-pop-inner-cart">
 		<div class="cart_popup_clean">
-			<h2>Отменить заказ</h2>
-			<h3>Вы уверены, что хотите отменить заказ?</h3>
+			<h2 class="history_cancel__h2">Отмена заказа</h2>
+			<h3>Вы уверены, что точно хотите отменить заказ?<br />
+				После отмены заказа нет возможности его восстановить.<br />
+				Заказ будет полностью аннулирован.
+			</h3>
 			<div class="cart_popup_btn">
-				<a href="javascript:;" class="btn-black__link cancel-href">Да</a>
-				<a href="javascript:;" class="btn-black__link close-h">Нет</a>
+				<a href="javascript:;" class="btn-black__link cancel-href history_cancel__btn">Да</a>
+				<a href="javascript:;" class="btn-black__link close-h history_cancel__btn">Нет</a>
 			</div>
 		</div>
 		<a href="#" id="esc" class="esc close-h">
