@@ -43,11 +43,14 @@ if (Yii::$app->session->hasFlash('login')) {
 $categories = \app\models\Category::find()->where('parent_id IS NULL')->orderBy(['position' => SORT_ASC])->all();
 
 if (Yii::$app->user->isGuest) {
-    $this->registerJsFile('/js/reg.js', ['depends' => \yii\web\JqueryAsset::className()]);
+    $this->registerJsFile('/js/reg.js', ['depends' => \yii\web\JqueryAsset::class]);
 }
+$this->registerCssFile("@web/css/jquery.jgrowl.min.css", ['depends' => \yii\bootstrap\BootstrapAsset::class]);
 
-$this->registerJsFile('/js/magnifier.js', ['depends' => \yii\web\JqueryAsset::className()]);
-$this->registerJsFile('/js/lightslider.js', ['depends' => \yii\web\JqueryAsset::className()]);
+$this->registerJsFile('@web/js/magnifier.js', ['depends' => \yii\web\JqueryAsset::class]);
+$this->registerJsFile('@web/js/lightslider.js', ['depends' => \yii\web\JqueryAsset::class]);
+$this->registerJsFile('@web/js/jquery.jgrowl.min.js', ['depends' => yii\web\JqueryAsset::class]);
+
 
 ?>
 <?php $this->beginPage() ?>
@@ -74,6 +77,7 @@ $this->registerJsFile('/js/lightslider.js', ['depends' => \yii\web\JqueryAsset::
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
         var fired = false;
+
         function epprFu() {
             fired = true;
             setTimeout(function() {
