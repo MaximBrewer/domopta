@@ -9442,6 +9442,10 @@ img.reg-step2-item-img {
   display: block;
   margin-left: 5px;
 }
+.cart_popup_minimum .cart_popup_btn a:hover {
+  color: #24a0c7;
+  background: #fff;
+}
 .cart_popup_minimum .cart_popup_btn a:first-child {
   margin-left: 0;
   margin-right: 5px;
