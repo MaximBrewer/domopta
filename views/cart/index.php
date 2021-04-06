@@ -289,7 +289,7 @@ $totalDamount = 0;
 <?php if (Yii::$app->user->identity->profile->type) : ?>
     <div class="container container_pop-small cart_popup cart_minimum">
         <div class="reg-pop-inner reg-pop-inner-cart">
-            <div class="cart_popup_minimum">
+            <div class="cart_popup_minimum py-3 px-4">
                 Сумма Вашего заказа меньше необходимой минимальной суммы.<br />
                 По Условиям Работы заказы формируются от <?php echo (int)Yii::$app->settings->get('Settings.min' . Yii::$app->user->identity->profile->type); ?> рублей.<br />
                 Необходимо увеличить свой заказ, иначе заказ не будет обработан.
