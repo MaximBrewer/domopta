@@ -99,4 +99,7 @@
 }
 .jGrowl .blueTheme a{
     color: white !important;
+    text-decoration: underline;
+}
+.jGrowl .blueTheme a:hover{
 }
