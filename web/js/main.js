@@ -609,6 +609,8 @@ $(document).ready(function () {
                   $(".current-photo").text($(el).find(".active").data("i"));
                 },
                 onSliderLoad: function (el) {
+                  console.log(1)
+                  $('.photos-tovar').show();
                   /* $(".lSPager.lSGallery").wrap("<div class='lSPager-Wrap'></div>");*/
                 },
               });
@@ -659,6 +661,8 @@ $(document).ready(function () {
               $(".current-photo").text($(el).find(".active").data("i"));
             },
             onSliderLoad: function (el) {
+              $('.photos-tovar').show();
+              console.log(1)
               /* $(".lSPager.lSGallery").wrap("<div class='lSPager-Wrap'></div>");*/
             },
           });

@@ -50,10 +50,9 @@ $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => $model->slug
                     }
                 </style>
                 <?php $pictures = $model->pictures; ?>
-                <div class="photos-tovar tovar__photos-tovar <?php if (count($pictures) > 3) echo 'tovar__four' ?>">
+                <div class="photos-tovar tovar__photos-tovar <?php if (count($pictures) > 3) echo 'tovar__four' ?>" style="display:none;">
                     <div class="display display_pp"></div>
                     <?php if (count($pictures) > 3) : ?>
-
                         <div class="tovar__arrow__wrapper tovar__arrow__wrapperPP">
                             <div class="photos-tovar__arrow photos-tovar__arrow_l"><span class="photos-tovar__link photos-tovar__icon"><svg class="svg photos-tovar__svg photos-tovar__svg_arrow2-left">
                                         <use xlink:href="/img/sprite-sheet.svg#arrow2-left" /></svg></span></div>
