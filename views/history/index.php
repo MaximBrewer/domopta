@@ -39,7 +39,7 @@ use app\models\Products;
 										<td class="text-center" style="width:1px;">
 											<div class="history-btn">
 												<div class="btn-black history-main__btn-black">
-													<a href="/history/detail?id=<?php echo $order->id ?>" class="btn-black__link">Подробности</a>
+													<a href="/history/detail?id=<?php echo $order->id ?>" class="btn-black__link">Смотреть заказ</a>
 												</div>
 												<?php if ($order->status == 'pending') : ?>
 													<div class="btn-black history-main__btn-black">

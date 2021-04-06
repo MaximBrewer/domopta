@@ -71,8 +71,8 @@ foreach ($order->detiles as $item) {
 				<tr>
 					<td align="center"><?php echo $cnt; ?></td>
 					<td align="left" width="40"><?php echo $d->name; ?></td>
-					<td align="left" width="15"><?php echo $d->article; ?></td>
-					<td align="left" width="15"><?php echo $d->color; ?></td>
+					<td align="left" width="15"><?php echo $d->product->article; ?></td>
+					<td align="left" width="15"><?php echo $d->color == 'default' ? '' : $d->color; ?></td>
 					<td align="left" width="20"><?php echo $d->memo; ?></td>
 					<td width="12" align="center"><?php echo $d->product->pack_quantity ? $d->product->pack_quantity : 1 ?></td>
 					<?php if ($order->user->profile->type == 2) : ?>
