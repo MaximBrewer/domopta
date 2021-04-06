@@ -29,7 +29,8 @@ console.log(send)
         $("#cart_amount").text(data.amount);
         // $('#cart_amount1').text(data.amount);
         $(".input-color").val("");
-        $(".log-pop").html(data.popup).addClass("log-pop_flex");
+        $.jGrowl("Hello world!");
+        // $(".log-pop").html(data.popup).addClass("log-pop_flex");
       },
     });
   } else {
