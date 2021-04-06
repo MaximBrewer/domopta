@@ -18,6 +18,11 @@ $types = [
 <table style="margin-bottom: 20px;">
     <tr>
         <td style="font-size:15px">
+            <?php if(isset($status) && $status == 'canceled') : ?>
+                <div style="font-size: 24px; font-weight: bold;text-transform:uppercase;color:red;">
+                    Данный заказ отменён
+                </div>
+            <?php endif; ?>
             <?php if ($order->user->profile->type == 3) : ?>
                 <div style="font-size: 24px; font-weight: bold;text-transform:uppercase;">
                     ООО <?php echo str_replace("ООО", "", $order->user->profile->organization_name); ?>

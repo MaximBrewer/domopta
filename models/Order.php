@@ -171,14 +171,14 @@ class Order extends \yii\db\ActiveRecord
                 }
 
                 $controller = new Controller('new', Module::className());
-                $body = $controller->renderPartial('@app/modules/adminka/views/orders/email/admin', ['order' => $order]);
+                $body = $controller->renderPartial('@app/modules/adminka/views/orders/email/admin', ['order' => $order, 'status' => 'new']);
                 $model = new Self;
                 $model->mailer->sendEmail(Yii::$app->settings->get('Settings.adminEmail'), 'Уведомление о новом заказе', $body);
                 $model->mailer->sendEmail(Yii::$app->settings->get('Settings.sellEmail'), 'Уведомление о новом заказе', $body);
                 // $model->mailer->sendEmail('pimax1978@icloud.com', 'Новый заказ', $body);
 
                 if ($order->user->unconfirmed_email == 1) {
-                    $body = $controller->renderPartial('@app/modules/adminka/views/orders/email/customer', ['order' => $order]); // @todo сделать письмо
+                    $body = $controller->renderPartial('@app/modules/adminka/views/orders/email/customer', ['order' => $order, 'status' => 'new']); // @todo сделать письмо
                     $model->mailer->sendEmail($order->user->email, 'Ваш Заказ успешно оформлен и отправлен в Отдел Заказов', $body);
                     // $model->mailer->sendEmail('pimax1978@icloud.com', 'Ваш Заказ успешно оформлен и отправлен в Отдел Заказов', $body);
                 }

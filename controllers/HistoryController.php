@@ -73,12 +73,12 @@ class HistoryController extends Controller
 		$order = Order::findOne(['id' => $id, 'user_id' => Yii::$app->user->id, 'status' => 'pending']);
 		if ($order) $order->updateAttributes(['status' => 'cancel']);
 		$controller = new Controller('new', Module::className());
-		$body = $controller->renderPartial('@app/modules/adminka/views/orders/email/admin', ['order' => $order]);
+		$body = $controller->renderPartial('@app/modules/adminka/views/orders/email/admin', ['order' => $order, 'status' => 'canceled']);
 		$model = new Order;
 		$model->mailer->sendEmail(Yii::$app->settings->get('Settings.adminEmail'), 'Заказ отменен', $body);
 		$model->mailer->sendEmail(Yii::$app->settings->get('Settings.sellEmail'), 'Заказ отменен', $body);
 		if ($order->user->unconfirmed_email == 1) {
-			$body = $controller->renderPartial('@app/modules/adminka/views/orders/email/customer', ['order' => $order]);
+			$body = $controller->renderPartial('@app/modules/adminka/views/orders/email/customer', ['order' => $order, 'status' => 'canceled']);
 			$model->mailer->sendEmail($order->user->email, 'Ваш Заказ отменен', $body);
 		}
 		return $this->redirect('/history');
@@ -89,7 +89,7 @@ class HistoryController extends Controller
 		$order = Order::findOne(['id' => $id, 'user_id' => Yii::$app->user->id, 'status' => 'cancel']);
 		if ($order) $order->updateAttributes(['status' => 'pending']);
 		$controller = new Controller('new', Module::className());
-		$body = $controller->renderPartial('@app/modules/adminka/views/orders/email/admin', ['order' => $order]);
+		$body = $controller->renderPartial('@app/modules/adminka/views/orders/email/admin', ['order' => $order, 'status' => 'return']);
 		$model = new Order;
 		$model->mailer->sendEmail(Yii::$app->settings->get('Settings.adminEmail'), 'Заказ восстановлен', $body);
 		$model->mailer->sendEmail(Yii::$app->settings->get('Settings.sellEmail'), 'Заказ восстановлен', $body);
