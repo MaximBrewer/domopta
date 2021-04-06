@@ -93,3 +93,7 @@
     display: none;
   }
 }
+
+.jGrowl .blueTheme {
+    background-color: #24a0c7;
+}
