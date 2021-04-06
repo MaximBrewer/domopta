@@ -32,7 +32,7 @@
   margin-right: auto;
 }
 .jGrowl-notification {
-  background-color: #000;
+  background-color: #24a0c7;
   opacity: 0.9;
   zoom: 1;
   width: 250px;
@@ -46,8 +46,8 @@
 .jGrowl-notification .ui-state-highlight,
 .jGrowl-notification .ui-widget-content .ui-state-highlight,
 .jGrowl-notification .ui-widget-header .ui-state-highlight {
-  border: 1px solid #000;
-  background: #000;
+  border: 1px solid #24a0c7;
+  background: #24a0c7;
   color: #fff;
 }
 .jGrowl-notification .jGrowl-header {
@@ -65,7 +65,7 @@
   cursor: pointer;
 }
 .jGrowl-closer {
-  background-color: #000;
+  background-color: #24a0c7;
   opacity: 0.9;
   zoom: 1;
   width: 250px;
@@ -84,8 +84,8 @@
 .jGrowl-closer .ui-state-highlight,
 .jGrowl-closer .ui-widget-content .ui-state-highlight,
 .jGrowl-closer .ui-widget-header .ui-state-highlight {
-  border: 1px solid #000;
-  background: #000;
+  border: 1px solid #24a0c7;
+  background: #24a0c7;
   color: #fff;
 }
 @media print {
