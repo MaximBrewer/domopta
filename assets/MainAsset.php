@@ -19,10 +19,12 @@ class MainAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'style/style.css?v=5.1.1',
+        'css/jquery.jgrowl.min.css'
     ];
     public $js = [
         'js/main.js?v=5.1.1',
         'js/jquery.mCustomScrollbar.js',
+        'js/jquery.jgrowl.min.js',
 //        'js/common.js'
     ];
     public $depends = [
