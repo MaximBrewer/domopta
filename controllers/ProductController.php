@@ -44,7 +44,7 @@ class ProductController extends Controller
 			    $form_model->addToCart();
 		    }
 
-		    return json_encode( Cart::getAmount() + [ 'popup' => $this->renderPartial( 'add' ) ] );
+		    return json_encode( Cart::getAmount() + [ 'popup' => $this->renderPartial( 'add_note' ) ] );
 	    } else {
 		    return json_encode( Cart::getAmount() + [ 'popup' => $this->renderPartial( 'reg' ) ] );
 	    }

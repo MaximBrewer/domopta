@@ -29,7 +29,7 @@ console.log(send)
         $("#cart_amount").text(data.amount);
         // $('#cart_amount1').text(data.amount);
         $(".input-color").val("");
-        $.jGrowl("Hello world!", {theme: 'blueTheme'});
+        $.jGrowl(data.popup, {theme: 'blueTheme'});
         // $(".log-pop").html(data.popup).addClass("log-pop_flex");
       },
     });
