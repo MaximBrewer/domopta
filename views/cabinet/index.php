@@ -216,7 +216,7 @@ use yii\helpers\Html;
 		<div class="container container_pop-small">
 			<div class="reg-pop-inner reg-pop-inner-fav reg-pop-inner-success">
 				<div class="reg-pop__step1 reg-pop__step1_block">
-					<p class="popup-text1">Пароль успешно изменен.<br>
+					<p class="popup-text1 py-3 px-4">Пароль успешно изменен.<br>
 						Произведен выход из аккаунта на всех устройствах, где был ранее осуществлен вход с предыдущим паролем.</p>
 				</div>
 				<a href="#" id="esc" class="esc">
