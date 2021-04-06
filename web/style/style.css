@@ -9534,9 +9534,9 @@ img.reg-step2-item-img {
 .tag-tovar__bottom {
   white-space: nowrap;
 }
-.tag-tovar.tovat__tag-tovar {
-  padding-right: 35px;
-}
-.mCSB_container .tag-tovar.tovat__tag-tovar {
+.mCustomScrollbar .tag-tovar.tovat__tag-tovar {
   padding-right: 5px;
+}
+.mCustomScrollbar.mCS_no_scrollbar .tag-tovar.tovat__tag-tovar {
+  padding-right: 35px;
 }
