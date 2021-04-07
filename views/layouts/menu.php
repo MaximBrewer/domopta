@@ -89,4 +89,3 @@ foreach ($users as $id => $sum){
 ]); ?>
 </div>
 </div>
-<br />

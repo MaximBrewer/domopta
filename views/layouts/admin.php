@@ -55,8 +55,10 @@ AdminAsset::register($this);
         NavBar::end();
         ?>
 
-        <div class="container-fluid">
+        <div class="container-fluid pt-50">
             <?php echo $this->render('menu'); ?>
+        </div>
+        <div class="container-fluid my-20">
             <?= $content ?>
         </div>
     </div>
