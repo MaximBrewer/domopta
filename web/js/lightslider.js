@@ -641,8 +641,6 @@
                 if (thumbSlide < 0) {
                     thumbSlide = 0;
                 }
-                console.log(thumbSlide)
-                //2 * settings.thumbParentMargin
                 this.move($pager, thumbSlide);
             },
             auto: function () {
