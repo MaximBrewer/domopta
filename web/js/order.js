@@ -3,10 +3,8 @@ $("body").on("change", ".input-color", function () {
     $(this).val("");
   }
 });
-
 $("body").on("click", ".form-tovar-btn__link", function (e) {
   e.preventDefault();
-
   var inputs = $(".input-color");
   var send = !inputs.length;
   if (!send) {
@@ -16,7 +14,6 @@ $("body").on("click", ".form-tovar-btn__link", function (e) {
       }
     });
   }
-console.log(send)
   if (send) {
     $.ajax({
       url: $("#product-form").attr("action"),
@@ -25,12 +22,12 @@ console.log(send)
       dataType: "json",
       success: function (data) {
         $("#cart_sum").html(data.sum);
-        // $('#cart_sum1').text(data.sum);
         $("#cart_amount").text(data.amount);
-        // $('#cart_amount1').text(data.amount);
         $(".input-color").val("");
-        $.jGrowl(data.popup, {theme: 'blueTheme', closerTemplate: "<div>[ закрыть всё ]</div>"});
-        // $(".log-pop").html(data.popup).addClass("log-pop_flex");
+        $.jGrowl(data.popup, {
+          theme: "blueTheme",
+          closerTemplate: "<div>[ закрыть всё ]</div>",
+        });
       },
     });
   } else {
@@ -39,7 +36,6 @@ console.log(send)
     );
   }
 });
-
 $(".gal").on("click", function () {
   $(".bigimg").attr("src", $(this).data("url"));
 });

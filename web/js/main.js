@@ -1,5 +1,4 @@
 //--------------------------------------------------------- proloader
-
 window.addEventListener("load", function () {
   var load_screen = document.getElementById("preloader");
   setTimeout(function () {
@@ -30,7 +29,6 @@ function cancelOrder(id) {
       theme: "dark",
     });
   });
-
   $("[type=file]").on("change", function (e) {
     var files = [];
     for (var i in this.files) {
@@ -40,8 +38,6 @@ function cancelOrder(id) {
     $(this).parent().find(".file-input__text1").html(files.join(", "));
   });
 })(jQuery);
-
-///////////////////////////////////////
 $(document).ready(function () {
   if (window.location.hash.length && !!$(window.location.hash).offset()) {
     $("html,body").animate(
@@ -53,19 +49,11 @@ $(document).ready(function () {
       },
       10
     );
-    // $(document).scrollTop(1000);
-    // if (false) {
-    //     $('body').animate({ scrollTop: 1000 }, 1100); //1100 - скорость
-    // } else {
-    //     $('html').animate({ scrollTop: 1000 }, 1100);
-    // }
   }
-
   $(".arrows__link.arrows__icon.to-top").on("click", function (e) {
     e.preventDefault();
     $("html,body").stop().animate({ scrollTop: 0 }, 500);
   });
-
   $(".arrows__link.arrows__icon.to-down").on("click", function (e) {
     e.preventDefault();
     var anchor = $(this);
@@ -78,7 +66,6 @@ $(document).ready(function () {
         777
       );
   });
-
   //------------------------------------------- input-full
   var inputs = document.getElementsByTagName("input");
   for (let i = 0; i < inputs.length; i++) {
@@ -105,7 +92,6 @@ $(document).ready(function () {
   });
   //--------------------------------------------------------- header-top
   var headerBottomTop, headerBottomHeight;
-
   headerBottomTop = $("#header-bottom").offset().top;
   setInterval(function () {
     headerBottomHeight = $("#header-bottom").height();
@@ -120,14 +106,12 @@ $(document).ready(function () {
     }
   });
   //-------------------------------------------------------------- finger
-
   $(".finger").click(function (e) {
     $(".finger").addClass("finger_none");
   });
   setTimeout(function () {
     $(".finger").addClass("finger_none");
   }, 2500);
-
   //-------------------------------------------------------------- slider
   var sliderW = $(".products__list_w").lightSlider({
     item: 5,
@@ -247,30 +231,14 @@ $(document).ready(function () {
       $(".current-photo").text($(el).find(".active").data("i"));
     },
   });
-
   $(".tovar__arrow__wrapperP .photos-tovar__arrow_l").on("click", function () {
     sliderP.goToPrevSlide();
   });
-
   $(".tovar__arrow__wrapperP .photos-tovar__arrow_r").on("click", function () {
     sliderP.goToNextSlide();
   });
   var picP = document.querySelector(".pic_p");
   var picPP = document.querySelector(".pic_pp");
-
-  //    setTimeout(function(){
-  //        if (picP) {
-  //            $('.pic_p').magnifier({
-  //                magnify: 3,
-  //                region: {
-  //                h: 38.7,
-  //                w: 38.7
-  //                },
-  //                display: $('.display_p')
-  //            });
-  //        }
-  //    },500)
-
   $(window).resize(function () {
     if (sliderW.length) {
       sliderW.destroy();
@@ -375,7 +343,6 @@ $(document).ready(function () {
       controls: ["zoomControl"],
       behaviors: ["drag", "scrollZoom"],
     });
-
     map.geoObjects.add(placemark);
     var mapMobile = new ymaps.Map("map-mobile", {
       center: [44.93335454, 34.11270504],
@@ -383,45 +350,36 @@ $(document).ready(function () {
       controls: ["zoomControl"],
       behaviors: ["drag", "scrollZoom"],
     });
-
     mapMobile.geoObjects.add(placemark);
   }
-
   //-------------------------------------------------------------- check-box
   $("body").on("click", "#checkbox-reg", function (e) {
-    //console.log(document.querySelector('.checkmark__svg'));
     var checkmark = document.querySelector(".checkmark__svg_pop");
     checkmark.classList.toggle("checkmark__svg_op");
     $(".reg-checkbox").removeClass("has-error");
   });
   $("body").on("change", "#register__input-check", function (e) {
-    //console.log(document.querySelector('.checkmark__svg'));
     var checkmark = document.querySelector(".checkmark__svg");
     checkmark.classList.toggle("checkmark__svg_op");
     $(".reg-checkbox").removeClass("has-error");
   });
   $("body").on("click", "#feedback__input-check", function (e) {
-    //console.log(document.querySelector('.checkmark__svg'));
     var checkmark = document.querySelector(".checkmark__svg");
     checkmark.classList.toggle("checkmark__svg_op");
     $(".reg-checkbox").removeClass("has-error");
   });
-
   $(".feedback__btn").on("click", function () {
     if (!$("#feedback__input-check").is(":checked")) {
       $(".reg-checkbox").addClass("has-error");
     }
   });
   //-------------------------------------------------------------- btns
-
   var regPop = document.querySelector(".reg-pop");
   var logPop = document.querySelector(".log-pop");
   var lookPop = document.querySelector(".look-pop");
   var navPop = document.querySelector(".nav-pop");
-
   var contactsPop = document.querySelector(".contacts-pop");
   var searchPop = document.querySelector(".search-pop");
-
   $("body").on("click", ".js-login-tab", function (e) {
     regPop.classList.remove("reg-pop_flex");
     e.preventDefault();
@@ -429,7 +387,6 @@ $(document).ready(function () {
     $(logPop).load("/login/index");
     logPop.classList.add("log-pop_flex");
   });
-
   $("body").on("click", ".js-reg-tab", function (e) {
     logPop.classList.remove("log-pop_flex");
     e.preventDefault();
@@ -438,11 +395,9 @@ $(document).ready(function () {
     $(regPop).load("/reg/step1");
     regPop.classList.add("reg-pop_flex");
   });
-
   $(document).on("click", ".log-pop__recovery-link", function (e) {
     $(logPop).load("/site/forgot");
   });
-
   $(document).on("click", ".log-pop__recovery-link2", function (e) {
     regPop.classList.remove("reg-pop_flex");
     e.preventDefault();
@@ -450,7 +405,6 @@ $(document).ready(function () {
     $(logPop).load("/site/forgot");
     logPop.classList.add("log-pop_flex");
   });
-
   $("body").on("click", "#enter, #enter-btn", function (e) {
     e.preventDefault();
     $("body").addClass("hidden");
@@ -479,7 +433,6 @@ $(document).ready(function () {
   });
   $("body").on("click", ".esc", function (e) {
     e.preventDefault();
-
     $("body").removeClass("hidden");
     if ($(".reg-pop").hasClass("reg-pop_flex")) {
       regPop.classList.toggle("reg-pop_flex");
@@ -500,7 +453,6 @@ $(document).ready(function () {
       searchPop.classList.toggle("search-pop_flex");
     }
   });
-
   if (window.innerWidth < 1200) {
     $(".common__heading:not(.mobile-open)").click(function (e) {
       e.preventDefault();
@@ -510,7 +462,6 @@ $(document).ready(function () {
         .classList.toggle("common__list_show");
     });
   }
-
   $(".category__link").click(function (e) {
     e.preventDefault();
     $(e.target).closest(".category__item").toggleClass("subcategory_show");
@@ -536,7 +487,6 @@ $(document).ready(function () {
       .querySelector(".user-btns__list")
       .classList.toggle("user-btns__list_show");
   });
-
   $(".common__svg_place").click(function () {
     window.open(
       "https://yandex.ru/maps/org/legkiy_veter/1070146733/?ll=34.112570%2C44.933257&z=16.83",
@@ -544,7 +494,6 @@ $(document).ready(function () {
     );
     return false;
   });
-
   document.body.addEventListener(
     "click",
     function (e) {
@@ -600,7 +549,6 @@ $(document).ready(function () {
                 thumbItem: 3,
                 controls: true,
                 thumbParentMargin: 20,
-
                 prevHtml:
                   '<div class="photos-tovar__arrow photos-tovar__arrow_l"><span class="photos-tovar__link photos-tovar__icon"><svg class="svg photos-tovar__svg photos-tovar__svg_arrow2-left"><use xlink:href="/img/sprite-sheet.svg#arrow2-left"/></svg></span></div>',
                 nextHtml:
@@ -609,8 +557,7 @@ $(document).ready(function () {
                   $(".current-photo").text($(el).find(".active").data("i"));
                 },
                 onSliderLoad: function (el) {
-                  console.log(1)
-                  $('.photos-tovar').show();
+                  $(".photos-tovar").show();
                   /* $(".lSPager.lSGallery").wrap("<div class='lSPager-Wrap'></div>");*/
                 },
               });
@@ -620,24 +567,12 @@ $(document).ready(function () {
                   sliderPP.goToPrevSlide();
                 }
               );
-
               $(".tovar__arrow__wrapperPP .photos-tovar__arrow_r").on(
                 "click",
                 function () {
                   sliderPP.goToNextSlide();
                 }
               );
-
-              //                        if (picPP) {
-              //                            $('.pic_pp').magnifier({
-              //                                magnify: 3,
-              //                                region: {
-              //                                h: 38.7,
-              //                                w: 38.7
-              //                                },
-              //                                display: $('.display_pp')
-              //                            });
-              //                        }
             }, 500);
           }
         }
@@ -661,9 +596,7 @@ $(document).ready(function () {
               $(".current-photo").text($(el).find(".active").data("i"));
             },
             onSliderLoad: function (el) {
-              $('.photos-tovar').show();
-              console.log(1)
-              /* $(".lSPager.lSGallery").wrap("<div class='lSPager-Wrap'></div>");*/
+              $(".photos-tovar").show();
             },
           });
           $(".tovar__arrow__wrapperPP .photos-tovar__arrow_l").on(
@@ -672,36 +605,20 @@ $(document).ready(function () {
               sliderPP.goToPrevSlide();
             }
           );
-
           $(".tovar__arrow__wrapperPP .photos-tovar__arrow_r").on(
             "click",
             function () {
               sliderPP.goToNextSlide();
             }
           );
-          //                if (picPP) {
-          //                    $('.pic_pp').magnifier({
-          //                        magnify: 3,
-          //                        region: {
-          //                        h: 38.7,
-          //                        w: 38.7
-          //                        },
-          //                        display: $('.display_pp')
-          //                    });
-          //                }
         }, 500);
       }
     });
   });
-
   $("body").on("submit", "#login-form", function (e) {
     e.preventDefault();
     var form = $(this);
     var formData = $(this).serialize();
-    // if (form.find('.has-error').length) {
-    //     return false;
-    // }
-
     $.ajax({
       url: form.attr("action"),
       type: form.attr("method"),
@@ -727,11 +644,9 @@ $(document).ready(function () {
         }
       },
       error: function () {
-        //alert("Something went wrong");
       },
     });
   });
-
   $("body").on("click", ".js-category__more", function (e) {
     e.preventDefault();
     var href = $(this).attr("href");
@@ -747,7 +662,6 @@ $(document).ready(function () {
     );
     return false;
   });
-
   $("body").on(
     "click",
     ".product__icon-heart, .tag-tovar-btn__link",
@@ -758,7 +672,6 @@ $(document).ready(function () {
           "/favorites/add",
           { product_id: $(this).data("id") },
           function (response) {
-            console.log(response);
             $("body").append(response.html);
             $(".liked-header-counter").text(response.count);
           }
@@ -766,58 +679,15 @@ $(document).ready(function () {
       }
     }
   );
-
   $("body").on("click", ".product__icon-cross", function (e) {
     e.preventDefault();
     $.get("/favorites/remove", { product_id: $(this).data("id") }, function () {
       window.location.reload();
     });
   });
-
   if (window.location.hash == "#login") {
     $("#enter").click();
   }
-  // $( "body" ).find( "liymaps" ).css( "width", "100%" );
-  // console.log($( "body" ).find( "liymaps" ));
-
-  // $("#profile-type input").on("change", function () {
-  //   if ($(this).val() == 2) {
-  //     $("#reg_inn").hide();
-  //     $("#reg_org").hide();
-  //     $("#reg_location").hide();
-  //   } else if ($(this).val() == 1) {
-  //     $("#reg_inn").show();
-  //     $("#reg_org").hide();
-  //     $("#reg_location").hide();
-  //   } else {
-  //     $("#reg_inn").show();
-  //     $("#reg_org").show();
-  //     $("#reg_location").show();
-  //   }
-  // });
-
-  // // $("#reg_inn").hide();
-  // // $("#reg_org").hide();
-  // // $("#reg_location").hide();
-
-  // if ($("#profile-type input:checked").val() == 2) {
-  //   $("#reg_inn").hide();
-  //   $("#reg_org").hide();
-  //   $("#reg_location").hide();
-  // }
-
-  // if ($("#profile-type input:checked").val() == 1) {
-  //   $("#reg_inn").show();
-  //   $("#reg_org").hide();
-  //   $("#reg_location").hide();
-  // }
-
-  // if ($("#profile-type input:checked").val() == 3) {
-  //   $("#reg_inn").show();
-  //   $("#reg_org").show();
-  //   $("#reg_location").show();
-  // }
-
   $("body").on("click", "#show_password", function () {
     $(this).toggleClass("open_eye");
     if ($(this).hasClass("open_eye")) {
@@ -834,7 +704,6 @@ $(document).ready(function () {
       $("#user-password").attr("type", "password");
     }
   });
-
   $("body").on("click", "#show_password3", function () {
     $(this).toggleClass("open_eye");
     if ($(this).hasClass("open_eye")) {
@@ -843,7 +712,6 @@ $(document).ready(function () {
       $("#user-password_repeat").attr("type", "password");
     }
   });
-
   $("body").on("click", ".reg-pop-fav .esc", function () {
     $(this).parent(".reg-pop-fav").remove();
   });
@@ -861,7 +729,6 @@ $(document).ready(function () {
       .siblings(".input-color")
       .val(+$(this).siblings(".input-color").val() + 1);
   });
-
   $(window).on("scroll", function () {
     if ($(".table-cart").length)
       if (
