@@ -44,7 +44,7 @@ class Order extends \yii\db\ActiveRecord
         $scenarios = parent::scenarios();
         $scenarios[self::SCENARIO_PICKUP] = ['delivery_method', 'user_id', 'created_at'];
         $scenarios[self::SCENARIO_DELIVERY] = ['delivery_method', 'user_id', 'created_at', 'fio', 'locality', 'phone'];
-        $scenarios[self::SCENARIO_SENDING] = ['delivery_method', 'user_id', 'fio', 'tc', 'passport_series', 'passport_id', 'phone', 'tc_name'];
+        $scenarios[self::SCENARIO_SENDING] = ['delivery_method', 'user_id', 'fio', 'tc', 'passport_series', 'passport_id', 'city', 'region', 'phone', 'tc_name'];
         return $scenarios;
     }
     /**
@@ -68,6 +68,8 @@ class Order extends \yii\db\ActiveRecord
         $rules[] = ['fio', 'required', 'message' => 'Необходимо заполнить'];
         $rules[] = ['passport_series', 'required', 'message' => 'Необходимо заполнить'];
         $rules[] = ['passport_id', 'required', 'message' => 'Необходимо заполнить'];
+        $rules[] = ['city', 'required', 'message' => 'Необходимо заполнить'];
+        $rules[] = ['region', 'required', 'message' => 'Необходимо заполнить'];
         $rules[] = ['phone', 'required', 'message' => 'Необходимо заполнить'];
         $rules[] = ['phone', 'match', 'pattern' => '~^\+7 \([0-9]{3}\) [0-9]{3}-[0-9]{2}-[0-9]{2}$~', 'message' => 'Некорректный номер'];
         $rules[] = ['locality', 'required', 'message' => 'Необходимо заполнить'];
@@ -93,6 +95,8 @@ class Order extends \yii\db\ActiveRecord
             'tc' => 'Транспортная компания',
             'passport_series' => 'Серия паспорта',
             'passport_id' => 'Номер паспорта',
+            'city' => 'Город',
+            'region' => 'Область',
             'created_at' => 'Дата добавления',
             'sum' => 'Сумма',
             'ooo' => 'ООО',

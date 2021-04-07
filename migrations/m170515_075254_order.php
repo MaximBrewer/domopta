@@ -11,6 +11,8 @@ class m170515_075254_order extends Migration
         $this->createTable('{{%order}}', [
             'id' => $this->primaryKey(),
             'user_id' => $this->integer(),
+            'city' => $this->string(),
+            'region' => $this->string(),
             'created_at' => $this->integer(),
         ]);
 

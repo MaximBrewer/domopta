@@ -50,9 +50,9 @@ $next = $model->getNextproduct() ? $model->getNextproduct() : $model;
 <?php echo $form->field($model, 'article')->textInput(['readonly' => true]); ?>
 <?php echo $form->field($model, 'article_index')->textInput(['readonly' => true]); ?>
 <?php echo $form->field($model, 'name')->textInput(['readonly' => true]); ?>
+<?php echo $form->field($model, 'color')->textInput(['readonly' => Yii::$app->user->identity->role != 'admin', 'style' => 'color: #000; font-weight: bold; background: #fff;']); ?>
 <?php echo $form->field($model, 'price')->textInput(['readonly' => true]); ?>
 <?php echo $form->field($model, 'price2')->textInput(['readonly' => true]); ?>
-<?php echo $form->field($model, 'color')->textInput(['readonly' => Yii::$app->user->identity->role != 'admin', 'style' => 'color: #000; font-weight: bold; background: #fff;']); ?>
 <?php echo $form->field($model, 'pack_quantity')->textInput(['readonly' => true]); ?>
 <?php echo $form->field($model, 'size')->textInput(['readonly' => true]); ?>
 <?php echo $form->field($model, 'tradekmark')->textInput(['readonly' => true]); ?>

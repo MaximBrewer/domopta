@@ -74,5 +74,21 @@ echo DetailView::widget([
                 return '';
             }
         ],
+        [
+            'label' => 'Город',
+            'attribute' => 'locality',
+            'format' => 'raw',
+            'value' => function ($model) {
+                return $model->city ? $model->city : '';
+            }
+        ],
+        [
+            'label' => 'Область',
+            'attribute' => 'locality',
+            'format' => 'raw',
+            'value' => function ($model) {
+                return $model->region ? $model->region : '';
+            }
+        ],
     ]
 ]);

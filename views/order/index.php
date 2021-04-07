@@ -203,6 +203,26 @@ $this->params['breadcrumbs'][] = 'Оформление';
                     endif; ?>
                   </label>
                 </div>
+                <div class="label-input-wr label-input-wr_row label-input-wr_small">
+                  <label class="label-input label-input_city<?php if (!empty($order->errors['city'])) echo ' error'; ?>">
+                    <span>Город</span>
+                    <input type="text" name="city" value="<?php echo $order->city; ?>">
+                    <?php if (!empty($order->errors['city'])) :
+                      foreach ($order->errors['city'] as $error) : ?>
+                        <div class="error"><?= $error; ?></div>
+                    <?php endforeach;
+                    endif; ?>
+                  </label>
+                  <label class="label-input label-input_region<?php if (!empty($order->errors['region'])) echo ' error'; ?>">
+                    <span>Область</span>
+                    <input type="text" name="region" value="<?php echo $order->region; ?>">
+                    <?php if (!empty($order->errors['region'])) :
+                      foreach ($order->errors['region'] as $error) : ?>
+                        <div class="error"><?= $error; ?></div>
+                    <?php endforeach;
+                    endif; ?>
+                  </label>
+                </div>
               </div>
             </div>
             <div class="delivery-item__wr delivery-item__wr_btn ">

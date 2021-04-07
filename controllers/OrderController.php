@@ -77,6 +77,8 @@ class OrderController extends Controller
 					case 'sending':
 						$order->tc = $request->post('tc');
 						$order->passport_id = $request->post('passport_id');
+						$order->city = $request->post('city');
+						$order->region = $request->post('region');
 						$order->passport_series = $request->post('passport_series');
 						$order->fio = $request->post('fio2');
 						$order->phone = $request->post('phone2');

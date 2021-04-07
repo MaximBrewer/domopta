@@ -5528,7 +5528,7 @@ img.reg-step2-item-img {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  min-height: 150px;
+  min-height: 220px;
   width: 300px;
   margin: 0 auto;
 }
@@ -5570,7 +5570,7 @@ img.reg-step2-item-img {
   text-decoration: none;
 }
 .reg-pop-inner-success {
-  width: 350px;
+  width: 420px;
 }
 #loginform-login-error,
 #forgotform-recaptcha-error,
@@ -7829,9 +7829,17 @@ img.reg-step2-item-img {
   margin-bottom: 27px;
 }
 .label-input_serial-passport {
+  white-space: nowrap;
+  width: 35%;
+}
+.label-input_city {
+  white-space: nowrap;
   width: 35%;
 }
 .label-input_numb-passport {
+  width: 60%;
+}
+.label-input_region {
   width: 60%;
 }
 .label-input span {

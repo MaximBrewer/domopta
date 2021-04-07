@@ -87,7 +87,8 @@ $types = [
                 <?php if ($order->tc && $order->tc == 'other') : ?>
                     <tr>
                         <td style="font-size: 15px; ">
-                            <?php echo $order->tc_name; ?>
+                            <?php echo $order->tc_name; ?><br>
+                            (<?php if ($order->city) : ?><?php echo $order->city; ?><?php if ($order->region) : ?>, <?php echo $order->region; ?><?php endif; ?><?php endif; ?>)
                         </td>
                     </tr>
                 <?php endif; ?>

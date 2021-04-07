@@ -198,7 +198,13 @@ use yii\helpers\Html;
 		<div class="container container_pop-small">
 			<div class="reg-pop-inner reg-pop-inner-fav reg-pop-inner-success">
 				<div class="reg-pop__step1 reg-pop__step1_block">
-					<p class="popup-text1">Изменения сохранены.</p>
+					<?php if ($user->email != '' && $user->unconfirmed_email) : ?>
+						<p class="popup-text1 px-2 py-1 text-center"">Изменения сохранены.</p>
+					<?php elseif ($user->email != '') : ?>
+						<p class="popup-text1 px-2 py-1 text-center"">ВЫ УКАЗАЛИ НОВЫЙ E-MAIL В СВОЕМ ЛИЧНОМ КАБИНЕТЕ.
+							ПРОВЕРЬТЕ ЭЛЕКТРОННУЮ ПОЧТУ И ПЕРЕЙДИТЕ ПО ССЫЛКЕ, УКАЗАННОЙ В ПИСЬМЕ.
+						</p>
+					<?php endif; ?>
 				</div>
 				<a href="#" id="esc" class="esc">
 					<div class="esc__icon esc__icon_cross1">

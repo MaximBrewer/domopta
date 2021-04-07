@@ -1,6 +1,7 @@
 html,
 body {
   height: 100%;
+  font-size: 13px;
 }
 
 .wrap {
@@ -174,4 +175,7 @@ th {
   color: #721c24;
   background-color: #f8d7da !important;
   border-color: #f5c6cb;
+}
+ul {
+  padding-left: 2rem;
 }
