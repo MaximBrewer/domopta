@@ -39,7 +39,7 @@ use yii\helpers\Html;
 		</div>
 		<?php
 		$string = $model->name;
-		$pattern = '/([^,\.]*)/iu';
+		$pattern = '/([^,\.:;\(\)z]*)/iu';
 		preg_match($pattern, $string, $matches);
 		?>
 		<div class="product-middle">
