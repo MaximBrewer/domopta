@@ -16,11 +16,17 @@ use yii\bootstrap\Modal;
 
 $this->registerJsFile('/js/tree.js', ['depends' => \app\assets\AdminAsset::className()]);
 ?>
-<?php if (Yii::$app->user->identity->role == 'admin') : ?>
-    <?php echo Html::a('Создать', ['/adminka/catalog/addcategory', 'id' => $category->id], ['class' => 'btn btn-success']); ?>
-    <?php echo Html::a('Удалить', '#', ['class' => 'btn btn-danger', 'data-toggle' => 'modal', 'data-target' => '#delete-cat-modal']); ?>
-<?php endif; ?>
-<p class="total-products">Всего товаров: <?php echo Products::find()->where(['<>', 'is_deleted', 1])->count();  ?></p>
+<div style="display:flex;justify-content:space-between">
+    <div>
+        <?php if (Yii::$app->user->identity->role == 'admin') : ?>
+            <?php echo Html::a('Создать', ['/adminka/catalog/addcategory', 'id' => $category->id], ['class' => 'btn btn-success']); ?>
+            <?php echo Html::a('Удалить', '#', ['class' => 'btn btn-danger', 'data-toggle' => 'modal', 'data-target' => '#delete-cat-modal']); ?>
+        <?php endif; ?></div>
+    <div>
+        <p class="total-products">Всего товаров: <?php echo Products::find()->where(['<>', 'is_deleted', 1])->count();  ?></p>
+    </div>
+</div>
+
 <?php $form = ActiveForm::begin(['method' => 'get']) ?>
 <!-- <?php echo Html::label('Поиск') ?><br /> -->
 <div style="display:flex;justify-content:space-between">
