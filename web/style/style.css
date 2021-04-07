@@ -3070,6 +3070,7 @@ input:-webkit-autofill {
 }
 .contacts-top .content__title {
   max-width: inherit !important;
+  padding-bottom: 5px;
 }
 .contacts-bottom {
   display: -webkit-box;
@@ -8234,6 +8235,11 @@ img.reg-step2-item-img {
   margin-left: 1rem;
   margin-right: 1rem;
 }
+
+.pb-4 {
+  padding-bottom: 1rem;
+}
+
 .tag-tovar__bottom {
   white-space: nowrap;
 }
@@ -8242,4 +8248,26 @@ img.reg-step2-item-img {
 }
 .mCustomScrollbar.mCS_no_scrollbar .tag-tovar.tovat__tag-tovar {
   padding-right: 35px;
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.gap-12 {
+  gap: 3rem;
+}
+.col-span-2 {
+  grid-column: span 2 / span 2;
+}
+[class*="grid"] .contacts__list {
+  flex-grow: 1;
+}
+[class*="grid"] .common__heading:after {
+  right: 0;
+}
+
+@media screen and (min-width: 769px) {
+  .lg\:grid {
+    display: grid;
+  }
 }

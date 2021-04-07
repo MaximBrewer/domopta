@@ -344,13 +344,6 @@ $(document).ready(function () {
       behaviors: ["drag", "scrollZoom"],
     });
     map.geoObjects.add(placemark);
-    var mapMobile = new ymaps.Map("map-mobile", {
-      center: [44.93335454, 34.11270504],
-      zoom: 16,
-      controls: ["zoomControl"],
-      behaviors: ["drag", "scrollZoom"],
-    });
-    mapMobile.geoObjects.add(placemark);
   }
   //-------------------------------------------------------------- check-box
   $("body").on("click", "#checkbox-reg", function (e) {
