@@ -26,12 +26,11 @@ echo $this->render('../_alert', ['module' => Yii::$app->getModule('user')]);
 <div class="row">
     <div class="col-md-3">
         <?php echo $this->render('left_menu', ['category_list' => $category_list, 'searchModel' => $searchModel, 'category' => $category]) ?>
-
     </div>
     <div class="col-md-9">
         <?= Html::beginForm(['/adminka/catalog/deletemultiply', 'id' => $category->id], 'post', ['id' => 'deletemultiply-form']) ?>
         <?php if ($category->id): ?>
-            <h3><?php echo $category->name ?></h3>
+            <h3 style="margin-top:0;"><?php echo $category->name ?></h3>
             <?php if (Yii::$app->user->identity->role == 'admin'): ?>
                 <?php echo Html::a('Редактировать категорию', ['updatecategory', 'id' => $category->id], ['class' => 'btn btn-success']); ?>
             <?php endif; ?>
