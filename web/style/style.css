@@ -8273,3 +8273,6 @@ img.reg-step2-item-img {
     display: grid;
   }
 }
+.w-full{
+  width:100%;
+}

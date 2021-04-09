@@ -76,7 +76,7 @@
 				</div>
 			</div>
 			<div class="contacts-bottom pb-4">
-				<div class="grid-cols-3 gap-12 lg:grid">
+				<div class="grid-cols-3 gap-12 lg:grid w-full">
 					<div class="common">
 						<span class="common__heading mobile-open">Схема проезда</span>
 						<?php echo Yii::$app->settings->get('Settings.schema') ?>
