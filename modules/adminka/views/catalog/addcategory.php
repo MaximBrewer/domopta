@@ -12,6 +12,7 @@ use dosamigos\tinymce\TinyMce;
 $this->registerJsFile('/js/category.js', ['depends' => \app\assets\AppAsset::className()]);
 
 ?>
+<div class="container">
 <h2><?php echo $model->isNewRecord?'Добавить':'Редактировать'; ?> категорию</h2>
 <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
 <?php $this->beginBlock('main'); ?>
@@ -72,3 +73,4 @@ $this->registerJsFile('/js/category.js', ['depends' => \app\assets\AppAsset::cla
     <?php echo Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
 </div>
 <?php ActiveForm::end() ?>
+</div>

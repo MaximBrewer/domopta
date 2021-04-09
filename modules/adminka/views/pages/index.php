@@ -9,6 +9,7 @@ use yii\grid\ActionColumn;
 use yii\helpers\Url;
 use yii\helpers\Html;
 ?>
+<div class="container">
 <?php echo Html::a('Добавить', ['/adminka/pages/add'], ['class' => 'btn btn-success']) ?>
 <?php echo GridView::widget([
     'dataProvider' => $dataProvider,
@@ -34,3 +35,4 @@ use yii\helpers\Html;
         'created_at:date'
     ]
 ]) ?>
+</div>

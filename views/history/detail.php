@@ -10,13 +10,20 @@ foreach ($order->detiles as $item) {
 	if (!$item->product) continue;
 	$products[$item->product->id]['product'] = $item->product;
 	$products[$item->product->id]['colors'][] = $item;
+
 }
 ?>
 <div class="content content_flip main__content">
 	<div class="container container_fl-wr">
 		<div class="content-left">
 			<div class="cart-main main__cart-main">
-				<div class="content__title">Подробности заказа</div>
+				<div class="content__title" style="max-width:100%;">Подробности заказа
+					<?php if (isset($order->status) && $order->status == 'cancel') : ?>
+						<span style="color:red;text-transform:uppercase">
+							(Данный заказ отменён)
+						</span>
+					<?php endif; ?>
+				</div>
 				<div class="finger">
 					<div class="finger__icon">
 						<svg class="finger__svg">
@@ -91,7 +98,7 @@ foreach ($order->detiles as $item) {
 				</div>
 			</div>
 			<div style="display:flex;justify-content:flex-end;">
-				<a class="btn-black__link" href="/history/xls?id=<?php echo $order->id;?>" target="_blank">Скачать заказ (xls)</a>
+				<a class="btn-black__link" href="/history/xls?id=<?php echo $order->id; ?>" target="_blank">Скачать заказ (xls)</a>
 			</div>
 		</div>
 		<div class="content-right">

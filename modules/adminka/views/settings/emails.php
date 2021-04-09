@@ -12,6 +12,7 @@ use yii\helpers\Url;
 
 echo $this->render('menu');
 ?>
+<div class="container">
 <?php $form = ActiveForm::begin(); ?>
 <?php echo $form->field($model, 'email_active')->widget(TinyMce::className(),[
     'options' => ['rows' => 6],
@@ -70,3 +71,4 @@ echo $form->field($model, 'email_confirm')->widget(TinyMce::className(),[
     <?php echo Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
 </div>
 <?php ActiveForm::end(); ?>
+</div>

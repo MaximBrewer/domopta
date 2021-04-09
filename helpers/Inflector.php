@@ -45,6 +45,7 @@ class Inflector extends \yii\helpers\Inflector
 
         '-' => '-', ' ' => '-', '.' => '-', ',' => '-', '&' => 'and',
     ];
+
     public static function transliterate($string, $transliterator = null)
     {
         // if (static::hasIntl()) {

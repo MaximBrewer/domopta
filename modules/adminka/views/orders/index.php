@@ -12,6 +12,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\bootstrap\Modal;
 ?>
+<div class="container">
 <h2>Заказы</h2>
 <?= Html::beginForm(['delete'], 'post', ['id' => 'orders-multiply-form']) ?>
 <?php if (\Yii::$app->user->identity->role == 'admin') : ?>
@@ -82,3 +83,4 @@ use yii\bootstrap\Modal;
 </div>
 <?php Modal::end(); ?>
 <?php Html::endForm(); ?>
+</div>

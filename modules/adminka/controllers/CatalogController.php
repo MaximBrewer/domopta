@@ -164,6 +164,7 @@ class CatalogController extends Controller
 
     public function actionUpdate($id)
     {
+        
         $model = Products::findOne($id);
         if (!$model) {
             throw new NotFoundHttpException('Товар не найден');
@@ -171,8 +172,20 @@ class CatalogController extends Controller
         if ($model->load(\Yii::$app->request->post()) && $model->save()) {
             return $this->refresh();
         }
+        $category = $model->category;
+        $category_list = Category::find()->where(['parent_id' => null])->orderBy(['position' => SORT_ASC])->all();
         $search_model = new ProductsSearch();
-        return $this->render('update', ['model' => $model, 'searchModel' => $search_model]);
+
+        $search_model = new ProductsSearch();
+        $dataProvider = $search_model->search(\Yii::$app->request->queryParams, $id);
+
+        return $this->render('update', [
+            'model' => $model, 
+            'searchModel' => $search_model,
+            'category_list' => $category_list,
+            'category' => $category,
+            'dataProvider' => $dataProvider
+        ]);
     }
 
 

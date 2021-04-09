@@ -209,6 +209,9 @@ class UserController extends AdminController
 
     public function actionUpdate($id)
     {
+        $searchModel  = \Yii::createObject(UserSearch::className());
+        $dataProvider = $searchModel->search(\Yii::$app->request->get());
+
         Url::remember('', 'actions-redirect');
         $user = $this->findModel($id);
         $user->scenario = 'update';
@@ -228,6 +231,8 @@ class UserController extends AdminController
 
         return $this->render('@app/views/user/adminka/update', [
             'user' => $user,
+            'dataProvider' => $dataProvider,
+            'searchModel'  => $searchModel,
         ]);
     }
 

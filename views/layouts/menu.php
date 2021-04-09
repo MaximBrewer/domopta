@@ -19,8 +19,7 @@ foreach ($users as $id => $sum){
 }
 
 ?>
-<div class="row">
-<div class="col-md-12">
+<div class="container">
 <?php echo Nav::widget([
     'items' => [
         [
@@ -87,5 +86,4 @@ foreach ($users as $id => $sum){
     ],
     'options' => ['class' => 'navbar-nav navbar-default']
 ]); ?>
-</div>
 </div>

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: resh
@@ -10,6 +11,7 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use app\helpers\Inflector;
 
 class SearchForm extends Model
 {
@@ -23,13 +25,17 @@ class SearchForm extends Model
         ];
     }
 
-    public function search(){
+    public function search()
+    {
         $this->text = trim($this->text);
+        $trans = Inflector::transliterate($this->text);
+
         $query = Products::find()
-            ->where(['or',['like', 'name' , $this->text], ['like', 'article_index' , $this->text]])
-	        ->andWhere(['is_deleted' => 0])
+            ->where(['or', ['like', 'name', $this->text], ['like', 'article_index', $this->text]])
+            ->where(['or', ['like', 'name', $trans], ['like', 'article_index', $trans]])
+            ->andWhere(['is_deleted' => 0])
             ->orderBy('article_index');
-        if(!\Yii::$app->user->isGuest && \Yii::$app->user->identity->flags == 1){
+        if (!\Yii::$app->user->isGuest && \Yii::$app->user->identity->flags == 1) {
             $query->andWhere(['ooo' => 1]);
         }
         $dataProvider = new ActiveDataProvider([
@@ -41,5 +47,4 @@ class SearchForm extends Model
         ]);
         return $dataProvider;
     }
-
 }

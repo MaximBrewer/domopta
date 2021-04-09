@@ -1,8 +1,7 @@
 <?php
 use yii\bootstrap\Nav;
 ?>
-<div class="row">
-<div class="col-md-12">
+<div class="container">
 
 <?php echo Nav::widget([
     'items' => [
@@ -15,5 +14,4 @@ use yii\bootstrap\Nav;
     ],
     'options' => ['class' => 'navbar-nav navbar-default']
 ]); ?>
-</div>
 </div>

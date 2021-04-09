@@ -77,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'class' => 'yii\grid\ActionColumn',
                     'header' => 'Действия',
-                    'template' => '{update} {activate} {block} {unblock} {info} {ignore} {unignore} {delete}',
+                    'template' => '<div style="display:flex;">{update} {activate} {block} {unblock} {info} {ignore} {unignore} {delete}</div>',
                     'visibleButtons' => [
                         'update' => Yii::$app->user->identity->role == 'admin',
                         'activate' => Yii::$app->user->identity->role == 'admin',
@@ -93,7 +93,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'activate' => function ($url, $model, $key) {
                             if ($model->confirmed_at && $model->is_active == 0) {
                                 return '
-                    <a  href="' . Url::to(['/user/adminka/activate', 'id' => $model->id]) . '">
+                    <a  href="' . Url::to(['/user/adminka/activate', 'id' => $model->id]) . '" style="margin-right:.3rem;">
                     <span title="Активировать пользователя" class="glyphicon glyphicon-ok">
                     </span> </a>';
                             }
@@ -101,16 +101,19 @@ $this->params['breadcrumbs'][] = $this->title;
                         'block' => function ($url, $model) {
                             if (!$model->blocked_at) {
                                 return '
-                            <a data-id="' . $model->id . '" data-toggle="modal" data-target="#block-modal" class="block_link" href="' . Url::to(['/user/adminka/block', 'id' => $model->id]) . '">
+                            <a style="margin-right:.3rem;" data-id="' . $model->id . '" data-toggle="modal" data-target="#block-modal" class="block_link" href="' . Url::to(['/user/adminka/block', 'id' => $model->id]) . '">
                             <span title="Блокировать пользователя" class="fa fa-lock"></span>
 </a>
                         ';
                             }
                         },
+                        'update' => function ($url, $model) {
+                            return Html::a('<span class="fa fa-edit"></span>', $url, ['data-pjax' => '0', 'style' => "margin-right:.3rem;", 'aria-label' => 'Редактировать', 'title' => 'Редактировать']);
+                        },
                         'info' => function ($url, $model) {
                             if ($model->blocked_at) {
                                 return '
-                            <a data-id="' . $model->id . '" data-toggle="modal" data-target="#info-modal" class="info_link" data-text="' . $model->profile->admins_comment . '">
+                            <a style="margin-right:.3rem;" data-id="' . $model->id . '" data-toggle="modal" data-target="#info-modal" class="info_link" data-text="' . $model->profile->admins_comment . '">
                             <span title="Причина блокировки" class="glyphicon glyphicon-info-sign"></span>
 </a>
                         ';
@@ -119,7 +122,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'unblock' => function ($url, $model) {
                             if ($model->blocked_at) {
                                 return '
-                            <a data-method="POST" href="' . Url::to(['/user/adminka/block', 'id' => $model->id]) . '">
+                            <a style="margin-right:.3rem;" data-method="POST" href="' . Url::to(['/user/adminka/block', 'id' => $model->id]) . '">
                             <span title="Разблокировать пользователя" class="fa fa-unlock"></span>
 </a>
                         ';
@@ -128,7 +131,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'ignore' => function ($url, $model) {
                             if (!$model->is_ignored) {
                                 return '
-                            <a data-method="POST" href="' . Url::to(['/user/adminka/ignore', 'id' => $model->id]) . '">
+                            <a style="margin-right:.3rem;" data-method="POST" href="' . Url::to(['/user/adminka/ignore', 'id' => $model->id]) . '">
                             <span title="Игнорировать пользователя" class="glyphicon glyphicon-minus"></span>
 </a>
                         ';
@@ -137,7 +140,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'unignore' => function ($url, $model) {
                             if ($model->is_ignored) {
                                 return '
-                            <a data-method="POST" href="' . Url::to(['/user/adminka/ignore', 'id' => $model->id]) . '">
+                            <a style="margin-right:.3rem;" data-method="POST" href="' . Url::to(['/user/adminka/ignore', 'id' => $model->id]) . '">
                             <span title="Не игнорировать пользователя" class="glyphicon glyphicon-plus"></span>
 </a>
                         ';

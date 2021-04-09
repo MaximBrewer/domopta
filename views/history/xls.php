@@ -12,7 +12,7 @@ foreach ($order->detiles as $item) {
 	$products[$item->product->id]['colors'][] = $item;
 }
 ?>
-<table cellpadding="5">
+<table cellpadding="5" border="1">
 	<thead>
 		<tr>
 			<th style="font-size:14pt;font-weight:bold" colspan="10">Заказ № <?php echo $order->id; ?> от <?php echo date("d.m.Y", $order->created_at); ?></th>

@@ -14,6 +14,7 @@ use yii\helpers\Url;
 echo $this->render('menu');
 
 ?>
+<div class="container">
 <?php $form = ActiveForm::begin(); ?>
 <?php echo $form->field($model, 'smtpHost') ?>
 <?php echo $form->field($model, 'smtpEmail') ?>
@@ -27,3 +28,4 @@ echo $this->render('menu');
     <?php echo Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
 </div>
 <?php ActiveForm::end(); ?>
+</div>

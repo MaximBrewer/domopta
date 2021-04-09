@@ -5,6 +5,7 @@
 use yii\grid\GridView;
 use yii\helpers\Html;
 ?>
+<div class="container">
 <div class="nouse">
 	<?php echo GridView::widget([
 		'dataProvider' => $dataProvider,
@@ -54,4 +55,5 @@ use yii\helpers\Html;
 			]
 		]
 	]) ?>
+</div>
 </div>

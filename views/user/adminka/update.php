@@ -12,6 +12,7 @@
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Html;
 
+use yii\bootstrap\Nav;
 /**
  * @var \yii\web\View $this
  * @var \dektrium\user\models\User $user
@@ -25,7 +26,20 @@ $this->params['breadcrumbs'][] = $this->title;
 <?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-2">
+        <?php echo Nav::widget([
+            'items' => [
+                ['label' => 'Демо', 'url' => ['/user/admin', $searchModel->formName() . '[demo]' => 1]],
+                ['label' => 'Подозрительный тип', 'url' => ['/user/admin', $searchModel->formName() . '[suspicious]' => 1]],
+                ['label' => 'Активные', 'url' => ['/user/admin', $searchModel->formName() . '[is_active]' => 1]],
+                ['label' => 'Заблокированные', 'url' => ['/user/admin', $searchModel->formName() . '[blocked_at]' => 1]],
+                ['label' => 'Игнорированные', 'url' => ['/user/admin', $searchModel->formName() . '[is_ignored]' => 1]],
+                //['label' => 'Не подтвердили свой Email', 'url' => ['/user/admin', $searchModel->formName() . '[not_confirmed]' => 1]],
+                ['label' => 'Не активированные', 'url' => ['/user/admin', $searchModel->formName() . '[not_active]' => 1]],
+            ]
+        ]) ?>
+    </div>
+    <div class="col-md-10">
         <div class="panel panel-default">
             <div class="panel-body">
             <?php $form = ActiveForm::begin([

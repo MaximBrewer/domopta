@@ -11,6 +11,7 @@ use yii\bootstrap\Html;
 echo $this->render('../_alert', ['module' => Yii::$app->getModule('user')]);
 echo $this->render('menu');
 ?>
+<div class="container">
 <?php $form = ActiveForm::begin(); ?>
 <?php echo $form->field($model, 'contacts')->widget(TinyMce::className(),[
     'options' => ['rows' => 6],
@@ -21,3 +22,4 @@ echo $this->render('menu');
     <?php echo Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
 </div>
 <?php ActiveForm::end(); ?>
+</div>

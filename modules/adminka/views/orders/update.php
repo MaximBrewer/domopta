@@ -5,6 +5,7 @@
  */
 use yii\bootstrap\Tabs;
 ?>
+<div class="container">
 <h2>Просмотр заказа</h2>
 <?php echo Tabs::widget([
     'items' => [
@@ -18,3 +19,4 @@ use yii\bootstrap\Tabs;
         ]
     ]
 ]); ?>
+</div>

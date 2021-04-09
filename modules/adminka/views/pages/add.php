@@ -4,5 +4,7 @@
  * @var $this \yii\web\View
  */
 ?>
+<div class="container">
 <h2>Добавить страницу</h2>
 <?php echo $this->render('_form', ['model' => $model]); ?>
+</div>

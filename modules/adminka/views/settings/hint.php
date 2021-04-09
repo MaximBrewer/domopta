@@ -11,6 +11,7 @@ use yii\bootstrap\Html;
 
 echo $this->render('menu');
 ?>
+<div class="container">
 <?php $form = ActiveForm::begin(); ?>
 <?php echo $form->field($model, 'hint1') ?>
 <?php echo $form->field($model, 'hint2') ?>
@@ -19,3 +20,4 @@ echo $this->render('menu');
     <?php echo Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
 </div>
 <?php ActiveForm::end(); ?>
+</div>

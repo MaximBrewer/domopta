@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = 'Оформление';
                 <p class="delivery-item__title">Данные получателя заказа</p>
                 <div class="label-input-wr label-input-wr_row">
                   <label class="label-input<?php if (!empty($order->errors['fio'])) echo ' error'; ?>">
-                    <span>Фамилия Имя Отчество</span>
+                    <span>Фамилия Имя Отчество получателя груза</span>
                     <input type="text" name="fio" value="<?php echo $order->fio; ?>">
                     <?php if (!empty($order->errors['fio'])) :
                       foreach ($order->errors['fio'] as $error) : ?>
@@ -157,7 +157,7 @@ $this->params['breadcrumbs'][] = 'Оформление';
                 <p class="delivery-item__title">Данные получателя заказа</p>
                 <div class="label-input-wr label-input-wr_row">
                   <label class="label-input<?php if (!empty($order->errors['fio'])) echo ' error'; ?>">
-                    <span>Фамилия Имя Отчество</span>
+                    <span>Фамилия Имя Отчество получателя груза</span>
                     <input type="text" name="fio2" value="<?php echo $order->fio; ?>">
                     <?php if (!empty($order->errors['fio'])) :
                       foreach ($order->errors['fio'] as $error) : ?>
@@ -234,7 +234,7 @@ $this->params['breadcrumbs'][] = 'Оформление';
               <p class="delivery-error">Выберите один из вариантов доставки</p>
             </div>
             <div class="">
-              <a type="button" class="order-btn" href="/cart">Назад</a>
+              <a class="order-btn" href="/cart">Назад</a>
               <button class="order-btn order-btn_sumbmit ">Оформить заказ</button>
             </div>
           </div>

@@ -6,6 +6,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use dosamigos\tinymce\TinyMce;
 ?>
+<div class="container">
 <?php $form = ActiveForm::begin(['method' => 'post', 'options' => ['enctype' => 'multipart/form-data']]) ?>
 <?php echo $form->field($model, 'text')->textarea()?>
 
@@ -22,3 +23,5 @@ use dosamigos\tinymce\TinyMce;
 	<?php echo Html::submitInput('Отправить', ['class' => 'btn btn-success']) ?>
 </div>
 <?php ActiveForm::end() ?>
+
+</div>

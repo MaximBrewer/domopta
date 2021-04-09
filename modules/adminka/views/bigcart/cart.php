@@ -5,6 +5,8 @@
 use yii\grid\GridView;
 use yii\helpers\Html;
 ?>
+<div class="container">
 <div class="nouse">
 	<?php echo $user->renderBigCart() ?>
+</div>
 </div>

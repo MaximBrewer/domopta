@@ -8,6 +8,7 @@ use yii\grid\GridView;
 use yii\grid\ActionColumn;
 use yii\bootstrap\Html;
 ?>
+<div class="container">
 <h2>Новости</h2>
 <div class="form-group">
     <?php echo Html::a('Добавить', ['add'], ['class' => 'btn btn-success']); ?>
@@ -28,3 +29,4 @@ use yii\bootstrap\Html;
         'name'
     ]
 ]) ?>
+</div>
