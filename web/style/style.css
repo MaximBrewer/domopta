@@ -2071,6 +2071,10 @@ input:-webkit-autofill {
   right: 0;
   height: 30px;
   width: 30px;
+  color: #24a0c7;
+}
+.product__icon-heart svg {
+  fill: currentColor;
 }
 .product__icon-heart:hover .product__svg_heart2 {
   opacity: 1;
