@@ -33,7 +33,7 @@ use yii\helpers\Html;
 					<use xlink:href="/img/sprite-sheet.svg#heart2" />
 				</svg>
 				<span class="help">
-					<span class="help__text">В избранное</span>
+					<span class="help__text">Добавить в избранное</span>
 				</span>
 			</span>
 		</div>
