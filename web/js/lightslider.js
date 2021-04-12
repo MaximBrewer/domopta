@@ -418,7 +418,7 @@
                     if (settings.gallery) {
                         cl = 'lSGallery';
                     }
-                    $slide.after('<div class="lsPagerWrapper" style="position:relative;z-index:10"><ul class="lSPager ' + cl + '"></ul></div>');
+                    $slide.after('<div class="lsPagerWrapper" style="position:relative;z-index:2"><ul class="lSPager ' + cl + '"></ul></div>');
                     var gMargin = (settings.vertical) ? 'margin-left' : 'margin-top';
                     $slide.parent().find('.lSPager').css(gMargin, settings.galleryMargin + 'px');
                     refresh.createPager();

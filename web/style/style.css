@@ -788,7 +788,6 @@ input:-webkit-autofill {
   padding-right: 0px !important;
 }
 .photos-tovar .lSSlideOuter.vertical .lSGallery {
-  position: absolute !important;
   right: 0;
   top: 0px;
   bottom: 0px;
@@ -798,7 +797,6 @@ input:-webkit-autofill {
 .lsPagerWrapper {
   overflow: hidden;
   position: absolute !important;
-  right: 0;
   left: 0;
   top: 0px;
   bottom: 0px;
