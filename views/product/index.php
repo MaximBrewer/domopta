@@ -109,7 +109,7 @@ $next = $model->category->getNextproduct($model->article_index);
                         <div class="display display_p"></div>
                         <style>
                             .lSSlideOuter.vertical {
-                                padding-left: 55px;
+                                padding-left: 65px;
                                 padding-right: 0 !important;
                             }
 
