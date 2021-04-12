@@ -292,9 +292,9 @@ $this->registerJsFile('@web/js/lightslider.js', ['depends' => \yii\web\JqueryAss
                             <svg class="liked-header__svg liked-header__svg_heart2">
                                 <use xlink:href="/img/sprite-sheet.svg#heart2" />
                             </svg>
-                            <span class="help">
+                            <!-- <span class="help">
                                 <span class="help__text">Избранное</span>
-                            </span>
+                            </span> -->
                             <?php if (Yii::$app->user->isGuest) : ?>
                                 <div class="liked-header-counter"></div>
                             <?php else : ?>
@@ -311,9 +311,9 @@ $this->registerJsFile('@web/js/lightslider.js', ['depends' => \yii\web\JqueryAss
                             <svg class="cart-header__svg cart-header__svg_basket2">
                                 <use xlink:href="/img/sprite-sheet.svg#basket2" />
                             </svg>
-                            <span class="help">
+                            <!-- <span class="help">
                                 <span class="help__text">Корзина</span>
-                            </span>
+                            </span> -->
                         </span>
                         <div class="cart-header__info">
                             <?php $cart = Cart::getAmount(); ?>
