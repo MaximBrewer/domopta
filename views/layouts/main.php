@@ -471,7 +471,7 @@ $this->registerJsFile('@web/js/lightslider.js', ['depends' => \yii\web\JqueryAss
                                         </div>
                                         <div class="text-header footer__text-header">
                                             <div class="text-header-top">ОПТОВЫЙ КОМПЛЕКС “ЛЕГКИЙ ВЕТЕР”</div>
-                                            <div class=""><?php echo Yii::$app->settings->get('Settings.addresses') ?></div>
+                                            <div class="text-header-bottom"><?php echo Yii::$app->settings->get('Settings.addresses') ?></div>
                                         </div>
                                     </li>
                                     <li class="common__item common__item_flex">
@@ -736,7 +736,7 @@ $this->registerJsFile('@web/js/lightslider.js', ['depends' => \yii\web\JqueryAss
                                         </div>
                                         <div class="text-header footer__text-header">
                                             <div class="text-header-top">ОПТОВЫЙ КОМПЛЕКС “ЛЕГКИЙ ВЕТЕР”</div>
-                                            <div class=""><?php echo Yii::$app->settings->get('Settings.addresses') ?></div>
+                                            <div class="text-header-bottom"><?php echo Yii::$app->settings->get('Settings.addresses') ?></div>
                                         </div>
                                     </li>
                                     <li class="common__item common__item_flex">

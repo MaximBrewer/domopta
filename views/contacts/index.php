@@ -53,7 +53,7 @@
 								</div>
 								<div class="text-header footer__text-header">
 									<div class="text-header-top">ОПТОВЫЙ КОМПЛЕКС<br> “ЛЕГКИЙ ВЕТЕР”</div>
-									<div class="text-header-bottom"><?php echo Yii::$app->settings->get('Settings.addresses') ?></div>
+									<div class=""><?php echo Yii::$app->settings->get('Settings.addresses') ?></div>
 								</div>
 							</li>
 						</ul>
