@@ -5407,7 +5407,7 @@ img.reg-step2-item-img {
   display: none;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
-  justify-content: center;
+  justify-content: flex-end;
   position: absolute;
   -webkit-transition: all 400ms ease;
   transition: all 400ms ease;
@@ -5415,7 +5415,7 @@ img.reg-step2-item-img {
   transition-delay: 500ms;
   top: 120%;
   width: 180px;
-  left: calc(50% - 120px);
+  right: 5px;
   z-index: 2;
 }
 .icon-help:hover .help {
