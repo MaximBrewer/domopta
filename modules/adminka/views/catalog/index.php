@@ -45,6 +45,7 @@ echo $this->render('../_alert', ['module' => Yii::$app->getModule('user')]);
             <?php echo Html::a('Показать проданные модели', ['index', 'id' => $category->id, $searchModel->formName() . '[flag]' => 0], ['class' => 'btn btn-success']); ?>
             <?php echo Html::a('Показать непроданные модели', ['index', 'id' => $category->id, $searchModel->formName() . '[flag]' => 1], ['class' => 'btn btn-success']); ?>
             <?php if (Yii::$app->user->identity->role == 'admin'): ?>
+                <?= Html::a('Удалить выбранные', '#', ['class' => 'btn btn-danger', 'data-toggle' => 'modal', 'data-target' => '#delete-modal']) ?>
                 <?php if (empty($category->getChildren())): ?>
                     <?php echo Html::a('Импортировать из CSV', ['import', 'id' => $category->id], ['class' => 'btn btn-success']); ?>
                 <?php endif; ?>
@@ -53,9 +54,6 @@ echo $this->render('../_alert', ['module' => Yii::$app->getModule('user')]);
             <?php echo Html::a('Показать модели без фото', ['index', 'id' => $category->id, $searchModel->formName() . '[nophotos]' => 1], ['class' => 'btn btn-success']); ?>
             <?php echo Html::a('Показать модели без цветов', ['index', 'id' => $category->id, $searchModel->formName() . '[nocolor]' => '1'], ['class' => 'btn btn-success']); ?>
             <?php echo Html::a('Показать модели без описания', ['index', 'id' => $category->id, $searchModel->formName() . '[nodescription]' => 1], ['class' => 'btn btn-success']); ?>
-            <?php if (Yii::$app->user->identity->role == 'admin'): ?>
-                <?= Html::a('Удалить выбранные', '#', ['class' => 'btn btn-danger', 'data-toggle' => 'modal', 'data-target' => '#delete-modal']) ?>
-            <?php endif; ?>
             <?php echo Html::a('Показать все модели', ['index', 'id' => $category->id], ['class' => 'btn btn-success']); ?>
         <?php else: ?>
             Каталог
