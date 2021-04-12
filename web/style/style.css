@@ -8276,6 +8276,12 @@ img.reg-step2-item-img {
     display: grid;
   }
 }
-.w-full{
-  width:100%;
+.w-full {
+  width: 100%;
+}
+
+.top-right.jGrowl {
+  -webkit-box-shadow: -39px 27px 44px 36px rgba(255, 255, 255, 0.72);
+  -moz-box-shadow: -39px 27px 44px 36px rgba(255, 255, 255, 0.72);
+  box-shadow: -39px 27px 44px 36px rgba(255, 255, 255, 0.72);
 }
