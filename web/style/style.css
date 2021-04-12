@@ -3312,8 +3312,8 @@ input:-webkit-autofill {
   transition: all 400ms ease;
   width: 18px;
   height: 18px;
-  fill:#24a0c7;
-  color:#24a0c7;
+  fill: #24a0c7;
+  color: #24a0c7;
 }
 .tag-tovar-btn__svg_heart2 {
   position: absolute;
