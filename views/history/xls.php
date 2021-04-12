@@ -12,6 +12,12 @@ foreach ($order->detiles as $item) {
 	$products[$item->product->id]['colors'][] = $item;
 }
 ?>
+<style>
+	table td,
+	table th {
+		border: 1px solid #000;
+	}
+</style>
 <table cellpadding="5" border="1">
 	<thead>
 		<tr>
