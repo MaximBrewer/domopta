@@ -46,6 +46,9 @@ echo $this->render('../_alert', ['module' => Yii::$app->getModule('user')]);
             <?php echo Html::a('Показать непроданные модели', ['index', 'id' => $category->id, $searchModel->formName() . '[flag]' => 1], ['class' => 'btn btn-success']); ?>
             <?php if (Yii::$app->user->identity->role == 'admin'): ?>
                 <?= Html::a('Удалить выбранные', '#', ['class' => 'btn btn-danger', 'data-toggle' => 'modal', 'data-target' => '#delete-modal']) ?>
+            <?php endif; ?>
+            <br/>
+            <?php if (Yii::$app->user->identity->role == 'admin'): ?>
                 <?php if (empty($category->getChildren())): ?>
                     <?php echo Html::a('Импортировать из CSV', ['import', 'id' => $category->id], ['class' => 'btn btn-success']); ?>
                 <?php endif; ?>
