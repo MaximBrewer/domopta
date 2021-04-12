@@ -678,6 +678,7 @@ $(document).ready(function () {
     }
   );
   $("body").on("click", ".product__icon-cross", function (e) {
+    e.stopPropagation();
     e.preventDefault();
     $.get("/favorites/remove", { product_id: $(this).data("id") }, function () {
       window.location.reload();
