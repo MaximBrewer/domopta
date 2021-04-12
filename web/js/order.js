@@ -27,7 +27,8 @@ $("body").on("click", ".form-tovar-btn__link", function (e) {
         $.jGrowl(data.popup, {
           theme: "blueTheme",
           closerTemplate: "<div>[ закрыть всё ]</div>",
-          position: "bottom-right"
+          position: "bottom-right",
+          life: 5000
         });
       },
     });

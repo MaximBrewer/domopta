@@ -667,7 +667,8 @@ $(document).ready(function () {
             $.jGrowl(response.html, {
               theme: "blueTheme",
               closerTemplate: "<div>[ закрыть всё ]</div>",
-              position: "bottom-right"
+              position: "bottom-right",
+              life: 5000
             });
             $(".liked-header-counter").text(response.count);
           }
