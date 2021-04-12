@@ -15,25 +15,25 @@ foreach ($order->detiles as $item) {
 <style>
 	table td,
 	table th {
-		border: 1px solid #000;
+		border: 1px solid black;
 	}
 </style>
 <table cellpadding="5" border="1">
 	<thead>
 		<tr>
-			<th style="border: 1px solid #000;font-size:14pt;font-weight:bold" colspan="10">Заказ № <?php echo $order->id; ?> от <?php echo date("d.m.Y", $order->created_at); ?></th>
+			<th style="border: 1px solid black;font-size:14pt;font-weight:bold" colspan="10">Заказ № <?php echo $order->id; ?> от <?php echo date("d.m.Y", $order->created_at); ?></th>
 		</tr>
 		<tr>
-			<th style="border: 1px solid #000;font-size:12pt;font-weight:bold" align="center">№</th>
-			<th align="center" style="border: 1px solid #000;font-size:12pt;font-weight:bold">Товар</th>
-			<th align="center" style="border: 1px solid #000;font-size:12pt;font-weight:bold">Артикул</th>
-			<th align="center" style="border: 1px solid #000;font-size:12pt;font-weight:bold">Цвет</th>
-			<th align="center" style="border: 1px solid #000;font-size:12pt;font-weight:bold">Примечание</th>
-			<th align="center" style="border: 1px solid #000;font-size:12pt;font-weight:bold">Шт. в уп.</th>
-			<th align="center" style="border: 1px solid #000;font-size:12pt;font-weight:bold">Цена за уп.</th>
-			<th align="center" style="border: 1px solid #000;font-size:12pt;font-weight:bold">Цена за шт.</th>
-			<th align="center" style="border: 1px solid #000;font-size:12pt;font-weight:bold">Кол-во</th>
-			<th align="center" style="border: 1px solid #000;font-size:12pt;font-weight:bold">Сумма</th>
+			<th style="border: 1px solid black;font-size:12pt;font-weight:bold" align="center">№</th>
+			<th align="center" style="border: 1px solid black;font-size:12pt;font-weight:bold">Товар</th>
+			<th align="center" style="border: 1px solid black;font-size:12pt;font-weight:bold">Артикул</th>
+			<th align="center" style="border: 1px solid black;font-size:12pt;font-weight:bold">Цвет</th>
+			<th align="center" style="border: 1px solid black;font-size:12pt;font-weight:bold">Примечание</th>
+			<th align="center" style="border: 1px solid black;font-size:12pt;font-weight:bold">Шт. в уп.</th>
+			<th align="center" style="border: 1px solid black;font-size:12pt;font-weight:bold">Цена за уп.</th>
+			<th align="center" style="border: 1px solid black;font-size:12pt;font-weight:bold">Цена за шт.</th>
+			<th align="center" style="border: 1px solid black;font-size:12pt;font-weight:bold">Кол-во</th>
+			<th align="center" style="border: 1px solid black;font-size:12pt;font-weight:bold">Сумма</th>
 		</tr>
 	</thead>
 	<tbody style="font-size:12pt;font-weight:bold">
@@ -75,25 +75,25 @@ foreach ($order->detiles as $item) {
 			</tr>
 			<?php foreach ($v['details'] as $d) : $cnt++; ?>
 				<tr>
-					<td align="center" style="border: 1px solid #000;"><?php echo $cnt; ?></td>
-					<td align="left" width="40" style="border: 1px solid #000;"><?php echo $d->name; ?></td>
-					<td align="left" width="15" style="border: 1px solid #000;"><?php echo $d->product->article; ?></td>
-					<td align="left" width="15" style="border: 1px solid #000;"><?php echo $d->color == 'default' ? '' : $d->color; ?></td>
-					<td align="left" width="20" style="border: 1px solid #000;"><?php echo $d->memo; ?></td>
-					<td width="12" align="center" style="border: 1px solid #000;"><?php echo $d->product->pack_quantity ? $d->product->pack_quantity : 1 ?></td>
+					<td align="center" style="border: 1px solid black;"><?php echo $cnt; ?></td>
+					<td align="left" width="40" style="border: 1px solid black;"><?php echo $d->name; ?></td>
+					<td align="left" width="15" style="border: 1px solid black;"><?php echo $d->product->article; ?></td>
+					<td align="left" width="15" style="border: 1px solid black;"><?php echo $d->color == 'default' ? '' : $d->color; ?></td>
+					<td align="left" width="20" style="border: 1px solid black;"><?php echo $d->memo; ?></td>
+					<td width="12" align="center" style="border: 1px solid black;"><?php echo $d->product->pack_quantity ? $d->product->pack_quantity : 1 ?></td>
 					<?php if ($order->user->profile->type == 2) : ?>
-						<td width="12" align="center" style="border: 1px solid #000;"><?php echo (int) $d->product->pack_price2 ? Products::formatEmailPrice($d->product->pack_price2) : ''; ?></td>
+						<td width="12" align="center" style="border: 1px solid black;"><?php echo (int) $d->product->pack_price2 ? Products::formatEmailPrice($d->product->pack_price2) : ''; ?></td>
 					<?php else : ?>
-						<td width="12" align="center" style="border: 1px solid #000;"><?php echo (int) $d->product->pack_price ? Products::formatEmailPrice($d->product->pack_price) : ''; ?></td>
+						<td width="12" align="center" style="border: 1px solid black;"><?php echo (int) $d->product->pack_price ? Products::formatEmailPrice($d->product->pack_price) : ''; ?></td>
 					<?php endif; ?>
-					<td width="12" align="center" style="border: 1px solid #000;"><?php echo $d->price; ?></td>
-					<td width="12" align="center" style="border: 1px solid #000;"><?php echo $d->amount; ?></td>
-					<td width="12" align="center" style="border: 1px solid #000;"><?php echo Products::formatEmailPrice($d->sum); ?></td>
+					<td width="12" align="center" style="border: 1px solid black;"><?php echo $d->price; ?></td>
+					<td width="12" align="center" style="border: 1px solid black;"><?php echo $d->amount; ?></td>
+					<td width="12" align="center" style="border: 1px solid black;"><?php echo Products::formatEmailPrice($d->sum); ?></td>
 				</tr>
 			<?php endforeach; ?>
 		<?php endforeach; ?>
 		<tr>
-			<td colspan="10" style="font-size:14pt;font-weight:bold;border: 1px solid #000;" align="right">Итого: <?php echo Products::formatEmailPrice($total, true); ?></td>
+			<td colspan="10" style="font-size:14pt;font-weight:bold;border: 1px solid black;" align="right">Итого: <?php echo Products::formatEmailPrice($total, true); ?></td>
 		</tr>
 	</tbody>
 </table>
