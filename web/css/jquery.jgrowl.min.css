@@ -60,6 +60,8 @@
   float: right;
   margin-right:-5px;
   cursor: pointer;
+  top: 3px;
+  position: relative;
 }
 .jGrowl-closer {
   background: #ffffff;
