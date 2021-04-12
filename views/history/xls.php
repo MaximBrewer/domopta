@@ -71,7 +71,7 @@ foreach ($order->detiles as $item) {
 
 		foreach ($arr as $k => $v) : ?>
 			<tr>
-				<td colspan="10"><?php echo $k; ?></td>
+				<td colspan="10" style="border: 1px solid black;"><?php echo $k; ?></td>
 			</tr>
 			<?php foreach ($v['details'] as $d) : $cnt++; ?>
 				<tr>
