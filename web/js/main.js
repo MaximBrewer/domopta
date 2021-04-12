@@ -636,8 +636,7 @@ $(document).ready(function () {
           }
         }
       },
-      error: function () {
-      },
+      error: function () {},
     });
   });
   $("body").on("click", ".js-category__more", function (e) {
@@ -665,7 +664,12 @@ $(document).ready(function () {
           "/favorites/add",
           { product_id: $(this).data("id") },
           function (response) {
-            $("body").append(response.html);
+            $.jGrowl(response.html, {
+              theme: "blueTheme",
+              closerTemplate: "<div>[ закрыть всё ]</div>",
+              position: "bottom-right",
+              life: 300000
+            });
             $(".liked-header-counter").text(response.count);
           }
         );

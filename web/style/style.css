@@ -8279,9 +8279,3 @@ img.reg-step2-item-img {
 .w-full {
   width: 100%;
 }
-
-.top-right.jGrowl .alert{
-  -webkit-box-shadow: -39px 27px 63px 64px rgba(255, 255, 255, 1);
-  -moz-box-shadow: -39px 27px 63px 64px rgba(255, 255, 255, 1);
-  box-shadow: -39px 27px 63px 64px rgba(255, 255, 255, 1);
-}
