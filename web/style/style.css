@@ -7861,8 +7861,8 @@ img.reg-step2-item-img {
   box-sizing: border-box;
   border-radius: 5px;
   height: 35px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .label-input.error {
   color: #d50000;
