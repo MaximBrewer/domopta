@@ -7836,17 +7836,17 @@ img.reg-step2-item-img {
 }
 .label-input_serial-passport {
   white-space: nowrap;
-  width: 35%;
+  width: 45%;
 }
 .label-input_city {
   white-space: nowrap;
-  width: 35%;
+  width: 45%;
 }
 .label-input_numb-passport {
-  width: 60%;
+  width: 50%;
 }
 .label-input_region {
-  width: 60%;
+  width: 50%;
 }
 .label-input span {
   font-weight: normal;
@@ -7862,6 +7862,7 @@ img.reg-step2-item-img {
   border-radius: 5px;
   height: 35px;
   padding-left: 15px;
+  padding-right: 15px;
 }
 .label-input.error {
   color: #d50000;
