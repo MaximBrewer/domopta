@@ -58,8 +58,7 @@
   border: none;
   z-index: 99;
   float: right;
-  font-weight: 700;
-  font-size: 1em;
+  margin-right:-5px;
   cursor: pointer;
 }
 .jGrowl-closer {

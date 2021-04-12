@@ -28,7 +28,8 @@ $("body").on("click", ".form-tovar-btn__link", function (e) {
           theme: "blueTheme",
           closerTemplate: "<div>[ закрыть всё ]</div>",
           position: "bottom-right",
-          life: 5000
+          life: 5000,
+          closeTemplate: '<svg class="svg esc__svg esc__svg_cross1"><use xlink:href="/img/sprite-sheet.svg#cross1" /></svg>'
         });
       },
     });
