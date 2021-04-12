@@ -2,10 +2,10 @@
 /**
  * @var $this \yii\web\View
  */
+$page = \app\models\Page::find()->where(['slug' => '/order'])->one();
 ?>
 <div class="container">
     <div class="order_success1">
-        <h3>ВАШ ЗАКАЗ УСПЕШНО ОФОРМЛЕН И ОТПРАВЛЕН В ОТДЕЛ ЗАКАЗОВ.</h3>
-        <p>В ТЕЧЕНИЕ РАБОЧЕГО ДНЯ МЕНЕДЖЕР ОТДЕЛА ЗАКАЗОВ СВЯЖЕТСЯ С ВАМИ ПО ТЕЛЕФОНУ И УТОЧНИТ ВСЕ ДЕТАЛИ ВАШЕГО ЗАКАЗА.</p>
+        <?php echo $page->text;?>
     </div>
 </div>
