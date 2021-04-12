@@ -681,7 +681,8 @@ $(document).ready(function () {
     e.stopPropagation();
     e.preventDefault();
     $.get("/favorites/remove", { product_id: $(this).data("id") }, function () {
-      window.location.reload();
+      $(e.target).closest('.products__item').remove()
+      // window.location.reload();
     });
   });
   if (window.location.hash == "#login") {
