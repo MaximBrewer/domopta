@@ -4,7 +4,7 @@
 
 use yii\helpers\Html;
 ?>
-<li class="products__item"<?php if(isset($aname) && $aname):?> id="product_<?php echo $model->id ?>"<?php endif;?>>
+<li class="products__item" <?php if (isset($aname) && $aname) : ?> id="product_<?php echo $model->id ?>" <?php endif; ?>>
 	<a href="<?php echo $model->slug ?>" class="product">
 		<div class="product-top">
 			<div class="product__pic">
@@ -21,8 +21,8 @@ use yii\helpers\Html;
 				</span>
 			</div>
 			<span class="product__icon-cross" data-id="<?php echo $model->id; ?>">
-				<svg class="svg product__svg product__svg_cross2">
-					<use xlink:href="/img/sprite-sheet.svg#cross2" />
+				<svg class="svg esc__svg esc__svg_cross1">
+					<use xlink:href="/img/sprite-sheet.svg#cross1" />
 				</svg>
 			</span>
 			<span class="product__icon-heart" data-id="<?php echo $model->id; ?>" <?php if (Yii::$app->user->isGuest) : ?> onclick="$('#enter').click(); return false;" <?php endif; ?>>
