@@ -5432,6 +5432,13 @@ img.reg-step2-item-img {
   display: -ms-flexbox;
   display: inline-flex;
 }
+.tag-tovar-btn__svg.tag-tovar-btn__svg_heart2:hover + .help {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: inline-flex;
+  top: 140%;
+  right: -1px;
+}
 .help__text {
   display: inline-block;
   border-radius: 2px;

@@ -122,9 +122,11 @@ $next = $model->category->getNextproduct($model->article_index);
 
                             <div class="tovar__arrow__wrapper tovar__arrow__wrapperP ">
                                 <div class="photos-tovar__arrow photos-tovar__arrow_l"><span class="photos-tovar__link photos-tovar__icon"><svg class="svg photos-tovar__svg photos-tovar__svg_arrow2-left">
-                                            <use xlink:href="/img/sprite-sheet.svg#arrow2-left" /></svg></span></div>
+                                            <use xlink:href="/img/sprite-sheet.svg#arrow2-left" />
+                                        </svg></span></div>
                                 <div class="photos-tovar__arrow photos-tovar__arrow_r"><span class="photos-tovar__link photos-tovar__icon"><svg class="svg photos-tovar__svg photos-tovar__svg_arrow2-right">
-                                            <use xlink:href="/img/sprite-sheet.svg#arrow2-right" /></svg></span></div>
+                                            <use xlink:href="/img/sprite-sheet.svg#arrow2-right" />
+                                        </svg></span></div>
                             </div>
                         <?php endif; ?>
 
@@ -280,6 +282,10 @@ $next = $model->category->getNextproduct($model->article_index);
                                         <svg class="tag-tovar-btn__svg tag-tovar-btn__svg_heart2">
                                             <use xlink:href="/img/sprite-sheet.svg#heart2" />
                                         </svg>
+                                        </svg>
+                                        <span class="help">
+                                            <span class="help__text">Добавить в избранное</span>
+                                        </span>
                                     </span>
                                 </a>
                             </div>
