@@ -18,7 +18,7 @@ class MainAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'style/style.css?v=5.1.3',
+        'style/style.css?v=5.1.4',
         'css/jquery.jgrowl.min.css'
     ];
     public $js = [
