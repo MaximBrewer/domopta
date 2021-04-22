@@ -87,7 +87,7 @@ class ImportForm extends Model
             } else {
                 $model->name = $name;
             }
-            
+
             $model->color = preg_replace('~,[\s]+~', ',', $model->color);
             $model->article = $data[2];
             $model->article_index = $data[3];
@@ -139,12 +139,6 @@ class ImportForm extends Model
 
         Products::deleteAll(['article_index' => $ids, 'category_id' => $id]);
 
-        echo "<pre>";
-        var_dump($data);
-        var_dump($bulkInsertArray);
-        echo "</pre>";
-
-
         \Yii::$app->db->createCommand()
             ->batchInsert(
                 Products::tableName(),
@@ -152,7 +146,6 @@ class ImportForm extends Model
                 $bulkInsertArray
             )
             ->execute();
-        die;
 
         static::renewUrls($id);
     }
