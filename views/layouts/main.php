@@ -98,7 +98,7 @@ $this->registerJsFile('@web/js/lightslider.js', ['depends' => \yii\web\JqueryAss
                 });
             }, 500);
         }
-        epprFu();
+        // epprFu();
         document.addEventListener("touchstart", () => {
             fired || epprFu();
         });
