@@ -51,11 +51,11 @@ use yii\helpers\Html;
 			<?php if (Yii::$app->user->isGuest || !Yii::$app->user->identity->profile->type) : ?>
 				<div class="product__holesale">
 					<span class="product__holesale-text">Опт:</span>
-					<span class="product__holesale-price"><?php echo $model::formatPrice($model->price) ?><span>&nbsp;&#8381;</span></span> </span>
+					<span class="product__holesale-price"><?php echo $model::formatPrice($model, ['price']) ?><span>&nbsp;&#8381;</span></span> </span>
 				</div>
 				<div class="product__retail">
 					<span class="product__retail-text">Мел/Опт:</span>
-					<span class="product__retail-price"><?php echo $model->price2 ? $model::formatPrice($model->price2) : $model::formatPrice($model->price) ?><span>&nbsp;&#8381;</span></span> </span>
+					<span class="product__retail-price"><?php echo $model->price2 ? $model::formatPrice($model, ['price2']) : $model::formatPrice($model, ['price']) ?><span>&nbsp;&#8381;</span></span> </span>
 				</div>
 			<?php else : ?>
 				<div class="product__retail">
@@ -66,7 +66,7 @@ use yii\helpers\Html;
 															echo 'Мел/Опт';
 														}
 														?>:</span>
-					<span class="product__retail-price"><?php echo $model::formatPrice($model->getUserPrice()) ?><span>&nbsp;&#8381;</span></span> </span>
+					<span class="product__retail-price"><?php echo $model::formatPrice($model, [], 'getUserPrice') ?><span>&nbsp;&#8381;</span></span> </span>
 				</div>
 			<?php endif; ?>
 		</div>

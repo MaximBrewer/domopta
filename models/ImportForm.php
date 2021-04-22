@@ -110,6 +110,14 @@ class ImportForm extends Model
             $model->consist = $data[6];
             $model->tradekmark = $data[7];
             $model->pack_quantity = (int)$data[8];
+
+
+            $model->price_old = $model->price ?? 0;
+            $model->pack_price_old = $model->pack_price ?? 0;
+            $model->price2_old = $model->price2 ?? 0;
+            $model->pack_price2_old = $model->pack_price2 ?? 0;
+
+
             $model->price = str_replace(',', '.', $data[9]);
             $model->pack_price = $data[10] ? str_replace(',', '.', $data[10]) : 0;
             $model->price2 = str_replace(',', '.', $data[11]);
@@ -132,6 +140,7 @@ class ImportForm extends Model
 
 
                 $bulkInsertArray[$model->article_index] = $model->attributes;
+
             } else {
                 echo 'Contact with developer team';
                 Helper::pr($model->getErrors());

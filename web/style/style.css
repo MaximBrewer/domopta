@@ -3450,7 +3450,7 @@ input:-webkit-autofill {
 .swiper-button-prev {
   width: 20px;
   height: 20px;
-  z-index: 3;
+  z-index: 2;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -8469,4 +8469,16 @@ img.reg-step2-item-img {
   box-shadow: 0 0 3px #ff0000;
   -webkit-box-shadow: 0 0 3px #ff0000;
   -moz-box-shadow: 0 0 3px #ff0000;
+}
+
+.old {
+  text-decoration: line-through;
+  display: inline-block;
+  margin-right: .5rem;
+}
+.old + span,
+.old + span + span {
+  color: red;
+  font-weight: bold;
+  display: inline-block;
 }

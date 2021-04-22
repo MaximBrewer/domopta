@@ -83,6 +83,10 @@ class Products extends \yii\db\ActiveRecord
             'price2' => 'Мелкий опт',
             'pack_price' => 'Цена за упаковку',
             'pack_price2' => 'Цена за упаковку (мелкий опт)',
+            'price_old' => 'Цена Опт (старая)',
+            'price2_old' => 'Мелкий опт (старая)',
+            'pack_price_old' => 'Цена за упаковку (старая)',
+            'pack_price2_old' => 'Цена за упаковку (мелкий опт, старая)',
             'flag' => 'Остаток',
             'ooo' => 'Товар по ООО',
             'category_id' => 'Category ID',
@@ -215,15 +219,6 @@ class Products extends \yii\db\ActiveRecord
         }
     }
 
-    public function getUserPrice()
-    {
-        if (Yii::$app->user->identity->profile->type == 1 || Yii::$app->user->identity->profile->type == 3) {
-            return $this->price;
-        } else {
-            return $this->price2;
-        }
-    }
-
     public static function find()
     {
         $query = parent::find();
@@ -278,12 +273,37 @@ class Products extends \yii\db\ActiveRecord
         return false;
     }
 
-    public static function formatPrice($price)
+    public function getUserPrice($getAttr = false)
     {
-        if (ceil($price * 100) == intVal(ceil($price) . '00')) {
-            return number_format($price, 0, '', '');
+        if (Yii::$app->user->identity->profile->type == 1 || Yii::$app->user->identity->profile->type == 3) {
+            return $getAttr ? 'price' : $this->price;
         } else {
-            return number_format($price, 2, ',<span class="kopeyki">', '') . '</span>';
+            return $getAttr ? 'price2' : $this->price2;
+        }
+    }
+
+    public static function formatPrice($model, $priceArr = [], $callback = null)
+    {
+        if (!is_object($model)) {
+            $price = $model;
+            $oldPrice = $price;
+        } elseif ($callback) {
+            $attr = $model->{$callback}(true);
+            $price = $model->{$attr};
+            $oldPrice = $model->{$attr . "_old"};
+        } else {
+            foreach ($priceArr as $attr) {
+                if ($model->{$attr}) {
+                    $oldPrice = $model->{$attr . "_old"};
+                    $price = $model->{$attr};
+                    break;
+                }
+            }
+        }
+        if (ceil($price * 100) == intVal(ceil($price) . '00')) {
+            return ($oldPrice > $price ? '<span class="old">' . number_format($oldPrice, 0, '', '') . '</span><span>' . number_format($price, 0, '', '') . '</span>' : number_format($price, 0, '', ''));
+        } else {
+            return ($oldPrice > $price ? '<span class="old">' . number_format($oldPrice, 2, ',<span class="kopeyki">', '') . '</span></span><span>' . number_format($price, 2, ',<span class="kopeyki">', '') . '</span></span>' : number_format($price, 2, ',<span class="kopeyki">', '') . '</span>');
         }
     }
 

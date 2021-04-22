@@ -136,7 +136,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => $model->slug
                                 </div>
                                 <div class="tag-tovar__bottom">
                                     <span class="tag-tovar__text">Цена за 1 шт:&nbsp;&nbsp;&nbsp;</span>
-                                    <span class="tag-tovar__price"><?php echo $model::formatPrice($model->price) ?></span> &#8381;</span>
+                                    <span class="tag-tovar__price"><?php echo $model::formatPrice($model, ['price']) ?></span> &#8381;</span>
                                 </div>
                             </div>
                             <div class="tag-tovar__retail">
@@ -145,7 +145,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => $model->slug
                                 </div>
                                 <div class="tag-tovar-bottom">
                                     <span class="tag-tovar__text">Цена за 1 шт:&nbsp;&nbsp;&nbsp;</span>
-                                    <span class="tag-tovar__price"><?php echo $model::formatPrice($model->price2 ? $model->price2 : $model->price) ?></span> &#8381;</span>
+                                    <span class="tag-tovar__price"><?php echo $model::formatPrice($model, ['price2', 'price']) ?></span> &#8381;</span>
                                 </div>
                             </div>
 
@@ -157,7 +157,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => $model->slug
                                     </div>
                                     <div class="tag-tovar-bottom">
                                         <span class="tag-tovar__text">Цена за 1 шт:&nbsp;&nbsp;&nbsp;</span>
-                                        <span class="tag-tovar__price"><?php echo $model::formatPrice($model->price2 ? $model->price2 : $model->price); ?></span> &#8381;</span>
+                                        <span class="tag-tovar__price"><?php echo $model::formatPrice($model, ['price2', 'price']); ?></span> &#8381;</span>
                                     </div>
                                 </div>
                             <?php elseif (Yii::$app->user->identity->profile->type == 1 || Yii::$app->user->identity->profile->type == 3) : ?>
@@ -167,7 +167,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => $model->slug
                                     </div>
                                     <div class="tag-tovar__bottom">
                                         <span class="tag-tovar__text">Цена за 1 шт:&nbsp;&nbsp;&nbsp;</span>
-                                        <span class="tag-tovar__price"><?php echo $model::formatPrice($model->price) ?></span> &#8381;</span>
+                                        <span class="tag-tovar__price"><?php echo $model::formatPrice($model, ['price']) ?></span> &#8381;</span>
                                     </div>
                                 </div>
                             <?php endif; ?>
@@ -183,12 +183,12 @@ $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => $model->slug
                                         <?php if (Yii::$app->user->identity->profile->type == 2) : ?>
                                             <li class="package-tovar__item">
                                                 <span class="package-tovar__text">цена за упаковку: &nbsp;&nbsp;&nbsp;</span>
-                                                <span class="package-tovar__amount"><?php echo $model::formatPrice($model->pack_price2) ?></span> &#8381;</span>
+                                                <span class="package-tovar__amount"><?php echo $model::formatPrice($model, ['pack_price2']) ?></span> &#8381;</span>
                                             </li>
                                         <?php else : ?>
                                             <li class="package-tovar__item">
                                                 <span class="package-tovar__text">цена за упаковку: &nbsp;&nbsp;&nbsp;</span>
-                                                <span class="package-tovar__amount"><?php echo $model::formatPrice($model->pack_price) ?></span> &#8381;</span>
+                                                <span class="package-tovar__amount"><?php echo $model::formatPrice($model, ['pack_price']) ?></span> &#8381;</span>
                                             </li>
                                         <?php endif; ?>
                                     <?php endif; ?>

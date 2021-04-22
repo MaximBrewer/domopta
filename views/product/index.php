@@ -122,6 +122,7 @@ $next = $model->category->getNextproduct($model->article_index);
                                             <?php endforeach; ?>
                                         </div>
                                     </div>
+                                    <?php if (count($pictures) > 3) : ?>
                                     <div class="swiper-button-next thumbs-next">
                                         <svg class="svg photos-tovar__svg photos-tovar__svg_arrow2-right">
                                             <use xlink:href="/img/sprite-sheet.svg#arrow2-right"></use>
@@ -132,6 +133,7 @@ $next = $model->category->getNextproduct($model->article_index);
                                             <use xlink:href="/img/sprite-sheet.svg#arrow2-right"></use>
                                         </svg>
                                     </div>
+                                    <?php endif; ?>
                                 </div>
                                 <div style="flex-grow:1;position:relative;">
                                     <div class="swiper-container gallery-right">
@@ -223,7 +225,7 @@ $next = $model->category->getNextproduct($model->article_index);
                                     </div>
                                     <div class="tag-tovar__bottom">
                                         <span class="tag-tovar__text">Цена за 1 шт: &nbsp;&nbsp;&nbsp;</span>
-                                        <span class="tag-tovar__price"><?php echo $model::formatPrice($model->price) ?></span>
+                                        <span class="tag-tovar__price"><?php echo $model::formatPrice($model, ['price']) ?></span>
                                         &#8381;</span>
                                     </div>
                                 </div>
@@ -233,7 +235,7 @@ $next = $model->category->getNextproduct($model->article_index);
                                     </div>
                                     <div class="tag-tovar-bottom">
                                         <span class="tag-tovar__text">Цена за 1 шт: &nbsp;&nbsp;&nbsp;</span>
-                                        <span class="tag-tovar__price"><?php echo $model::formatPrice($model->price2); ?></span>
+                                        <span class="tag-tovar__price"><?php echo $model::formatPrice($model, ['price2']); ?></span>
                                         &#8381;</span>
                                     </div>
                                 </div>
@@ -246,7 +248,7 @@ $next = $model->category->getNextproduct($model->article_index);
                                         </div>
                                         <div class="tag-tovar-bottom">
                                             <span class="tag-tovar__text">Цена за 1 шт: &nbsp;&nbsp;&nbsp;</span>
-                                            <span class="tag-tovar__price"><?php echo $model::formatPrice($model->price2 ? $model->price2 : $model->price); ?></span>
+                                            <span class="tag-tovar__price"><?php echo $model::formatPrice($model, ['price2', 'price']); ?></span>
                                             &#8381;</span>
                                         </div>
                                     </div>
@@ -257,7 +259,7 @@ $next = $model->category->getNextproduct($model->article_index);
                                         </div>
                                         <div class="tag-tovar__bottom">
                                             <span class="tag-tovar__text">Цена за 1 шт: &nbsp;&nbsp;&nbsp;</span>
-                                            <span class="tag-tovar__price"><?php echo $model::formatPrice($model->price) ?></span>
+                                            <span class="tag-tovar__price"><?php echo $model::formatPrice($model, ['price']) ?></span>
                                             &#8381;</span>
                                         </div>
                                     </div>
@@ -274,13 +276,13 @@ $next = $model->category->getNextproduct($model->article_index);
                                             <?php if (Yii::$app->user->identity->profile->type == 2) : ?>
                                                 <li class="package-tovar__item">
                                                     <span class="package-tovar__text">цена за упаковку: &nbsp;&nbsp;&nbsp;</span>
-                                                    <span class="package-tovar__amount"><?php echo $model::formatPrice($model->pack_price2) ?></span>
+                                                    <span class="package-tovar__amount"><?php echo $model::formatPrice($model, ['pack_price2']) ?></span>
                                                     &#8381;</span>
                                                 </li>
                                             <?php else : ?>
                                                 <li class="package-tovar__item">
                                                     <span class="package-tovar__text">цена за упаковку: &nbsp;&nbsp;&nbsp;</span>
-                                                    <span class="package-tovar__amount"><?php echo $model::formatPrice($model->pack_price) ?></span>
+                                                    <span class="package-tovar__amount"><?php echo $model::formatPrice($model, ['pack_price']) ?></span>
                                                     &#8381;</span>
                                                 </li>
                                             <?php endif; ?>
