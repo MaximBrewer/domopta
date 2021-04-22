@@ -39,6 +39,30 @@ function cancelOrder(id) {
   });
 })(jQuery);
 $(document).ready(function () {
+  var galleryThumbs = new Swiper(".gallery-thumbs", {
+    slidesPerView: 3,
+    spaceBetween: 10,
+    direction: "vertical",
+    navigation: {
+      nextEl: ".thumbs-next",
+      prevEl: ".thumbs-prev",
+    },
+  });
+  var galleryTop = new Swiper(".gallery-right", {
+    direction: "vertical",
+    spaceBetween: 10,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    pagination: {
+      el: ".count-photo",
+      type: "fraction",
+    },
+    thumbs: {
+      swiper: galleryThumbs,
+    },
+  });
   if (window.location.hash.length && !!$(window.location.hash).offset()) {
     $("html,body").animate(
       {
@@ -464,9 +488,9 @@ $(document).ready(function () {
     $(e.target).closest(".drop-content").length &&
       $(e.target).closest(".drop-content").toggleClass("drop-content_show");
   });
-  console.log(9)
+  console.log(9);
   $("#cat").click(function (e) {
-    console.log(90)
+    console.log(90);
     e.preventDefault();
     $(e.target).closest(".drop-content").length &&
       $(e.target).closest(".drop-content").toggleClass("drop-content_show");
@@ -671,7 +695,8 @@ $(document).ready(function () {
               closerTemplate: "<div>[ закрыть всё ]</div>",
               position: "bottom-right",
               life: 5000,
-              closeTemplate: '<svg class="svg esc__svg esc__svg_cross1"><use xlink:href="/img/sprite-sheet.svg#cross1" /></svg>'
+              closeTemplate:
+                '<svg class="svg esc__svg esc__svg_cross1"><use xlink:href="/img/sprite-sheet.svg#cross1" /></svg>',
             });
             $(".liked-header-counter").text(response.count);
           }
@@ -683,7 +708,7 @@ $(document).ready(function () {
     e.stopPropagation();
     e.preventDefault();
     $.get("/favorites/remove", { product_id: $(this).data("id") }, function () {
-      $(e.target).closest('.products__item').remove()
+      $(e.target).closest(".products__item").remove();
       // window.location.reload();
     });
   });

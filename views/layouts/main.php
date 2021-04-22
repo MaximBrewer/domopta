@@ -47,6 +47,7 @@ if (Yii::$app->user->isGuest) {
 }
 
 $this->registerJsFile('@web/js/magnifier.js', ['depends' => \yii\web\JqueryAsset::class]);
+$this->registerJsFile('@web/js/swiper-bundle.min.js', ['depends' => \yii\web\JqueryAsset::class]);
 $this->registerJsFile('@web/js/lightslider.js', ['depends' => \yii\web\JqueryAsset::class]);
 
 
@@ -69,6 +70,7 @@ $this->registerJsFile('@web/js/lightslider.js', ['depends' => \yii\web\JqueryAss
     <!-- Link Swiper's CSS -->
     <link rel="preload" href="/style/fonts.css" as="style" >
     <link rel="stylesheet" href="/style/fonts.css" >
+    <link rel="stylesheet" href="/css/swiper-bundle.min.css" >
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
 

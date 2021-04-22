@@ -163,36 +163,6 @@ $next = $model->category->getNextproduct($model->article_index);
                         </div>
                 </div>
             <?php endif; ?>
-            <!-- Swiper JS -->
-            <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-            <!-- Initialize Swiper -->
-            <script>
-                var galleryThumbs = new Swiper('.gallery-thumbs', {
-                    slidesPerView: 3,
-                    spaceBetween: 10,
-                    direction: 'vertical',
-                    navigation: {
-                        nextEl: '.thumbs-next',
-                        prevEl: '.thumbs-prev',
-                    },
-                });
-                var galleryTop = new Swiper('.gallery-right', {
-                    direction: 'vertical',
-                    spaceBetween: 10,
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    },
-                    pagination: {
-                        el: '.count-photo',
-                        type: 'fraction',
-                    },
-                    thumbs: {
-                        swiper: galleryThumbs,
-                    },
-                });
-            </script>
             <div class="tovar-right">
                 <div class="tovar__title"><?php echo $model->name ?></div>
                 <div class="info-tovar tovar__info-tovar">
