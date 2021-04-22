@@ -326,6 +326,54 @@ class User extends \dektrium\user\models\User
             ->andFilterWhere(['>', '{{%cart_details}}.amount', 0])
             ->orderBy(['article' => SORT_ASC])->all();
 
+        $retur = '';
+        $sum = 0;
+        $amm = 0;
+
+        foreach ($carts as $cart) {
+            foreach ($cart->details as $detail) {
+                $row_amount = $detail->amount;
+                if ($cart->product->pack_quantity > 0)
+                    $row_amount = $detail->amount * $cart->product->pack_quantity;
+
+                $retur .= "<tr>";
+                $retur .= "<td class=\"text-center\">";
+                if (isset($cart->product->pictures[0])) $retur .= Html::img($cart->product->pictures[0]->getUrl('thumb'));
+                $retur .= "</td>";
+                $retur .= "<td class=\"text-center\">";
+                $retur .= $cart->product->article_index;
+                $retur .= "</td>";
+                $retur .= "<td class=\"text-center\">";
+                $retur .= $cart->product->name;
+                $retur .= "</td>";
+                $retur .= "<td class=\"text-center\">";
+                $retur .= $detail->color == 'default' ? '' : $detail->color;
+                $retur .= "</td>";
+                $retur .= "<td class=\"text-center\">";
+                $retur .= $row_amount;
+                $retur .= "</td>";
+                $retur .= "<td class=\"text-center text-nowrap\">";
+                $retur .= Products::formatPrice($cart->product->price);
+                $retur .= "</td>";
+                $retur .= "<td class=\"text-center text-nowrap\">";
+                $retur .= Products::formatPrice($detail->getSum());
+                $retur .= "</td>";
+                $retur .= "<td class=\"text-center\">";
+                $sold = false;
+                if (($detail->color != 'default' || !$cart->product->flag) && !$cart->product->hasColor($detail->color)) {
+                    $sold = true;
+                }
+                $retur .= !$sold ? 'В&nbsp;наличии' : '<span style="color:red;">Продан</span>';
+                $retur .= "</td>";
+                $retur .= "<td class=\"text-center\">";
+                $retur .= str_replace(" ", "&nbsp;", date("d.m.y  (H:i)", $cart->created_at));
+                $retur .= "</td>";
+                $retur .= "</tr>";
+                $sum += $detail->getSum();
+                $amm += $row_amount;
+            }
+        }
+
         $return = "<table class=\"table table-striped table-bordered table-bigcart\">";
         $return .= "<thead>";
         $return .= "<tr>";
@@ -339,54 +387,19 @@ class User extends \dektrium\user\models\User
         $return .= "<th class=\"text-center\">Cтатус</th>";
         $return .= "<th class=\"text-center\">Дата</th>";
         $return .= "</tr>";
+        $return .= "<tr>";
+        $return .= "<td colspan=\"4\"><strong>Итого:</strong></td>";
+        $return .= "<td class=\"text-right text-center\"><strong>" . $amm . "</strong></td>";
+        $return .= "<td class=\"text-right text-nowrap\"><strong></strong></td>";
+        $return .= "<td class=\"text-right text-nowrap\"><strong>" . Products::formatPrice($sum) . "</strong></td>";
+        $return .= "<td class=\"text-right text-nowrap\"><strong></strong></td>";
+        $return .= "<td class=\"text-right text-nowrap\"><strong></strong></td>";
+        $return .= "</tr>";
         $return .= "</thead>";
         $return .= "<tbody>";
-        $sum = 0;
-        $amm = 0;
-        foreach ($carts as $cart) {
-            foreach ($cart->details as $detail) {
-                $row_amount = $detail->amount;
-                if ($cart->product->pack_quantity > 0)
-                    $row_amount = $detail->amount * $cart->product->pack_quantity;
+        
 
-                $return .= "<tr>";
-                $return .= "<td class=\"text-center\">";
-                if (isset($cart->product->pictures[0])) $return .= Html::img($cart->product->pictures[0]->getUrl('thumb'));
-                $return .= "</td>";
-                $return .= "<td class=\"text-center\">";
-                $return .= $cart->product->article_index;
-                $return .= "</td>";
-                $return .= "<td class=\"text-center\">";
-                $return .= $cart->product->name;
-                $return .= "</td>";
-                $return .= "<td class=\"text-center\">";
-                $return .= $detail->color == 'default' ? '' : $detail->color;
-                $return .= "</td>";
-                $return .= "<td class=\"text-center\">";
-                $return .= $row_amount;
-                $return .= "</td>";
-                $return .= "<td class=\"text-center text-nowrap\">";
-                $return .= Products::formatPrice($cart->product->price);
-                $return .= "</td>";
-                $return .= "<td class=\"text-center text-nowrap\">";
-                $return .= Products::formatPrice($detail->getSum());
-                $return .= "</td>";
-                $return .= "<td class=\"text-center\">";
-                $sold = false;
-                if (($detail->color != 'default' || !$cart->product->flag) && !$cart->product->hasColor($detail->color)) {
-                    $sold = true;
-                }
-                $return .= !$sold ? 'В&nbsp;наличии' : '<span style="color:red;">Продан</span>';
-                $return .= "</td>";
-                $return .= "<td class=\"text-center\">";
-                $return .= str_replace(" ", "&nbsp;", date("d.m.y  (H:i)", $cart->created_at));
-                $return .= "</td>";
-                $return .= "</tr>";
-                $sum += $detail->getSum();
-                $amm += $row_amount;
-            }
-        }
-        // Добавить новую колонку, статус товара (в наличии, продан (продан=красным цветом))
+        $return .= $retur;
 
         $return .= "</tbody>";
         $return .= "<tfoot>";

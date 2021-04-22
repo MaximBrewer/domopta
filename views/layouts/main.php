@@ -66,6 +66,9 @@ $this->registerJsFile('@web/js/lightslider.js', ['depends' => \yii\web\JqueryAss
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <script src="/js/svg4everybody.js"></script>
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
     <script>
         svg4everybody();
     </script>
@@ -95,6 +98,7 @@ $this->registerJsFile('@web/js/lightslider.js', ['depends' => \yii\web\JqueryAss
                 });
             }, 500);
         }
+        epprFu();
         document.addEventListener("touchstart", () => {
             fired || epprFu();
         });
@@ -487,7 +491,7 @@ $this->registerJsFile('@web/js/lightslider.js', ['depends' => \yii\web\JqueryAss
                                 </ul>
                             </div>
                         </li>
-                        <li class="footer__item">
+                        <!-- <li class="footer__item">
                             <div class="common footer__common">
                                 <a href="#" class="common__heading">Мы в социальных сетях</a>
                                 <ul class="common__list common__list_flex common__list_pt">
@@ -529,7 +533,7 @@ $this->registerJsFile('@web/js/lightslider.js', ['depends' => \yii\web\JqueryAss
                                     <?php endif; ?>
                                 </ul>
                             </div>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <div class="footer-bottom" id="bottom-anchor">

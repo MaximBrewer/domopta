@@ -25,12 +25,12 @@ $next = $model->getNextproduct() ? $model->getNextproduct() : $model;
     <div class="col-md-9">
         <div class="form-group form-group-product">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12" style="margin-bottom:10px;">
                     <a href="/adminka/catalog/index?id=<?php echo $model->category_id ?>" class="btn btn-success">Назад в категорию</a>
                     <a href="/adminka/catalog/update?id=<?php echo $prev->id ?>" class="btn btn-success" <?php echo $prev->id == $model->id ? 'disabled="disabled"' : '' ?>>&lt; Предыдущий товар</a>
                     <a href="/adminka/catalog/update?id=<?php echo $next->id ?>" class="btn btn-success" <?php echo $next->id == $model->id ? 'disabled="disabled"' : '' ?>>Следующий товар &gt;</a>
                 </div>
-                <!-- <div class="col-lg-6">
+                <div class="col-lg-6">
                     <?php $form = \yii\widgets\ActiveForm::begin(['method' => 'get', 'action' => 'index']) ?>
                     <div class="input-group">
                         <?php echo Html::textInput($searchModel->formName() . '[text]', $searchModel->text, ['class' => 'form-control']) ?>
@@ -40,7 +40,7 @@ $next = $model->getNextproduct() ? $model->getNextproduct() : $model;
                     </div>
                     <?php echo Html::radioList($searchModel->formName() . '[text_type]', $searchModel->text_type ? $searchModel->text_type : 1, [1 => 'Каталог', 0 => 'Текущая категория']) ?>
                     <?php \yii\widgets\ActiveForm::end(); ?>
-                </div> -->
+                </div>
             </div>
         </div>
         <div class="product-link pull-right"><?php echo Html::a('Ссылка на товар', $model->slug, ['target' => '_blank', 'title' => $model->slug]) ?></div>
@@ -70,7 +70,17 @@ $next = $model->getNextproduct() ? $model->getNextproduct() : $model;
 
         <?php $this->beginBlock('photo'); ?>
         <div class="form-group">
-            <?php echo $form->field($model, 'article')->textInput(['readonly' => true]); ?>
+            <div class="row">
+                <div class="col-md-6"><?php echo $form->field($model, 'article')->textInput(['readonly' => true]); ?></div>
+                <div class="col-md-6">
+                    <div class="form-group field-products-color">
+                        <label class="control-label" for="products-color">Цвета</label>
+                        <div class="form-control" disabled="true"><?php echo $model->color;?></div>
+
+                        <p class="help-block help-block-error"></p>
+                    </div>
+                </div>
+            </div>
             <br />
             <?php echo Html::submitButton('Сохранить', ['class' => 'btn btn-success', "style" => "float:right;"]); ?>
             <?php echo Html::a('Удалить все фото', '#', ['class' => 'btn btn-danger', 'data-toggle' => 'modal', 'data-target' => '#delete-photo-modal']); ?>

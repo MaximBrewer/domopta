@@ -7,7 +7,7 @@ use app\components\Breadcrumbs;
 
 $this->params['breadcrumbs'][] = ['label' => Yii::$app->params['page']->name, 'url' => Yii::$app->params['page']->slug];
 ?>
-<main id="cat">
+<main id="cat_page">
     <div class="wrap inner_product pr">
         <div class="breadcrumb main__breadcrumb">
             <div class="container">

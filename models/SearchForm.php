@@ -29,12 +29,16 @@ class SearchForm extends Model
     {
         $this->text = trim($this->text);
         $trans = Inflector::transliterate($this->text);
-
         $query = Products::find()
-            ->where(['or', ['like', 'name', $this->text], ['like', 'article_index', $this->text]])
-            ->where(['or', ['like', 'name', $trans], ['like', 'article_index', $trans]])
+            ->where(['like', 'name', $this->text])
+            ->orWhere(['like', 'article_index', $this->text])
+            ->orWhere(['like', 'article_index', $trans])
+            ->orWhere(['like', 'article_index', $trans])
             ->andWhere(['is_deleted' => 0])
             ->orderBy('article_index');
+
+        // var_dump($query->prepare(\Yii::$app->db->queryBuilder)->createCommand()->rawSql);
+        // die;
         if (!\Yii::$app->user->isGuest && \Yii::$app->user->identity->flags == 1) {
             $query->andWhere(['ooo' => 1]);
         }

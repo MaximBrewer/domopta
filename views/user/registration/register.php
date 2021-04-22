@@ -32,7 +32,7 @@ if($model->hasErrors()){
     $this->registerJs("alert('$str')");
 }
 ?>
-<main id="cat">
+<main id="cat_page">
     <div class="wrap reg pr">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

@@ -21,7 +21,7 @@ use yii\widgets\ActiveForm;
 $this->title = Yii::t('user', 'Reset your password');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<main id="cat">
+<main id="cat_page">
     <div class="wrap reg pr">
         <div class="stat_title"><?= Html::encode($this->title) ?></div>
         <div class="register">

@@ -33,19 +33,19 @@ use yii\helpers\Html;
 				'label' => 'Телефон',
 				'value' => function ($model) {
 					if (\Yii::$app->user->identity->role == 'admin') {
-						return Html::a($model->username, ['/user/adminka/update', 'id' => $model->id]);
+						return Html::a($model->username, ['/user/admin/update', 'id' => $model->id]);
 					} else {
 						return $model->username;
 					}
 				},
 				'format' => 'raw'
 			],
-			// [
-			// 	'label' => 'Сумма',
-			// 	'value' => function ($model) {
-			// 		return $model->getCartSum();
-			// 	}
-			// ],
+			[
+				'label' => 'Сумма',
+				'value' => function ($model) {
+					return $model->getCartSum();
+				}
+			],
 			[
 				'label' => 'Корзина',
 				'value' => function ($model) {

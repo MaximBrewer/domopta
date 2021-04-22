@@ -55,7 +55,7 @@ $this->registerJsFile('/js/order.js', ['depends' => \yii\web\JqueryAsset::classN
         <div class="content-right">
             <div class="search-content content__search-content">
                 <div class="search-content-top">
-                    <div class="content__title">
+                    <div class="content__title" style="max-width:100%;">
                         <span class="search__result">Результаты поиска</span>
                         <span class="search__string"><?php echo $searchModel->text; ?></span>
                     </div>

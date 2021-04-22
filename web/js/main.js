@@ -464,7 +464,9 @@ $(document).ready(function () {
     $(e.target).closest(".drop-content").length &&
       $(e.target).closest(".drop-content").toggleClass("drop-content_show");
   });
+  console.log(9)
   $("#cat").click(function (e) {
+    console.log(90)
     e.preventDefault();
     $(e.target).closest(".drop-content").length &&
       $(e.target).closest(".drop-content").toggleClass("drop-content_show");

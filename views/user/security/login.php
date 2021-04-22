@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
 
-<main id="cat">
+<main id="cat_page">
     <div class="wrap reg pr">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

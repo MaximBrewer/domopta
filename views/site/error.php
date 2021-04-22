@@ -15,7 +15,7 @@ Yii::$app->params['page'] = $page;
 
 $this->title = Yii::$app->params['page']->title;
 ?>
-<main id="cat">
+<main id="cat_page">
     <div class="wrap inner_product pr">
         <div class="breadcrumb main__breadcrumb">
             <div class="container">
