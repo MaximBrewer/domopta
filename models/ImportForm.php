@@ -116,6 +116,7 @@ class ImportForm extends Model
             if (!$data[12]) {
                 $data[12] = 0;
             }
+
             $model->pack_price2 = str_replace(',', '.', $data[12]);
             $model->flag = $flag;
             $model->ooo = $data[14];
