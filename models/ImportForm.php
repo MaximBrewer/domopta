@@ -65,6 +65,7 @@ class ImportForm extends Model
         $columnNameArray = array_keys($p->attributes);
         $bulkInsertArray = [];
         $ids = [];
+        $name = "";
 
         foreach ($content as $string) {
             $string = mb_convert_encoding($string, 'UTF-8', 'CP-1251');
@@ -79,11 +80,14 @@ class ImportForm extends Model
                 }
             }
             if (!empty(trim($data[1]))) {
-                $model->name = $data[1];
+                $name = $model->name = $data[1];
                 if (!empty(trim($data[4]))) {
                     $model->color = '';
                 }
+            } else {
+                $model->name = $name;
             }
+            
             $model->color = preg_replace('~,[\s]+~', ',', $model->color);
             $model->article = $data[2];
             $model->article_index = $data[3];
@@ -101,6 +105,7 @@ class ImportForm extends Model
             } else {
                 $flag = 1;
             }
+
             $model->size = $data[5];
             $model->consist = $data[6];
             $model->tradekmark = $data[7];
@@ -123,6 +128,8 @@ class ImportForm extends Model
                     $model->is_deleted = 0;
                 }
                 $model->id = \Yii::$app->db->getLastInsertID();
+
+
                 $bulkInsertArray[$model->article_index] = $model->attributes;
             } else {
                 echo 'Contact with developer team';
@@ -132,6 +139,10 @@ class ImportForm extends Model
 
         Products::deleteAll(['article_index' => $ids, 'category_id' => $id]);
 
+        echo "<pre>";
+        var_dump($data);
+        var_dump($bulkInsertArray);
+        echo "</pre>";
 
 
         \Yii::$app->db->createCommand()
@@ -141,6 +152,7 @@ class ImportForm extends Model
                 $bulkInsertArray
             )
             ->execute();
+        die;
 
         static::renewUrls($id);
     }
