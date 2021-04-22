@@ -67,7 +67,8 @@ $this->registerJsFile('@web/js/lightslider.js', ['depends' => \yii\web\JqueryAss
     <title><?= Html::encode($this->title) ?></title>
     <script src="/js/svg4everybody.js"></script>
     <!-- Link Swiper's CSS -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="/style/fonts.css" as="script" >
+
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
 
     <script>
