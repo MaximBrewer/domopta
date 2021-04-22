@@ -48,10 +48,15 @@ class TestController extends Controller
     public function actionUpload($id)
     {
         $model = Products::findOne($id);
+        if ($model->folder != Inflector::slug($model->article_index)) {
+            $model->folder = Inflector::slug($model->article_index);
+            $model->save();
+        }
         $arr = [];
         if ($model) {
             $model_images = ProductsImages::find()->where(['folder' => Inflector::slug($model->article_index)])->all();
             $max_order = 0;
+
             foreach ($model_images as $model_image) {
                 if ($max_order < $model_image->order) {
                     $max_order = $model_image->order + 1;
@@ -59,6 +64,8 @@ class TestController extends Controller
             }
 
             $files = UploadedFile::getInstances($model, 'images');
+
+
             foreach ($files as $k => $file) {
                 $fcleanname = Inflector::slug($model->article_index);
                 $fcleanname .= '-' . str_pad($max_order + ($k + 1), 3, "0", STR_PAD_LEFT);
@@ -83,7 +90,6 @@ class TestController extends Controller
                 $arr['ids'][$k] = $model1->id;
                 $output = [];
                 $arr['output'] = $output;
-                
             }
         }
         return json_encode($arr);
