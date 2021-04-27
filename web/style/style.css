@@ -7,6 +7,7 @@
    */
 html {
   line-height: 1.15;
+  min-width: 320px;
   /* 1 */
   -webkit-text-size-adjust: 100%;
   /* 2 */
@@ -18,6 +19,7 @@ html {
    */
 body {
   margin: 0;
+  min-width: 320px;
 }
 /**
    * Render the `main` element consistently in IE.
@@ -366,6 +368,7 @@ a {
   text-decoration: none;
 }
 .wrapper {
+  min-width: 320px;
   width: 100%;
   min-height: 100%;
   overflow: hidden;
@@ -445,6 +448,7 @@ input:-webkit-autofill {
 }
 #preloader {
   position: fixed;
+  min-width: 320px;
   top: 0;
   left: 0;
   right: 0;
@@ -2106,6 +2110,7 @@ input:-webkit-autofill {
 .header_fixed .header-bottom {
   z-index: 3;
   position: fixed;
+  min-width: 320px;
   top: 0;
   right: 0;
   left: 0;
@@ -3372,10 +3377,10 @@ input:-webkit-autofill {
   }
   .tovar-left {
     width: 40%;
-    min-width: 375px;
+    min-width: 425px;
   }
   .tovar-right {
-    width: calc(100% - 375px);
+    width: calc(100% - 425px);
   }
 }
 .tovar__help {
@@ -3514,48 +3519,39 @@ input:-webkit-autofill {
 
 @media screen and (max-width: 991px) {
   .product__pic {
-    height: 254px;
+    height: 343px;
   }
   .products .product__pic {
     height: 370px;
   }
+
+  .thubms-container {
+    width: 75px;
+  }
+  .content__tovar .swiper-container {
+    height: 440px;
+  }
+
+  .content__tovar .gallery-thumbs.swiper-container {
+    height: 380px;
+  }
+  .imgc-wrapper {
+    width: 288px;
+    height: 432px;
+  }
+  .imgc-thumb-wrapper {
+    width: 75px;
+    height: 113px;
+  }
 }
 
 @media screen and (max-width: 767px) {
   .product__pic {
-    height: 208px;
+    height: 331px;
   }
   .products .product__pic {
-    height: 208px;
+    height: 331px;
   }
-}
-@media screen and (max-width: 764px) {
-  .product__pic {
-    height: 324px;
-  }
-  .products .product__pic {
-    height: 324px;
-  }
-}
-
-@media screen and (max-width: 479px) {
-  .product__pic {
-    height: 240px;
-  }
-  .products .product__pic {
-    height: 240px;
-  }
-}
-@media screen and (max-width: 359px) {
-  .product__pic {
-    height: 200px;
-  }
-  .products .product__pic {
-    height: 200px;
-  }
-}
-
-@media screen and (max-width: 767px) {
   .tovar-left {
     min-width: 355px;
   }
@@ -3581,6 +3577,23 @@ input:-webkit-autofill {
   .imgc-thumb-wrapper {
     width: 75px;
     height: 100px;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .product__pic {
+    height: 240px;
+  }
+  .products .product__pic {
+    height: 240px;
+  }
+}
+@media screen and (max-width: 359px) {
+  .product__pic {
+    height: 200px;
+  }
+  .products .product__pic {
+    height: 200px;
   }
 }
 
