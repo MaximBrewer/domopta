@@ -149,25 +149,25 @@ $(document).ready(function () {
       '<div class="products__arrow products__arrow_r"><span class="products__link products__icon"><svg class="svg products__svg products__svg_arrow2-right"><use xlink:href="/img/sprite-sheet.svg#arrow2-right"/></svg></span></div>',
     responsive: [
       {
-        breakpoint: 1200,
+        breakpoint: 1199,
         settings: {
           item: 4,
         },
       },
       {
-        breakpoint: 970,
+        breakpoint: 991,
         settings: {
           item: 3,
         },
       },
       {
-        breakpoint: 750,
+        breakpoint: 767,
         settings: {
           item: 2,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 479,
         settings: {
           item: 2,
         },
@@ -186,25 +186,25 @@ $(document).ready(function () {
       '<div class="products__arrow products__arrow_r"><span class="products__link products__icon"><svg class="svg products__svg products__svg_arrow2-right"><use xlink:href="/img/sprite-sheet.svg#arrow2-right"/></svg></span></div>',
     responsive: [
       {
-        breakpoint: 1200,
+        breakpoint: 1199,
         settings: {
           item: 4,
         },
       },
       {
-        breakpoint: 970,
+        breakpoint: 991,
         settings: {
           item: 3,
         },
       },
       {
-        breakpoint: 750,
+        breakpoint: 767,
         settings: {
           item: 2,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 479,
         settings: {
           item: 2,
         },
@@ -230,7 +230,7 @@ $(document).ready(function () {
       '<div class="photos-tovar__arrow photos-tovar__arrow_r"><span class="photos-tovar__link photos-tovar__icon"><svg class="svg photos-tovar__svg photos-tovar__svg_arrow2-right"><use xlink:href="/img/sprite-sheet.svg#arrow2-right"/></svg></span></div>',
     responsive: [
       {
-        breakpoint: 994,
+        breakpoint: 991,
         settings: {
           gallery: true,
           item: 1,
@@ -244,7 +244,7 @@ $(document).ready(function () {
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 479,
         settings: {
           vThumbWidth: 60,
           verticalHeight: 350,
@@ -279,25 +279,25 @@ $(document).ready(function () {
             '<div class="products__arrow products__arrow_r"><span class="products__link products__icon"><svg class="svg products__svg products__svg_arrow2-right"><use xlink:href="/img/sprite-sheet.svg#arrow2-right"/></svg></span></div>',
           responsive: [
             {
-              breakpoint: 1200,
+              breakpoint: 1199,
               settings: {
                 item: 4,
               },
             },
             {
-              breakpoint: 970,
+              breakpoint: 991,
               settings: {
                 item: 3,
               },
             },
             {
-              breakpoint: 750,
+              breakpoint: 767,
               settings: {
                 item: 2,
               },
             },
             {
-              breakpoint: 480,
+              breakpoint: 479,
               settings: {
                 item: 2,
               },
@@ -321,25 +321,25 @@ $(document).ready(function () {
             '<div class="products__arrow products__arrow_r"><span class="products__link products__icon"><svg class="svg products__svg products__svg_arrow2-right"><use xlink:href="/img/sprite-sheet.svg#arrow2-right"/></svg></span></div>',
           responsive: [
             {
-              breakpoint: 1200,
+              breakpoint: 1199,
               settings: {
                 item: 4,
               },
             },
             {
-              breakpoint: 970,
+              breakpoint: 991,
               settings: {
                 item: 3,
               },
             },
             {
-              breakpoint: 750,
+              breakpoint: 767,
               settings: {
                 item: 2,
               },
             },
             {
-              breakpoint: 480,
+              breakpoint: 479,
               settings: {
                 item: 2,
               },
