@@ -123,16 +123,16 @@ $next = $model->category->getNextproduct($model->article_index);
                                         </div>
                                     </div>
                                     <?php if (count($pictures) > 3) : ?>
-                                    <div class="swiper-button-next thumbs-next">
-                                        <svg class="svg photos-tovar__svg photos-tovar__svg_arrow2-right">
-                                            <use xlink:href="/img/sprite-sheet.svg#arrow2-right"></use>
-                                        </svg>
-                                    </div>
-                                    <div class="swiper-button-prev thumbs-prev">
-                                        <svg class="svg photos-tovar__svg photos-tovar__svg_arrow2-right">
-                                            <use xlink:href="/img/sprite-sheet.svg#arrow2-right"></use>
-                                        </svg>
-                                    </div>
+                                        <div class="swiper-button-next thumbs-next">
+                                            <svg class="svg photos-tovar__svg photos-tovar__svg_arrow2-right">
+                                                <use xlink:href="/img/sprite-sheet.svg#arrow2-right"></use>
+                                            </svg>
+                                        </div>
+                                        <div class="swiper-button-prev thumbs-prev">
+                                            <svg class="svg photos-tovar__svg photos-tovar__svg_arrow2-right">
+                                                <use xlink:href="/img/sprite-sheet.svg#arrow2-right"></use>
+                                            </svg>
+                                        </div>
                                     <?php endif; ?>
                                 </div>
                                 <div style="flex-grow:1;position:relative;">
@@ -314,54 +314,54 @@ $next = $model->category->getNextproduct($model->article_index);
 
                     <div class="form-tovar tovar__form-tovar">
                         <?php if ($model->flag == 1) : ?>
-                            <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->getIsActive()) : ?>
-                                <?php $form = ActiveForm::begin(['id' => 'product-form', 'action' => ['/product/add']]) ?>
-                                <?php echo $form->field($form_model, 'product_id')->label(false)->hiddenInput(['value' => $model->id]); ?>
-                                <?php if (trim($model->color) != '') : ?>
-                                    <?php $colors = explode(',', $model->color); ?>
-                                    <div class="h2colors">Цвета для заказа:</div>
-                                    <div class="form-tovar__colors">
-                                        <ul class="form-tovar__list">
-                                            <?php
-                                            $i = 0;
-                                            foreach ($colors as $color) : ?>
-                                                <li class="form-tovar__item">
-                                                    <label class="form-tovar__label">
-                                                        <div class="form-tovar__title"><?php echo $color ?></div>
-                                                        <span class="input-count-box">
-                                                            <button type="button" class="input-color-minus">-</button>
-                                                            <?php echo Html::activeInput('text', $form_model, 'colors[' . $color . ']', ['class' => 'form-tovar__input input-color', 'min' => 0]) ?>
-                                                            <button type="button" class="input-color-plus">+</button>
-                                                        </span>
-                                                    </label>
-                                                </li>
-                                                <?php
-                                                $i++;
-                                                if ($i > 20) :
-                                                    $i = 0;
-                                                ?>
-                                        </ul>
-                                        <ul class="form-tovar__list col-2">
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
-                                        </ul>
-                                    </div>
-                                <?php else : ?>
-                                    <div class="form-tovar__colors">
-                                        <ul class="form-tovar__list">
+                            <?php $form = ActiveForm::begin(['id' => 'product-form', 'action' => ['/product/add']]) ?>
+                            <?php echo $form->field($form_model, 'product_id')->label(false)->hiddenInput(['value' => $model->id]); ?>
+                            <?php if (trim($model->color) != '') : ?>
+                                <?php $colors = explode(',', $model->color); ?>
+                                <div class="h2colors">Цвета, доступные для заказа:</div>
+                                <div class="form-tovar__colors">
+                                    <ul class="form-tovar__list">
+                                        <?php
+                                        $i = 0;
+                                        foreach ($colors as $color) : ?>
                                             <li class="form-tovar__item">
                                                 <label class="form-tovar__label">
-                                                    <div class="form-tovar__title">Кол-во:</div>
+                                                    <div class="form-tovar__title"><?php echo $color ?></div>
                                                     <span class="input-count-box">
                                                         <button type="button" class="input-color-minus">-</button>
-                                                        <?php echo Html::activeInput('text', $form_model, 'colors[default]', ['class' => 'form-tovar__input input-color', 'min' => 0]) ?>
+                                                        <?php echo Html::activeInput('text', $form_model, 'colors[' . $color . ']', ['class' => 'form-tovar__input input-color', 'min' => 0]) ?>
                                                         <button type="button" class="input-color-plus">+</button>
                                                     </span>
                                                 </label>
                                             </li>
-                                        </ul>
-                                    </div>
-                                <?php endif; ?>
+                                            <?php
+                                            $i++;
+                                            if ($i > 20) :
+                                                $i = 0;
+                                            ?>
+                                    </ul>
+                                    <ul class="form-tovar__list col-2">
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            <?php else : ?>
+                                <div class="form-tovar__colors">
+                                    <ul class="form-tovar__list">
+                                        <li class="form-tovar__item">
+                                            <label class="form-tovar__label">
+                                                <div class="form-tovar__title">Кол-во:</div>
+                                                <span class="input-count-box">
+                                                    <button type="button" class="input-color-minus">-</button>
+                                                    <?php echo Html::activeInput('text', $form_model, 'colors[default]', ['class' => 'form-tovar__input input-color', 'min' => 0]) ?>
+                                                    <button type="button" class="input-color-plus">+</button>
+                                                </span>
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            <?php endif; ?>
+                            <?php if (!Yii::$app->user->isGuest && Yii::$app->user->identity->getIsActive()) : ?>
                                 <div class="form-tovar-btn">
                                     <?php echo Html::submitButton('
                                 <span class="form-tovar__text">Добавить в корзину</span>
@@ -374,8 +374,8 @@ $next = $model->category->getNextproduct($model->article_index);
                                     </svg>
                                 </span>', ['class' => 'form-tovar-btn__link']) ?>
                                 </div>
-                                <?php ActiveForm::end() ?>
                             <?php endif; ?>
+                            <?php ActiveForm::end() ?>
                         <?php else : ?>
                             <?php echo Yii::$app->settings->get('Settings.notify_product_absend') ?>
                         <?php endif; ?>

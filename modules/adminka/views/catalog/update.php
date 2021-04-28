@@ -23,14 +23,14 @@ $next = $model->getNextproduct() ? $model->getNextproduct() : $model;
         <?php echo $this->render('left_menu', ['category_list' => $category_list, 'searchModel' => $searchModel, 'category' => $category]) ?>
     </div>
     <div class="col-md-9">
-        <div class="form-group form-group-product">
+        <div class="">
             <div class="row">
-                <div class="col-lg-12" style="margin-bottom:10px;">
+                <div class="col-lg-7 col-xl-6" style="margin-bottom:10px;">
                     <a href="/adminka/catalog/index?id=<?php echo $model->category_id ?>" class="btn btn-success">Назад в категорию</a>
                     <a href="/adminka/catalog/update?id=<?php echo $prev->id ?>" class="btn btn-success" <?php echo $prev->id == $model->id ? 'disabled="disabled"' : '' ?>>&lt; Предыдущий товар</a>
                     <a href="/adminka/catalog/update?id=<?php echo $next->id ?>" class="btn btn-success" <?php echo $next->id == $model->id ? 'disabled="disabled"' : '' ?>>Следующий товар &gt;</a>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-5 col-xl-6">
                     <?php $form = \yii\widgets\ActiveForm::begin(['method' => 'get', 'action' => 'index']) ?>
                     <div class="input-group">
                         <?php echo Html::textInput($searchModel->formName() . '[text]', $searchModel->text, ['class' => 'form-control']) ?>

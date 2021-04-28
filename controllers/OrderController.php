@@ -63,10 +63,10 @@ class OrderController extends Controller
 			$profile = Profile::find()->where(['user_id' => Yii::$app->user->id])->one();
 			$user = User::find()->where(['id' => Yii::$app->user->id])->one();
 			$profile = $user->profile;
-			$order->fio = $profile->lastname . ' ' . $profile->name . ' ' . $profile->surname;
-			$order->phone = $user->username;
-			$order->city = $profile->city;
-			$order->region = $profile->region;
+			// $order->fio = $profile->lastname . ' ' . $profile->name . ' ' . $profile->surname;
+			// $order->phone = $user->username;
+			// $order->city = $profile->city;
+			// $order->region = $profile->region;
 			if ($request->post('delivery_method')) {
 				$order->scenario = $request->post('delivery_method');
 				$order->delivery_method = $request->post('delivery_method');

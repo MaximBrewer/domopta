@@ -111,21 +111,26 @@ class ImportForm extends Model
             $model->tradekmark = $data[7];
             $model->pack_quantity = (int)$data[8];
 
+            $price = str_replace(',', '.', $data[9]);
+            $pack_price = $data[10] ? str_replace(',', '.', $data[10]) : 0;
+            $price2 = str_replace(',', '.', $data[11]);
+            $pack_price2 = str_replace(',', '.', floatval($data[12]));
 
-            $model->price_old = $model->price ?? 0;
-            $model->pack_price_old = $model->pack_price ?? 0;
-            $model->price2_old = $model->price2 ?? 0;
-            $model->pack_price2_old = $model->pack_price2 ?? 0;
+            $price_old = $model->price_old ?? 0;
+            $pack_price_old = $model->pack_price_old ?? 0;
+            $price2_old = $model->price2_old ?? 0;
+            $pack_price2_old = $model->pack_price2_old ?? 0;
 
+            $model->price_old = $model->price == $price && $price_old > 0 ? $price_old : $model->price;
+            $model->pack_price_old = $model->pack_price == $pack_price && $pack_price_old > 0 ? $pack_price_old : $model->pack_price;
+            $model->price2_old = $model->price2 == $price2 && $price2_old > 0 ? $price2_old : $model->price2;
+            $model->pack_price2_old = $model->pack_price2 == $pack_price2 && $pack_price2_old > 0 ? $pack_price2_old : $model->pack_price2;
 
-            $model->price = str_replace(',', '.', $data[9]);
-            $model->pack_price = $data[10] ? str_replace(',', '.', $data[10]) : 0;
-            $model->price2 = str_replace(',', '.', $data[11]);
-            if (!$data[12]) {
-                $data[12] = 0;
-            }
+            $model->price = $price;
+            $model->pack_price = $pack_price;
+            $model->price2 = $price2;
+            $model->pack_price2 = $pack_price2;
 
-            $model->pack_price2 = str_replace(',', '.', $data[12]);
             $model->flag = $flag;
             $model->ooo = $data[14];
             $model->category_id = $id;
@@ -140,7 +145,6 @@ class ImportForm extends Model
 
 
                 $bulkInsertArray[$model->article_index] = $model->attributes;
-
             } else {
                 echo 'Contact with developer team';
                 Helper::pr($model->getErrors());

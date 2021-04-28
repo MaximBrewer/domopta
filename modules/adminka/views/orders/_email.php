@@ -4,9 +4,9 @@
  * @var $order \app\models\Order
  */
 $types = [
-    'ip' => 'ИП',
-    'ooo' => 'ООО',
-    'sp' => 'СП'
+    1 => 'ИП',
+    2 => 'ООО',
+    3 => 'СП'
 ];
 ?>
 <table style="font-family: Arial">

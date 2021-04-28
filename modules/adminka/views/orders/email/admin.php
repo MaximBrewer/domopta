@@ -232,7 +232,7 @@ $types = [
         <td><b style="font-size: 13px;"><?php echo $detail->product->article ?></b></td>
         <td><?php echo $detail->color == 'default' ? '' : $detail->color; ?></td>
         <td><?php if ($old != $detail->order_id . '___' . $detail->article) echo $detail->memo ?></td>
-        <td align="center"><?php echo $detail->product->pack_quantity ? $detail->product->pack_quantity : 1 ?></td>
+        <td align="center"><?php echo $detail->product->pack_quantity ? $detail->product->pack_quantity : '' ?></td>
         <?php if (Yii::$app->user->identity->profile->type == 2) : ?>
             <td align="center"><?php echo (int) $detail->product->pack_price2 ? Products::formatEmailPrice($detail->product->pack_price2) : ''; ?></td>
         <?php else : ?>

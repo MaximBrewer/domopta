@@ -237,7 +237,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => $model->slug
                                 </div>
                             <?php } else { ?>
                                 <?php $colors = explode(',', $model->color); ?>
-                                <div class="h2colors">Цвета для заказа:</div>
+                                <div class="h2colors">Цвета, доступные для заказа:</div>
                                 <div class="form-tovar__colors">
                                     <ul class="form-tovar__list">
                                         <?php
