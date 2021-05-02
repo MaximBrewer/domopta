@@ -39,52 +39,78 @@ $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => $model->slug
     <div class="look-pop-inner">
         <div class="tovar look-pop__tovar">
             <div class="tovar-left">
-                <style>
-                    .lSSlideOuter.vertical {
-                        padding-left: 55px;
-                        padding-right: 0 !important;
-                    }
-
-                    .lSSlideOuter.vertical .lSGallery {
-                        left: 0;
-                    }
-                </style>
                 <?php $pictures = $model->pictures; ?>
-                <div class="photos-tovar tovar__photos-tovar <?php if (count($pictures) > 3) echo 'tovar__four' ?>" style="display:none;">
-                    <div class="display display_pp"></div>
-                    <?php if (count($pictures) > 3) : ?>
-                        <div class="tovar__arrow__wrapper tovar__arrow__wrapperPP">
-                            <div class="photos-tovar__arrow photos-tovar__arrow_l"><span class="photos-tovar__link photos-tovar__icon"><svg class="svg photos-tovar__svg photos-tovar__svg_arrow2-left">
-                                        <use xlink:href="/img/sprite-sheet.svg#arrow2-left" />
-                                    </svg></span></div>
-                            <div class="photos-tovar__arrow photos-tovar__arrow_r"><span class="photos-tovar__link photos-tovar__icon"><svg class="svg photos-tovar__svg photos-tovar__svg_arrow2-right">
-                                        <use xlink:href="/img/sprite-sheet.svg#arrow2-right" />
-                                    </svg></span></div>
-                        </div>
-                    <?php endif; ?>
-                    <ul class="photos-tovar__list_pp <?php if (count($pictures) < 2) echo 'tovar__one' ?>">
-                        <?php if (!empty($pictures)) : ?>
-                            <?php
-                            $i = 0;
-                            foreach ($pictures as $pic) :
-                                $i++;
-                            ?>
-                                <li class="photos-tovar__item" data-thumb="<?php echo $pic->getUrl('big', $pic->order) ?>" data-i="<?php echo $i; ?>">
-                                    <img src="<?php echo $pic->getUrl('big', $pic->order) ?>" alt="Оптом - <?php echo str_replace('"', '', $model->name) ?> - <?php echo $model->article ?> - domopta.ru" class="photos-tovar__img pic_p">
-                                </li>
-                            <?php endforeach; ?>
-                        <?php else : ?>
-                            <li class="photos-tovar__item" data-thumb="/img/dt.jpg">
-                                <img src="/img/dt.jpg" alt="img" class="photos-tovar__img pic_p">
-                            </li>
-                        <?php endif; ?>
-                    </ul>
+                <?php if (!empty($pictures)) : ?>
                     <?php if (count($pictures) > 1) : ?>
-                        <div class="count-photo">
-                            <span class="current-photo">1</span> / <span><?php echo count($pictures); ?></span>
+                        <div style="position:relative;display:flex;width:100%;">
+                            <div class="thubms-container">
+                                <div class="swiper-container gallery-thumbs-popup">
+                                    <div class="swiper-wrapper">
+                                        <?php
+                                        $i = 0;
+                                        foreach ($pictures as $pic) :
+                                            $i++;
+                                        ?>
+                                            <div class="swiper-slide">
+                                                <div class="imgc-thumb-wrapper">
+                                                    <img src="<?php echo $pic->getUrl('big', $pic->order) ?>" alt="Оптом - <?php echo str_replace('"', '', $model->name) ?> - <?php echo $model->article ?> - domopta.ru" style="width:100%;position:absolute;top:0;left:0;">
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                                <?php if (count($pictures) > 3) : ?>
+                                    <div class="swiper-button-next thumbs-next">
+                                        <svg class="svg photos-tovar__svg photos-tovar__svg_arrow2-right">
+                                            <use xlink:href="/img/sprite-sheet.svg#arrow2-right"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="swiper-button-prev thumbs-prev">
+                                        <svg class="svg photos-tovar__svg photos-tovar__svg_arrow2-right">
+                                            <use xlink:href="/img/sprite-sheet.svg#arrow2-right"></use>
+                                        </svg>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                            <div style="flex-grow:1;position:relative;">
+                                <div class="swiper-container gallery-right-popup">
+                                    <div class="count-photo"></div>
+                                    <div class="swiper-wrapper">
+                                        <?php
+                                        $i = 0;
+                                        foreach ($pictures as $pic) :
+                                            $i++;
+                                        ?>
+                                            <div class="swiper-slide">
+                                                <div class="imgc-wrapper">
+                                                    <img src="<?php echo $pic->getUrl('big', $pic->order) ?>" alt="Оптом - <?php echo str_replace('"', '', $model->name) ?> - <?php echo $model->article ?> - domopta.ru" style="width:100%;position:absolute;top:0px;left:0px;">
+                                                </div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                    <div class="swiper-button-next">
+                                        <svg class="svg photos-tovar__svg photos-tovar__svg_arrow2-right">
+                                            <use xlink:href="/img/sprite-sheet.svg#arrow2-right"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="swiper-button-prev">
+                                        <svg class="svg photos-tovar__svg photos-tovar__svg_arrow2-left">
+                                            <use xlink:href="/img/sprite-sheet.svg#arrow2-left"></use>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php else : ?>
+                        <div style="position:relative;display:flex;width:100%;align-items:center;justify-content:center;">
+                            <img src="<?php echo $pictures[0]->getUrl('big', $pictures[0]->order) ?>" alt="Оптом - <?php echo str_replace('"', '', $model->name) ?> - <?php echo $model->article ?> - domopta.ru" class="photos-tovar__img pic_p">
                         </div>
                     <?php endif; ?>
-                </div>
+                <?php else : ?>
+                    <div style="position:relative;display:flex;width:100%;align-items:center;justify-content:center;">
+                        <img src="/img/dt.jpg" alt="img" class="photos-tovar__img pic_p">
+                    </div>
+                <?php endif; ?>
             </div>
             <div class="tovar-right">
                 <div class="tovar__title"><?php echo $model->name ?></div>

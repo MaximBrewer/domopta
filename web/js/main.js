@@ -39,6 +39,32 @@ function cancelOrder(id) {
   });
 })(jQuery);
 $(document).ready(function () {
+  new Swiper(".gallery-common", {
+    slidesPerView: 2,
+    spaceBetween: 10,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+      // when window width is >= 480px
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 10,
+      },
+      // when window width is >= 480px
+      992: {
+        slidesPerView: 4,
+        spaceBetween: 10,
+      },
+      // when window width is >= 640px
+      1200: {
+        slidesPerView: 5,
+        spaceBetween: 10,
+      },
+    },
+  });
+
   var galleryThumbs = new Swiper(".gallery-thumbs", {
     slidesPerView: 3,
     spaceBetween: 10,
@@ -211,58 +237,6 @@ $(document).ready(function () {
       },
     ],
   });
-  var sliderP = $(".photos-tovar__list_p:not(.tovar__one)").lightSlider({
-    gallery: true,
-    item: 1,
-    loop: true,
-    slideMargin: 0,
-    vertical: true,
-    vThumbWidth: 100,
-    thumbParentMargin: 20,
-    thumbItem: 3,
-    controls: true,
-    onSliderLoad: function (el) {
-      /*  $(".lSPager.lSGallery").wrap("<div class='lSPager-Wrap'></div>");*/
-    },
-    prevHtml:
-      '<div class="photos-tovar__arrow photos-tovar__arrow_l"><span class="photos-tovar__link photos-tovar__icon"><svg class="svg photos-tovar__svg photos-tovar__svg_arrow2-left"><use xlink:href="/img/sprite-sheet.svg#arrow2-left"/></svg></span></div>',
-    nextHtml:
-      '<div class="photos-tovar__arrow photos-tovar__arrow_r"><span class="photos-tovar__link photos-tovar__icon"><svg class="svg photos-tovar__svg photos-tovar__svg_arrow2-right"><use xlink:href="/img/sprite-sheet.svg#arrow2-right"/></svg></span></div>',
-    responsive: [
-      {
-        breakpoint: 991,
-        settings: {
-          gallery: true,
-          item: 1,
-          loop: true,
-          slideMargin: 0,
-          vertical: true,
-          vThumbWidth: 80,
-          thumbItem: 3,
-          controls: true,
-          verticalHeight: 420,
-        },
-      },
-      {
-        breakpoint: 479,
-        settings: {
-          vThumbWidth: 60,
-          verticalHeight: 350,
-        },
-      },
-    ],
-    onAfterSlide: function (el) {
-      $(".current-photo").text($(el).find(".active").data("i"));
-    },
-  });
-  $(".tovar__arrow__wrapperP .photos-tovar__arrow_l").on("click", function () {
-    sliderP.goToPrevSlide();
-  });
-  $(".tovar__arrow__wrapperP .photos-tovar__arrow_r").on("click", function () {
-    sliderP.goToNextSlide();
-  });
-  var picP = document.querySelector(".pic_p");
-  var picPP = document.querySelector(".pic_pp");
   $(window).resize(function () {
     if (sliderW.length) {
       sliderW.destroy();
@@ -272,7 +246,7 @@ $(document).ready(function () {
           adaptiveHeight: false,
           pager: false,
           slideMargin: 0,
-          loop: true,
+          loop: false,
           prevHtml:
             '<div class="products__arrow products__arrow_l"><span class="products__link products__icon"><svg class="svg products__svg products__svg_arrow2-left"><use xlink:href="/img/sprite-sheet.svg#arrow2-left"/></svg></span></div>',
           nextHtml:
@@ -314,7 +288,7 @@ $(document).ready(function () {
           adaptiveHeight: false,
           pager: false,
           slideMargin: 0,
-          loop: true,
+          loop: false,
           prevHtml:
             '<div class="products__arrow products__arrow_l"><span class="products__link products__icon"><svg class="svg products__svg products__svg_arrow2-left"><use xlink:href="/img/sprite-sheet.svg#arrow2-left"/></svg></span></div>',
           nextHtml:
@@ -543,7 +517,6 @@ $(document).ready(function () {
     },
     false
   );
-  var sliderPP;
   $("body").on("click", ".product .product__icon-eye", function (e) {
     var url = $(this).attr("href");
     e.preventDefault();
@@ -553,85 +526,30 @@ $(document).ready(function () {
       $(".look-pop-inner").mCustomScrollbar({
         theme: "dark",
       });
-      if (sliderPP) {
-        if (sliderPP.length) {
-          sliderPP.destroy();
-          if (!sliderPP.lightSlider) {
-            setTimeout(function () {
-              sliderPP = $(".photos-tovar__list_pp").lightSlider({
-                gallery: true,
-                item: 1,
-                loop: true,
-                slideMargin: 0,
-                vertical: true,
-                vThumbWidth: 80,
-                thumbItem: 3,
-                controls: true,
-                thumbParentMargin: 20,
-                prevHtml:
-                  '<div class="photos-tovar__arrow photos-tovar__arrow_l"><span class="photos-tovar__link photos-tovar__icon"><svg class="svg photos-tovar__svg photos-tovar__svg_arrow2-left"><use xlink:href="/img/sprite-sheet.svg#arrow2-left"/></svg></span></div>',
-                nextHtml:
-                  '<div class="photos-tovar__arrow photos-tovar__arrow_r"><span class="photos-tovar__link photos-tovar__icon"><svg class="svg photos-tovar__svg photos-tovar__svg_arrow2-right"><use xlink:href="/img/sprite-sheet.svg#arrow2-right"/></svg></span></div>',
-                onAfterSlide: function (el) {
-                  $(".current-photo").text($(el).find(".active").data("i"));
-                },
-                onSliderLoad: function (el) {
-                  $(".photos-tovar").show();
-                  /* $(".lSPager.lSGallery").wrap("<div class='lSPager-Wrap'></div>");*/
-                },
-              });
-              $(".tovar__arrow__wrapperPP .photos-tovar__arrow_l").on(
-                "click",
-                function () {
-                  sliderPP.goToPrevSlide();
-                }
-              );
-              $(".tovar__arrow__wrapperPP .photos-tovar__arrow_r").on(
-                "click",
-                function () {
-                  sliderPP.goToNextSlide();
-                }
-              );
-            }, 500);
-          }
-        }
-      } else {
-        setTimeout(function () {
-          sliderPP = $(".photos-tovar__list_pp").lightSlider({
-            gallery: true,
-            item: 1,
-            loop: true,
-            slideMargin: 0,
-            vertical: true,
-            vThumbWidth: 75,
-            thumbItem: 3,
-            controls: true,
-            thumbParentMargin: 20,
-            prevHtml:
-              '<div class="photos-tovar__arrow photos-tovar__arrow_l"><span class="photos-tovar__link photos-tovar__icon"><svg class="svg photos-tovar__svg photos-tovar__svg_arrow2-left"><use xlink:href="/img/sprite-sheet.svg#arrow2-left"/></svg></span></div>',
-            nextHtml:
-              '<div class="photos-tovar__arrow photos-tovar__arrow_r"><span class="photos-tovar__link photos-tovar__icon"><svg class="svg photos-tovar__svg photos-tovar__svg_arrow2-right"><use xlink:href="/img/sprite-sheet.svg#arrow2-right"/></svg></span></div>',
-            onAfterSlide: function (el) {
-              $(".current-photo").text($(el).find(".active").data("i"));
-            },
-            onSliderLoad: function (el) {
-              $(".photos-tovar").show();
-            },
-          });
-          $(".tovar__arrow__wrapperPP .photos-tovar__arrow_l").on(
-            "click",
-            function () {
-              sliderPP.goToPrevSlide();
-            }
-          );
-          $(".tovar__arrow__wrapperPP .photos-tovar__arrow_r").on(
-            "click",
-            function () {
-              sliderPP.goToNextSlide();
-            }
-          );
-        }, 500);
-      }
+      var galleryThumbsPopup = new Swiper(".gallery-thumbs-popup", {
+        slidesPerView: 3,
+        spaceBetween: 10,
+        direction: "vertical",
+        navigation: {
+          nextEl: ".thumbs-next",
+          prevEl: ".thumbs-prev",
+        },
+      });
+      var galleryTopPopup = new Swiper(".gallery-right-popup", {
+        direction: "vertical",
+        spaceBetween: 10,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".count-photo",
+          type: "fraction",
+        },
+        thumbs: {
+          swiper: galleryThumbsPopup,
+        },
+      });
     });
   });
   $("body").on("submit", "#login-form", function (e) {

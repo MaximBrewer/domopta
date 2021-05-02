@@ -27,7 +27,7 @@ $this->registerJsFile('/js/tree.js', ['depends' => \app\assets\AdminAsset::class
     </div>
 </div>
 
-<?php $form = ActiveForm::begin(['method' => 'get', 'action' => 'index']) ?>
+<?php $form = ActiveForm::begin(['method' => 'get', 'action' => '/adminka/catalog/index']) ?>
 <!-- <?php echo Html::label('Поиск') ?><br /> -->
 <div style="display:flex;justify-content:space-between">
     <div>
