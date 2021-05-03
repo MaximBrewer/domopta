@@ -282,7 +282,7 @@ class Products extends \yii\db\ActiveRecord
         }
     }
 
-    public static function formatPrice($model, $priceArr = [], $callback = null)
+    public static function formatPrice($model, $priceArr = [], $callback = null, $always = false)
     {
         if (!is_object($model)) {
             $price = $model;
@@ -301,9 +301,9 @@ class Products extends \yii\db\ActiveRecord
             }
         }
         if (ceil($price * 100) == intVal(ceil($price) . '00')) {
-            return ($oldPrice > $price ? '<span class="old">' . number_format($oldPrice, 0, '', '') . '</span><span>' . number_format($price, 0, '', '') . '</span>' : number_format($price, 0, '', ''));
+            return ($always || $oldPrice > $price ? '<span class="old">' . number_format($oldPrice, 0, '', '') . '</span><span>' . number_format($price, 0, '', '') . '</span>' : number_format($price, 0, '', ''));
         } else {
-            return ($oldPrice > $price ? '<span class="old">' . number_format($oldPrice, 2, ',<span class="kopeyki">', '') . '</span></span><span>' . number_format($price, 2, ',<span class="kopeyki">', '') . '</span></span>' : number_format($price, 2, ',<span class="kopeyki">', '') . '</span>');
+            return ($always || $oldPrice > $price ? '<span class="old">' . number_format($oldPrice, 2, ',<span class="kopeyki">', '') . '</span></span><span>' . number_format($price, 2, ',<span class="kopeyki">', '') . '</span></span>' : number_format($price, 2, ',<span class="kopeyki">', '') . '</span>');
         }
     }
 

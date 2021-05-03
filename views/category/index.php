@@ -169,7 +169,7 @@ $this->params['breadcrumbs'][] = ['label' => $category_main->name, 'class' => 'b
                         'layout' => "{items}",
                         'options' => [
                             'tag' => 'ul',
-                            `'class' => 'products__list'`
+                            'class' => 'products__list'
                         ],
                         'itemOptions' => [
 	                        'tag'=>'li',

@@ -97,9 +97,9 @@ $totalDamount = 0;
                                                 foreach ($item->details as $detail) {
                                                     if ($detail->amount > 0) {
                                                         if (Yii::$app->user->identity->profile->type == 1 || Yii::$app->user->identity->profile->type == 3) {
-                                                            $str .= Products::formatPrice($item->product->price) . '<br />';
+                                                            $str .= Products::formatPrice($item->product, ['price'], null, true) . '<br />';
                                                         } elseif (Yii::$app->user->identity->profile->type == 2) {
-                                                            $str .= Products::formatPrice($item->product->price2) . '<br />';
+                                                            $str .= Products::formatPrice($item->product, ['price2'], null, true) . '<br />';
                                                         }
                                                     }
                                                 }
