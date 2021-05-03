@@ -114,45 +114,6 @@ $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => $model->slug
             </div>
             <div class="tovar-right">
                 <div class="tovar__title"><?php echo $model->name ?></div>
-                <div class="info-tovar tovar__info-tovar">
-                    <ul class="info-tovar__list">
-                        <li class="info-tovar__item">
-                            <span class="info-tovar__name">Артикул:&nbsp;&nbsp;&nbsp;</span>
-                            <span class="info-tovar__vlue"><?php echo $model->article ?></span>
-                        </li>
-                        <?php if ($model->tradekmark) : ?>
-                            <li class="info-tovar__item">
-                                <span class="info-tovar__name">Товарный знак:&nbsp;&nbsp;&nbsp;</span>
-                                <span class="info-tovar__vlue"><?php echo $model->tradekmark ?></span>
-                            </li>
-                        <?php endif; ?>
-                        <?php if ($model->size) : ?>
-                            <li class="info-tovar__item">
-                                <span class="info-tovar__name">Размеры:&nbsp;&nbsp;&nbsp;</span>
-                                <span class="info-tovar__vlue"><?php echo $model->size ?></span>
-                            </li>
-                        <?php endif; ?>
-                        <?php if ($model->consist) : ?>
-                            <li class="info-tovar__item">
-                                <span class="info-tovar__name">Состав:&nbsp;&nbsp;&nbsp;</span>
-                                <span class="info-tovar__vlue"><?php echo $model->consist ?></span>
-                            </li>
-                        <?php endif; ?>
-                        <?php if ($model->category->country) : ?>
-                            <li class="info-tovar__item">
-                                <span class="info-tovar__name">Страна:&nbsp;&nbsp;&nbsp;</span>
-                                <span class="info-tovar__vlue"><?php echo $model->category->country ?></span>
-                            </li>
-                        <?php endif; ?>
-                        <?php if ($model->category->certificate) : ?>
-                            <li class="info-tovar__item">
-                                <span class="info-tovar__name">Сертификат:&nbsp;&nbsp;&nbsp;</span>
-                                <span class="info-tovar__vlue"><?php echo $model->category->certificate ?></span>
-                            </li>
-                        <?php endif; ?>
-                    </ul>
-                </div>
-                <div class="tovar__text"><?php echo $model->description ?></div>
                 <div class="tag-tovar tovat__tag-tovar">
                     <div class="tag-tovar-left">
                         <?php if (Yii::$app->user->isGuest || !Yii::$app->user->identity->profile->type) : ?>
@@ -239,6 +200,44 @@ $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => $model->slug
                             </a>
                         </div>
                     </div>
+                </div>
+                <div class="info-tovar tovar__info-tovar">
+                    <ul class="info-tovar__list">
+                        <li class="info-tovar__item">
+                            <span class="info-tovar__name">Артикул:&nbsp;&nbsp;&nbsp;</span>
+                            <span class="info-tovar__vlue"><?php echo $model->article ?></span>
+                        </li>
+                        <?php if ($model->tradekmark) : ?>
+                            <li class="info-tovar__item">
+                                <span class="info-tovar__name">Товарный знак:&nbsp;&nbsp;&nbsp;</span>
+                                <span class="info-tovar__vlue"><?php echo $model->tradekmark ?></span>
+                            </li>
+                        <?php endif; ?>
+                        <?php if ($model->size) : ?>
+                            <li class="info-tovar__item">
+                                <span class="info-tovar__name">Размеры:&nbsp;&nbsp;&nbsp;</span>
+                                <span class="info-tovar__vlue"><?php echo $model->size ?></span>
+                            </li>
+                        <?php endif; ?>
+                        <?php if ($model->consist) : ?>
+                            <li class="info-tovar__item">
+                                <span class="info-tovar__name">Состав:&nbsp;&nbsp;&nbsp;</span>
+                                <span class="info-tovar__vlue"><?php echo $model->consist ?></span>
+                            </li>
+                        <?php endif; ?>
+                        <?php if ($model->category->country) : ?>
+                            <li class="info-tovar__item">
+                                <span class="info-tovar__name">Страна:&nbsp;&nbsp;&nbsp;</span>
+                                <span class="info-tovar__vlue"><?php echo $model->category->country ?></span>
+                            </li>
+                        <?php endif; ?>
+                        <?php if ($model->category->certificate) : ?>
+                            <li class="info-tovar__item">
+                                <span class="info-tovar__name">Сертификат:&nbsp;&nbsp;&nbsp;</span>
+                                <span class="info-tovar__vlue"><?php echo $model->category->certificate ?></span>
+                            </li>
+                        <?php endif; ?>
+                    </ul>
                 </div>
 
                 <div class="form-tovar tovar__form-tovar">

@@ -177,6 +177,89 @@ $next = $model->category->getNextproduct($model->article_index);
                 </div>
                 <div class="tovar-right">
                     <div class="tovar__title"><?php echo $model->name ?></div>
+                    <div class="tag-tovar tovat__tag-tovar">
+                        <div class="tag-tovar-left">
+                            <?php if (Yii::$app->user->isGuest || !Yii::$app->user->identity->profile->type) : ?>
+                                <div class="tag-tovar__holesale">
+                                    <div class="tag-tovar__bottom">
+                                        <span class="tag-tovar__text">Цена (опт): &nbsp;&nbsp;&nbsp;</span>
+                                        <span class="tag-tovar__price"><?php echo $model::formatPrice($model, ['price']) ?></span>
+                                        &#8381;</span>
+                                    </div>
+                                </div>
+                                <div class="tag-tovar__retail">
+                                    <div class="tag-tovar-bottom">
+                                        <span class="tag-tovar__text">Цена (мелкий опт): &nbsp;&nbsp;&nbsp;</span>
+                                        <span class="tag-tovar__price"><?php echo $model::formatPrice($model, ['price2']); ?></span>
+                                        &#8381;</span>
+                                    </div>
+                                </div>
+
+                            <?php else : ?>
+                                <?php if (Yii::$app->user->identity->profile->type == 2) : ?>
+                                    <div class="tag-tovar__retail">
+                                        <div class="tag-tovar-bottom">
+                                            <span class="tag-tovar__text">Цена (мелкий опт): &nbsp;&nbsp;&nbsp;</span>
+                                            <span class="tag-tovar__price"><?php echo $model::formatPrice($model, ['price2', 'price']); ?></span>
+                                            &#8381;</span>
+                                        </div>
+                                    </div>
+                                <?php elseif (Yii::$app->user->identity->profile->type == 1 || Yii::$app->user->identity->profile->type == 3) : ?>
+                                    <div class="tag-tovar__holesale">
+                                        <div class="tag-tovar__bottom">
+                                            <span class="tag-tovar__text">Цена (опт): &nbsp;&nbsp;&nbsp;</span>
+                                            <span class="tag-tovar__price"><?php echo $model::formatPrice($model, ['price']) ?></span>
+                                            &#8381;</span>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                            <?php if (!Yii::$app->user->isGuest && $model->pack_quantity) : ?>
+                                <div class="package-tovar tag-tovar__package-tovar">
+                                    <ul class="package-tovar__list">
+                                        <li class="package-tovar__item">
+                                            <span class="package-tovar__text">В упаковке:&nbsp;&nbsp;&nbsp;</span>
+                                            <span class="package-tovar__amount"><?php echo $model->pack_quantity ?> <span class="shtuk">шт</span></span>
+                                        </li>
+                                        <?php if (Yii::$app->user->identity->profile->type && Yii::$app->user->identity->profile->name) : ?>
+                                            <?php if (Yii::$app->user->identity->profile->type == 2) : ?>
+                                                <li class="package-tovar__item">
+                                                    <span class="package-tovar__text">Сумма за упаковку: &nbsp;&nbsp;&nbsp;</span>
+                                                    <span class="package-tovar__amount"><?php echo $model::formatPrice($model, ['pack_price2']) ?></span>
+                                                    &#8381;</span>
+                                                </li>
+                                            <?php else : ?>
+                                                <li class="package-tovar__item">
+                                                    <span class="package-tovar__text">Сумма за упаковку: &nbsp;&nbsp;&nbsp;</span>
+                                                    <span class="package-tovar__amount"><?php echo $model::formatPrice($model, ['pack_price']) ?></span>
+                                                    &#8381;</span>
+                                                </li>
+                                            <?php endif; ?>
+                                        <?php endif; ?>
+                                    </ul>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                        <div class="tag-tovar-right">
+                            <div class="tag-tovar-btn">
+                                <a href="#" class="tag-tovar-btn__link" data-id="<?php echo $model->id; ?>" <?php if (Yii::$app->user->isGuest) : ?> onclick="$('#enter').click(); return false;" <?php endif; ?>>
+                                    <span class="tag-tovar-btn__text">Добавить в избранное</span>
+                                    <span class="tag-tovar-btn__icon">
+                                        <svg class="tag-tovar-btn__svg tag-tovar-btn__svg_heart1">
+                                            <use xlink:href="/img/sprite-sheet.svg#heart1" />
+                                        </svg>
+                                        <svg class="tag-tovar-btn__svg tag-tovar-btn__svg_heart2">
+                                            <use xlink:href="/img/sprite-sheet.svg#heart2" />
+                                        </svg>
+                                        </svg>
+                                        <span class="help">
+                                            <span class="help__text">Добавить в избранное</span>
+                                        </span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <div class="info-tovar tovar__info-tovar">
                         <ul class="info-tovar__list">
                             <li class="info-tovar__item">
@@ -214,102 +297,6 @@ $next = $model->category->getNextproduct($model->article_index);
                                 </li>
                             <?php endif; ?>
                         </ul>
-                    </div>
-                    <div class="tovar__text"><?php echo $model->description ?></div>
-                    <div class="tag-tovar tovat__tag-tovar">
-                        <div class="tag-tovar-left">
-                            <?php if (Yii::$app->user->isGuest || !Yii::$app->user->identity->profile->type) : ?>
-                                <div class="tag-tovar__holesale">
-                                    <div class="tag-tovar-top">
-                                        <span class="tag-tovar__title">оптовая цена</span>
-                                    </div>
-                                    <div class="tag-tovar__bottom">
-                                        <span class="tag-tovar__text">Цена за 1 шт: &nbsp;&nbsp;&nbsp;</span>
-                                        <span class="tag-tovar__price"><?php echo $model::formatPrice($model, ['price']) ?></span>
-                                        &#8381;</span>
-                                    </div>
-                                </div>
-                                <div class="tag-tovar__retail">
-                                    <div class="tag-tovar-top">
-                                        <span class="tag-tovar__title">мелкооптовая цена</span>
-                                    </div>
-                                    <div class="tag-tovar-bottom">
-                                        <span class="tag-tovar__text">Цена за 1 шт: &nbsp;&nbsp;&nbsp;</span>
-                                        <span class="tag-tovar__price"><?php echo $model::formatPrice($model, ['price2']); ?></span>
-                                        &#8381;</span>
-                                    </div>
-                                </div>
-
-                            <?php else : ?>
-                                <?php if (Yii::$app->user->identity->profile->type == 2) : ?>
-                                    <div class="tag-tovar__retail">
-                                        <div class="tag-tovar-top">
-                                            <span class="tag-tovar__title">мелкооптовая цена</span>
-                                        </div>
-                                        <div class="tag-tovar-bottom">
-                                            <span class="tag-tovar__text">Цена за 1 шт: &nbsp;&nbsp;&nbsp;</span>
-                                            <span class="tag-tovar__price"><?php echo $model::formatPrice($model, ['price2', 'price']); ?></span>
-                                            &#8381;</span>
-                                        </div>
-                                    </div>
-                                <?php elseif (Yii::$app->user->identity->profile->type == 1 || Yii::$app->user->identity->profile->type == 3) : ?>
-                                    <div class="tag-tovar__holesale">
-                                        <div class="tag-tovar-top">
-                                            <span class="tag-tovar__title">оптовая цена</span>
-                                        </div>
-                                        <div class="tag-tovar__bottom">
-                                            <span class="tag-tovar__text">Цена за 1 шт: &nbsp;&nbsp;&nbsp;</span>
-                                            <span class="tag-tovar__price"><?php echo $model::formatPrice($model, ['price']) ?></span>
-                                            &#8381;</span>
-                                        </div>
-                                    </div>
-                                <?php endif; ?>
-                            <?php endif; ?>
-                            <?php if (!Yii::$app->user->isGuest && $model->pack_quantity) : ?>
-                                <div class="package-tovar tag-tovar__package-tovar">
-                                    <ul class="package-tovar__list">
-                                        <li class="package-tovar__item">
-                                            <span class="package-tovar__text">количество штук в упаковке:&nbsp;&nbsp;&nbsp;</span>
-                                            <span class="package-tovar__amount"><?php echo $model->pack_quantity ?> <span class="shtuk">шт</span></span>
-                                        </li>
-                                        <?php if (Yii::$app->user->identity->profile->type && Yii::$app->user->identity->profile->name) : ?>
-                                            <?php if (Yii::$app->user->identity->profile->type == 2) : ?>
-                                                <li class="package-tovar__item">
-                                                    <span class="package-tovar__text">цена за упаковку: &nbsp;&nbsp;&nbsp;</span>
-                                                    <span class="package-tovar__amount"><?php echo $model::formatPrice($model, ['pack_price2']) ?></span>
-                                                    &#8381;</span>
-                                                </li>
-                                            <?php else : ?>
-                                                <li class="package-tovar__item">
-                                                    <span class="package-tovar__text">цена за упаковку: &nbsp;&nbsp;&nbsp;</span>
-                                                    <span class="package-tovar__amount"><?php echo $model::formatPrice($model, ['pack_price']) ?></span>
-                                                    &#8381;</span>
-                                                </li>
-                                            <?php endif; ?>
-                                        <?php endif; ?>
-                                    </ul>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-                        <div class="tag-tovar-right">
-                            <div class="tag-tovar-btn">
-                                <a href="#" class="tag-tovar-btn__link" data-id="<?php echo $model->id; ?>" <?php if (Yii::$app->user->isGuest) : ?> onclick="$('#enter').click(); return false;" <?php endif; ?>>
-                                    <span class="tag-tovar-btn__text">Добавить в избранное</span>
-                                    <span class="tag-tovar-btn__icon">
-                                        <svg class="tag-tovar-btn__svg tag-tovar-btn__svg_heart1">
-                                            <use xlink:href="/img/sprite-sheet.svg#heart1" />
-                                        </svg>
-                                        <svg class="tag-tovar-btn__svg tag-tovar-btn__svg_heart2">
-                                            <use xlink:href="/img/sprite-sheet.svg#heart2" />
-                                        </svg>
-                                        </svg>
-                                        <span class="help">
-                                            <span class="help__text">Добавить в избранное</span>
-                                        </span>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="form-tovar tovar__form-tovar">
@@ -403,6 +390,7 @@ $next = $model->category->getNextproduct($model->article_index);
                             </div>
                         <?php endif; ?>
                     <?php endif; ?>
+                    <div class="tovar__text"><?php echo $model->description ?></div>
                 </div>
                 <div class="tovar-bottom">
                     <div class="content-btns products__content-btns">
