@@ -79,7 +79,8 @@ $this->registerJsFile('/js/order.js', ['depends' => \yii\web\JqueryAsset::classN
                                     'class' => 'products__list'
                                 ],
                                 'itemOptions' => [
-                                    'tag'=>false,
+                                    'tag'=>'li',
+                                    'class' => 'products__item'
                                 ],
 //                                'emptyText' => '<div class="msg search-content__msg"><div class="msg-top">По вашему запросу ничего не найдено</div>
 //        <div class="msg-bottom">Попробуйте изменить формулировку или свяжитесь с нашим оператором по телефону: <span class="msg-phone">'.Yii::$app->settings->get('Settings.phone_call').'</span></div></div>'

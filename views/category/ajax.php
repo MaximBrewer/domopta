@@ -25,7 +25,8 @@ $category_main = $category;
 							'class' => 'products__list'
 						],
 						'itemOptions' => [
-							'tag'=>false,
+	                        'tag'=>'li',
+                            'class' => 'products__item'
 						],
 					]) ?>
 <?php $this->endBlock() ?>

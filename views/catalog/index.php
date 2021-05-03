@@ -126,7 +126,8 @@ $this->params['breadcrumbs'][] = ['label' => 'Каталог', 'class' => 'bread
                                 'class' => 'products__list'
                         ],
                         'itemOptions' => [
-	                        'tag'=>false,
+	                        'tag'=>'li',
+                            'class' => 'products__item'
                         ],
                 ]) ?>
                 </div>

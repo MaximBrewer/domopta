@@ -156,24 +156,21 @@ $totalDamount = 0;
                                             <td class="text-nowrap">
                                                 <?php
                                                 $str = '';
-                                                foreach ($item->details as $detail) {
+                                                foreach ($item->details as $k => $detail) {
+                                                    if ($k) echo '<br/>';
                                                     if ($detail->amount > 0) {
                                                         $fill_class = "";
                                                         if (($detail->color != 'default' || !$item->product->flag) && !$item->product->hasColor($detail->color)) {
                                                             $fill_class = "fill_red";
-                                                        }
-                                                        $str .= Html::a('<svg class="svg cart-main-btn__svg cart-main-btn__svg_cross1 ' . $fill_class . '">
-                                                <use xlink:href="/img/sprite-sheet.svg#cross1"/>
-                                            </svg>', ['delete', 'id' => $detail->id], [
-                                                            'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
-                                                            'data-method' => 'post',
-                                                            'title' => 'Удалить из корзины',
-                                                            'alt' => 'Удалить из корзины',
-                                                            'class' => 'cart-main-btn cart-main-btn__icon'
-                                                        ]) . '<br />';
+                                                        } ?>
+                                                        <a class="cart-main-btn cart-main-btn__icon" href="/cart/delete?id=<?= $detail->id; ?>" alt="Удалить из корзины" title="Удалить из корзины" data-confirm="Вы уверены, что хотите удалить этот элемент?" data-method="post" data-popup="cart_delete">
+                                                            <svg class="svg cart-main-btn__svg cart-main-btn__svg_cross1 <?= $fill_class; ?>">
+                                                                <use xlink:href="/img/sprite-sheet.svg#cross1"></use>
+                                                            </svg>
+                                                        </a>
+                                                <?php
                                                     }
                                                 }
-                                                echo $str;
                                                 ?>
                                             </td>
                                         </tr>
@@ -271,9 +268,11 @@ $totalDamount = 0;
 <div class="container container_pop-small cart_popup cart_clean">
     <div class="reg-pop-inner reg-pop-inner-cart">
         <div class="cart_popup_clean">
-            Вы уверены, что хотите полностью очистить Корзину и удалить все выбранные товары?
+            <h2 class="history_cancel__h2">Очистка корзины</h2>
+            <h3> Вы уверены, что хотите полностью очистить Корзину и удалить все выбранные товары?
+            </h3>
             <div class="cart_popup_btn">
-                <a href="/cart/flush" class="btn-black__link" onclick="return confirm('Выбранные Вами товары будут полностью удалены из Корзины. Продолжить удаление?')">Да</a>
+                <a href="/cart/flush" class="btn-black__link">Да</a>
                 <a href="javascript:;" class="btn-black__link close-pop">Нет</a>
             </div>
         </div>
@@ -286,13 +285,35 @@ $totalDamount = 0;
         </a>
     </div>
 </div>
+<div class="container container_pop-small cart_popup" id="cart_delete">
+    <div class="reg-pop-inner reg-pop-inner-cart">
+        <div class="cart_popup_clean">
+            <h2 class="history_cancel__h2">Удаление товара</h2>
+            <h3>Вы уверены, что хотите удалить этот товар?
+            </h3>
+            <div class="cart_popup_btn">
+                <a href="javascript:;" class="btn-black__link yes-button close-pop">Да</a>
+                <a href="javascript:;" class="btn-black__link close-pop">Нет</a>
+            </div>
+        </div>
+        <a href="#" id="esc" class="esc close-h">
+            <div class="esc__icon esc__icon_cross1">
+                <svg class="svg esc__svg esc__svg_cross1">
+                    <use xlink:href="/img/sprite-sheet.svg#cross1"></use>
+                </svg>
+            </div>
+        </a>
+    </div>
+</div>
 <?php if (Yii::$app->user->identity->profile->type) : ?>
     <div class="container container_pop-small cart_popup cart_minimum">
         <div class="reg-pop-inner reg-pop-inner-cart">
             <div class="cart_popup_minimum py-3 px-4">
-                Сумма Вашего заказа меньше необходимой минимальной суммы.<br />
-                По Условиям Работы заказы формируются от <?php echo (int)Yii::$app->settings->get('Settings.min' . Yii::$app->user->identity->profile->type); ?> рублей.<br />
-                Необходимо увеличить свой заказ, иначе заказ не будет обработан.
+                <h3>
+                    Сумма Вашего заказа меньше необходимой минимальной суммы. 
+                    По Условиям Работы заказы формируются от <?php echo (int)Yii::$app->settings->get('Settings.min' . Yii::$app->user->identity->profile->type); ?> рублей. 
+                    Необходимо увеличить свой заказ, иначе заказ не будет обработан.
+                </h3>
                 <div class="cart_popup_btn">
                     <a href="/order" class="btn-black__link">Все равно оформить заказ</a>
                     <a href="javascript:;" class="btn-black__link close-pop">Вернуться в Корзину</a>

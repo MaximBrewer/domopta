@@ -7760,7 +7760,7 @@ img.reg-step2-item-img {
   position: fixed;
   z-index: 100;
   top: 50%;
-  margin-top: -75px;
+  transform: translateY(-50%);
   left: 50%;
   margin-left: -280px;
 }

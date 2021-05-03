@@ -1,4 +1,21 @@
 //--------------------------------------------------------- proloader
+
+yii.confirm = function (message, ok, cancel, popup) {
+  if (typeof popup == "string") {
+    $(".cart_popup_overley").css("display", "block");
+    $("#" + popup).css("display", "flex");
+    $("#" + popup + " .yes-button").click(function () {
+      ok();
+    });
+  } else {
+    if (window.confirm(message)) {
+      !ok || ok();
+    } else {
+      !cancel || cancel();
+    }
+  }
+};
+
 window.addEventListener("load", function () {
   var load_screen = document.getElementById("preloader");
   setTimeout(function () {
