@@ -264,7 +264,7 @@ $next = $model->category->getNextproduct($model->article_index);
                         <ul class="info-tovar__list">
                             <li class="info-tovar__item">
                                 <span class="info-tovar__name">Артикул:&nbsp;&nbsp;&nbsp;</span>
-                                <span class="info-tovar__vlue"><?php echo $model->article ?></span>
+                                <span class="ackage-tovar__amount"><?php echo $model->article ?></span>
                             </li>
                             <?php if ($model->tradekmark) : ?>
                                 <li class="info-tovar__item">
