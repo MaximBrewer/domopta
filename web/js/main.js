@@ -56,6 +56,15 @@ function cancelOrder(id) {
   });
 })(jQuery);
 $(document).ready(function () {
+  $(document).on("click", "#cat", function (e) {
+    e.preventDefault();
+    $(e.target).closest(".drop-content").length &&
+      $(e.target).closest(".drop-content").toggleClass("drop-content_show");
+    document
+      .querySelector(".category__list")
+      .classList.toggle("category__list_show");
+  });
+
   new Swiper(".gallery-common", {
     slidesPerView: 2,
     spaceBetween: 10,
@@ -478,16 +487,6 @@ $(document).ready(function () {
     e.preventDefault();
     $(e.target).closest(".drop-content").length &&
       $(e.target).closest(".drop-content").toggleClass("drop-content_show");
-  });
-  console.log(9);
-  $("#cat").click(function (e) {
-    console.log(90);
-    e.preventDefault();
-    $(e.target).closest(".drop-content").length &&
-      $(e.target).closest(".drop-content").toggleClass("drop-content_show");
-    document
-      .querySelector(".category__list")
-      .classList.toggle("category__list_show");
   });
   $("#cab").click(function (e) {
     e.preventDefault();

@@ -3746,6 +3746,7 @@ input:-webkit-autofill {
   -ms-flex-flow: wrap;
   flex-flow: wrap;
   width: 50%;
+  min-width: 15rem;
   align-content: flex-start;
 }
 @media (max-width: 479px) {
