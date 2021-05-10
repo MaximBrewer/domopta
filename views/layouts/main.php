@@ -68,9 +68,9 @@ $this->registerJsFile('@web/js/lightslider.js', ['depends' => \yii\web\JqueryAss
     <title><?= Html::encode($this->title) ?></title>
     <script src="/js/svg4everybody.js"></script>
     <!-- Link Swiper's CSS -->
-    <link rel="preload" href="/style/fonts.css" as="style" >
-    <link rel="stylesheet" href="/style/fonts.css" >
-    <link rel="stylesheet" href="/css/swiper-bundle.min.css" >
+    <link rel="preload" href="/style/fonts.css" as="style">
+    <link rel="stylesheet" href="/style/fonts.css">
+    <link rel="stylesheet" href="/css/swiper-bundle.min.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
 
@@ -83,27 +83,31 @@ $this->registerJsFile('@web/js/lightslider.js', ['depends' => \yii\web\JqueryAss
 <body>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
+        (function(m, e, t, r, i, k, a) {
+            m[i] = m[i] || function() {
+                (m[i].a = m[i].a || []).push(arguments)
+            };
+            m[i].l = 1 * new Date();
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        ym(74353687, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true
+        });
+    </script>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/74353687" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+    <script type="text/javascript">
         var fired = false;
 
         function epprFu() {
             fired = true;
-            setTimeout(function() {
-                (function(m, e, t, r, i, k, a) {
-                    m[i] = m[i] || function() {
-                        (m[i].a = m[i].a || []).push(arguments)
-                    };
-                    m[i].l = 1 * new Date();
-                    k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-                })
-                (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-                ym(74353687, "init", {
-                    clickmap: true,
-                    trackLinks: true,
-                    accurateTrackBounce: true
-                });
-            }, 500);
+            setTimeout(function() {}, 500);
         }
-        epprFu();
         document.addEventListener("touchstart", () => {
             fired || epprFu();
         });
@@ -123,11 +127,6 @@ $this->registerJsFile('@web/js/lightslider.js', ['depends' => \yii\web\JqueryAss
             fired || epprFu();
         }
     </script>
-
-    <noscript>
-        <div><img src="https://mc.yandex.ru/watch/74353687" style="position:absolute; left:-9999px;" alt="" /></div>
-    </noscript>
-    <!-- /Yandex.Metrika counter -->
     <?php $this->beginBody() ?>
     <div id="preloader">
         <div class="spinner"></div>
