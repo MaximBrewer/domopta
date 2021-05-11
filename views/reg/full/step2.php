@@ -31,7 +31,7 @@ use yii\helpers\Html;
 							<?php echo Html::activeHiddenInput($profile, 'type', ['value' => $profile->type]) ?>
 							<?php if ($profile->type != 2) : ?>
 								<div class="register__row">
-									<div class="active-input"><span class="required">*</span>Введите ИНН или ОГРН</div>
+									<div class="active-input"><span class="required">*</span>Юр.лицо/ИП (введите ИНН или ОГРН)</div>
 									<input class="register__input" id="suggest" value="" name="suggest" />
 								</div>
 							<?php endif; ?>
