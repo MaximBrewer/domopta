@@ -24,14 +24,14 @@ use yii\helpers\Html;
     <div class="container container_fl-wr">
 
         <div class="register">
-            <div class="register-top">
+            <!-- <div class="register-top">
                 <div class="content__title">РЕГИСТРАЦИЯ <span>(Шаг 2 из 3)</span></div>
                 <div class="register-alert">
                     <p> <strong>Обязательно</strong> ознакомьтесь с Условиями Работы!</p>
                     <a class="register__btn" href="/uslovia-raboty">читать условия работы</a>
                 </div>
-                <!-- /.register-alert -->
-            </div>
+                 /.register-alert
+            </div> -->
             <div class="register-bottom">
                 <div class="reg-step2-wrap">
                     <div class="reg-step2-item">
