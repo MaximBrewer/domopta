@@ -49,9 +49,7 @@ if (Yii::$app->user->isGuest) {
 $this->registerJsFile('@web/js/magnifier.js', ['depends' => \yii\web\JqueryAsset::class]);
 $this->registerJsFile('@web/js/swiper-bundle.min.js', ['depends' => \yii\web\JqueryAsset::class]);
 $this->registerJsFile('@web/js/lightslider.js', ['depends' => \yii\web\JqueryAsset::class]);
-
-
-
+$this->registerJsFile('https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/dist/js/jquery.suggestions.min.js', ['depends' => \yii\web\JqueryAsset::class]);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -71,6 +69,7 @@ $this->registerJsFile('@web/js/lightslider.js', ['depends' => \yii\web\JqueryAss
     <link rel="preload" href="/style/fonts.css" as="style">
     <link rel="stylesheet" href="/style/fonts.css">
     <link rel="stylesheet" href="/css/swiper-bundle.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/dist/css/suggestions.min.css" rel="stylesheet" />
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
 
@@ -802,6 +801,59 @@ $this->registerJsFile('@web/js/lightslider.js', ['depends' => \yii\web\JqueryAss
 
     <?php $this->endBody() ?>
 
+    <script>
+        $("#suggest").suggestions({
+            token: "d1f1cc1d2f8b283837831c90c7f5d8e1b33776da",
+            type: "PARTY",
+            minChars: 10,
+            /* Вызывается, когда пользователь выбирает одну из подсказок */
+            onSelect: function(suggestion) {
+                console.log(suggestion);
+                if (suggestion.data.type == "INDIVIDUAL") {
+                    $("#reg_name").show();
+                    $("#profile-name").val(suggestion.data.fio.name).attr("readonly", true);
+                    $("#reg_secondname").show();
+                    $("#profile-lastname").val(suggestion.data.fio.surname).attr("readonly", true);
+                    $("#reg_surname").show();
+                    $("#profile-surname").val(suggestion.data.fio.patronymic).attr("readonly", true);
+                    $("#reg_region").show();
+                    $("#profile-region").val(suggestion.data.address.data.region);
+                    $("#reg_city").show();
+                    $("#profile-city").val(suggestion.data.address.data.city);
+                    $("#reg_inn").show();
+                    $("#profile-inn").val(suggestion.data.inn);
+                    $("#reg_ogrn").show();
+                    $("#profile-ogrn").val(suggestion.data.ogrn);
+                    $("#reg_org").hide();
+                    $("#reg_location").hide();
+                    $("#profile-type").val(1);
+                } else if (suggestion.data.type == "LEGAL") {
+                    var fio = suggestion.data.management.name.split(" ");
+                    $("#reg_name").show();
+                    $("#profile-name").val(!!fio[0] ? fio[0] : "").attr("readonly", false);
+                    $("#reg_secondname").show();
+                    $("#profile-lastname").val(!!fio[1] ? fio[1] : "").attr("readonly", false);;
+                    $("#reg_surname").show();
+                    $("#profile-surname").val(!!fio[2] ? fio[2] : "").attr("readonly", false);
+                    $("#reg_region").show();
+                    $("#profile-region").val(suggestion.data.address.data.region);
+                    $("#reg_city").show();
+                    $("#profile-city").val(suggestion.data.address.data.city);
+                    $("#reg_inn").show();
+                    $("#profile-inn").val(suggestion.data.inn);
+                    $("#reg_ogrn").show();
+                    $("#profile-ogrn").val(suggestion.data.ogrn);
+                    $("#reg_org").show();
+                    $("#profile-organization_name").val(suggestion.unrestricted_value);
+                    $("#reg_location").show();
+                    $("#profile-location").val(suggestion.data.address.unrestricted_value);
+                    $("#profile-type").val(3);
+                } else {
+                    alert("Выбранный тип лица не может быть зарегистрирован на нашем сайте, обратитесь пожалуйста к администрации для разрешения вопросов!")
+                }
+            }
+        });
+    </script>
 
 
 </body>

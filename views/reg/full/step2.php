@@ -14,6 +14,7 @@
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 ?>
+
 <div class="content content_flip main__content">
 	<div class="container container_fl-wr">
 		<div class="content-left">
@@ -27,72 +28,78 @@ use yii\helpers\Html;
 							<?php $form = ActiveForm::begin([
 								'options' => ['enctype' => 'multipart/form-data']
 							]); ?>
-							<div class="register__row">
+							<?php echo Html::activeHiddenInput($profile, 'type', ['value' => $profile->type]) ?>
+							<?php if ($profile->type != 2) : ?>
+								<div class="register__row">
+									<div class="active-input"><span class="required">*</span>Введите ИНН или ОГРН</div>
+									<input class="register__input" id="suggest" value="" name="suggest" />
+								</div>
+							<?php endif; ?>
+							<div class="register__row" id="reg_secondname" <?php if ($profile->type != 2 && empty($profile->getErrors('lastname'))) : ?>style="display:none;" <?php endif; ?>>
 								<div class="active-input"><span class="required">*</span>Фамилия</div>
 								<?php echo Html::activeTextInput($profile, 'lastname', ['placeholder' => 'Фамилия *', 'class' => 'register__input ' . ($profile->hasErrors('lastname') ? 'has-error' : '')]) ?>
 								<?php if ($err = $profile->getErrors('lastname')) : ?>
 									<div class="reg-error"><?php echo $err[0] ?></div>
 								<?php endif; ?>
 							</div>
-							<div class="register__row">
+							<div class="register__row" id="reg_name" <?php if ($profile->type != 2 && empty($profile->getErrors('name'))) : ?>style="display:none;" <?php endif; ?>>
 								<div class="active-input"><span class="required">*</span>Имя</div>
-								<?php echo Html::activeTextInput($profile, 'name', ['placeholder' => 'Фамилия *', 'class' => 'register__input ' . ($profile->hasErrors('name') ? 'has-error' : '')]) ?>
+								<?php echo Html::activeTextInput($profile, 'name', ['placeholder' => 'Имя *', 'class' => 'register__input ' . ($profile->hasErrors('name') ? 'has-error' : '')]) ?>
 								<?php if ($err = $profile->getErrors('name')) : ?>
 									<div class="reg-error"><?php echo $err[0] ?></div>
 								<?php endif; ?>
 							</div>
-							<div class="register__row">
+							<div class="register__row" id="reg_surname" <?php if ($profile->type != 2 && empty($profile->getErrors('surname'))) : ?>style="display:none;" <?php endif; ?>>
 								<div class="active-input">Отчество</div>
-								<?php echo Html::activeTextInput($profile, 'surname', ['placeholder' => 'Фамилия *', 'class' => 'register__input ' . ($profile->hasErrors('surname') ? 'has-error' : '')]) ?>
+								<?php echo Html::activeTextInput($profile, 'surname', ['placeholder' => 'Отчество *', 'class' => 'register__input ' . ($profile->hasErrors('surname') ? 'has-error' : '')]) ?>
 								<?php if ($err = $profile->getErrors('surname')) : ?>
 									<div class="reg-error"><?php echo $err[0] ?></div>
 								<?php endif; ?>
 							</div>
-							<div class="register__row">
+							<div class="register__row" id="reg_region" <?php if ($profile->type != 2 && empty($profile->getErrors('region'))) : ?>style="display:none;" <?php endif; ?>>
 								<div class="active-input"><span class="required">*</span>Регион</div>
-								<?php echo Html::activeTextInput($profile, 'region', ['placeholder' => 'Регион *', 'class' => 'register__input ' . ($profile->hasErrors('region') ? 'has-error' : '')]) ?>
-
+								<?php echo Html::activeTextInput($profile, 'region', ['placeholder' => 'Регион *', 'class' => 'register__input ' . ($profile->hasErrors('region') ? 'has-error' : ''), 'readonly' => true]) ?>
 								<?php if ($err = $profile->getErrors('region')) : ?>
 									<div class="reg-error"><?php echo $err[0] ?></div>
 								<?php endif; ?>
 							</div>
-							<div class="register__row">
+							<div class="register__row" id="reg_city" <?php if ($profile->type != 2 && empty($profile->getErrors('city'))) : ?>style="display:none;" <?php endif; ?>>
 								<div class="active-input"><span class="required">*</span>Город</div>
-								<?php echo Html::activeTextInput($profile, 'city', ['placeholder' => 'Город *', 'class' => 'register__input ' . ($profile->hasErrors('city') ? 'has-error' : '')]) ?>
-
+								<?php echo Html::activeTextInput($profile, 'city', ['placeholder' => 'Город *', 'class' => 'register__input ' . ($profile->hasErrors('city') ? 'has-error' : ''), 'readonly' => true]) ?>
 								<?php if ($err = $profile->getErrors('city')) : ?>
 									<div class="reg-error"><?php echo $err[0] ?></div>
 								<?php endif; ?>
 							</div>
-							<?php if ($profile->type != 2) : ?>
-								<?php if ($profile->type != 1) : ?>
-									<div class="register__row" id="reg_org">
-										<div class="active-input"><span class="required">*</span>Название организации</div>
-										<?php echo Html::activeTextInput($profile, 'organization_name', ['placeholder' => 'Название организации', 'class' => 'register__input ' . ($profile->hasErrors('organization_name') ? 'has-error' : '')]) ?>
-
-										<?php if ($err = $profile->getErrors('organization_name')) : ?>
-											<div class="reg-error"><?php echo $err[0] ?></div>
-										<?php endif; ?>
-									</div>
-									<div class="register__row" id="reg_location">
-										<div class="active-input"><span class="required">*</span>Юридический адрес</div>
-										<?php echo Html::activeTextInput($profile, 'location', ['placeholder' => 'Юридический адрес', 'class' => 'register__input ' . ($profile->hasErrors('location') ? 'has-error' : '')]) ?>
-
-										<?php if ($err = $profile->getErrors('location')) : ?>
-											<div class="reg-error"><?php echo $err[0] ?></div>
-										<?php endif; ?>
-									</div>
+							<div class="register__row" id="reg_inn" <?php if (empty($profile->getErrors('inn'))) : ?>style="display:none;" <?php endif; ?>>
+								<div class="active-input"><span class="required">*</span>ИНН</div>
+								<?php echo Html::activeTextInput($profile, 'inn', ['placeholder' => 'ИНН *', 'class' => 'register__input ' . ($profile->hasErrors('inn') ? 'has-error' : ''), 'readonly' => true]) ?>
+								<?php if ($err = $profile->getErrors('inn')) : ?>
+									<div class="reg-error"><?php echo $err[0] ?></div>
 								<?php endif; ?>
-								<div class="register__row">
-									<div class="active-input"><span class="required">*</span>ИНН или ОГРН</div>
-									<?php echo Html::activeTextInput($profile, 'inn', ['placeholder' => 'ИНН или ОГРН *', 'class' => 'register__input ' . ($profile->hasErrors('inn') ? 'has-error' : '')]) ?>
+							</div>
+							<div class="register__row" id="reg_ogrn" <?php if (empty($profile->getErrors('ogrn'))) : ?>style="display:none;" <?php endif; ?>>
+								<div class="active-input"><span class="required">*</span>ОГРН</div>
+								<?php echo Html::activeTextInput($profile, 'ogrn', ['placeholder' => 'ОГРН *', 'class' => 'register__input ' . ($profile->hasErrors('ogrn') ? 'has-error' : ''), 'readonly' => true]) ?>
+								<?php if ($err = $profile->getErrors('ogrn')) : ?>
+									<div class="reg-error"><?php echo $err[0] ?></div>
+								<?php endif; ?>
+							</div>
+							<div class="register__row" id="reg_org" <?php if (empty($profile->getErrors('organization_name'))) : ?>style="display:none;" <?php endif; ?>>
+								<div class="active-input"><span class="required">*</span>Название организации</div>
+								<?php echo Html::activeTextInput($profile, 'organization_name', ['placeholder' => 'Название организации', 'class' => 'register__input ' . ($profile->hasErrors('organization_name') ? 'has-error' : ''), 'readonly' => true]) ?>
 
-									<?php if ($err = $profile->getErrors('inn')) : ?>
-										<div class="reg-error"><?php echo $err[0] ?></div>
-									<?php endif; ?>
-								</div>
-							<?php endif; ?>
+								<?php if ($err = $profile->getErrors('organization_name')) : ?>
+									<div class="reg-error"><?php echo $err[0] ?></div>
+								<?php endif; ?>
+							</div>
+							<div class="register__row" id="reg_location" <?php if (empty($profile->getErrors('location'))) : ?>style="display:none;" <?php endif; ?>>
+								<div class="active-input"><span class="required">*</span>Юридический адрес</div>
+								<?php echo Html::activeTextInput($profile, 'location', ['placeholder' => 'Юридический адрес', 'class' => 'register__input ' . ($profile->hasErrors('location') ? 'has-error' : ''), 'readonly' => true]) ?>
 
+								<?php if ($err = $profile->getErrors('location')) : ?>
+									<div class="reg-error"><?php echo $err[0] ?></div>
+								<?php endif; ?>
+							</div>
 							<div class="register__row">
 								<div class="active-input">Телефон</div>
 								<?php echo Html::activeTextInput($user, 'username', ['class' => 'register__input', 'disabled' => true]) ?>
@@ -100,7 +107,6 @@ use yii\helpers\Html;
 							<div class="register__row">
 								<div class="active-input">Email</div>
 								<?php echo Html::activeTextInput($user, 'email', ['placeholder' => 'Email', 'class' => 'register__input ' . ($user->hasErrors('email') ? 'has-error' : '')]) ?>
-
 								<?php if ($err = $user->getErrors('email')) : ?>
 									<div class="reg-error"><?php echo $err[0] ?></div>
 								<?php endif; ?>
