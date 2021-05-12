@@ -49,7 +49,7 @@ use yii\helpers\Html;
 								</div>
 								<div class="profile__row">
 									<div class="active-input">Название организации</div>
-									<input type="text" class="profile__input" value="<?php echo $profile->organization_name; ?>" readonly="">
+									<input type="text" class="profile__input" value="<?php echo htmlspecialchars($profile->organization_name); ?>" readonly="">
 								</div>
 							<?php endif; ?>
 							<?php if ($profile->type != 2) : ?>
