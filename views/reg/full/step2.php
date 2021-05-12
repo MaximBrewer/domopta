@@ -58,14 +58,14 @@ use yii\helpers\Html;
 							</div>
 							<div class="register__row" id="reg_region" <?php if ($profile->type != 2 && empty($profile->getErrors('region'))) : ?>style="display:none;" <?php endif; ?>>
 								<div class="active-input"><span class="required">*</span>Регион</div>
-								<?php echo Html::activeTextInput($profile, 'region', ['placeholder' => 'Регион *', 'class' => 'register__input ' . ($profile->hasErrors('region') ? 'has-error' : ''), 'readonly' => true]) ?>
+								<?php echo Html::activeTextInput($profile, 'region', ['placeholder' => 'Регион *', 'class' => 'register__input ' . ($profile->hasErrors('region') ? 'has-error' : ''), 'readonly' => false]) ?>
 								<?php if ($err = $profile->getErrors('region')) : ?>
 									<div class="reg-error"><?php echo $err[0] ?></div>
 								<?php endif; ?>
 							</div>
 							<div class="register__row" id="reg_city" <?php if ($profile->type != 2 && empty($profile->getErrors('city'))) : ?>style="display:none;" <?php endif; ?>>
 								<div class="active-input"><span class="required">*</span>Город</div>
-								<?php echo Html::activeTextInput($profile, 'city', ['placeholder' => 'Город *', 'class' => 'register__input ' . ($profile->hasErrors('city') ? 'has-error' : ''), 'readonly' => true]) ?>
+								<?php echo Html::activeTextInput($profile, 'city', ['placeholder' => 'Город *', 'class' => 'register__input ' . ($profile->hasErrors('city') ? 'has-error' : ''), 'readonly' => false]) ?>
 								<?php if ($err = $profile->getErrors('city')) : ?>
 									<div class="reg-error"><?php echo $err[0] ?></div>
 								<?php endif; ?>
