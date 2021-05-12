@@ -38,6 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($user->profile, 'lastname')->textInput() ?>
             <?= $form->field($user->profile, 'name')->textInput() ?>
             <?= $form->field($user->profile, 'surname')->textInput() ?>
+            <?= $form->field($user->profile, 'manager')->textInput() ?>
             <?= $form->field($user->profile, 'city')->textInput() ?>
             <?= $form->field($user->profile, 'region')->textInput() ?>
             <?= $form->field($user->profile, 'organization_name')->textInput() ?>

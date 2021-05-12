@@ -4461,6 +4461,18 @@ label.file-input {
   color: #000;
   background: #fff;
 }
+.register__btn.inverse {
+  background: #fff;
+  color: #24a0c7;
+}
+.register__btn.inverse:hover {
+  color: #000;
+  background: #fff;
+}
+
+.suggestions-promo{
+  display:none !important;
+}
 .register-alert {
   display: flex;
   flex-wrap: wrap;
