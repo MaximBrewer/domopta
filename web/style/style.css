@@ -4470,8 +4470,8 @@ label.file-input {
   background: #fff;
 }
 
-.suggestions-promo{
-  display:none !important;
+.suggestions-promo {
+  display: none !important;
 }
 .register-alert {
   display: flex;
@@ -4504,6 +4504,7 @@ label.file-input {
 }
 .reg-step2-item {
   max-width: 350px;
+  position: relative;
   max-width: 30.6%;
   width: 100%;
   background: #ffffff;
@@ -4515,6 +4516,21 @@ label.file-input {
   margin-left: 10px;
   margin-right: 10px;
 }
+
+@media screen and (min-width: 991px) {
+  .reg-step2-item {
+    padding-bottom: 86px;
+  }
+  .reg-step2-item .reg-step2-item-button-wrapper {
+    position: absolute;
+    bottom: 50px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 991px) {
   .register-alert {
     flex-direction: column;

@@ -38,20 +38,26 @@ use yii\helpers\Html;
                     <div class="reg-step2-item">
                         <img src="/img/reg-step2-item-img2.png" alt="" class="reg-step2-item-img">
                         <!-- /.reg-step2-item-img -->
-                        <div class="reg-step2-item-tetle">Предприниматели (ИП)<br/>Юридические лица (ООО)</div>
+                        <div class="reg-step2-item-tetle">Предприниматели (ИП)<br />Юридические лица (ООО)</div>
                         <!-- /.reg-step2-item-tetlу -->
                         <ul class="reg-step2-item-info">
                             <li>Тип цен: Опт</li>
                             <li>По завершении регистрации видны только оптовые цены;</li>
-                            <li>При регистрации необходимо будет заполнить регистрационные данные Юридического лица (ООО) или Предпринимателя (ИП);</li>
-                            <li>Заказы формируются<br>от 10.000 рублей для ООО и от 7.000 рублей для ИП;</li>
-                            <li>Форма оплаты:<br>безналичный расчет для ООО, наличный и безналичный расчет для ИП;</li>
-                            <li>Отправка заказов осуществляется<br>Транспортными Компаниями;</li>
-                            <li>Бесплатная доставка<br>по городам Крыма;</li>
-                            <li>Действует система скидок!</li>
+                            <li>При регистрации необходимо заполнить регистрационные данные Предпринимателя (ИП) или Юридического лица (ООО);</li>
+                            <li>Заказы формируются:</li>
+                            <li>Для Предпринимателей (ИП)<br/>
+                                от 7.000 рублей;<br/>
+                                Форма оплаты наличный и безналичный расчет. </li>
+                            <li>
+                                Для Юридических лиц (ООО)<br/>
+                                от 10.000 рублей;<br/>
+                                Форма оплаты безналичный расчет.
+                            </li>
                         </ul>
                         <!-- /.reg-step2-item-info -->
-                        <div class="reg-step2-item-button register__btn"><a href="/reg/full?step=1&type=3">продолжить регистрацию</a></div>
+                        <div class="reg-step2-item-button-wrapper">
+                            <div class="reg-step2-item-button register__btn"><a href="/reg/full?step=1&type=3">продолжить регистрацию</a></div>
+                        </div>
                         <!-- /.reg-step2-item-button -->
                     </div>
                     <!-- /.reg-step2-item -->
@@ -64,14 +70,13 @@ use yii\helpers\Html;
                             <li>Тип цен: Мелкий Опт</li>
                             <li>По завершении регистрации видны только мелкооптовые цены;</li>
                             <li>При регистрации необходимо будет заполнить только контактную информацию;</li>
-                            <li>Заказы формируются<br>от 3.000 рублей;</li>
-                            <li>Форма оплаты:<br>наличный и безналичный расчет;</li>
-                            <li>Отправка заказов осуществляется<br>Транспортными Компаниями;</li>
-                            <li>Действует система скидок!</li>
-                            <li>&nbsp;<br>&nbsp;</li>
+                            <li>Заказы формируются<br />от 3.000 рублей;</li>
+                            <li>Форма оплаты наличный и безналичный расчет;</li>
                         </ul>
                         <!-- /.reg-step2-item-info -->
-                        <div class="reg-step2-item-button register__btn"><a href="/reg/full?step=1&type=2">продолжить регистрацию</a></div>
+                        <div class="reg-step2-item-button-wrapper">
+                            <div class="reg-step2-item-button register__btn"><a href="/reg/full?step=1&type=2">продолжить регистрацию</a></div>
+                        </div>
                         <!-- /.reg-step2-item-button -->
                     </div>
                     <!-- /.reg-step2-item -->
