@@ -53,6 +53,7 @@ class Profile extends \dektrium\user\models\Profile
         $attribute_lables['surname'] = 'Отчество';
         $attribute_lables['city'] = 'Город';
         $attribute_lables['region'] = 'Регион';
+        $attribute_lables['manager'] = 'ФИО руководителя';
         $attribute_lables['demo'] = 'Демо';
         $attribute_lables['suspicious'] = 'Подозрительный тип';
         $attribute_lables['users_comment'] = 'Комментарий пользователя';
