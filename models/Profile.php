@@ -20,6 +20,7 @@ class Profile extends \dektrium\user\models\Profile
         $rules[] = ['type', 'required', 'message' => 'ДЛЯ ПРОДОЛЖЕНИЯ РЕГИСТРАЦИИ НЕОБХОДИМО ВЫБРАТЬ КАТЕГОРИЮ'];
         $rules[] = [['lastname', 'name'], 'required'];
         $rules[] = [['lastname', 'name', 'surname'], 'match', 'pattern' => '/[а-яА-ЯёЁ]+/u'];
+        $rules[] = [['manager'], 'match', 'pattern' => '/[а-яА-ЯёЁ\s]+/u'];
         $rules[] = ['city', 'required'];
         $rules[] = ['region', 'required'];
         $rules[] = ['organization_name', 'required', 'when' => function ($model) {
