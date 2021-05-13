@@ -51,7 +51,7 @@ class InnValidator
 				return false;
 			}
 		} elseif ($type == 'LEGAL') {
-			$title = $data['suggestions'][0]['data']['unrestricted_value'];
+			$title = $data['suggestions'][0]['unrestricted_value'];
 			if (mb_strtolower($profile->organization_name) != mb_strtolower($title)) {
 				$profile->addError('inn', 'Название организации не соответствует ИНН/ОГРН');
 				return false;
