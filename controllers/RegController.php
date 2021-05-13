@@ -67,7 +67,7 @@ class RegController extends Controller
 			$user = new User();
 			$user->mailer->mailerComponent = null;
 			$user->username = $phone;
-			$user->phone_code = rand(100000, 999999);
+			$user->phone_code = rand(1000, 9999);
 		}
 		if ($user->createMob($user))
 			return Json::encode([
