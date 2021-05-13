@@ -185,8 +185,8 @@ $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => $model->slug
                     </div>
                     <div class="tag-tovar-right">
                         <div class="tag-tovar-btn" style="display:flex;align-items:center;">
-                            <a href="#" class="tag-tovar-btn__link" data-id="<?php echo $model->id; ?>" <?php if (Yii::$app->user->isGuest) : ?> onclick="$('#enter').click(); return false;" <?php endif; ?>>
-                                <span class="tag-tovar-btn__icon">
+                            <a href="#" class="tag-tovar-btn__link"  style="padding:0;background-color:transparent;border-width:0;" data-id="<?php echo $model->id; ?>" <?php if (Yii::$app->user->isGuest) : ?> onclick="$('#enter').click(); return false;" <?php endif; ?>>
+                                <span class="tag-tovar-btn__icon" style="margin-left:0;">
                                     <svg class="tag-tovar-btn__svg tag-tovar-btn__svg_heart1">
                                         <use xlink:href="/img/sprite-sheet.svg#heart1" />
                                     </svg>
