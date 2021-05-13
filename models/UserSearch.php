@@ -63,7 +63,7 @@ class UserSearch extends \dektrium\user\models\User
             ->andFilterWhere(['registration_ip' => $this->registration_ip])
             ->andFilterWhere(['like', 'concat(profile.lastname, " ", profile.name)', $this->name])
             ->andFilterWhere(['like', 'concat(profile.city, " ", profile.region)', $this->location])
-            ->andFilterWhere(['like', 'profile.phone', $this->phone])
+            ->andFilterWhere(['like', 'phone', $this->phone])
             ->andFilterWhere(['like', 'profile.inn', $this->inn])
             ->andFilterWhere(['like', 'profile.demo', $this->demo])
             ->andFilterWhere(['like', 'profile.suspicious', $this->suspicious])
