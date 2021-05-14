@@ -3,7 +3,7 @@
 namespace app\models;
 
 use app\components\Mailer;
-use dektrium\user\helpers\Password;
+use app\helpers\Password;
 use yii\db\Exception;
 use yii\bootstrap\Html;
 
