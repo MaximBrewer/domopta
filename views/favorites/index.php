@@ -98,8 +98,11 @@ $this->registerJsFile('/js/order.js', ['depends' => \yii\web\JqueryAsset::classN
                     <li class="user-btns__item user-btns__item_active">
                         <a href="/favorites" class="user-btns__link">Избранное</a>
                     </li>
+					<li class="user-btns__item">
+						<a href="/cabinet/password" class="user-btns__link">Смена пароля</a>
+					</li>
                     <li class="user-btns__item">
-                        <a href="/site/logout" class="user-btns__link">Выход</a>
+                        <a class="user-btns__link" href="/site/logout" alt="Выход" title="Выход" data-confirm="Вы действительно хотите выйти?" data-method="get" data-popup="logout_popup">Выход</a>
                     </li>
                 </ul>
             </div>

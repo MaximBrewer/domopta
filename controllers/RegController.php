@@ -146,7 +146,7 @@ class RegController extends Controller
 						}
 						\Yii::$app->session->setFlash('reg-success');
 						$user->activate();
-						return $this->redirect(['/user/settings/networks']);
+						return $this->redirect(['/cabinet']);
 					}
 				}
 				return $this->render('full/step2', ['user' => $user, 'profile' => $profile]);

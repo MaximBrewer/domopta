@@ -161,6 +161,8 @@ class ImportForm extends Model
             )
             ->execute();
 
+        \YII::$app->cache->flush();
+
         static::renewUrls($id);
     }
 }

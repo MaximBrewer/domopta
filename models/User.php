@@ -36,7 +36,8 @@ class User extends \dektrium\user\models\User
         $scenarios['create'][]   = 'is_active';
         $scenarios['update'][]   = 'is_active';
         $scenarios['register'][] = 'is_active';
-        $scenarios['cabinet'] = ['password', 'password_repeat', 'email'];
+        $scenarios['cabinet'] = ['email'];
+        $scenarios['password'] = ['password', 'password_repeat'];
         return $scenarios;
     }
 

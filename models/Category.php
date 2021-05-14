@@ -101,6 +101,21 @@ class Category extends \yii\db\ActiveRecord
         return Category::find()->where(['parent_id' => $this->id])->orderBy(['position' => SORT_ASC])->all();
     }
 
+    private function getRecursiveChildren($parent, &$array)
+    {
+        $categories = Category::find()->where(['parent_id' => $this->id])->orderBy(['position' => SORT_ASC])->all();
+        foreach ($categories as $category) {
+            $array[] = $category->id;
+        }
+    }
+
+    public function getAllChildrenIds()
+    {
+        $array = [$this->id];
+        $this->getRecursiveChildren($this->id, $array);
+        return $array;
+    }
+
     public function getParent()
     {
         return $this->hasOne(Category::className(), ['id' => 'parent_id']);

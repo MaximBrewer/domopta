@@ -78,42 +78,6 @@ use yii\helpers\Html;
 									<?php endif; ?>
 								<?php endif; ?>
 							</div>
-							<div class="profile__input-name">Сменить пароль</div>
-							<div class="profile__row">
-								<div class="active-input">Новый пароль</div>
-								<div style="position:relative">
-									<?php echo Html::activePasswordInput($user, 'password', ['placeholder' => 'Пароль', 'minlength' => 6, 'class' => 'profile__input ' . ($user->hasErrors('password') ? 'has-error' : '')]) ?>
-									<span id="show_password2" class="show_password">
-										<span class="eye-icon">
-											<svg class="svg product__svg product__svg_eye">
-												<use xlink:href="/img/sprite-sheet.svg#eye" />
-											</svg>
-											<span class="line"></span>
-										</span>
-									</span>
-								</div>
-								<?php if ($err = $user->getErrors('password')) : ?>
-									<p class="red"><?php echo $err[0] ?></p>
-								<?php endif; ?>
-							</div>
-							<div class="profile__row">
-								<div class="active-input">Подтвердите пароль</div>
-								<div style="position:relative">
-									<?php echo Html::activePasswordInput($user, 'password_repeat', ['placeholder' => 'Подтвердите пароль', 'class' => 'profile__input ' . ($user->hasErrors('password_repeat') ? 'has-error' : '')]) ?>
-									<span id="show_password3" class="show_password">
-										<span class="eye-icon">
-											<svg class="svg product__svg product__svg_eye">
-												<use xlink:href="/img/sprite-sheet.svg#eye" />
-											</svg>
-											<span class="line"></span>
-										</span>
-									</span>
-								</div>
-								<?php if ($err = $user->getErrors('password_repeat')) : ?>
-									<p class="red"><?php echo $err[0] ?></p>
-								<?php endif; ?>
-
-							</div>
 							<div class="profile__row profile__row_btn">
 								<input class="profile__btn" type="submit" value="Сохранить">
 							</div>
@@ -167,7 +131,10 @@ use yii\helpers\Html;
 						<a href="/favorites" class="user-btns__link">Избранное</a>
 					</li>
 					<li class="user-btns__item">
-						<a href="/site/logout" class="user-btns__link">Выход</a>
+						<a href="/cabinet/password" class="user-btns__link">Смена пароля</a>
+					</li>
+					<li class="user-btns__item">
+						<a class="user-btns__link" href="/site/logout" alt="Выход" title="Выход" data-confirm="Вы действительно хотите выйти?" data-method="get" data-popup="logout_popup">Выход</a>
 					</li>
 				</ul>
 			</div>
@@ -198,32 +165,13 @@ use yii\helpers\Html;
 		<div class="container container_pop-small">
 			<div class="reg-pop-inner reg-pop-inner-fav reg-pop-inner-success">
 				<div class="reg-pop__step1 reg-pop__step1_block">
-					<?php if ($user->email != '' && $user->unconfirmed_email) : ?>
-						<p class="popup-text1 px-2 py-1 text-center"">Изменения сохранены.</p>
+					<?php if (!$user->email || ($user->email != '' && $user->unconfirmed_email)) : ?>
+						<p class="popup-text1 px-2 py-1 text-center">Изменения сохранены.</p>
 					<?php elseif ($user->email != '') : ?>
-						<p class="popup-text1 px-2 py-1 text-center"">ВЫ УКАЗАЛИ НОВЫЙ E-MAIL В СВОЕМ ЛИЧНОМ КАБИНЕТЕ.
+						<p class="popup-text1 px-2 py-1 text-center">ВЫ УКАЗАЛИ НОВЫЙ E-MAIL В СВОЕМ ЛИЧНОМ КАБИНЕТЕ.
 							ПРОВЕРЬТЕ ЭЛЕКТРОННУЮ ПОЧТУ И ПЕРЕЙДИТЕ ПО ССЫЛКЕ, УКАЗАННОЙ В ПИСЬМЕ.
 						</p>
 					<?php endif; ?>
-				</div>
-				<a href="#" id="esc" class="esc">
-					<div class="esc__icon esc__icon_cross1">
-						<svg class="svg esc__svg esc__svg_cross1">
-							<use xlink:href="/img/sprite-sheet.svg#cross1"></use>
-						</svg>
-					</div>
-				</a>
-			</div>
-		</div>
-	</div>
-<?php endif; ?>
-<?php if (Yii::$app->session->getFlash('password_changed')) : ?>
-	<div class="log-pop log-pop_flex">
-		<div class="container container_pop-small">
-			<div class="reg-pop-inner reg-pop-inner-fav reg-pop-inner-success">
-				<div class="reg-pop__step1 reg-pop__step1_block">
-					<p class="popup-text1 py-3 px-4">Пароль успешно изменен.<br>
-						Произведен выход из аккаунта на всех устройствах, где был ранее осуществлен вход с предыдущим паролем.</p>
 				</div>
 				<a href="#" id="esc" class="esc">
 					<div class="esc__icon esc__icon_cross1">

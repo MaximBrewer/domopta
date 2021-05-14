@@ -798,7 +798,25 @@ $this->registerJsFile('https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/di
             </div>
         </div>
     </div>
-
+    <div class="container container_pop-small cart_popup" id="logout_popup">
+        <div class="reg-pop-inner reg-pop-inner-cart">
+            <div class="cart_popup_clean">
+                <h2 class="history_cancel__h2">Выход</h2>
+                <h3>Вы действительно хотите выйти?</h3>
+                <div class="cart_popup_btn">
+                    <a href="javascript:;" class="btn-black__link yes-button close-pop">Да</a>
+                    <a href="javascript:;" class="btn-black__link close-pop">Нет</a>
+                </div>
+            </div>
+            <a href="#" id="esc" class="esc close-h">
+                <div class="esc__icon esc__icon_cross1">
+                    <svg class="svg esc__svg esc__svg_cross1">
+                        <use xlink:href="/img/sprite-sheet.svg#cross1"></use>
+                    </svg>
+                </div>
+            </a>
+        </div>
+    </div>
     <?php $this->endBody() ?>
 
     <script>

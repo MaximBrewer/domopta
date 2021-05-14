@@ -4143,9 +4143,8 @@ input:-webkit-autofill {
   display: block;
 }
 .profile__input {
-  width: 100%;
-  min-height: 50px;
-  padding: 5px;
+  width: 100%; 
+  padding: 8px 10px 6px;
   border-radius: 2px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
@@ -7691,7 +7690,8 @@ img.reg-step2-item-img {
 .show_password {
   position: absolute;
   right: 5px;
-  bottom: 15px;
+  transform: translateY(50%);
+  bottom: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
