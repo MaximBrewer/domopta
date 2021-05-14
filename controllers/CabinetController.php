@@ -61,7 +61,6 @@ class CabinetController extends Controller
 
 	public function actionCsv()
 	{
-		\YII::$app->cache->flush();
 		$user = User::findOne(\Yii::$app->user->id);
 		$email = $user->email;
 		$profile = $user->profile;
@@ -75,7 +74,6 @@ class CabinetController extends Controller
 
 	public function actionXml()
 	{
-		\YII::$app->cache->flush();
 		$user = User::findOne(\Yii::$app->user->id);
 		$email = $user->email;
 		$profile = $user->profile;
