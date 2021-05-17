@@ -301,9 +301,9 @@ class Products extends \yii\db\ActiveRecord
             }
         }
         if (ceil($price * 100) == intVal(ceil($price) . '00')) {
-            return (($always && $oldPrice != $price) || $oldPrice > $price ? '<span class="old">' . number_format($oldPrice, 0, '', '') . '</span><span>' . number_format($price, 0, '', '') . '</span>' : number_format($price, 0, '', ''));
+            return (($always && $oldPrice && $oldPrice != $price) || $oldPrice > $price ? '<span class="old">' . number_format($oldPrice, 0, '', '') . '</span><span>' . number_format($price, 0, '', '') . '</span>' : number_format($price, 0, '', ''));
         } else {
-            return (($always && $oldPrice != $price) || $oldPrice > $price ? '<span class="old">' . number_format($oldPrice, 2, ',<span class="kopeyki">', '') . '</span></span><span>' . number_format($price, 2, ',<span class="kopeyki">', '') . '</span></span>' : number_format($price, 2, ',<span class="kopeyki">', '') . '</span>');
+            return (($always && $oldPrice && $oldPrice != $price) || $oldPrice > $price ? '<span class="old">' . number_format($oldPrice, 2, ',<span class="kopeyki">', '') . '</span></span><span>' . number_format($price, 2, ',<span class="kopeyki">', '') . '</span></span>' : number_format($price, 2, ',<span class="kopeyki">', '') . '</span>');
         }
     }
 
