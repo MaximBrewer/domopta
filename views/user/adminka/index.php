@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="col-md-10">
 
-        <?= Html::beginForm(['/user/adminka/deletemultiply'], 'post', ['id' => 'deletemultiply-form']) ?>
+        <?= Html::beginForm(['/user/admin/deletemultiply'], 'post', ['id' => 'deletemultiply-form']) ?>
         <?php if (Yii::$app->user->identity->role == 'admin') : ?>
             <div class="form-group">
                 <?= Html::a('Удалить выбранных', '#', ['class' => 'btn btn-danger', 'data-toggle' => 'modal', 'data-target' => '#delete-modal']) ?>
