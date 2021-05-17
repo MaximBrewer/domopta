@@ -30,8 +30,17 @@ function cancelOrder(id) {
 }
 //----------------------------------------------------------------- costom-skroll
 (function ($) {
+  $(document).on("click", ".close-pop", function () {
+    $(".cart_popup").css("display", "none");
+    $(".cart_popup_overley").css("display", "none");
+  });
+
+  $(document).on("click", ".esc", function () {
+    $(".cart_popup").css("display", "none");
+    $(".cart_popup_overley").css("display", "none");
+  });
   $(window).on("load", function () {
-    $(".close-h").click(function () {
+    $(document).on('click', '.close-h', function () {
       $(".cart_popup_overley").css("display", "none");
       $(".cancel-href").attr("href", "javascript:;");
       $(".cart_popup.history_cancel").css("display", "none");

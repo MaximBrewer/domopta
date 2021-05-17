@@ -69,18 +69,8 @@ $(".order_link").on("click", function (e) {
     return false;
   }
 });
-
-$(".close-pop").on("click", function () {
-  $(".cart_popup").css("display", "none");
-  $(".cart_popup_overley").css("display", "none");
-});
-
-$(".esc").on("click", function () {
-  $(".cart_popup").css("display", "none");
-  $(".cart_popup_overley").css("display", "none");
-});
-
 $(function () {
+
   if ($(".cart_selled").length > 0) {
     $(".cart_popup_overley").css("display", "block");
     $(".cart_popup.cart_sold").css("display", "flex");

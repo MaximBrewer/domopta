@@ -22,7 +22,7 @@ class MainAsset extends AssetBundle
         'css/jquery.jgrowl.min.css'
     ];
     public $js = [
-        'js/main.js?v=5.1.3',
+        'js/main.js?v=5.1.5',
         'js/jquery.mCustomScrollbar.js',
         'js/jquery.jgrowl.min.js',
 //        'js/common.js'

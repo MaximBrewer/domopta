@@ -71,11 +71,11 @@ $next = $model->getNextproduct() ? $model->getNextproduct() : $model;
         <?php $this->beginBlock('photo'); ?>
         <div class="form-group">
             <div class="row">
-                <div class="col-md-6"><?php echo $form->field($model, 'article')->textInput(['readonly' => true]); ?></div>
-                <div class="col-md-6">
+                <div class="col-md-2"><?php echo $form->field($model, 'article')->textInput(['readonly' => true]); ?></div>
+                <div class="col-md-10">
                     <div class="form-group field-products-color">
                         <label class="control-label" for="products-color">Цвета</label>
-                        <div class="form-control" disabled="true"><?php echo $model->color;?></div>
+                        <div class="form-control" disabled="true" style="height:auto !important"><?php echo $model->color;?></div>
 
                         <p class="help-block help-block-error"></p>
                     </div>
