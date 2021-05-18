@@ -432,12 +432,14 @@ $(document).ready(function () {
   });
   $("body").on("click", "#enter, #enter-btn", function (e) {
     e.preventDefault();
+    typeof apiMobileMenu != 'undefined' && apiMobileMenu && apiMobileMenu.close()
     $("body").addClass("hidden");
     $(logPop).load("/login/index");
     logPop.classList.toggle("log-pop_flex");
   });
   $("body").on("click", "#reg, #reg2", function (e) {
     e.preventDefault();
+    typeof apiMobileMenu != 'undefined' && apiMobileMenu && apiMobileMenu.close()
     $(regPop).load("/reg/step1");
     regPop.classList.toggle("reg-pop_flex");
   });

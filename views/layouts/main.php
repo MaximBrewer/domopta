@@ -856,14 +856,16 @@ $this->registerJsFile('https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/di
                 }
             }
         });
+        var apiMobileMenu,mobileMenu;
 
         document.addEventListener(
             "DOMContentLoaded", () => {
-                new Mmenu("#mobile-menu", {
+                mobileMenu = new Mmenu("#mobile-menu", {
                     navbar: {
                         title: "Меню"
                     }
                 });
+                apiMobileMenu = mobileMenu.API;
             }
         );
 
