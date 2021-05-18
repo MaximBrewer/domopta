@@ -15,6 +15,7 @@ use app\models\Vk;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use app\models\Products;
+use app\helpers\Inflector;
 
 class CabinetController extends Controller
 {
@@ -93,7 +94,7 @@ class CabinetController extends Controller
 		if ($content === false) {
 			$content .= "категория;бренд;название;цена;артикул;описание;размер;фото;цвет;" . PHP_EOL;
 			$products = $this->getProducts($slug);
-			if(!$products) $this->redirect(['/cabinet']);
+			if (!$products) $this->redirect(['/cabinet']);
 			foreach ($products as $product) {
 				foreach ($product as $v) {
 					$content .= '"' . addslashes((is_array($v) ?  implode(";", $v) : $v)) .  '";';
@@ -107,12 +108,72 @@ class CabinetController extends Controller
 
 	private function catalogToXml($slug)
 	{
+
 		$cache = \YII::$app->cache;
 		$key = ($slug ? $slug : 'catalog') . '.xml';
 		$content = $cache->get($key);
-		if ($content === false) {
-			$data = $this->getProducts($slug);
+		if (true || $content === false) {
+
+			$xmlstr = <<<XML
+<?xml version="1.0" encoding="UTF-8"?>
+<yml_catalog>
+    <shop>
+        <name>Легкий ветер</name>
+        <company>Легкий ветер</company>
+        <url>https://domopta.ru</url>
+        <currencies>
+            <currency id="RUR" rate="1"/>
+        </currencies>
+        <categories>
+        </categories>
+        <delivery-options>
+        </delivery-options>
+        <offers>
+            <offer id="9012">
+                <name>Мороженица Brand 3811</name>
+                <url>http://best.seller.ru/product_page.asp?pid=12345</url>
+                <price>8990</price>
+                <currencyId>RUR</currencyId>
+                <categoryId>10</categoryId>
+                <param name="Цвет">белый</param>
+                <weight>3.6</weight>
+                <dimensions>20.1/20.551/22.5</dimensions>
+            </offer>
+        </offers>
+    </shop>
+</yml_catalog>
+XML;
+			$yml = new \SimpleXMLElement($xmlstr);
+			$yml->addAttribute('date', date(DATE_ATOM));
+
+			$cats = Category::find()->all();
+			foreach ($cats as $cat) {
+				$category = $yml->shop->categories->addChild('category', $cat->name);
+				$category->addAttribute('id', $cat->id);
+				if ($cat->parent_id) $category->addAttribute('parentId', $cat->parent_id);
+			}
+			// $content .= "категория;бренд;название;цена;артикул;описание;размер;фото;цвет;" . PHP_EOL;
+
+			$products = $this->getProducts($slug);
+			if (!$products) $this->redirect(['/cabinet']);
+			foreach ($products as $p) {
+				$product = $yml->shop->offers->addChild('offer');
+				$product->addAttribute('id', md5($p[4]));
+				$product->addChild('name', $p[2]);
+				$product->addChild('vendor', $p[1]);
+				$product->addChild('categoryId', $p[9]);
+				$product->addChild('url', $p[10]);
+				$product->addChild('price', $p[3]);
+				$product->addChild('oldprice', $p[11]);
+				$product->addChild('currencyId', "RUR");
+			}
+
+			$content = $yml->asXML();
 			$cache->set($key, $content);
+			echo "<pre>";
+			var_dump($yml);
+			echo "</pre>";
+			die;
 		}
 		return $content;
 	}
@@ -135,17 +196,20 @@ class CabinetController extends Controller
 			$products = [];
 			foreach ($data as $product) {
 				$products[] = [
-					$product->category->name,
-					$product->tradekmark,
-					$product->name,
-					$product->price,
-					$product->article_index,
-					$product->description,
-					$product->size,
+					$product->category->name, 	//0
+					$product->tradekmark,		//1
+					$product->name,				//2
+					$product->price,			//3
+					$product->article_index,	//4
+					$product->description,		//5
+					$product->size,				//6
 					array_map(function ($value) {
 						return \Yii::getAlias('@host/upload/product/' . $value->folder . '/' . $value->image);
-					}, $product->pictures),
-					explode(",", $product->color),
+					}, $product->pictures),		//7
+					explode(",", $product->color),//8
+					$product->category->id,		//9
+					$product->slug,				//10
+					$product->price_old,			//11
 				];
 			}
 			$cache->set($key, $products);
