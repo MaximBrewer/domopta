@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: resh
@@ -23,28 +24,30 @@ class ProductForm extends Model
         ];
     }
 
-    public function addToCart(){
+    public function addToCart()
+    {
         $product = Products::findOne($this->product_id);
         $cart = Cart::findOne([
-            'product_id' => $product->id,
-//            'article' => $product->article_index,
+            'article' => $product->article_index,
             'user_id' => \Yii::$app->user->id,
         ]);
-        if(!$cart){
+
+        if (!$cart) {
             $cart = new Cart();
             $cart->article = $product->article_index;
             $cart->user_id = \Yii::$app->user->id;
-            $cart->product_id = $product->id;
-            $cart->save();
         }
+        
+        $cart->product_id = $product->id;
+        $cart->save();
 
-        foreach ($this->colors as $color => $amount){
-            if(!$amount) continue;
+        foreach ($this->colors as $color => $amount) {
+            if (!$amount) continue;
             $details = CartDetails::findOne([
                 'cart_id' => $cart->id,
                 'color' => $color
             ]);
-            if(!$details){
+            if (!$details) {
                 $details = new CartDetails();
             }
 
@@ -54,5 +57,4 @@ class ProductForm extends Model
             $details->save();
         }
     }
-
 }

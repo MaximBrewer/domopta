@@ -49,6 +49,8 @@ if (Yii::$app->user->isGuest) {
 $this->registerJsFile('@web/js/magnifier.js', ['depends' => \yii\web\JqueryAsset::class]);
 $this->registerJsFile('@web/js/swiper-bundle.min.js', ['depends' => \yii\web\JqueryAsset::class]);
 $this->registerJsFile('@web/js/lightslider.js', ['depends' => \yii\web\JqueryAsset::class]);
+$this->registerJsFile('@web/js/mmenu.js', ['depends' => \yii\web\JqueryAsset::class]);
+$this->registerJsFile('@web/js/mmenu.polyfills.js', ['depends' => \yii\web\JqueryAsset::class]);
 $this->registerJsFile('https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/dist/js/jquery.suggestions.min.js', ['depends' => \yii\web\JqueryAsset::class]);
 ?>
 <?php $this->beginPage() ?>
@@ -69,6 +71,7 @@ $this->registerJsFile('https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/di
     <link rel="preload" href="/style/fonts.css" as="style">
     <link rel="stylesheet" href="/style/fonts.css">
     <link rel="stylesheet" href="/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="/css/mmenu.css">
     <link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/dist/css/suggestions.min.css" rel="stylesheet" />
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
@@ -268,7 +271,7 @@ $this->registerJsFile('https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/di
                                 <a href="/contacts" class="nav__link"><span>Контакты</span></a>
                             </li>
                         </ul>
-                        <a href="#" class="nav__btn nav__icon" id="nav-btn">
+                        <a href="#mobile-menu" class="nav__btn nav__icon">
                             <svg class="svg nav__svg nav__svg_gamburg">
                                 <use xlink:href="/img/sprite-sheet.svg#gamburg" />
                             </svg>
@@ -617,7 +620,63 @@ $this->registerJsFile('https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/di
 
             </div>
         <?php endif; ?>
-
+        <nav id="mobile-menu" style="text-transform: uppercase;">
+            <ul>
+                <?php foreach ($menu as $item) : ?>
+                    <?php if ($item->page->menu_type == 0) : ?>
+                        <li>
+                            <a href="<?php echo $item->page->slug; ?>"><span><?php echo $item->page->name; ?></span></a>
+                        </li>
+                    <?php else : ?>
+                        <li>
+                            <span><?php echo $item->page->name; ?></span>
+                            <ul>
+                                <?php foreach ($categories as $category) : ?>
+                                    <li>
+                                        <?php $subcats = $category->getChildren() ?>
+                                        <span><a href="<?php echo $category->slug ?>"><?php echo $category->name ?></a></span>
+                                        <?php if ($subcats) : ?>
+                                            <ul>
+                                                <?php foreach ($subcats as $subcat) : ?>
+                                                    <li>
+                                                        <a href="<?php echo $subcat->slug ?>"><?php echo $subcat->name ?></a>
+                                                    </li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        <?php endif; ?>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </li>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+                <li>
+                    <a href="/contacts"><span>Контакты</span></a>
+                </li>
+                <?php if (Yii::$app->user->isGuest) : ?>
+                    <li>
+                        <a href="#" id="reg">Регистрация</a>
+                    </li>
+                    <li>
+                        <a href="#" id="enter">Войти</a>
+                    </li>
+                <?php else : ?>
+                    <?php if (Yii::$app->user->identity->profile->name == '') : ?>
+                        <li>
+                            <a href="/reg/full?step=1">Регистрация</a>
+                        </li>
+                    <?php else : ?>
+                        <li>
+                            <a href="/cabinet">Кабинет</a>
+                        </li>
+                    <?php endif; ?>
+                    <li>
+                        <a href="/site/logout" id="logout">Выход</a>
+                    </li>
+                <?php endif; ?>
+            </ul>
+        </nav>
+        <!-- 
         <div class="nav-pop">
             <div class="container container_pop-small">
                 <div class="nav-pop-inner">
@@ -697,7 +756,7 @@ $this->registerJsFile('https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/di
                     </a>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="contacts-pop">
             <div class="container container_pop-small">
                 <div class="contacts-pop-inner">
@@ -873,6 +932,24 @@ $this->registerJsFile('https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/di
                 }
             }
         });
+
+        document.addEventListener(
+            "DOMContentLoaded", () => {
+                new Mmenu("#mobile-menu", {
+                    navbar: {
+                        title: "Меню"
+                    }
+                });
+            }
+        );
+
+        // document.addEventListener('click', function (evnt) {
+        //     var anchor = evnt.target.closest('a[href^="#/"]');
+        //     if (anchor) {
+        //         alert("Thank you for clicking, but that's a demo link.");
+        //         evnt.preventDefault();
+        //     }
+        // });
     </script>
 
 

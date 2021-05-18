@@ -8508,3 +8508,18 @@ img.reg-step2-item-img {
   font-weight: bold;
   display: inline-block;
 }
+
+
+.mm-menu_offcanvas {
+  max-width: 240px;
+}
+@media screen and (min-width: 375px) {
+  .mm-menu_offcanvas {
+    max-width: 300px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .mm-menu_offcanvas {
+    max-width: 440px;
+  }
+}

@@ -31,7 +31,7 @@ $this->registerJsFile('/js/tree.js', ['depends' => \app\assets\AdminAsset::class
 <!-- <?php echo Html::label('Поиск') ?><br /> -->
 <div style="display:flex;justify-content:space-between">
     <div>
-        <?php echo Html::textInput($searchModel->formName() . '[text]', $searchModel->text, ['class' => 'form-control', 'placeholder' => "Поиск"]) ?>
+        <?php echo Html::textInput($searchModel->formName() . '[text]', "", ['class' => 'form-control', 'placeholder' => "Поиск"]) ?>
         <?php echo Html::radioList($searchModel->formName() . '[text_type]', $searchModel->text_type ? $searchModel->text_type : 1, [1 => 'Каталог', 0 => 'Текущая категория']) ?></div>
     <div><?php echo Html::submitInput('Искать', ['class' => 'btn btn-success search-class']) ?></div>
 </div>

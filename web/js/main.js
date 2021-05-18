@@ -16,10 +16,9 @@ yii.confirm = function (message, ok, cancel, popup) {
   }
 };
 
-window.addEventListener("load", function () {
-  var load_screen = document.getElementById("preloader");
+$(function () {
   setTimeout(function () {
-    document.body.removeChild(preloader);
+    $("#preloader").remove();
   }, 10);
 });
 function cancelOrder(id) {
