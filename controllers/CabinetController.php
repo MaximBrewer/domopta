@@ -69,8 +69,7 @@ class CabinetController extends Controller
 			return $this->redirect(['reg/full?step=1']);
 		}
 		$slug = \Yii::$app->request->get('slug', false);
-		$this->catalogToCsv($slug);
-		return \YII::$app->response->sendContentAsFile($this->catalogToCsv($slug), ($slug ? $slug : 'catalog') . ".csv");
+		return \YII::$app->response->sendContentAsFile($this->catalogToCsv($slug, $user->profile->type), ($slug ? $slug : 'catalog') . ".csv");
 	}
 
 	public function actionXml()
@@ -83,17 +82,17 @@ class CabinetController extends Controller
 		}
 		$slug = \Yii::$app->request->get('slug', false);
 		$catalog = $this->getProducts($slug);
-		return \YII::$app->response->sendContentAsFile($this->catalogToXml($slug), ($slug ? $slug : 'catalog') . ".xml");
+		return \YII::$app->response->sendContentAsFile($this->catalogToXml($slug, $user->profile->type), ($slug ? $slug : 'catalog') . ".xml");
 	}
 
-	private function catalogToCsv($slug)
+	private function catalogToCsv($slug, $type)
 	{
 		$cache = \YII::$app->cache;
-		$key = ($slug ? $slug : 'catalog') . '.csv';
+		$key = ($slug ? $slug : 'catalog') . '.' . $type . '.csv';
 		$content = $cache->get($key);
-		if ($content === false) {
+		if (true || $content === false) {
 			$content .= "категория;бренд;название;цена;артикул;описание;размер;фото;цвет;" . PHP_EOL;
-			$products = $this->getProducts($slug);
+			$products = $this->getProducts($slug, $type);
 			if (!$products) $this->redirect(['/cabinet']);
 			foreach ($products as $product) {
 				foreach ($product as $v) {
@@ -106,11 +105,11 @@ class CabinetController extends Controller
 		return $content;
 	}
 
-	private function catalogToXml($slug)
+	private function catalogToXml($slug, $type)
 	{
 
 		$cache = \YII::$app->cache;
-		$key = ($slug ? $slug : 'catalog') . '.xml';
+		$key = ($slug ? $slug : 'catalog') . '.' . $type . '.xml';
 		$content = $cache->get($key);
 		if (true || $content === false) {
 
@@ -129,16 +128,6 @@ class CabinetController extends Controller
         <delivery-options>
         </delivery-options>
         <offers>
-            <offer id="9012">
-                <name>Мороженица Brand 3811</name>
-                <url>http://best.seller.ru/product_page.asp?pid=12345</url>
-                <price>8990</price>
-                <currencyId>RUR</currencyId>
-                <categoryId>10</categoryId>
-                <param name="Цвет">белый</param>
-                <weight>3.6</weight>
-                <dimensions>20.1/20.551/22.5</dimensions>
-            </offer>
         </offers>
     </shop>
 </yml_catalog>
@@ -154,7 +143,7 @@ XML;
 			}
 			// $content .= "категория;бренд;название;цена;артикул;описание;размер;фото;цвет;" . PHP_EOL;
 
-			$products = $this->getProducts($slug);
+			$products = $this->getProducts($slug, $type);
 			if (!$products) $this->redirect(['/cabinet']);
 			foreach ($products as $p) {
 				$product = $yml->shop->offers->addChild('offer');
@@ -163,9 +152,18 @@ XML;
 				$product->addChild('vendor', $p[1]);
 				$product->addChild('categoryId', $p[9]);
 				$product->addChild('url', $p[10]);
-				$product->addChild('price', $p[3]);
-				$product->addChild('oldprice', $p[11]);
+				$product->addChild('price', (float)$p[3]);
+				if ((float)$p[11] > (float)$p[3]) $product->addChild('oldprice', (float)$p[11]);
 				$product->addChild('currencyId', "RUR");
+				$pictures = $product->addChild('pictures');
+				foreach ($p[7] as $image) {
+					$pictures->addChild('picture', $image);
+				}
+				$colors = $product->addChild('colors');
+				foreach ($p[8] as $color) {
+					$colors->addChild('color', $color);
+				}
+				break;
 			}
 
 			$content = $yml->asXML();
@@ -178,7 +176,7 @@ XML;
 		return $content;
 	}
 
-	private function getProducts($slug)
+	private function getProducts($slug, $type)
 	{
 		\YII::setAlias('@host', (\Yii::$app->request->isSecureConnection ? "https://" : "http://") . \Yii::$app->request->hostName);
 		$cache = \YII::$app->cache;
@@ -206,7 +204,7 @@ XML;
 					array_map(function ($value) {
 						return \Yii::getAlias('@host/upload/product/' . $value->folder . '/' . $value->image);
 					}, $product->pictures),		//7
-					explode(",", $product->color),//8
+					explode(",", $product->color), //8
 					$product->category->id,		//9
 					$product->slug,				//10
 					$product->price_old,			//11
