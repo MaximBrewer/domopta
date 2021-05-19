@@ -67,7 +67,7 @@ class CabinetController extends Controller
 			return $this->redirect(['reg/full?step=1']);
 		}
 		$slug = \Yii::$app->request->get('slug', false);
-		return \YII::$app->response->sendContentAsFile($this->catalogToCsv($slug, $user->profile->type), ($slug ? $slug : 'catalog') . ".csv");
+		return \YII::$app->response->sendContentAsFile($this->catalogToCsv($slug, $user->profile->type), ($slug ? $slug : 'catalog') . "-domopta.ru.csv");
 	}
 
 	public function actionXml()
@@ -77,7 +77,7 @@ class CabinetController extends Controller
 			return $this->redirect(['reg/full?step=1']);
 		}
 		$slug = \Yii::$app->request->get('slug', false);
-		return \YII::$app->response->sendContentAsFile($this->catalogToXml($slug, $user->profile->type), ($slug ? $slug : 'catalog') . ".xml");
+		return \YII::$app->response->sendContentAsFile($this->catalogToXml($slug, $user->profile->type), ($slug ? $slug : 'catalog') . "-domopta.ru.xml");
 	}
 
 	private function catalogToCsv($slug, $type)
@@ -85,7 +85,7 @@ class CabinetController extends Controller
 		$cache = \YII::$app->cache;
 		$key = ($slug ? $slug : 'catalog') . '.' . $type . '.csv';
 		$content = $cache->get($key);
-		if (true || $content === false) {
+		if ($content === false) {
 			$content .= "Категория товаров;Наименование;Артикул;Цвет;Размеры;Состав;Товарный знак;К-во в Упак.;Цена;Цена за Уп.;Фото;ID Категории;Ссылка" . PHP_EOL;
 			$products = $this->getProducts($slug, $type);
 			if (!$products) $this->redirect(['/cabinet']);
@@ -106,7 +106,7 @@ class CabinetController extends Controller
 		$cache = \YII::$app->cache;
 		$key = ($slug ? $slug : 'catalog') . '.' . $type . '.xml';
 		$content = $cache->get($key);
-		if (true || $content === false) {
+		if ($content === false) {
 
 			$xmlstr = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
@@ -148,12 +148,7 @@ XML;
 				if(!empty($p[3])){
 				$colors = $product->addChild('colors');
 				foreach ($p[3] as $color) {
-					try {
-						$colors->addChild('color', $color);
-					} catch (\Throwable $e) {
-						var_dump($color);
-						die;
-					}
+					$colors->addChild('color', $color);
 				}}
 				$product->addChild('size', $p[4]);
 				$product->addChild('consist', $p[5]);
@@ -179,9 +174,9 @@ XML;
 	{
 		\YII::setAlias('@host', (\Yii::$app->request->isSecureConnection ? "https://" : "http://") . \Yii::$app->request->hostName);
 		$cache = \YII::$app->cache;
-		$key = ($slug ? $slug : 'catalog') . '.array';
+		$key = ($slug ? $slug : 'catalog') . '.' . $type . '.array';
 		$products = $cache->get($key);
-		if (true || $products === false) {
+		if ($products === false) {
 			if ($slug) {
 				$category = Category::find()->where(['slug' => "/" . trim($slug, "/")])->one();
 				if (!$category) return false;
@@ -194,15 +189,15 @@ XML;
 			//Категория товаров;Наименование;Артикул;Цвет;Размеры;Состав;Товарный знак;К-во в Упак.;Цена;Цена за Уп.;Фото;ID Категории;Ссылка
 			foreach ($data as $product) {
 				$products[] = [
-					htmlspecialchars($product->category->name), 									//0
-					htmlspecialchars($product->name),												//1
+					htmlspecialchars($product->category->name), 				//0
+					htmlspecialchars($product->name),							//1
 					$product->article_index,									//2
 					array_map(function ($value) {
 						return htmlspecialchars($value);
-					}, explode(",", $product->color)),									//3
-					htmlspecialchars($product->size),												//4
-					htmlspecialchars($product->consist),											//5
-					htmlspecialchars($product->tradekmark),										//6
+					}, explode(",", $product->color)),							//3
+					htmlspecialchars($product->size),							//4
+					htmlspecialchars($product->consist),						//5
+					htmlspecialchars($product->tradekmark),						//6
 					$product->pack_quantity,									//7
 					$type == 2 ? $product->price2 : $product->price,			//8
 					$type == 2 ? $product->pack_price2 : $product->pack_price,	//9
