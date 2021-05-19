@@ -316,6 +316,12 @@ $this->params['breadcrumbs'][] = 'Оформление';
 					<li class="user-btns__item">
 						<a href="/cabinet/password" class="user-btns__link">Смена пароля</a>
 					</li>
+					<li class="user-btns__item">
+						<a href="/cabinet/csv" target="_blank" class="user-btns__link">Скачать каталог (CSV)</a>
+					</li>
+					<li class="user-btns__item">
+						<a href="/cabinet/xml" target="_blank" class="user-btns__link">Скачать каталог (XML)</a>
+					</li>
           <li class="user-btns__item">
             <a class="user-btns__link" href="/site/logout" alt="Выход" title="Выход" data-confirm="Вы действительно хотите выйти?" data-method="get" data-popup="logout_popup">Выход</a>
           </li>
