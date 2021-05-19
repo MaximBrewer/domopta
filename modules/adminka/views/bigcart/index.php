@@ -41,6 +41,12 @@ use yii\helpers\Html;
 				'format' => 'raw'
 			],
 			[
+				'label' => 'Тип цен',
+				'value' => function ($model) {
+					return $model->profile->type == 2 ? 'Мелкий опт' : 'Опт';
+				}
+			],
+			[
 				'label' => 'Сумма',
 				'value' => function ($model) {
 					return $model->getCartSum();
