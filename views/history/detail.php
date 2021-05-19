@@ -98,7 +98,7 @@ foreach ($order->detiles as $item) {
 				</div>
 			</div>
 			<div style="display:flex;justify-content:flex-end;">
-				<a class="btn-black__link" href="/history/xls?id=<?php echo $order->id; ?>" target="_blank">Скачать заказ (xls)</a>
+				<a class="btn-black__link" href="/history/xls?id=<?php echo $order->id; ?>" target="_blank">Скачать заказ (XLS)</a>
 			</div>
 		</div>
 		<div class="content-right">
