@@ -91,7 +91,7 @@ class CabinetController extends Controller
 		$key = ($slug ? $slug : 'catalog') . '.' . $type . '.csv';
 		$content = $cache->get($key);
 		if (true || $content === false) {
-			$content .= "категория;бренд;название;цена;артикул;описание;размер;фото;цвет;" . PHP_EOL;
+			$content .= "Категория товаров;Наименование;Артикул;Цвет;Размеры;Состав;Товарный знак;К-во в Упак.;Цена;Цена за Уп.;Фото;ID Категории;Ссылка" . PHP_EOL;
 			$products = $this->getProducts($slug, $type);
 			if (!$products) $this->redirect(['/cabinet']);
 			foreach ($products as $product) {
@@ -141,37 +141,35 @@ XML;
 				$category->addAttribute('id', $cat->id);
 				if ($cat->parent_id) $category->addAttribute('parentId', $cat->parent_id);
 			}
-			// $content .= "категория;бренд;название;цена;артикул;описание;размер;фото;цвет;" . PHP_EOL;
+			//Категория товаров;Наименование;Артикул;Цвет;Размеры;Состав;Товарный знак;К-во в Упак.;Цена;Цена за Уп.;Фото;ID Категории;Ссылка
 
 			$products = $this->getProducts($slug, $type);
 			if (!$products) $this->redirect(['/cabinet']);
 			foreach ($products as $p) {
 				$product = $yml->shop->offers->addChild('offer');
-				$product->addAttribute('id', md5($p[4]));
-				$product->addChild('name', $p[2]);
-				$product->addChild('vendor', $p[1]);
-				$product->addChild('categoryId', $p[9]);
-				$product->addChild('url', $p[10]);
-				$product->addChild('price', (float)$p[3]);
-				if ((float)$p[11] > (float)$p[3]) $product->addChild('oldprice', (float)$p[11]);
-				$product->addChild('currencyId', "RUR");
-				$pictures = $product->addChild('pictures');
-				foreach ($p[7] as $image) {
-					$pictures->addChild('picture', $image);
-				}
+				$product->addChild('category', $p[0]);
+				$product->addChild('name', $p[1]);
+				$product->addChild('article', $p[2]);
 				$colors = $product->addChild('colors');
-				foreach ($p[8] as $color) {
+				foreach ($p[3] as $color) {
 					$colors->addChild('color', $color);
 				}
-				break;
+				$product->addChild('size', $p[4]);
+				$product->addChild('consist', $p[5]);
+				$product->addChild('vendor', $p[6]);
+				$product->addChild('pack_quantity', $p[7]);
+				$product->addChild('price', $p[8]);
+				$product->addChild('pack_price', $p[9]);
+				$pictures = $product->addChild('pictures');
+				foreach ($p[10] as $image) {
+					$pictures->addChild('picture', $image);
+				}
+				$product->addChild('categoryId', $p[11]);
+				$product->addChild('url', $p[12]);
 			}
 
 			$content = $yml->asXML();
 			$cache->set($key, $content);
-			echo "<pre>";
-			var_dump($yml);
-			echo "</pre>";
-			die;
 		}
 		return $content;
 	}
@@ -192,22 +190,24 @@ XML;
 				$data = Products::find()->all();
 			}
 			$products = [];
+			//Категория товаров;Наименование;Артикул;Цвет;Размеры;Состав;Товарный знак;К-во в Упак.;Цена;Цена за Уп.;Фото;ID Категории;Ссылка
 			foreach ($data as $product) {
 				$products[] = [
-					$product->category->name, 	//0
-					$product->tradekmark,		//1
-					$product->name,				//2
-					$product->price,			//3
-					$product->article_index,	//4
-					$product->description,		//5
-					$product->size,				//6
+					$product->category->name, 									//0
+					$product->name,												//1
+					$product->article_index,									//2
+					explode(",", $product->color), 								//3
+					$product->size,												//4
+					$product->consist,											//5
+					$product->tradekmark,										//6
+					$product->pack_quantity,									//7
+					$type == 2 ? $product->price2 : $product->price,			//8
+					$type == 2 ? $product->pack_price2 : $product->pack_price,	//9
 					array_map(function ($value) {
 						return \Yii::getAlias('@host/upload/product/' . $value->folder . '/' . $value->image);
-					}, $product->pictures),		//7
-					explode(",", $product->color), //8
-					$product->category->id,		//9
-					$product->slug,				//10
-					$product->price_old,			//11
+					}, $product->pictures),										//10
+					$product->category->id,										//11
+					\Yii::getAlias('@host' . $product->slug),					//12
 				];
 			}
 			$cache->set($key, $products);
