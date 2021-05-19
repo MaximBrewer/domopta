@@ -161,7 +161,6 @@ XML;
 				}
 				$product->addChild('categoryId', $p[11]);
 				$product->addChild('url', $p[12]);
-				break;
 			}
 
 			$content = $yml->asXML();
