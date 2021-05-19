@@ -161,6 +161,7 @@ XML;
 				}
 				$product->addChild('categoryId', $p[11]);
 				$product->addChild('url', $p[12]);
+				break;
 			}
 
 			$content = $yml->asXML();
@@ -175,7 +176,7 @@ XML;
 		$cache = \YII::$app->cache;
 		$key = ($slug ? $slug : 'catalog') . '.array';
 		$products = $cache->get($key);
-		if ($products === false) {
+		if (true || $products === false) {
 			if ($slug) {
 				$category = Category::find()->where(['slug' => "/" . trim($slug, "/")])->one();
 				if (!$category) return false;
