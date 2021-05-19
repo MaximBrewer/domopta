@@ -145,10 +145,16 @@ XML;
 				$product->addChild('category', $p[0]);
 				$product->addChild('name', $p[1]);
 				$product->addChild('article', $p[2]);
+				if(!empty($p[3])){
 				$colors = $product->addChild('colors');
 				foreach ($p[3] as $color) {
-					$colors->addChild('color', $color);
-				}
+					try {
+						$colors->addChild('color', $color);
+					} catch (\Throwable $e) {
+						var_dump($color);
+						die;
+					}
+				}}
 				$product->addChild('size', $p[4]);
 				$product->addChild('consist', $p[5]);
 				$product->addChild('vendor', $p[6]);
@@ -188,13 +194,15 @@ XML;
 			//Категория товаров;Наименование;Артикул;Цвет;Размеры;Состав;Товарный знак;К-во в Упак.;Цена;Цена за Уп.;Фото;ID Категории;Ссылка
 			foreach ($data as $product) {
 				$products[] = [
-					$product->category->name, 									//0
-					$product->name,												//1
+					htmlspecialchars($product->category->name), 									//0
+					htmlspecialchars($product->name),												//1
 					$product->article_index,									//2
-					explode(",", $product->color), 								//3
-					$product->size,												//4
-					$product->consist,											//5
-					$product->tradekmark,										//6
+					array_map(function ($value) {
+						return htmlspecialchars($value);
+					}, explode(",", $product->color)),									//3
+					htmlspecialchars($product->size),												//4
+					htmlspecialchars($product->consist),											//5
+					htmlspecialchars($product->tradekmark),										//6
 					$product->pack_quantity,									//7
 					$type == 2 ? $product->price2 : $product->price,			//8
 					$type == 2 ? $product->pack_price2 : $product->pack_price,	//9
