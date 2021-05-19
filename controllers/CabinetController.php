@@ -62,6 +62,7 @@ class CabinetController extends Controller
 
 	public function actionCsv()
 	{
+		\YII::$app->cache->flush();
 		$user = User::findOne(\Yii::$app->user->id);
 		if (!$user->profile->type) {
 			return $this->redirect(['reg/full?step=1']);
@@ -72,6 +73,7 @@ class CabinetController extends Controller
 
 	public function actionXml()
 	{
+		\YII::$app->cache->flush();
 		$user = User::findOne(\Yii::$app->user->id);
 		if (!$user->profile->type) {
 			return $this->redirect(['reg/full?step=1']);
