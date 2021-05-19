@@ -96,11 +96,8 @@ $totalDamount = 0;
                                                 $str = '';
                                                 foreach ($item->details as $detail) {
                                                     if ($detail->amount > 0) {
-                                                        if (Yii::$app->user->identity->profile->type == 1 || Yii::$app->user->identity->profile->type == 3) {
-                                                            $str .= Products::formatPrice($item->product, ['price'], null, true) . '<br />';
-                                                        } elseif (Yii::$app->user->identity->profile->type == 2) {
-                                                            $str .= Products::formatPrice($item->product, ['price2'], null, true) . '<br />';
-                                                        }
+                                                        $pprice = \Yii::$app->user->identity->profile->type == 2 ? $item->product->price2 : $item->product->price;
+                                                        $str .= $item->price && $pprice != $item->price ? '<span class="old">' . number_format($item->price, 2, ',<span class="kopeyki">', '') . '</span></span><span>' . number_format($item->product->price, 2, ',<span class="kopeyki">', '') . '</span></span>' : number_format($pprice, 2, ',<span class="kopeyki">', '') . '</span><br />';
                                                     }
                                                 }
                                                 echo $str;

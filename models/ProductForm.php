@@ -38,6 +38,7 @@ class ProductForm extends Model
             $cart->user_id = \Yii::$app->user->id;
         }
         
+        $cart->price = \Yii::$app->user->identity->profile->type == 2 ? $product->price2 : $product->price;
         $cart->product_id = $product->id;
         $cart->save();
 
