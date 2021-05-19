@@ -63,8 +63,6 @@ class CabinetController extends Controller
 	public function actionCsv()
 	{
 		$user = User::findOne(\Yii::$app->user->id);
-		$email = $user->email;
-		$profile = $user->profile;
 		if (!$user->profile->type) {
 			return $this->redirect(['reg/full?step=1']);
 		}
@@ -75,13 +73,10 @@ class CabinetController extends Controller
 	public function actionXml()
 	{
 		$user = User::findOne(\Yii::$app->user->id);
-		$email = $user->email;
-		$profile = $user->profile;
 		if (!$user->profile->type) {
 			return $this->redirect(['reg/full?step=1']);
 		}
 		$slug = \Yii::$app->request->get('slug', false);
-		$catalog = $this->getProducts($slug);
 		return \YII::$app->response->sendContentAsFile($this->catalogToXml($slug, $user->profile->type), ($slug ? $slug : 'catalog') . ".xml");
 	}
 
