@@ -5015,10 +5015,10 @@ img.reg-step2-item-img {
   border: 1px solid #24a0c7;
   background: #24a0c7;
   color: #fff;
-  padding: 10px 80px;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
+  padding: 10px 20px;
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
   -webkit-transition: all 400ms ease;
   transition: all 400ms ease;
   text-transform: uppercase;
