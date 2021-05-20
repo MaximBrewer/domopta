@@ -1,6 +1,7 @@
 <?php
 
 namespace app\models;
+
 use app\helpers\Inflector;
 
 use Yii;
@@ -58,7 +59,7 @@ class ProductsImages extends \yii\db\ActiveRecord
         $path = __DIR__ . '/../web' . '/upload/product/' . $this->folder . '/' . $prefix . "-" . $fnameClean . $suffix . "." . $ext;
 
         if (file_exists($path)) {
-            return '/upload/product/' . $this->folder. '/' . $prefix . "-" . $fnameClean . $suffix . "." . $ext;
+            return '/upload/product/' . $this->folder . '/' . $prefix . "-" . $fnameClean . $suffix . "." . $ext;
         } else {
             return '/upload/product/' . $this->folder . '/' . $prefix . '-' . $this->image;
         }
@@ -67,10 +68,9 @@ class ProductsImages extends \yii\db\ActiveRecord
     public function afterDelete()
     {
         $path = Yii::getAlias('@webroot/upload/product/' . $this->folder . '/');
-        $files = glob($path . '*' . $this->image);
-        foreach ($files as $file) {
-            unlink($file);
-        }
         @unlink($path . $this->image);
+        @unlink(Yii::getAlias('@webroot' . $this->getUrl('big')));
+        @unlink(Yii::getAlias('@webroot' . $this->getUrl('small')));
+        @unlink(Yii::getAlias('@webroot' . $this->getUrl('thumb')));
     }
 }
