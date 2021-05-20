@@ -26,6 +26,7 @@ class CategoryController extends Controller
         $dataProvider = $searchModel->search(\Yii::$app->request->queryParams, $id);
         $session->set('cat_query_params', \Yii::$app->request->queryParams);
         $categories = Category::find()->where('parent_id IS NULL')->orderBy(['position' => SORT_ASC])->all();
+        define("HIDE_FOOTER", true);
         if (\Yii::$app->request->isAjax) {
             $this->renderPartial('ajax', ['categories' => $categories, 'category' => $category, 'dataProvider' => $dataProvider, 'searchModel' => $searchModel]);
             echo Json::encode($this->view->blocks);
