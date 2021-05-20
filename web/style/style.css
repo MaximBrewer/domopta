@@ -4143,7 +4143,7 @@ input:-webkit-autofill {
   display: block;
 }
 .profile__input {
-  width: 100%; 
+  width: 100%;
   padding: 8px 10px 6px;
   border-radius: 2px;
   -webkit-border-radius: 2px;
@@ -4523,7 +4523,7 @@ label.file-input {
   .reg-step2-item .reg-step2-item-button-wrapper {
     position: absolute;
     bottom: 50px;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -8509,7 +8509,6 @@ img.reg-step2-item-img {
   display: inline-block;
 }
 
-
 .mm-menu_offcanvas {
   max-width: 240px;
 }
@@ -8522,4 +8521,8 @@ img.reg-step2-item-img {
   .mm-menu_offcanvas {
     max-width: 440px;
   }
+}
+
+.t-17 {
+  font-size: 17px;
 }

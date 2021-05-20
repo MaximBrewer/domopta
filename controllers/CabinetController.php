@@ -156,11 +156,12 @@ XML;
 				$product->addChild('category', $p[0]);
 				$product->addChild('name', $p[1]);
 				$product->addChild('article', $p[2]);
-				if(!empty($p[3])){
-				$colors = $product->addChild('colors');
-				foreach ($p[3] as $color) {
-					$colors->addChild('color', $color);
-				}}
+				if (!empty($p[3])) {
+					$colors = $product->addChild('colors');
+					foreach ($p[3] as $color) {
+						$colors->addChild('color', $color);
+					}
+				}
 				$product->addChild('size', $p[4]);
 				$product->addChild('consist', $p[5]);
 				$product->addChild('vendor', $p[6]);
@@ -192,9 +193,15 @@ XML;
 				$category = Category::find()->where(['slug' => "/" . trim($slug, "/")])->one();
 				if (!$category) return false;
 				$categoryIds = $category->getAllChildrenIds();
-				$data = Products::find()->where(['category_id' => $categoryIds])->all();
+				if ($type == 3)
+					$data = Products::find()->where(['category_id' => $categoryIds, 'ooo' => 1, 'flag' => 1, 'is_deleted' => 0])->all();
+				else
+					$data = Products::find()->where(['category_id' => $categoryIds, 'flag' => 1, 'is_deleted' => 0])->all();
 			} else {
-				$data = Products::find()->all();
+				if ($type == 3)
+					$data = Products::find()->where(['ooo' => 1, 'flag' => 1, 'is_deleted' => 0])->all();
+				else
+					$data = Products::find()->where(['flag' => 1, 'is_deleted' => 0])->all();
 			}
 			$products = [];
 			//Категория товаров;Наименование;Артикул;Цвет;Размеры;Состав;Товарный знак;К-во в Упак.;Цена;Цена за Уп.;Фото;ID Категории;Ссылка

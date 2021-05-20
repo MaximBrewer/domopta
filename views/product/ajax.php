@@ -164,7 +164,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => $model->slug
                                 <ul class="package-tovar__list">
                                     <li class="package-tovar__item">
                                         <span class="package-tovar__text">количество штук в упаковке:&nbsp;&nbsp;&nbsp;</span>
-                                        <span class="package-tovar__amount"><?php echo $model->pack_quantity ?> <span class="shtuk">шт</span></span>
+                                        <span class="package-tovar__amount"><?php echo $model->pack_quantity ?> <span class="shtuk">шт.</span></span>
                                     </li>
                                     <?php if (Yii::$app->user->identity->profile->type && Yii::$app->user->identity->profile->name) : ?>
                                         <?php if (Yii::$app->user->identity->profile->type == 2) : ?>
@@ -269,12 +269,17 @@ $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => $model->slug
                                         foreach ($colors as $color) { ?>
                                             <li class="form-tovar__item">
                                                 <label class="form-tovar__label">
-                                                    <div class="form-tovar__title"><?php echo $color ?></div>
-                                                    <span class="input-count-box">
-                                                        <button type="button" class="input-color-minus">-</button>
-                                                        <?php echo Html::activeInput('text', $form_model, 'colors[' . $color . ']', ['class' => 'form-tovar__input input-color', 'min' => 0]) ?>
-                                                        <button type="button" class="input-color-plus">+</button>
-                                                    </span>
+                                                    <div class="form-tovar__title t-17"><?php echo $color ?></div>
+                                                    <div class="t-17">
+                                                        <span class="input-count-box">
+                                                            <button type="button" class="input-color-minus">-</button>
+                                                            <?php echo Html::activeInput('text', $form_model, 'colors[' . $color . ']', ['class' => 'form-tovar__input input-color', 'min' => 0]) ?>
+                                                            <button type="button" class="input-color-plus">+</button>
+                                                        </span>
+                                                        <span>
+                                                            <?php echo $model->pack_quantity ? 'уп.' : 'шт.'; ?>
+                                                        </span>
+                                                    </div>
                                                 </label>
                                             </li>
                                         <?php

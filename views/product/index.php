@@ -219,7 +219,7 @@ $next = $model->category->getNextproduct($model->article_index);
                                     <ul class="package-tovar__list">
                                         <li class="package-tovar__item">
                                             <span class="package-tovar__text">В упаковке:&nbsp;&nbsp;&nbsp;</span>
-                                            <span class="package-tovar__amount"><?php echo $model->pack_quantity ?> <span class="shtuk">шт</span></span>
+                                            <span class="package-tovar__amount"><?php echo $model->pack_quantity ?> <span class="shtuk">шт.</span></span>
                                         </li>
                                         <?php if (Yii::$app->user->identity->profile->type && Yii::$app->user->identity->profile->name) : ?>
                                             <?php if (Yii::$app->user->identity->profile->type == 2) : ?>
@@ -240,19 +240,16 @@ $next = $model->category->getNextproduct($model->article_index);
                                 </div>
                             <?php endif; ?>
                         </div>
-                        <div class="tag-tovar-right">
+                        <div class="tag-tovar-right" style="display:flex;align-items:center;">
                             <div class="tag-tovar-btn">
-                                <a href="#" class="tag-tovar-btn__link" data-id="<?php echo $model->id; ?>" <?php if (Yii::$app->user->isGuest) : ?> onclick="$('#enter').click(); return false;" <?php endif; ?>>
-                                    <span class="tag-tovar-btn__text">Добавить в избранное</span>
-                                    <span class="tag-tovar-btn__icon">
+                                <a href="#" class="tag-tovar-btn__link" style="padding:0;background-color:transparent;border-width:0;" data-id="<?php echo $model->id; ?>" <?php if (Yii::$app->user->isGuest) : ?> onclick="$('#enter').click(); return false;" <?php endif; ?>>
+                                    <span class="tag-tovar-btn__icon" style="margin-left:0;">
                                         <svg class="tag-tovar-btn__svg tag-tovar-btn__svg_heart1">
                                             <use xlink:href="/img/sprite-sheet.svg#heart1" />
                                         </svg>
                                         <svg class="tag-tovar-btn__svg tag-tovar-btn__svg_heart2">
                                             <use xlink:href="/img/sprite-sheet.svg#heart2" />
-                                        </svg>
-                                        </svg>
-                                        <span class="help">
+                                        </svg><span class="help">
                                             <span class="help__text">Добавить в избранное</span>
                                         </span>
                                     </span>
@@ -313,12 +310,17 @@ $next = $model->category->getNextproduct($model->article_index);
                                         foreach ($colors as $color) : ?>
                                             <li class="form-tovar__item">
                                                 <label class="form-tovar__label">
-                                                    <div class="form-tovar__title"><?php echo $color ?></div>
-                                                    <span class="input-count-box">
-                                                        <button type="button" class="input-color-minus">-</button>
-                                                        <?php echo Html::activeInput('text', $form_model, 'colors[' . $color . ']', ['class' => 'form-tovar__input input-color', 'min' => 0]) ?>
-                                                        <button type="button" class="input-color-plus">+</button>
-                                                    </span>
+                                                    <div class="form-tovar__title t-17"><?php echo $color ?></div>
+                                                    <div class="t-17">
+                                                        <span class="input-count-box">
+                                                            <button type="button" class="input-color-minus">-</button>
+                                                            <?php echo Html::activeInput('text', $form_model, 'colors[' . $color . ']', ['class' => 'form-tovar__input input-color', 'min' => 0]) ?>
+                                                            <button type="button" class="input-color-plus">+</button>
+                                                        </span>
+                                                        <span>
+                                                            <?php echo $model->pack_quantity ? 'уп.' : 'шт.'; ?>
+                                                        </span>
+                                                    </div>
                                                 </label>
                                             </li>
                                             <?php
