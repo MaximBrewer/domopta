@@ -138,6 +138,7 @@ class Products extends \yii\db\ActiveRecord
         }
 
         ini_set('memory_limit', '512M');
+        @unlink($path . $prefix . $fnameClean . $suffix . "." . $ext);
         Image::thumbnail($path . $fname, $width, $height, ManipulatorInterface::THUMBNAIL_INSET)
             ->save($path . $prefix . $fnameClean . $suffix . "." . $ext, ['quality' => 100]);
     }
