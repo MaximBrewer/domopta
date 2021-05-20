@@ -4,7 +4,8 @@
 
 use yii\helpers\Html;
 ?>
-<a href="<?php echo $model->slug ?>" class="product" id="product_<?php echo $model->id; ?>">
+<a href="<?php echo $model->slug ?>" class="product">
+	<span id="product_<?php echo $model->id; ?>"></span>
 	<div class="product-top">
 		<div class="product__pic">
 			<span href="<?php echo $model->slug ?>">
