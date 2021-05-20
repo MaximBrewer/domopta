@@ -11,6 +11,7 @@ namespace app\controllers;
 
 use app\models\Category;
 use app\models\User;
+use app\models\Import;
 use app\models\Vk;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -24,7 +25,7 @@ class CabinetController extends Controller
 	{
 		return [
 			'access' => [
-				'class' => AccessControl::className(),
+				'class' => AccessControl::class,
 				'rules' => [
 					[
 						'allow' => true,
@@ -68,6 +69,10 @@ class CabinetController extends Controller
 			return $this->redirect(['reg/full?step=1']);
 		}
 		$slug = \Yii::$app->request->get('slug', false);
+		$import = new Import();
+		$import->type = 1;
+		$import->user_id = $user->id;
+		$import->save();
 		return \YII::$app->response->sendContentAsFile($this->catalogToCsv($slug, $user->profile->type), ($slug ? $slug : 'catalog') . "-domopta.ru.csv");
 	}
 
@@ -79,6 +84,10 @@ class CabinetController extends Controller
 			return $this->redirect(['reg/full?step=1']);
 		}
 		$slug = \Yii::$app->request->get('slug', false);
+		$import = new Import();
+		$import->type = 2;
+		$import->user_id = $user->id;
+		$import->save();
 		return \YII::$app->response->sendContentAsFile($this->catalogToXml($slug, $user->profile->type), ($slug ? $slug : 'catalog') . "-domopta.ru.xml");
 	}
 

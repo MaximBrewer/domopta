@@ -71,6 +71,12 @@ foreach ($users as $id => $sum){
 		    'visible' => in_array(Yii::$app->user->identity->role, ['admin', 'manager', 'contentmanager'])
 	    ],
 	    [
+		    'label' => 'Скачивания',
+		    'url' => ['/adminka/imports'],
+		    'active' => Yii::$app->controller->id == 'imports',
+		    'visible' => in_array(Yii::$app->user->identity->role, ['admin', 'manager', 'contentmanager'])
+	    ],
+	    [
 		    'label' => 'Рассылка в мессенджеры',
 		    'url' => ['/adminka/send'],
 		    'active' => Yii::$app->controller->id == 'send',

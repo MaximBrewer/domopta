@@ -319,6 +319,22 @@ class User extends \dektrium\user\models\User
         return $sum;
     }
 
+    public function getImports()
+    {
+        $s = date(DATE_ATOM, strtotime("-1 months"));
+        $f = date(DATE_ATOM);
+        $sum = Import::find()->where('user_id = ' . $this->id . ' AND datetime BETWEEN \''.$s.'\' AND \''.$f.'\'')->count();
+        return $sum;
+    }
+
+    public function getLastImport()
+    {
+        $sum = Import::find()->where(['user_id' => $this->id])->orderBy(['created_at' => SORT_DESC])->one();
+        return $sum->datetime;
+    }
+
+
+
     public function renderBigCart()
     {
         $carts = Cart::find()
@@ -398,7 +414,7 @@ class User extends \dektrium\user\models\User
         $return .= "</tr>";
         $return .= "</thead>";
         $return .= "<tbody>";
-        
+
 
         $return .= $retur;
 
