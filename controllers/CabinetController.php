@@ -194,14 +194,14 @@ XML;
 				if (!$category) return false;
 				$categoryIds = $category->getAllChildrenIds();
 				if ($type == 3)
-					$data = Products::find()->where(['category_id' => $categoryIds, 'ooo' => 1, 'flag' => 1, 'is_deleted' => 0])->all();
+					$data = Products::findAll(['category_id' => $categoryIds, 'ooo' => 1, 'flag' => 1, 'is_deleted' => 0]);
 				else
-					$data = Products::find()->where(['category_id' => $categoryIds, 'flag' => 1, 'is_deleted' => 0])->all();
+					$data = Products::findAll(['category_id' => $categoryIds, 'flag' => 1, 'is_deleted' => 0]);
 			} else {
 				if ($type == 3)
-					$data = Products::find()->where(['ooo' => 1, 'flag' => 1, 'is_deleted' => 0])->all();
+					$data = Products::findAll(['ooo' => 1, 'flag' => 1, 'is_deleted' => 0]);
 				else
-					$data = Products::find()->where(['flag' => 1, 'is_deleted' => 0])->all();
+					$data = Products::findAll(['flag' => 1, 'is_deleted' => 0]);
 			}
 			$products = [];
 			//Категория товаров;Наименование;Артикул;Цвет;Размеры;Состав;Товарный знак;К-во в Упак.;Цена;Цена за Уп.;Фото;ID Категории;Ссылка
