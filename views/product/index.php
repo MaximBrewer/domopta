@@ -317,7 +317,7 @@ $next = $model->category->getNextproduct($model->article_index);
                                                             <?php echo Html::activeInput('text', $form_model, 'colors[' . $color . ']', ['class' => 'form-tovar__input input-color', 'min' => 0]) ?>
                                                             <button type="button" class="input-color-plus">+</button>
                                                         </span>
-                                                        <span>
+                                                        <span style="margin-left:.5rem;">
                                                             <?php echo $model->pack_quantity ? 'уп.' : 'шт.'; ?>
                                                         </span>
                                                     </div>
