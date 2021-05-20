@@ -8526,3 +8526,6 @@ img.reg-step2-item-img {
 .t-17 {
   font-size: 17px;
 }
+.mm-navbar>* {
+  justify-content: start;
+}
