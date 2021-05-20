@@ -7,6 +7,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'language' => 'ru',
+    'timeZone' => 'Europe/Moscow',
     'components' => [
         'errorHandler' => [
             'errorAction' => 'site/error',

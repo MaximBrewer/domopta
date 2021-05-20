@@ -21,10 +21,8 @@ class ImportsController extends Controller
 
     public function actionIndex()
     {
-        $s = date(DATE_ATOM, strtotime("-1 months"));
-        $f = date(DATE_ATOM);
-        var_dump($s);
-        var_dump($f);
+        $s = date("Y-m-d H:i:s", strtotime("-1 months"));
+        $f = date("Y-m-d H:i:s");
         $dataProvider = new ActiveDataProvider([
             'query' => User::find()
                 ->select('user.*, (SELECT COUNT(*) FROM imports WHERE imports.user_id=user.id AND datetime BETWEEN \''.$s.'\' AND \''.$f.'\') as imports')

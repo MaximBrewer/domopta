@@ -321,8 +321,8 @@ class User extends \dektrium\user\models\User
 
     public function getImports()
     {
-        $s = date(DATE_ATOM, strtotime("-1 months"));
-        $f = date(DATE_ATOM);
+        $s = date("Y-m-d H:i:s", strtotime("-1 months"));
+        $f = date("Y-m-d H:i:s");
         $sum = Import::find()->where('user_id = ' . $this->id . ' AND datetime BETWEEN \''.$s.'\' AND \''.$f.'\'')->count();
         return $sum;
     }
