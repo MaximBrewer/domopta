@@ -55,7 +55,7 @@ use yii\helpers\Html;
 			[
 				'label' => 'Дата последнего скачивания',
 				'value' => function ($model) {
-					return $model->lastImport;
+					return date("d.m.Y H:i", strtotime($model->lastImport));
 				}
 			],
 		]
