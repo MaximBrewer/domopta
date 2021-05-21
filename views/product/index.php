@@ -240,7 +240,7 @@ $next = $model->category->getNextproduct($model->article_index);
                                 </div>
                             <?php endif; ?>
                         </div>
-                        <div class="tag-tovar-right" style="display:flex;align-items:center;">
+                        <div class="tag-tovar-right">
                             <div class="tag-tovar-btn">
                                 <a href="#" class="tag-tovar-btn__link" style="padding:0;background-color:transparent;border-width:0;" data-id="<?php echo $model->id; ?>" <?php if (Yii::$app->user->isGuest) : ?> onclick="$('#enter').click(); return false;" <?php endif; ?>>
                                     <span class="tag-tovar-btn__icon" style="margin-left:0;">

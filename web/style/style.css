@@ -3239,8 +3239,8 @@ input:-webkit-autofill {
 .tag-tovar-btn__icon {
   display: inline-block;
   position: relative;
-  width: 18px;
-  height: 18px;
+  width: 36px;
+  height: 36px;
   margin-left: 5px;
 }
 .tag-tovar-btn__text {
@@ -3253,8 +3253,8 @@ input:-webkit-autofill {
   display: flex;
   -webkit-transition: all 400ms ease;
   transition: all 400ms ease;
-  width: 18px;
-  height: 18px;
+  width: 36px;
+  height: 36px;
   fill: #24a0c7;
   color: #24a0c7;
 }
@@ -3380,6 +3380,9 @@ input:-webkit-autofill {
 .tovar__help {
   display: none;
 }
+.tag-tovar-right {
+  min-width: 20%;
+}
 @media screen and (max-width: 767px) {
   .tovar-right {
     width: 100%;
@@ -3388,6 +3391,10 @@ input:-webkit-autofill {
   .tovar-left {
     width: 100%;
     margin-bottom: 20px;
+  }
+
+  .tag-tovar-right {
+    min-width: 15%;
   }
 }
 @media screen and (max-width: 479px) {
@@ -8171,11 +8178,11 @@ img.reg-step2-item-img {
 }
 @media screen and (max-width: 767px) {
   .count-photo {
-    width: 60px;
-    height: 60px;
-    padding-top: 22px;
-    font-size: 18px;
-    top: 10px;
+    width: 45px;
+    height: 45px;
+    padding-top: 16px;
+    font-size: 14px;
+    top: 30px;
   }
 }
 @media screen and (max-width: 479px) {
@@ -8526,6 +8533,6 @@ img.reg-step2-item-img {
 .t-17 {
   font-size: 17px;
 }
-.mm-navbar>* {
+.mm-navbar > * {
   justify-content: start;
 }
