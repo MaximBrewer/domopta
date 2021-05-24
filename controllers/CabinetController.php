@@ -172,7 +172,8 @@ XML;
 				}
 				$product->addChild('categoryId', $p[11]);
 				$product->addChild('url', $p[12]);
-				$product->addChild('description', new \DOMCdataSection($p[13]));
+				$description = $product->addChild('description');
+				$description->appendChild(new \DOMCdataSection($p[13]));
 			}
 
 			$content = $yml->asXML();
