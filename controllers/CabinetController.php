@@ -156,12 +156,7 @@ XML;
 				$product->addChild('category', $p[0]);
 				$product->addChild('name', $p[1]);
 				$product->addChild('article', $p[2]);
-				if (!empty($p[3])) {
-					$colors = $product->addChild('colors');
-					foreach ($p[3] as $color) {
-						$colors->addChild('color', $color);
-					}
-				}
+				$product->addChild('color', $p[3]);
 				$product->addChild('size', $p[4]);
 				$product->addChild('consist', $p[5]);
 				$product->addChild('vendor', $p[6]);
@@ -206,25 +201,28 @@ XML;
 			$products = [];
 			//Категория товаров;Наименование;Артикул;Цвет;Размеры;Состав;Товарный знак;К-во в Упак.;Цена;Цена за Уп.;Фото;ID Категории;Ссылка
 			foreach ($data as $product) {
-				$products[] = [
-					htmlspecialchars($product->category->name), 				//0
-					htmlspecialchars($product->name),							//1
-					$product->article_index,									//2
-					array_map(function ($value) {
-						return htmlspecialchars($value);
-					}, explode(",", $product->color)),							//3
-					htmlspecialchars($product->size),							//4
-					htmlspecialchars($product->consist),						//5
-					htmlspecialchars($product->tradekmark),						//6
-					$product->pack_quantity,									//7
-					$type == 2 ? $product->price2 : $product->price,			//8
-					$type == 2 ? $product->pack_price2 : $product->pack_price,	//9
-					array_map(function ($value) {
-						return \Yii::getAlias('@host/upload/product/' . $value->folder . '/' . $value->image);
-					}, $product->pictures),										//10
-					$product->category->id,										//11
-					\Yii::getAlias('@host' . $product->slug),					//12
-				];
+				$colors = array_map(function ($value) {
+					return htmlspecialchars($value);
+				}, explode(",", $product->color));
+				foreach ($colors as $color) {
+					$products[] = [
+						htmlspecialchars($product->category->name), 				//0
+						htmlspecialchars($product->name),							//1
+						$product->article_index,									//2
+						$color,														//3
+						htmlspecialchars($product->size),							//4
+						htmlspecialchars($product->consist),						//5
+						htmlspecialchars($product->tradekmark),						//6
+						$product->pack_quantity,									//7
+						$type == 2 ? $product->price2 : $product->price,			//8
+						$type == 2 ? $product->pack_price2 : $product->pack_price,	//9
+						array_map(function ($value) {
+							return \Yii::getAlias('@host/upload/product/' . $value->folder . '/' . $value->image);
+						}, $product->pictures),										//10
+						$product->category->id,										//11
+						\Yii::getAlias('@host' . $product->slug),					//12
+					];
+				}
 			}
 			$cache->set($key, $products);
 			$products = $cache->get($key);
