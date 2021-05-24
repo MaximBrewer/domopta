@@ -173,7 +173,7 @@ XML;
 				$product->addChild('categoryId', $p[11]);
 				$product->addChild('url', $p[12]);
 				$description = $product->addChild('description');
-				$description->addChild(simplexml_import_dom(new \DOMCdataSection($p[13]))->asXml());
+				$this->addCDataToNode($description, $p[13]);
 			}
 
 			$content = $yml->asXML();
@@ -181,6 +181,15 @@ XML;
 		}
 		return $content;
 	}
+
+    private function addCDataToNode(\SimpleXMLElement &$node, $value = '')
+    {
+        if ($domElement = dom_import_simplexml($node))
+        {
+            $domOwner = $domElement->ownerDocument;
+            $domElement->appendChild($domOwner->createCDATASection("{$value}"));
+        }
+    }
 
 	private function getProducts($slug, $type)
 	{
