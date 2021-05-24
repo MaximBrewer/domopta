@@ -77,6 +77,7 @@ class CabinetController extends Controller
 		return \YII::$app->response->sendContentAsFile($this->catalogToCsv($slug, $user->profile->type), ($slug ? $slug : 'catalog') . "-domopta.ru.csv");
 	}
 
+
 	public function actionXml()
 	{
 		if (\Yii::$app->request->get('flush', false))
@@ -171,8 +172,7 @@ XML;
 				}
 				$product->addChild('categoryId', $p[11]);
 				$product->addChild('url', $p[12]);
-				$description = $product->addChild('description');
-				$description->addCData($p[13]);
+				$product->addChild('description', new \DOMCdataSection($p[13]));
 			}
 
 			$content = $yml->asXML();
