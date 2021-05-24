@@ -171,7 +171,7 @@ XML;
 				}
 				$product->addChild('categoryId', $p[11]);
 				$product->addChild('url', $p[12]);
-				$product->addChild('description', $p[13]);
+				$product->addChild('description', "<![CDATA[$p[13]]]>");
 			}
 
 			$content = $yml->asXML();
