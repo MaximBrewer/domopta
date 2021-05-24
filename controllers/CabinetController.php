@@ -173,7 +173,7 @@ XML;
 				$product->addChild('categoryId', $p[11]);
 				$product->addChild('url', $p[12]);
 				$description = $product->addChild('description');
-				$description->appendChild(new \DOMCdataSection($p[13]));
+				$description->appendChild(simplexml_import_dom(new \DOMCdataSection($p[13]))->asXml());
 			}
 
 			$content = $yml->asXML();
