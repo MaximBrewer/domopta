@@ -171,7 +171,7 @@ XML;
 				}
 				$product->addChild('categoryId', $p[11]);
 				$product->addChild('url', $p[12]);
-				$description = $child = $this->addChild('description');
+				$description = $product->addChild('description');
 				$description->addCData($p[13]);
 			}
 
