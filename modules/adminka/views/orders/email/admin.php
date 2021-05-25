@@ -76,7 +76,7 @@ $types = [
                         </td>
                     </tr>
                     <tr>
-                        <td style="text-decoration: underline;font-size: 18px;">
+                        <td style="text-decoration: underline;font-size: 18px;padding-bottom:12px;">
                             <?php echo $order->user->email; ?>
                         </td>
                     </tr>
