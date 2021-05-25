@@ -97,8 +97,11 @@ $totalDamount = 0;
                                                 foreach ($item->details as $detail) {
                                                     if ($detail->amount > 0) {
                                                         $pprice = \Yii::$app->user->identity->profile->type == 2 ? $item->product->price2 : $item->product->price;
-                                                        $str .= $item->price && $pprice != $item->price ? '<span class="old">' . number_format($item->price, 2, ',<span class="kopeyki">', '') . '</span></span><span>' . number_format($item->product->price, 2, ',<span class="kopeyki">', '') . '</span></span>' : number_format($pprice, 2, ',<span class="kopeyki">', '') . '</span><br />';
+                                                        $str .= $item->price && $pprice != $item->price ? '<span class="old">' . number_format($item->price, 2, ',<span class="kopeyki">', '') . '</span></span><span>' . number_format($item->product->price, 2, ',<span class="kopeyki">', '') . '</span></span>' : number_format($pprice, 2, ',<span class="kopeyki">', '') . '</span>';
+                                                    } else {
+                                                        $str .= '&nbsp;';
                                                     }
+                                                    $str .= '<br />';
                                                 }
                                                 echo $str;
                                                 ?>
