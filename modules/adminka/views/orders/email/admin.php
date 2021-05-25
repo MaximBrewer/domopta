@@ -227,7 +227,7 @@ $types = [
                 if ($cat_name != $cat) :
                     $cat = $cat_name;
                 ?>
-                    <td colspan="11" style="padding: 3px;"><?php
+                    <td colspan="11" style="padding: 8px;"><?php
                                                             //if($cat->parent){
                                                             //echo mb_strtoupper($cat->parent->name) . ' - ';
                                                             //}
