@@ -44,7 +44,7 @@ $types = [
                         <td style="font-size: 24px; font-weight: bold;text-transform:uppercase;">
                             <?php echo $order->user->profile->city; ?>, <?php echo $order->user->profile->region; ?>
                         </td>
-                        <td style="text-align:right;font-size: 18px;">
+                        <td style="text-align:right;font-size: 20px;">
                             Заказ № <?php echo $order->num ?> от <?php echo Yii::$app->formatter->asDate($order->created_at, 'php:d.m.Y') ?>
                         </td>
                     </tr>
@@ -67,7 +67,7 @@ $types = [
                         </td>
                     </tr>
                     <tr>
-                        <td style="font-size: 16px;">
+                        <td style="font-size: 18px;">
                             <?php if ($order->user->profile->type == 3) : ?>
                                 ИНН ООО: <?php echo $order->user->profile->inn; ?>
                             <?php elseif ($order->user->profile->type == 1) : ?>
@@ -76,27 +76,27 @@ $types = [
                         </td>
                     </tr>
                     <tr>
-                        <td style="text-decoration: underline;font-size: 16px;">
+                        <td style="text-decoration: underline;font-size: 18px;">
                             <?php echo $order->user->email; ?>
                         </td>
                     </tr>
                     <?php if ($order->delivery_method) : ?>
                         <tr>
-                            <td style="font-weight:bold;font-size: 16px;">
+                            <td style="font-weight:bold;font-size: 18px;">
                                 <?php echo Order::$methods[$order->delivery_method]; ?>
                             </td>
                         </tr>
                     <?php endif; ?>
                     <?php if ($order->tc && $order->tc != 'other') : ?>
                         <tr>
-                            <td style="font-size: 16px;">
+                            <td style="font-size: 18px;">
                                 <?php echo Order::$tcs[$order->tc]; ?>
                             </td>
                         </tr>
                     <?php endif; ?>
                     <?php if ($order->tc && $order->tc == 'other') : ?>
                         <tr>
-                            <td style="font-size: 16px;">
+                            <td style="font-size: 18px;">
                                 <?php echo $order->tc_name; ?><br>
                                 (<?php if ($order->city) : ?><?php echo $order->city; ?><?php if ($order->region) : ?>, <?php echo $order->region; ?><?php endif; ?><?php endif; ?>)
                             </td>
@@ -104,33 +104,33 @@ $types = [
                     <?php endif; ?>
                     <?php if ($order->locality) : ?>
                         <tr>
-                            <td style="font-size: 16px;">
+                            <td style="font-size: 18px;">
                                 <?php echo $order->locality; ?>
                             </td>
                         </tr>
                     <?php endif; ?>
                     <?php if ($order->fio) : ?>
                         <tr>
-                            <td style="font-size: 16px;">
+                            <td style="font-size: 18px;">
                                 <h3 style="margin:.3rem 0;padding:0;">Получатель заказа:</h3>
                             </td>
                         </tr>
                         <tr>
-                            <td style="font-size: 16px;">
+                            <td style="font-size: 18px;">
                                 <?php echo $order->fio; ?>
                             </td>
                         </tr>
                     <?php endif; ?>
                     <?php if ($order->phone) : ?>
                         <tr>
-                            <td style="font-size: 16px;">
+                            <td style="font-size: 18px;">
                                 <?php echo $order->phone; ?>
                             </td>
                         </tr>
                     <?php endif; ?>
                     <?php if ($order->passport_series) : ?>
                         <tr>
-                            <td style="font-size: 16px;">
+                            <td style="font-size: 18px;">
                                 Паспорт: <?php echo $order->passport_series; ?> <?php echo $order->passport_id; ?>
                             </td>
                         </tr>
