@@ -322,7 +322,7 @@ class User extends \dektrium\user\models\User
     public function getLastCartAdd()
     {
         $cart = Cart::find()->where(['user_id' => $this->id])->orderBy(['created_at' => SORT_DESC])->one();
-        return $cart->created_at;
+        return \Yii::$app->formatter->asDate($cart->created_at, 'php:d.m.Y H:i');
     }
 
     public function getImports()

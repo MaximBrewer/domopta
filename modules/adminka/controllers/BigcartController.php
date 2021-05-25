@@ -64,14 +64,39 @@ class BigcartController extends Controller
 				$ids[] = $id;
 			}
 		}
-		$dataProvider = new ActiveDataProvider([
-			'query' => User::find()->where(['id' => $ids]),
-			'pagination' => false
-		]);
+		$users = User::find()->where(['id' => $ids])->all();
 
 
 		$reader = new \PhpOffice\PhpSpreadsheet\Reader\Html();
-		$spreadsheet = $reader->loadFromString($this->renderPartial('xls', ['dataProvider' => $dataProvider]));
+
+		// return $this->renderPartial('xls', ['users' => $users]);
+		$spreadsheet = $reader->loadFromString($this->renderPartial('xls', ['users' => $users]));
+		$spreadsheet->getDefaultStyle()->getFont()->setSize(10);
+
+		$style = $spreadsheet->getActiveSheet()->getStyle('A1:A' . $spreadsheet->getActiveSheet()->getHighestRow());
+		$style->getAlignment()->setWrapText(true);
+		$style->getFont()->setSize(10);
+		$style = $spreadsheet->getActiveSheet()->getStyle('B1:B' . $spreadsheet->getActiveSheet()->getHighestRow());
+		$style->getAlignment()->setWrapText(true);
+		$style->getFont()->setSize(10);
+		$style = $spreadsheet->getActiveSheet()->getStyle('C1:C' . $spreadsheet->getActiveSheet()->getHighestRow());
+		$style->getAlignment()->setWrapText(true);
+		$style->getFont()->setSize(10);
+		$style = $spreadsheet->getActiveSheet()->getStyle('D1:D' . $spreadsheet->getActiveSheet()->getHighestRow());
+		$style->getAlignment()->setWrapText(true);
+		$style->getFont()->setSize(10);
+		$style = $spreadsheet->getActiveSheet()->getStyle('E1:E' . $spreadsheet->getActiveSheet()->getHighestRow());
+		$style->getAlignment()->setWrapText(true);
+		$style->getFont()->setSize(10);
+		$style = $spreadsheet->getActiveSheet()->getStyle('F1:F' . $spreadsheet->getActiveSheet()->getHighestRow());
+		$style->getAlignment()->setWrapText(true);
+		$style->getFont()->setSize(10);
+		$style = $spreadsheet->getActiveSheet()->getStyle('G1:G' . $spreadsheet->getActiveSheet()->getHighestRow());
+		$style->getAlignment()->setWrapText(true);
+		$style->getFont()->setSize(10);
+		$style = $spreadsheet->getActiveSheet()->getStyle('H1:H' . $spreadsheet->getActiveSheet()->getHighestRow());
+		$style->getAlignment()->setWrapText(true);
+		$style->getFont()->setSize(10);
 
 		try {
 			$writer = new Xlsx($spreadsheet);
