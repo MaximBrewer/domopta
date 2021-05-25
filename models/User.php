@@ -319,6 +319,12 @@ class User extends \dektrium\user\models\User
         return $sum;
     }
 
+    public function getLastCartAdd()
+    {
+        $cart = Cart::find()->where(['user_id' => $this->id])->orderBy(['created_at', SORT_DESC])->one();
+        return $cart->created_at;
+    }
+
     public function getImports()
     {
         $s = date("Y-m-d H:i:s", strtotime("-1 months"));
