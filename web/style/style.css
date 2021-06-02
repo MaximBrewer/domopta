@@ -8351,7 +8351,7 @@ img.reg-step2-item-img {
   margin-left: 0px;
 }
 .cart_popup_minimum .cart_popup_btn {
-  margin-top: 10px;
+  margin-top: 1rem;
   display: flex;
   justify-content: space-between;
 }
