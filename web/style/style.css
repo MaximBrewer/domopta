@@ -3825,6 +3825,12 @@ input:-webkit-autofill {
   right: 2rem;
   bottom: 2rem;
 }
+@media screen and (max-width: 1279px) {
+  .arrows {
+    right: 1.5rem;
+    bottom: 1.5rem;
+  }
+}
 .arrows__list {
   display: -webkit-box;
   display: -ms-flexbox;
