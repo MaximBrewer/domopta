@@ -185,7 +185,7 @@ $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => $model->slug
                     </div>
                     <div class="tag-tovar-right">
                         <div class="tag-tovar-btn">
-                            <a href="#" class="tag-tovar-btn__link"  style="padding:0;background-color:transparent;border-width:0;" data-id="<?php echo $model->id; ?>" <?php if (Yii::$app->user->isGuest) : ?> onclick="$('#enter').click(); return false;" <?php endif; ?>>
+                            <a href="#" class="tag-tovar-btn__link" style="padding:0;background-color:transparent;border-width:0;" data-id="<?php echo $model->id; ?>" <?php if (Yii::$app->user->isGuest) : ?> onclick="$('#enter').click(); return false;" <?php endif; ?>>
                                 <span class="tag-tovar-btn__icon" style="margin-left:0;">
                                     <svg class="tag-tovar-btn__svg tag-tovar-btn__svg_heart1">
                                         <use xlink:href="/img/sprite-sheet.svg#heart1" />
@@ -249,12 +249,17 @@ $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => $model->slug
                                     <ul class="form-tovar__list">
                                         <li class="form-tovar__item">
                                             <label class="form-tovar__label">
-                                                <div class="form-tovar__title">Кол-во:</div>
-                                                <span class="input-count-box">
-                                                    <button type="button" class="input-color-minus">-</button>
-                                                    <?php echo Html::activeInput('text', $form_model, 'colors[default]', ['class' => 'form-tovar__input input-color', 'min' => 0]) ?>
-                                                    <button type="button" class="input-color-plus">+</button>
-                                                </span>
+                                                <div class="form-tovar__title t-17">Кол-во:</div>
+                                                <div class="t-17">
+                                                    <span class="input-count-box">
+                                                        <button type="button" class="input-color-minus">-</button>
+                                                        <?php echo Html::activeInput('text', $form_model, 'colors[default]', ['class' => 'form-tovar__input input-color', 'min' => 0]) ?>
+                                                        <button type="button" class="input-color-plus">+</button>
+                                                    </span>
+                                                    <span style="margin-left:.5rem;">
+                                                        <?php echo $model->pack_quantity ? 'уп.' : 'шт.'; ?>
+                                                    </span>
+                                                </div>
                                             </label>
                                         </li>
                                     </ul>

@@ -339,12 +339,17 @@ $next = $model->category->getNextproduct($model->article_index);
                                     <ul class="form-tovar__list">
                                         <li class="form-tovar__item">
                                             <label class="form-tovar__label">
-                                                <div class="form-tovar__title">Кол-во:</div>
-                                                <span class="input-count-box">
-                                                    <button type="button" class="input-color-minus">-</button>
-                                                    <?php echo Html::activeInput('text', $form_model, 'colors[default]', ['class' => 'form-tovar__input input-color', 'min' => 0]) ?>
-                                                    <button type="button" class="input-color-plus">+</button>
-                                                </span>
+                                                <div class="form-tovar__title t-17">Кол-во:</div>
+                                                <div class="t-17">
+                                                    <span class="input-count-box">
+                                                        <button type="button" class="input-color-minus">-</button>
+                                                        <?php echo Html::activeInput('text', $form_model, 'colors[default]', ['class' => 'form-tovar__input input-color', 'min' => 0]) ?>
+                                                        <button type="button" class="input-color-plus">+</button>
+                                                    </span>
+                                                    <span style="margin-left:.5rem;">
+                                                        <?php echo $model->pack_quantity ? 'уп.' : 'шт.'; ?>
+                                                    </span>
+                                                </div>
                                             </label>
                                         </li>
                                     </ul>
