@@ -248,7 +248,7 @@ $this->params['breadcrumbs'][] = 'Оформление';
           var inputsFromd = document.getElementById('sendOrderForm').getElementsByTagName('input')
 
           for (var i = 0; i < inputsFromd.length; i++) {
-            if (inputsFromd[i].type == 'text') {
+            if (inputsFromd[i].type == 'text' || inputsFromd[i].type == 'email' || inputsFromd[i].type == 'phone' || !inputsFromd[i].type) {
               if (inputsFromd[i].closest('.label-input'))
                 inputsFromd[i].closest('.label-input').classList.remove('error');
             }
@@ -285,7 +285,7 @@ $this->params['breadcrumbs'][] = 'Оформление';
       var inputsFrom = document.getElementById('sendOrderForm').getElementsByTagName('input')
 
       for (var i = 0; i < inputsFrom.length; i++) {
-        inputsFrom[i].addEventListener('input', function(event) {
+        inputsFrom[i].addEventListener('input change', function(event) {
           if (this.closest('.label-input'))
             this.closest('.label-input').classList.remove('error');
         });
