@@ -225,15 +225,15 @@ $totalDamount = 0;
                     <li class="user-btns__item">
                         <a href="/favorites" class="user-btns__link">Избранное</a>
                     </li>
-					<li class="user-btns__item">
-						<a href="/cabinet/password" class="user-btns__link">Смена пароля</a>
-					</li>
-					<li class="user-btns__item">
-						<a href="/cabinet/csv" target="_blank" class="user-btns__link">Скачать каталог (CSV)</a>
-					</li>
-					<li class="user-btns__item">
-						<a href="/cabinet/xml" target="_blank" class="user-btns__link">Скачать каталог (XML)</a>
-					</li>
+                    <li class="user-btns__item">
+                        <a href="/cabinet/password" class="user-btns__link">Смена пароля</a>
+                    </li>
+                    <li class="user-btns__item">
+                        <a href="/cabinet/csv" target="_blank" class="user-btns__link">Скачать каталог (CSV)</a>
+                    </li>
+                    <li class="user-btns__item">
+                        <a href="/cabinet/xml" target="_blank" class="user-btns__link">Скачать каталог (XML)</a>
+                    </li>
                     <li class="user-btns__item">
                         <a class="user-btns__link" href="/site/logout" alt="Выход" title="Выход" data-confirm="Вы действительно хотите выйти?" data-method="get" data-popup="logout_popup">Выход</a>
                     </li>
@@ -319,9 +319,10 @@ $totalDamount = 0;
         <div class="reg-pop-inner reg-pop-inner-cart">
             <div class="cart_popup_minimum py-3 px-4">
                 <h3>
-                    Сумма Вашего заказа меньше необходимой минимальной суммы.<br/>
-                    По Условиям Работы заказы формируются от <?php echo (int)Yii::$app->settings->get('Settings.min' . Yii::$app->user->identity->profile->type); ?> рублей.<br/>
-                    Необходимо увеличить свой заказ, иначе заказ не будет обработан.
+                    Сумма Вашего заказа меньше необходимой минимальной суммы.<br />
+                    По Условиям Работы заказы формируются от <?php echo (int)Yii::$app->settings->get('Settings.min' . Yii::$app->user->identity->profile->type); ?> рублей.<br />
+                    Необходимо увеличить свой заказ.<br />
+                    Иначе, заказ не будет обработан, либо будет пересчитан по Мелооптовой цене.<br />
                 </h3>
                 <div class="cart_popup_btn">
                     <a href="/order" class="btn-black__link">Все равно оформить заказ</a>
