@@ -285,7 +285,11 @@ $this->params['breadcrumbs'][] = 'Оформление';
       var inputsFrom = document.getElementById('sendOrderForm').getElementsByTagName('input')
 
       for (var i = 0; i < inputsFrom.length; i++) {
-        inputsFrom[i].addEventListener('input change', function(event) {
+        inputsFrom[i].addEventListener('input', function(event) {
+          if (this.closest('.label-input'))
+            this.closest('.label-input').classList.remove('error');
+        });
+        inputsFrom[i].addEventListener('keydown', function(event) {
           if (this.closest('.label-input'))
             this.closest('.label-input').classList.remove('error');
         });
