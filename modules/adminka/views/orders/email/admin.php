@@ -87,18 +87,11 @@ $types = [
                             </td>
                         </tr>
                     <?php endif; ?>
-                    <?php if ($order->tc && $order->tc != 'other') : ?>
-                        <tr>
-                            <td style="font-size: 18px;">
-                                <?php echo Order::$tcs[$order->tc]; ?>
-                            </td>
-                        </tr>
-                    <?php endif; ?>
-                    <?php if ($order->tc && $order->tc == 'other') : ?>
+                    <?php if ($order->tc) : ?>
                         <tr>
                             <td style="font-size: 18px;">
                                 <?php echo $order->tc_name; ?><br>
-                                (<?php if ($order->city) : ?><?php echo $order->city; ?><?php if ($order->region) : ?>, <?php echo $order->region; ?><?php endif; ?><?php endif; ?>)
+                                <?php if ($order->city) : ?>(<?php echo $order->city; ?><?php if ($order->region) : ?>, <?php echo $order->region; ?><?php endif; ?>)<?php endif; ?>
                             </td>
                         </tr>
                     <?php endif; ?>
