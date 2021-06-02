@@ -26,7 +26,7 @@ class Order extends \yii\db\ActiveRecord
 
     public static $methods = [
         'delivery' => 'Доставка по Крыму',
-        'sending' => 'Отправка транспортной компанией',
+        'sending' => 'Отправка ТК',
         'pickup' => 'Самовывоз',
     ];
 

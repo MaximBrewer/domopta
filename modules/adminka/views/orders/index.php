@@ -17,7 +17,7 @@ use yii\bootstrap\Modal;
 <?= Html::beginForm(['delete'], 'post', ['id' => 'orders-multiply-form']) ?>
 <?php if (\Yii::$app->user->identity->role == 'admin') : ?>
     <div class="form-group">
-        <?= Html::a('Удалить выбранных', '#', ['class' => 'btn btn-danger', 'data-toggle' => 'modal', 'data-target' => '#delete-modal']) ?>
+        <?= Html::a('Удалить выбранные', '#', ['class' => 'btn btn-danger', 'data-toggle' => 'modal', 'data-target' => '#delete-modal']) ?>
     </div>
 <?php endif; ?>
 <?php echo GridView::widget([
@@ -74,12 +74,12 @@ use yii\bootstrap\Modal;
 ]); ?>
 <?php Modal::begin([
     'id' => 'delete-modal',
-    'header' => 'Удалить выбранне'
+    'header' => 'Удалить выбранные'
 ]) ?>
-<p>Вы действительно хотите удалить выбранне заказы?</p>
+<p>Вы действительно хотите удалить выбранные заказы?</p>
 <div class="form-group">
     <?php echo Html::a('Отмена', '#', ['class' => 'btn btn-default', 'data-dismiss' => 'modal']); ?>
-    <?php echo Html::submitInput('Удалить', ['class' => 'btn btn-success']); ?>
+    <?php echo Html::submitInput('Удалить выбранные', ['class' => 'btn btn-success']); ?>
 </div>
 <?php Modal::end(); ?>
 <?php Html::endForm(); ?>

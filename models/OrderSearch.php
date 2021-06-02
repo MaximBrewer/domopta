@@ -16,6 +16,7 @@ class OrderSearch extends Order
 
     public $name;
     public $ooo;
+    public $page_size = 50;
 
     public function rules()
     {

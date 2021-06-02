@@ -37,12 +37,19 @@ $types = [
                         <?php echo $order->user->profile->lastname ?> <?php echo $order->user->profile->name ?> <?php echo $order->user->profile->surname ?>
                         <span style="font-weight: bold">(<?php echo $types[$order->user->profile->type] ?>)</span>
                     </div>
+                    <div style="font-size: 22px; font-weight: bold;text-transform:uppercase;">
+                        <?php echo $order->user->profile->city; ?>, <?php echo $order->user->profile->region; ?>
+                    </div>
                 <?php endif; ?>
-                <br />
-                <table style="width: 100%;">
+                <table style="width: 100%;margin-top:4px;">
                     <tr>
-                        <td style="font-size: 24px; font-weight: bold;text-transform:uppercase;">
-                            <?php echo $order->user->profile->city; ?>, <?php echo $order->user->profile->region; ?>
+                        <td style="font-size: 20px; font-weight:500;">
+                            <?php
+
+                            $r = str_split($order->user->username, 1);
+
+                            echo $r[0] . $r[1] . " (" . $r[2] . $r[3] . $r[4] . ") " . $r[5] . $r[6] . $r[7] . "-" . $r[8] . $r[9] . "-" . $r[10] . $r[11]
+                            ?>
                         </td>
                         <td style="text-align:right;font-size: 20px;">
                             Заказ № <?php echo $order->num ?> от <?php echo Yii::$app->formatter->asDate($order->created_at, 'php:d.m.Y') ?>
@@ -57,17 +64,7 @@ $types = [
             <td style="padding-right:20px;width:40%;">
                 <table style="vertical-align: top;" width="100%">
                     <tr>
-                        <td style="font-size: 22px; font-weight:500;padding-bottom:8px;">
-                            <?php
-
-                            $r = str_split($order->user->username, 1);
-
-                            echo $r[0] . $r[1] . " (" . $r[2] . $r[3] . $r[4] . ") " . $r[5] . $r[6] . $r[7] . "-" . $r[8] . $r[9] . "-" . $r[10] . $r[11]
-                            ?>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-size: 18px;">
+                        <td style="font-size: 17px;">
                             <?php if ($order->user->profile->type == 3) : ?>
                                 ИНН ООО: <?php echo $order->user->profile->inn; ?>
                             <?php elseif ($order->user->profile->type == 1) : ?>
@@ -76,8 +73,12 @@ $types = [
                         </td>
                     </tr>
                     <tr>
-                        <td style="text-decoration: underline;font-size: 18px;padding-bottom:12px;">
+                        <td style="font-size: 18px;">
                             <?php echo $order->user->email; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: 18px;">
                         </td>
                     </tr>
                     <?php if ($order->delivery_method) : ?>
@@ -104,11 +105,13 @@ $types = [
                             </td>
                         </tr>
                     <?php endif; ?>
+                    <tr>
+                        <td style="font-size: 18px;">
+                        </td>
+                    </tr>
                     <?php if ($order->fio) : ?>
                         <tr>
-                            <td style="font-size: 18px;">
-                                <h3 style="margin:.3rem 0;padding:0;">Получатель заказа:</h3>
-                            </td>
+                            <td style="font-weight:bold;font-size: 18px;">Получатель заказа:</td>
                         </tr>
                         <tr>
                             <td style="font-size: 18px;">
@@ -126,14 +129,14 @@ $types = [
                     <?php if ($order->passport_series) : ?>
                         <tr>
                             <td style="font-size: 18px;">
-                                Паспорт: <?php echo $order->passport_series ?> <?php echo $order->passport_id ?>
+                                Паспорт: <?php echo $order->passport_series; ?> <?php echo $order->passport_id; ?>
                             </td>
                         </tr>
                     <?php endif; ?>
                 </table>
             </td>
             <td style="width:60%;">
-                <table width="100%;" style="border: 1px solid grey; border-collapse: collapse; width: 100%;margin-top:24px;">
+                <table width="100%;" style="font-size: 15px;border: 1px solid grey; border-collapse: collapse; width: 100%;">
                     <tr style="text-align: center; font-weight: bold;">
                         <td style="border: 1px solid grey" width="60%">Категория</td>
                         <td style="border: 1px solid grey" width="20%">Кол-во</td>
@@ -245,9 +248,16 @@ $types = [
         endforeach; ?>
     </table>
     <br />
-    <div align="right"><strong>Итого:&nbsp;&nbsp;&nbsp;</strong><span style="letter-spacing: 1px; font-size: 15px;"><?php echo Products::formatEmailPrice($total, true); ?></span></div>
-    <div align="left">
-        <p>Оптовый Комплекс "ЛЕГКИЙ ВЕТЕР"</p>
-        <p><a href="https://domopta.ru">domopta.ru</a></p>
-    </div>
+    <table style="width:100%;border-collapse:collapse;">
+        <tr style="vertical-align: top;">
+            <td>
+                Оптовый Комплекс "ЛЕГКИЙ ВЕТЕР"<br />
+                <a href="https://domopta.ru">domopta.ru</a>
+            </td>
+            <td style="text-align:right;">
+                <strong>Итого:&nbsp;&nbsp;&nbsp;</strong>
+                <span style="letter-spacing: 1px; font-size: 15px;"><?php echo Products::formatEmailPrice($total, true); ?></span>
+            </td>
+        </tr>
+    </table>
 </div>
