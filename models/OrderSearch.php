@@ -61,7 +61,10 @@ class OrderSearch extends Order
 		              ->orderBy(['created_at' => SORT_DESC]);
 		$dataProvider = new ActiveDataProvider([
 			'query' => $query,
-			'sort' => false
+			'sort' => false,
+            'pagination' => [
+                'pageSize' => $this->page_size ?? 20
+            ],
 		]);
 
 		$this->load($params);
