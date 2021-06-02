@@ -100,7 +100,7 @@ class CabinetController extends Controller
 		$key = ($slug ? $slug : 'catalog') . '.' . $type . '.csv';
 		$content = $cache->get($key);
 		if ($content === false) {
-			$content .= "Категория товаров;Наименование;Артикул;Цвет;Размеры;Состав;Товарный знак;К-во в Упак.;Цена;Цена за Уп.;Фото;ID Категории;Ссылка;Описание" . PHP_EOL;
+			$content .= "Категория товаров;Наименование;Артикул;Цвет;Размеры;Состав;Товарный знак;К-во в Упак.;Цена;Цена за Уп.;Фото;ID Категории;Ссылка;Описание(html);Описание(текст)" . PHP_EOL;
 			$products = $this->getProducts($slug, $type);
 			if (!$products) $this->redirect(['/cabinet']);
 			foreach ($products as $product) {
@@ -236,6 +236,7 @@ XML;
 						$product->category->id,										//11
 						\Yii::getAlias('@host' . $product->slug),					//12
 						htmlspecialchars($product->description),					//13
+						strip_tags($product->description)							//14
 					];
 				}
 			}
