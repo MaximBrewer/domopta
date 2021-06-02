@@ -3858,6 +3858,7 @@ input:-webkit-autofill {
   height: 38px;
   border: 1px solid #b0afaf;
   background: #fff;
+  border-radius: 50%;
 }
 .arrows__svg {
   width: 18px;

@@ -364,7 +364,7 @@ class User extends \dektrium\user\models\User
                 if (isset($cart->product->pictures[0])) $retur .= Html::img($cart->product->pictures[0]->getUrl('thumb'));
                 $retur .= "</td>";
                 $retur .= "<td class=\"text-center\">";
-                $retur .= $cart->product->article_index;
+                $retur .= $cart->product->article;
                 $retur .= "</td>";
                 $retur .= "<td class=\"text-center\">";
                 $retur .= $cart->product->name;

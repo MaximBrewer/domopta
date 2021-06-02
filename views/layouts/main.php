@@ -341,19 +341,19 @@ $this->registerJsFile('https://cdn.jsdelivr.net/npm/suggestions-jquery@20.3.0/di
             <div class="arrows">
                 <ul class="arrows__list">
                     <li class="arrows__item">
-                        <a href="#" class="arrows__link arrows__icon to-top">
+                        <a href="#" class="arrows__link arrows__icon to-top" style="display:none;">
                             <svg class="arrows__svg arrows__svg_arrow1-up">
                                 <use xlink:href="/img/sprite-sheet.svg#arrow1-up" />
                             </svg>
                         </a>
                     </li>
-                    <li class="arrows__item">
+                    <!-- <li class="arrows__item">
                         <a href="#bottom-anchor" class="arrows__link arrows__icon to-down">
                             <svg class="arrows__svg arrows__svg_arrow1-dn">
                                 <use xlink:href="/img/sprite-sheet.svg#arrow1-dn" />
                             </svg>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>

@@ -39,7 +39,7 @@ function cancelOrder(id) {
     $(".cart_popup_overley").css("display", "none");
   });
   $(window).on("load", function () {
-    $(document).on('click', '.close-h', function () {
+    $(document).on("click", ".close-h", function () {
       $(".cart_popup_overley").css("display", "none");
       $(".cancel-href").attr("href", "javascript:;");
       $(".cart_popup.history_cancel").css("display", "none");
@@ -134,22 +134,42 @@ $(document).ready(function () {
       10
     );
   }
+
+  function showHideBtnScroll() {
+    var btn = $(".arrows__link.arrows__icon.to-top");
+    if ($(window).scrollTop() > 300) {
+      btn.show();
+    } else {
+      btn.hide();
+    }
+  }
+  showHideBtnScroll();
+
+  $(window).on("scroll", function () {
+    showHideBtnScroll();
+  });
+
   $(".arrows__link.arrows__icon.to-top").on("click", function (e) {
     e.preventDefault();
-    $("html,body").stop().animate({ scrollTop: 0 }, 500);
+    $("html, body").animate({ scrollTop: 0 }, "300");
   });
-  $(".arrows__link.arrows__icon.to-down").on("click", function (e) {
-    e.preventDefault();
-    var anchor = $(this);
-    $("html, body")
-      .stop()
-      .animate(
-        {
-          scrollTop: $(anchor.attr("href")).offset().top,
-        },
-        777
-      );
-  });
+
+  // $(".arrows__link.arrows__icon.to-top").on("click", function (e) {
+  //   e.preventDefault();
+  //   $("html,body").stop().animate({ scrollTop: 0 }, 500);
+  // });
+  // $(".arrows__link.arrows__icon.to-down").on("click", function (e) {
+  //   e.preventDefault();
+  //   var anchor = $(this);
+  //   $("html, body")
+  //     .stop()
+  //     .animate(
+  //       {
+  //         scrollTop: $(anchor.attr("href")).offset().top,
+  //       },
+  //       777
+  //     );
+  // });
   //------------------------------------------- input-full
   var inputs = document.getElementsByTagName("input");
   for (let i = 0; i < inputs.length; i++) {
@@ -432,14 +452,18 @@ $(document).ready(function () {
   });
   $("body").on("click", "#enter, #enter-btn", function (e) {
     e.preventDefault();
-    typeof apiMobileMenu != 'undefined' && apiMobileMenu && apiMobileMenu.close()
+    typeof apiMobileMenu != "undefined" &&
+      apiMobileMenu &&
+      apiMobileMenu.close();
     $("body").addClass("hidden");
     $(logPop).load("/login/index");
     logPop.classList.toggle("log-pop_flex");
   });
   $("body").on("click", "#reg, #reg2", function (e) {
     e.preventDefault();
-    typeof apiMobileMenu != 'undefined' && apiMobileMenu && apiMobileMenu.close()
+    typeof apiMobileMenu != "undefined" &&
+      apiMobileMenu &&
+      apiMobileMenu.close();
     $(regPop).load("/reg/step1");
     regPop.classList.toggle("reg-pop_flex");
   });
