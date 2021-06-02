@@ -7,5 +7,5 @@
 echo $this->render('email/admin', ['order' => $order]);
 ?>
 <script>
-    // window.print();
+    window.print();
 </script>
