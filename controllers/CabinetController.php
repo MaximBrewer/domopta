@@ -74,7 +74,7 @@ class CabinetController extends Controller
 		$import->type = 1;
 		$import->user_id = $user->id;
 		$import->save();
-		return \YII::$app->response->sendContentAsFile($this->catalogToCsv($slug, $user->profile->type), ($slug ? $slug : 'catalog') . "-domopta.ru.csv");
+		return \YII::$app->response->sendContentAsFile(iconv("UTF_8", "windows-1251", $this->catalogToCsv($slug, $user->profile->type)), ($slug ? $slug : 'catalog') . "-domopta.ru.csv");
 	}
 
 
