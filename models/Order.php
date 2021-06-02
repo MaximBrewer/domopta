@@ -21,7 +21,7 @@ use yii\web\NotFoundHttpException;
 class Order extends \yii\db\ActiveRecord
 {
     public $page_size = 50;
-    
+
     const SCENARIO_PICKUP = 'pickup';
     const SCENARIO_DELIVERY = 'delivery';
     const SCENARIO_SENDING = 'sending';
