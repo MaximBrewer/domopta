@@ -77,8 +77,8 @@ $(document).ready(function () {
     slidesPerView: 2,
     spaceBetween: 10,
     navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
+      nextEl: ".common-next",
+      prevEl: ".common-prev",
     },
     breakpoints: {
       // when window width is >= 480px
@@ -102,7 +102,6 @@ $(document).ready(function () {
   var galleryThumbs = new Swiper(".gallery-thumbs", {
     slidesPerView: 3,
     spaceBetween: 10,
-    loop: true,
     direction: "vertical",
     navigation: {
       nextEl: ".thumbs-next",
@@ -112,10 +111,9 @@ $(document).ready(function () {
   var galleryTop = new Swiper(".gallery-right", {
     direction: "vertical",
     spaceBetween: 10,
-    loop: true,
     navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
+      nextEl: ".gallery-next",
+      prevEl: ".gallery-prev",
     },
     pagination: {
       el: ".count-photo",

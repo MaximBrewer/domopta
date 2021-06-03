@@ -88,12 +88,12 @@ $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => $model->slug
                                             </div>
                                         <?php endforeach; ?>
                                     </div>
-                                    <div class="swiper-button-next">
+                                    <div class="swiper-button-next gallery-next">
                                         <svg class="svg photos-tovar__svg photos-tovar__svg_arrow2-right">
                                             <use xlink:href="/img/sprite-sheet.svg#arrow2-right"></use>
                                         </svg>
                                     </div>
-                                    <div class="swiper-button-prev">
+                                    <div class="swiper-button-prev gallery-prev">
                                         <svg class="svg photos-tovar__svg photos-tovar__svg_arrow2-left">
                                             <use xlink:href="/img/sprite-sheet.svg#arrow2-left"></use>
                                         </svg>
