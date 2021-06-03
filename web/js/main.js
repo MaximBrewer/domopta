@@ -102,6 +102,7 @@ $(document).ready(function () {
   var galleryThumbs = new Swiper(".gallery-thumbs", {
     slidesPerView: 3,
     spaceBetween: 10,
+    loop: true,
     direction: "vertical",
     navigation: {
       nextEl: ".thumbs-next",
@@ -111,6 +112,7 @@ $(document).ready(function () {
   var galleryTop = new Swiper(".gallery-right", {
     direction: "vertical",
     spaceBetween: 10,
+    loop: true,
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
