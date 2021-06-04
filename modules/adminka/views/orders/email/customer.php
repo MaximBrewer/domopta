@@ -94,7 +94,7 @@ $types = [
                                 <?php if ($order->tc && $order->tc != 'other') : ?>
                                     <?php echo Order::$tcs[$order->tc]; ?>
                                     <?php else : ?><?php echo $order->tc_name; ?><?php endif; ?><br>
-                                    <?php if ($order->city) : ?>(<?php echo $order->city; ?><?php if ($order->region) : ?>, <?php echo $order->region; ?><?php endif; ?>)<?php endif; ?>
+                                    <?php if ($order->city) : ?><?php echo $order->city; ?><?php if ($order->region) : ?>, <?php echo $order->region; ?><?php endif; ?><?php endif; ?>
                             </td>
                         </tr>
                     <?php endif; ?>

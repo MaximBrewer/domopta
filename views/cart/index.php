@@ -320,9 +320,10 @@ $totalDamount = 0;
             <div class="cart_popup_minimum py-3 px-4">
                 <h3>
                     Сумма Вашего заказа меньше необходимой минимальной суммы.<br />
-                    По Условиям Работы заказы формируются от <?php echo (int)Yii::$app->settings->get('Settings.min' . Yii::$app->user->identity->profile->type); ?> рублей.<br />
+                    По Условиям Работы заказы формируются<br />
+                    от <?php echo (int)Yii::$app->settings->get('Settings.min' . Yii::$app->user->identity->profile->type); ?> рублей.<br />
                     Необходимо увеличить свой заказ.<br />
-                    Иначе, заказ не будет обработан, либо будет пересчитан по Мелооптовой цене.<br />
+                    Иначе, заказ не будет обработан, либо будет пересчитан по Мелкооптовой цене.<br />
                 </h3>
                 <div class="cart_popup_btn">
                     <a href="/order" class="btn-black__link">Все равно оформить заказ</a>

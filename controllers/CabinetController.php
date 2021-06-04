@@ -227,9 +227,9 @@ XML;
 						htmlspecialchars($product->size),							//4
 						htmlspecialchars($product->consist),						//5
 						htmlspecialchars($product->tradekmark),						//6
-						$product->pack_quantity,									//7
-						$type == 2 ? $product->price2 : $product->price,			//8
-						$type == 2 ? $product->pack_price2 : $product->pack_price,	//9
+						$product->pack_quantity ? $product->pack_quantity : "",		//7
+						number_format($type == 2 ? $product->price2 : $product->price, 2, ".", ""),			//8
+						$product->pack_quantity ? number_format($type == 2 ? $product->pack_price2 : $product->pack_price, 2, ".", "") : "",	//9
 						array_map(function ($value) {
 							return \Yii::getAlias('@host/upload/product/' . $value->folder . '/' . $value->image);
 						}, $product->pictures),										//10

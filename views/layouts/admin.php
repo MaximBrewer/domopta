@@ -41,6 +41,7 @@ AdminAsset::register($this);
         echo Nav::widget([
             'options' => ['class' => 'navbar-nav navbar-right'],
             'items' => [
+                ['label' => 'Сбросить кэш', 'url' => ['/adminka/cache/clear']],
                 ['label' => 'Перейти на сайт', 'url' => ['/site/index'], 'linkOptions' => ['target' => '_blank']],
                 Yii::$app->user->isGuest ? (['label' => 'Вход', 'url' => ['/site/login']]) : ('<li>'
                     . Html::beginForm(['/site/logout'], 'post')
