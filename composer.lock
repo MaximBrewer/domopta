@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "664a2de1b28d1554bd883fbe628ae3e1",
+    "content-hash": "8ddfa79c5eeb9e27c91b493bb979f827",
     "packages": [
         {
             "name": "2amigos/yii2-tinymce-widget",
@@ -2300,8 +2300,8 @@
             "time": "2017-03-17T12:15:17+00:00"
         },
         {
-            "name": "mongosoft/yii2-upload-behavior",
-            "version": "0.2.2",
+            "name": "mohorev/yii2-upload-behavior",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mohorev/yii2-upload-behavior.git",
@@ -2325,6 +2325,7 @@
             "suggest": {
                 "yiisoft/yii2-imagine": "Required to use thumbnails processing with UploadImageBehavior"
             },
+            "default-branch": true,
             "type": "yii2-extension",
             "autoload": {
                 "psr-4": {
@@ -2357,7 +2358,6 @@
                 "issues": "https://github.com/mohorev/yii2-upload-behavior/issues?state=open",
                 "source": "https://github.com/mohorev/yii2-upload-behavior"
             },
-            "abandoned": "mohorev/yii2-upload-behavior",
             "time": "2020-05-15T09:59:57+00:00"
         },
         {
