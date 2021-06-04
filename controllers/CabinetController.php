@@ -74,7 +74,7 @@ class CabinetController extends Controller
 		$import->type = 1;
 		$import->user_id = $user->id;
 		$import->save();
-		return \YII::$app->response->sendContentAsFile(iconv("UTF-8", "windows-1251", $this->catalogToCsv($slug, $user->profile->type)), ($slug ? $slug : 'catalog') . "-domopta.ru.csv");
+		return \YII::$app->response->sendContentAsFile(iconv("UTF-8", "windows-1251", $this->catalogToCsv($slug, $user->profile->type)), ($slug ? $slug : 'catalog') . "-" . date("d.m.Y") . "-domopta.ru.csv");
 	}
 
 
@@ -91,7 +91,7 @@ class CabinetController extends Controller
 		$import->type = 2;
 		$import->user_id = $user->id;
 		$import->save();
-		return \YII::$app->response->sendContentAsFile($this->catalogToXml($slug, $user->profile->type), ($slug ? $slug : 'catalog') . "-domopta.ru.xml");
+		return \YII::$app->response->sendContentAsFile($this->catalogToXml($slug, $user->profile->type), ($slug ? $slug : 'catalog') . "-" . date("d.m.Y") . "-domopta.ru.xml");
 	}
 
 	private function catalogToCsv($slug, $type)
@@ -182,14 +182,13 @@ XML;
 		return $content;
 	}
 
-    private function addCDataToNode(\SimpleXMLElement &$node, $value = '')
-    {
-        if ($domElement = dom_import_simplexml($node))
-        {
-            $domOwner = $domElement->ownerDocument;
-            $domElement->appendChild($domOwner->createCDATASection("{$value}"));
-        }
-    }
+	private function addCDataToNode(\SimpleXMLElement &$node, $value = '')
+	{
+		if ($domElement = dom_import_simplexml($node)) {
+			$domOwner = $domElement->ownerDocument;
+			$domElement->appendChild($domOwner->createCDATASection("{$value}"));
+		}
+	}
 
 	private function getProducts($slug, $type)
 	{
