@@ -3,8 +3,8 @@
 use yii\bootstrap\Nav;
 use app\models\Cart;
 use app\models\User;
-
-$allcarts = Cart::find()->all();
+$count = 0;
+// $allcarts = Cart::find()->all();
 $users = [];
 // foreach ($allcarts as $cart) {
 //     if (!isset($users[$cart->user_id])) {
