@@ -6,19 +6,19 @@ use app\models\User;
 
 $allcarts = Cart::find()->all();
 $users = [];
-foreach ($allcarts as $cart) {
-    if (!isset($users[$cart->user_id])) {
-        $users[$cart->user_id] = 0;
-    }
-    $users[$cart->user_id] += $cart->getSum();
-}
-$count = 0;
-foreach ($users as $id => $sum) {
-    $user = \app\models\User::findOne($id);
-    if ($user && $sum >= 5000) {
-        $count++;
-    }
-}
+// foreach ($allcarts as $cart) {
+//     if (!isset($users[$cart->user_id])) {
+//         $users[$cart->user_id] = 0;
+//     }
+//     $users[$cart->user_id] += $cart->getSum();
+// }
+// $count = 0;
+// foreach ($users as $id => $sum) {
+//     $user = \app\models\User::findOne($id);
+//     if ($user && $sum >= 5000) {
+//         $count++;
+//     }
+// }
 
 $s = date("Y-m-d H:i:s", strtotime("-1 months"));
 $f = date("Y-m-d H:i:s");
