@@ -214,26 +214,28 @@ $next = $model->category->getNextproduct($model->article_index);
                                     </div>
                                 <?php endif; ?>
                             <?php endif; ?>
-                            <?php if (!Yii::$app->user->isGuest && $model->pack_quantity) : ?>
+                            <?php if ($model->pack_quantity) : ?>
                                 <div class="package-tovar tag-tovar__package-tovar">
                                     <ul class="package-tovar__list">
                                         <li class="package-tovar__item">
                                             <span class="package-tovar__text">В упаковке:&nbsp;&nbsp;&nbsp;</span>
                                             <span class="package-tovar__amount"><?php echo $model->pack_quantity ?> <span class="shtuk">шт.</span></span>
                                         </li>
-                                        <?php if (Yii::$app->user->identity->profile->type && Yii::$app->user->identity->profile->name) : ?>
-                                            <?php if (Yii::$app->user->identity->profile->type == 2) : ?>
-                                                <li class="package-tovar__item">
-                                                    <span class="package-tovar__text">Сумма за упаковку: &nbsp;&nbsp;&nbsp;</span>
-                                                    <span class="package-tovar__amount"><?php echo $model::formatPrice($model, ['pack_price2']) ?></span>
-                                                    &#8381;</span>
-                                                </li>
-                                            <?php else : ?>
-                                                <li class="package-tovar__item">
-                                                    <span class="package-tovar__text">Сумма за упаковку: &nbsp;&nbsp;&nbsp;</span>
-                                                    <span class="package-tovar__amount"><?php echo $model::formatPrice($model, ['pack_price']) ?></span>
-                                                    &#8381;</span>
-                                                </li>
+                                        <?php if (!Yii::$app->user->isGuest) : ?>
+                                            <?php if (Yii::$app->user->identity->profile->type && Yii::$app->user->identity->profile->name) : ?>
+                                                <?php if (Yii::$app->user->identity->profile->type == 2) : ?>
+                                                    <li class="package-tovar__item">
+                                                        <span class="package-tovar__text">Сумма за упаковку: &nbsp;&nbsp;&nbsp;</span>
+                                                        <span class="package-tovar__amount"><?php echo $model::formatPrice($model, ['pack_price2']) ?></span>
+                                                        &#8381;</span>
+                                                    </li>
+                                                <?php else : ?>
+                                                    <li class="package-tovar__item">
+                                                        <span class="package-tovar__text">Сумма за упаковку: &nbsp;&nbsp;&nbsp;</span>
+                                                        <span class="package-tovar__amount"><?php echo $model::formatPrice($model, ['pack_price']) ?></span>
+                                                        &#8381;</span>
+                                                    </li>
+                                                <?php endif; ?>
                                             <?php endif; ?>
                                         <?php endif; ?>
                                     </ul>

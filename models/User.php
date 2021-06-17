@@ -378,7 +378,7 @@ class User extends \dektrium\user\models\User
                 $retur .= $row_amount;
                 $retur .= "</td>";
                 $retur .= "<td class=\"text-center text-nowrap\">";
-                $retur .= Products::formatPrice($cart->product->price);
+                $retur .= Products::formatPrice($cart->price);
                 $retur .= "</td>";
                 $retur .= "<td class=\"text-center text-nowrap\">";
                 $retur .= Products::formatPrice($detail->getSum());

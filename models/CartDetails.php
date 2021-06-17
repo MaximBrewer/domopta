@@ -52,12 +52,12 @@ class CartDetails extends \yii\db\ActiveRecord
 
     public function getSum(){
         $quantity = $this->cart->product->pack_quantity?$this->cart->product->pack_quantity:1;
-        return $this->amount * $quantity * $this->cart->product->price;
+        return $this->amount * $quantity * $this->cart->price;
     }
 
     public function getPrice(){
         $quantity = $this->cart->product->pack_quantity?$this->cart->product->pack_quantity:1;
-        return $quantity * $this->cart->product->price;
+        return $quantity * $this->cart->price;
     }
 
 }
