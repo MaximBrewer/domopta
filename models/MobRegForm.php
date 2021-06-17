@@ -55,7 +55,7 @@ class MobRegForm extends Model
 		$phone = str_replace(' ', '', $phone);
 		$phone = str_replace('-', '', $phone);
 
-		$user = User::find()->where(['username' => $phone])->andWhere(['not', ['confirmed_at' => null]])->one();
+		$user = User::find()->where(['username' => $phone])->andWhere(['is not', 'confirmed_at', new \yii\db\Expression('null')])->one();
 		if ($user) {
 			$this->addError('phone', 'Номер телефона уже зарегистрирован <a href="#" class="log-pop__recovery-link2">Забыли пароль?</a>');
 		}

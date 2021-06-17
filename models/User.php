@@ -196,17 +196,19 @@ class User extends \dektrium\user\models\User
     public function createMob()
     {
         if ($this->getIsNewRecord() == false) {
-            throw new \RuntimeException('Calling "' . __CLASS__ . '::' . __METHOD__ . '" on existing user');
+            // throw new \RuntimeException('Calling "' . __CLASS__ . '::' . __METHOD__ . '" on existing user');
         }
 
         $transaction = $this->getDb()->beginTransaction();
 
         try {
 
-            $this->password = $this->password == null && $this->module->enableGeneratingPassword ? Password::generate(8) : $this->password;
-            $this->password_repeat = $this->password;
-
-            $this->trigger(self::BEFORE_CREATE);
+            if ($this->getIsNewRecord()) {
+                $this->password = $this->password == null && $this->module->enableGeneratingPassword ? Password::generate(8) : $this->password;
+                $this->password_repeat = $this->password;
+    
+                $this->trigger(self::BEFORE_CREATE);
+            }
 
             if (!$this->validate()) {
                 $transaction->rollBack();
