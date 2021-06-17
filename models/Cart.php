@@ -98,7 +98,7 @@ class Cart extends \yii\db\ActiveRecord
         if (!$product) return 0;
         $quantity = $product->pack_quantity ? $product->pack_quantity : 1;
         foreach ($this->details as $detail) {
-            $sum += $product->price * $quantity * $detail->amount;
+            $sum += $this->price * $quantity * $detail->amount;
         }
         return $sum;
     }
@@ -109,7 +109,7 @@ class Cart extends \yii\db\ActiveRecord
         $product = Products::findOne(['article_index' => $this->article]);
         $quantity = $product->pack_quantity ? $product->pack_quantity : 1;
         foreach ($this->details as $detail) {
-            $sum += $product->price * $quantity * $detail->amount;
+            $sum += $this->price * $quantity * $detail->amount;
         }
         return Yii::$app->formatter->asCurrency($sum, 'RUR');
     }
