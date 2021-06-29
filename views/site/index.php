@@ -47,6 +47,7 @@ use yii\helpers\Html;
     </div>
 </div>
 
+<?php if (count($news)) { ?>
 <div class="news main__news">
     <div class="container container_dir-col">
         <div class="news-top">
@@ -70,6 +71,7 @@ use yii\helpers\Html;
         </div>
     </div>
 </div>
+<?php } ?>
 <div class="seo-text seo-text__main">
     <div class="container container_dir-col">
         <div class="seo-text__heading">
