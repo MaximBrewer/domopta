@@ -117,7 +117,7 @@ class Order extends \yii\db\ActiveRecord
 
     public function getDetiles()
     {
-        return $this->hasMany(OrderDetails::className(), ['order_id' => 'id'])->where(['flag', 1])->orderBy(['article' => SORT_ASC]);
+        return $this->hasMany(OrderDetails::className(), ['order_id' => 'id'])->where(['flag' => 1])->orderBy(['article' => SORT_ASC]);
     }
 
     public function getSum()
