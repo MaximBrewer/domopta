@@ -117,12 +117,12 @@ class Order extends \yii\db\ActiveRecord
 
     public function getDetiles()
     {
-        return $this->hasMany(OrderDetails::className(), ['order_id' => 'id'])->where(['order_details.flag' => 1])->orderBy(['article' => SORT_ASC]);
+        return $this->hasMany(OrderDetails::className(), ['order_id' => 'id'])->orderBy(['article' => SORT_ASC]);
     }
 
     public function getSum()
     {
-        return $this->getDetiles()->sum('sum');
+        return $this->getDetiles()->where(['order_details.flag' => 1])->sum('sum');
     }
 
     public function getOldSum()
