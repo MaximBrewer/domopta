@@ -16,7 +16,7 @@ $model = new OrderDetailsSearch();
 <?php if (\Yii::$app->user->identity->role == 'admin') : ?>
     <div class="form-group">
         <?php echo Html::a('Печать', ['print', 'id' => $order->id], ['class' => 'btn btn-success', 'target' => '_blank']) ?>
-        <?php echo Html::a('Пересчет цен', ['recount', 'id' => $order->id], ['class' => 'btn btn-success']) ?>
+        <?php echo Html::a('Провести перерасчет', ['recount', 'id' => $order->id], ['class' => 'btn btn-success']) ?>
         <?php echo Html::a('Вернуть к последнему перерасчету', ['recountcancel', 'id' => $order->id], ['class' => 'btn btn-success']) ?>
     </div>
 <?php endif; ?>
