@@ -14,7 +14,7 @@ $types = [
 <table style="font-family: Arial">
     <tr>
         <td>
-            Заказ №<?php echo $order->id ?> от <?php echo Yii::$app->formatter->asDate($order->created_at, 'php:d.m.Y') ?>
+            Заказ №<?php echo $order->num ?> от <?php echo Yii::$app->formatter->asDate($order->created_at, 'php:d.m.Y') ?>
             <br />
             <span style="font-weight: bold; font-size: 24px">
                 <?php echo $order->user->profile->lastname ?> <?php echo $order->user->profile->name ?> <?php echo $order->user->profile->surname ?>

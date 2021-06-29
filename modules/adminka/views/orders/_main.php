@@ -12,7 +12,7 @@ use yii\helpers\Html;
 $model = new OrderDetailsSearch();
 
 ?>
-<h3>Номер заказа: <?php echo $order->id ?></h3>
+<h3>Номер заказа: <?php echo $order->num ?></h3>
 <?php if (\Yii::$app->user->identity->role == 'admin') : ?>
     <div class="form-group">
         <?php echo Html::a('Печать', ['print', 'id' => $order->id], ['class' => 'btn btn-success', 'target' => '_blank']) ?>

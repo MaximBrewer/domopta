@@ -40,7 +40,7 @@ class HistoryController extends Controller
 	public function actionXls($id)
 	{
 		$order = Order::findOne(['id' => $id, 'user_id' => Yii::$app->user->id]);
-		// return Yii::$app->response->sendContentAsFile($this->renderPartial('xls', ['order' => $order]), "Заказ #" . $order->id . ".xls", ['mimeType' => 'application/x-unknown']);
+		// return Yii::$app->response->sendContentAsFile($this->renderPartial('xls', ['order' => $order]), "Заказ #" . $order->num . ".xls", ['mimeType' => 'application/x-unknown']);
 
 		$reader = new \PhpOffice\PhpSpreadsheet\Reader\Html();
 		$spreadsheet = $reader->loadFromString($this->renderPartial('xls', ['order' => $order]));
@@ -50,7 +50,7 @@ class HistoryController extends Controller
 			ob_start();
 			$writer->save('php://output');
 			$content = ob_get_clean();
-			return Yii::$app->response->sendContentAsFile($content, "Заказ-" . $order->id . "-" . date("d") . "-" . date("m") . "-" . date("Y") . ".xlsx", ['mimeType' => 'application/x-unknown']);
+			return Yii::$app->response->sendContentAsFile($content, "Заказ-" . $order->num . "-" . date("d") . "-" . date("m") . "-" . date("Y") . ".xlsx", ['mimeType' => 'application/x-unknown']);
 		} catch (\PhpOffice\PhpSpreadsheet\Writer\Exception $e) {
 			echo $e->getMessage();
 		}

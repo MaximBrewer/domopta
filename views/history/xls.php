@@ -21,7 +21,7 @@ foreach ($order->detiles as $item) {
 <table cellpadding="5" border="1">
 	<thead>
 		<tr>
-			<th style="border: 1px solid black;font-size:14pt;font-weight:bold" colspan="10">Заказ № <?php echo $order->id; ?> от <?php echo date("d.m.Y", $order->created_at); ?></th>
+			<th style="border: 1px solid black;font-size:14pt;font-weight:bold" colspan="10">Заказ № <?php echo $order->num; ?> от <?php echo date("d.m.Y", $order->created_at); ?></th>
 		</tr>
 		<tr>
 			<th style="border: 1px solid black;font-size:12pt;font-weight:bold" align="center">№</th>

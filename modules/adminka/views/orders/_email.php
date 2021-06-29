@@ -12,7 +12,7 @@ $types = [
 <table style="font-family: Arial">
     <tr>
         <td style="font-family: Times New Roman; font-weight: bold">
-            Заказ №<?php echo $order->id ?> от <?php echo Yii::$app->formatter->asDate($order->created_at, 'php:d.m.Y') ?>
+            Заказ №<?php echo $order->num ?> от <?php echo Yii::$app->formatter->asDate($order->created_at, 'php:d.m.Y') ?>
         </td>
     </tr>
     <tr>
