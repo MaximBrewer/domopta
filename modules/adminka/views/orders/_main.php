@@ -155,7 +155,8 @@ class OrderView extends GridView
     ],
     'rowOptions' => function ($model, $key, $index, $grid) {
         return [
-            'style' => !$model->flag ? 'text-decoration:line-through' : ''
+            // 'style' => !$model->flag ? 'text-decoration:line-through' : '',
+            'class' => !$model->flag ? 'absend strikeout' : ''
         ];
     }
 

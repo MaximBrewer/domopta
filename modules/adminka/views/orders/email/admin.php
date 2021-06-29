@@ -218,7 +218,7 @@ $types = [
         <?php
         $old = false;
         foreach ($details as $i => $detail) : ?>
-            <tr>
+            <tr class="line-throw">
 
                 <?php
                 if (!$detail->product->category) {
