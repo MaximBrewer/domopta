@@ -15,6 +15,25 @@ $types = [
     '3' => 'Опт',
 ];
 ?>
+<style>
+    table { border-collapse: collapse; empty-cells: show; }
+
+    td { position: relative; }
+
+    tr.strikeout td:before {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    border-bottom: 1px solid #111;
+    width: 100%;
+    }
+
+    tr.strikeout td:after {
+    content: "\00B7";
+    font-size: 1px;
+    }
+</style>
 <div style="margin:0 auto;max-width:992px;">
     <table style="width: 100%;">
         <tr>
@@ -218,7 +237,7 @@ $types = [
         <?php
         $old = false;
         foreach ($details as $i => $detail) : ?>
-            <tr <?php if(!$detail->flag) { ?>class="strikeout"<?php } ?>>
+            <tr>
 
                 <?php
                 if (!$detail->product->category) {
@@ -236,7 +255,7 @@ $types = [
                                                             echo mb_strtoupper($cat);
                                                             ?></td>
             </tr>
-            <tr>
+            <tr <?php if(!$detail->flag) { ?>class="strikeout"<?php } ?>>
             <?php endif; ?>
             <td align="center"><?php echo $i + 1 ?></td>
             <td style="padding: 3px;"><?php echo $detail->name ?></td>
