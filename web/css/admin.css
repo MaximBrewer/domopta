@@ -139,7 +139,3 @@ tr.strikeout td:after {
   font-size: 1px;
 }
 
-/* Extra styling */
-td { width: 100px; }
-th { text-align: left; }
-

@@ -218,7 +218,7 @@ $types = [
         <?php
         $old = false;
         foreach ($details as $i => $detail) : ?>
-            <tr class="line-throw">
+            <tr <?php if(!$detail->flag) { ?>class="strikeout"<?php } ?>>
 
                 <?php
                 if (!$detail->product->category) {
