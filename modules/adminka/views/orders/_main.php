@@ -95,7 +95,10 @@ class OrderView extends GridView
     'columns' => [
         [
             'attribute' => 'article',
-            'footer' => '<strong>Итого:</strong>'
+            'footer' => '<strong>Итого:</strong>',
+            'value' => function ($model) {
+                return $model->product->article;
+            }
         ],
         'name',
         [
