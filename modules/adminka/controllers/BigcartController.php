@@ -22,22 +22,8 @@ class BigcartController extends Controller
 
 	public function actionIndex()
 	{
-		$allcarts = Cart::find()->all();
-		$users = [];
-		foreach ($allcarts as $cart) {
-			if (!isset($users[$cart->user_id])) {
-				$users[$cart->user_id] = 0;
-			}
-			$users[$cart->user_id] += $cart->getSum();
-		}
-		$ids = [];
-		foreach ($users as $id => $sum) {
-			if ($sum >= 5000) {
-				$ids[] = $id;
-			}
-		}
 		$dataProvider = new ActiveDataProvider([
-			'query' => User::find()->where(['id' => $ids]),
+			'query' => User::find()->where('user.cart_sum >= 5000'),
 			'pagination' => false
 		]);
 		return $this->render('index', ['dataProvider' => $dataProvider]);
