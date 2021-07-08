@@ -345,15 +345,17 @@ class User extends \dektrium\user\models\User
     public function updateCartSum()
     {
         $items = Cart::findAll(['user_id' => $this->id]);
-        $amount = 0;
         $sum = 0;
         foreach ($items as $item) {
             $product = Products::findP(['article_index' => $item->article])->one();
+            echo 'Product - ' . $product->id . PHP_EOL;
             if (!$product) continue;
             $quantity = $product->pack_quantity ? $product->pack_quantity : 1;
+            echo 'quantity - ' . $quantity . PHP_EOL;
             foreach ($item->details as $detail) {
-                $amount += $quantity * $detail->amount;
+                echo 'detail - ' . $detail->id . PHP_EOL;
                 $sum += $product->getUserByIdPrice($this->id) * $quantity * $detail->amount;
+                echo 'price - ' . $product->getUserByIdPrice($this->id) . PHP_EOL;
             }
         }
         $this->cart_sum = $sum;
