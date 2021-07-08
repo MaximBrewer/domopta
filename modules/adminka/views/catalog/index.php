@@ -25,7 +25,7 @@ echo $this->render('../_alert', ['module' => Yii::$app->getModule('user')]);
 
 <div class="row">
     <div class="col-md-3">
-        <?php //echo $this->render('left_menu', ['category_list' => $category_list, 'searchModel' => $searchModel, 'category' => $category]) ?>
+        <?php echo $this->render('left_menu', ['category_list' => $category_list, 'searchModel' => $searchModel, 'category' => $category]) ?>
     </div>
     <div class="col-md-9">
         <?= Html::beginForm(['/adminka/catalog/deletemultiply', 'id' => $category->id], 'post', ['id' => 'deletemultiply-form']) ?>
@@ -86,7 +86,8 @@ echo $this->render('../_alert', ['module' => Yii::$app->getModule('user')]);
                 [
                     'label' => 'Изображение',
                     'value' => function ($model) {
-                        return isset($model->pictures[0]) ? Html::img($model->pictures[0]->getUrl(), ['style' => 'display: block; margin: 0 auto; max-width: 110px; max-height: 85px;']) : '';
+                        $pictures = $model->pictures;
+                        return isset($pictures[0]) ? Html::img($pictures[0]->getUrl(), ['style' => 'display: block; margin: 0 auto; max-width: 110px; max-height: 85px;']) : '';
                     },
                     'format' => 'raw'
                 ],
@@ -100,7 +101,7 @@ echo $this->render('../_alert', ['module' => Yii::$app->getModule('user')]);
                 [
                     'label' => 'Кол-во <br />фото',
                     'value' => function ($model) {
-                        return count($model->pictures);
+                        return $model->countPictures();
                     },
                     'encodeLabel' => false
                 ],

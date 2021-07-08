@@ -103,6 +103,13 @@ class Products extends \yii\db\ActiveRecord
         // return $this->hasMany(ProductsImages::className(), ['product_id' => 'id'])->orderBy('order');
     }
 
+    public function countPictures()
+    {
+        return ProductsImages::find()
+            ->where(['folder' => $this->folder, 'category_id' => $this->category_id])->count();
+        // return $this->hasMany(ProductsImages::className(), ['product_id' => 'id'])->orderBy('order');
+    }
+
     public function getCategory()
     {
         return $this->hasOne(Category::className(), ['id' => 'category_id']);
