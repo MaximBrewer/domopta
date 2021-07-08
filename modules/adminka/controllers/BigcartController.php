@@ -36,23 +36,6 @@ class BigcartController extends Controller
 
 	public function actionXls()
 	{
-		$allcarts = Cart::find()->all();
-		$users = [];
-		foreach ($allcarts as $cart) {
-			if (!isset($users[$cart->user_id])) {
-				$users[$cart->user_id] = 0;
-			}
-			$users[$cart->user_id] += $cart->getSum();
-		}
-		$ids = [];
-		foreach ($users as $id => $sum) {
-			if ($sum >= 5000) {
-				$ids[] = $id;
-			}
-		}
-		$users = User::find()->where(['id' => $ids])->all();
-
-
 		$reader = new \PhpOffice\PhpSpreadsheet\Reader\Html();
 
 		// return $this->renderPartial('xls', ['users' => $users]);
