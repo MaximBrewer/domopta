@@ -4,21 +4,7 @@ use yii\bootstrap\Nav;
 use app\models\Cart;
 use app\models\User;
 
-$allcarts = Cart::find()->all();
-$users = [];
-foreach ($allcarts as $cart) {
-    if (!isset($users[$cart->user_id])) {
-        $users[$cart->user_id] = 0;
-    }
-    $users[$cart->user_id] += $cart->getSum();
-}
-$count = 0;
-foreach ($users as $id => $sum) {
-    $user = \app\models\User::findOne($id);
-    if ($user && $sum >= 5000) {
-        $count++;
-    }
-}
+$count = User::find()->where('user.cart_sum >= 5000')->count();
 
 $s = date("Y-m-d H:i:s", strtotime("-1 months"));
 $f = date("Y-m-d H:i:s");
@@ -27,8 +13,6 @@ $users = User::find()
     ->select('user.*, (SELECT COUNT(*) FROM imports WHERE imports.user_id=user.id AND datetime BETWEEN \'' . $s . '\' AND \'' . $f . '\') as imports')
     ->where('(SELECT COUNT(*) FROM imports WHERE imports.user_id=user.id AND datetime BETWEEN \'' . $s . '\' AND \'' . $f . '\') > 0')
     ->orderBy(['imports' => SORT_DESC])->count();
-
-
 
 ?>
 <div class="container">

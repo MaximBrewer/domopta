@@ -25,7 +25,7 @@ echo $this->render('../_alert', ['module' => Yii::$app->getModule('user')]);
 
 <div class="row">
     <div class="col-md-3">
-        <?php echo $this->render('left_menu', ['category_list' => $category_list, 'searchModel' => $searchModel, 'category' => $category]) ?>
+        <?php //echo $this->render('left_menu', ['category_list' => $category_list, 'searchModel' => $searchModel, 'category' => $category]) ?>
     </div>
     <div class="col-md-9">
         <?= Html::beginForm(['/adminka/catalog/deletemultiply', 'id' => $category->id], 'post', ['id' => 'deletemultiply-form']) ?>

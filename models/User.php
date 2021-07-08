@@ -6,6 +6,7 @@ use app\components\Mailer;
 use app\helpers\Password;
 use yii\db\Exception;
 use yii\bootstrap\Html;
+use Yii;
 
 /**
  * @property Favorite $favorite
@@ -206,7 +207,7 @@ class User extends \dektrium\user\models\User
             if ($this->getIsNewRecord()) {
                 $this->password = $this->password == null && $this->module->enableGeneratingPassword ? Password::generate(8) : $this->password;
                 $this->password_repeat = $this->password;
-    
+
                 $this->trigger(self::BEFORE_CREATE);
             }
 
@@ -331,7 +332,7 @@ class User extends \dektrium\user\models\User
     {
         $s = date("Y-m-d H:i:s", strtotime("-1 months"));
         $f = date("Y-m-d H:i:s");
-        $sum = Import::find()->where('user_id = ' . $this->id . ' AND datetime BETWEEN \''.$s.'\' AND \''.$f.'\'')->count();
+        $sum = Import::find()->where('user_id = ' . $this->id . ' AND datetime BETWEEN \'' . $s . '\' AND \'' . $f . '\'')->count();
         return $sum;
     }
 
@@ -341,6 +342,23 @@ class User extends \dektrium\user\models\User
         return $sum->datetime;
     }
 
+    public function updateCartSum()
+    {
+        $items = Cart::findAll(['user_id' => Yii::$app->user->id]);
+        $amount = 0;
+        $sum = 0;
+        foreach ($items as $item) {
+            $product = Products::findOne(['article_index' => $item->article]);
+            if (!$product) continue;
+            $quantity = $product->pack_quantity ? $product->pack_quantity : 1;
+            foreach ($item->details as $detail) {
+                $amount += $quantity * $detail->amount;
+                $sum += $product->getUserPrice() * $quantity * $detail->amount;
+            }
+        }
+        $this->cart_sum = $sum;
+        $this->save();
+    }
 
 
     public function renderBigCart()

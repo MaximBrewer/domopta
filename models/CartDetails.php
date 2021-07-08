@@ -60,4 +60,18 @@ class CartDetails extends \yii\db\ActiveRecord
         return $quantity * $this->cart->price;
     }
 
+
+    public function afterDelete()
+    {
+        $user = User::findOne($this->cart->user_id);
+        $user->updateCartSum();
+    }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        $user = User::findOne($this->cart->user_id);
+        $user->updateCartSum();
+        parent::afterSave($insert, $changedAttributes);
+    }
+
 }
