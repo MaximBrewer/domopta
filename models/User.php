@@ -344,16 +344,16 @@ class User extends \dektrium\user\models\User
 
     public function updateCartSum()
     {
-        $items = Cart::findAll(['user_id' => Yii::$app->user->id]);
+        $items = Cart::findAll(['user_id' => $this->id]);
         $amount = 0;
         $sum = 0;
         foreach ($items as $item) {
-            $product = Products::findOne(['article_index' => $item->article]);
+            $product = Products::findP(['article_index' => $item->article])->one();
             if (!$product) continue;
             $quantity = $product->pack_quantity ? $product->pack_quantity : 1;
             foreach ($item->details as $detail) {
                 $amount += $quantity * $detail->amount;
-                $sum += $product->getUserPrice() * $quantity * $detail->amount;
+                $sum += $product->getUserByIdPrice($this->id) * $quantity * $detail->amount;
             }
         }
         $this->cart_sum = $sum;

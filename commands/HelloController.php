@@ -26,17 +26,17 @@ class HelloController extends Controller
      */
     public function actionIndex($message = 'hello world')
     {
-		$curl = new Client();
-		$response = $curl->createRequest()
-		                 ->setHeaders([
-			                 'Content-Type: application/json',
-			                 'Accept: application/json',
-			                 'Authorization: Token d1f1cc1d2f8b283837831c90c7f5d8e1b33776da'
-		                 ])
-		                 ->setData(['query' => "910303905016"])
-		                 ->setUrl('https://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/party')
-		                 ->send();
-		$data = $response->data;$lastname = explode(' ',$data['suggestions'][0]['data']['name']['full'])[0];
-        var_dump(mb_strtolower('НовакоВА') === mb_strtolower($lastname));
+		// $curl = new Client();
+		// $response = $curl->createRequest()
+		//                  ->setHeaders([
+		// 	                 'Content-Type: application/json',
+		// 	                 'Accept: application/json',
+		// 	                 'Authorization: Token d1f1cc1d2f8b283837831c90c7f5d8e1b33776da'
+		//                  ])
+		//                  ->setData(['query' => "910303905016"])
+		//                  ->setUrl('https://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/party')
+		//                  ->send();
+		// $data = $response->data;$lastname = explode(' ',$data['suggestions'][0]['data']['name']['full'])[0];
+        // var_dump(mb_strtolower('НовакоВА') === mb_strtolower($lastname));
     }
 }

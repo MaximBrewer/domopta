@@ -23,6 +23,39 @@ $config = [
         'db' => $db,
     ],
     'params' => $params,
+    'modules' => [
+        'user' => [
+            'class' => 'dektrium\user\Module',
+            'enableGeneratingPassword' => true,
+            'controllerMap' => [
+                'admin' => [
+                    'class' => 'app\modules\adminka\controllers\UserController',
+                    'on ' . \dektrium\user\controllers\AdminController::EVENT_BEFORE_ACTION => function ($e) {
+                        $e->action->controller->layout = '@app/views/layouts/admin';
+                    }
+                ],
+                'registration' => [
+                    'class' => \dektrium\user\controllers\RegistrationController::className(),
+                    'on ' . \dektrium\user\controllers\RegistrationController::EVENT_AFTER_CONFIRM => function ($e) {
+                        Yii::$app->user->identity->mailer->sendSuccessMessage(Yii::$app->user->identity);
+                        if (!Yii::$app->user->identity->getIsActive()) {
+                            Yii::$app->session->setFlash('login', Yii::$app->settings->get('Settings.notify_unactive'));
+                        }
+                    }
+                ]
+            ],
+            'modelMap' => [
+                'Profile' => 'app\models\Profile',
+                'User' => 'app\models\User',
+                'RegistrationForm' => 'app\models\RegistrationForm',
+                'LoginForm' => 'app\models\LoginForm'
+            ],
+            'urlRules' => [],
+            'mailer' => [
+                'class' => 'yii\swiftmailer\Mailer'
+            ],
+        ],
+    ],
     'controllerMap' => [
         'migrate' => [
             'class' => 'yii\console\controllers\MigrateController',

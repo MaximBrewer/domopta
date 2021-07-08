@@ -8,6 +8,7 @@ use app\helpers\Inflector;
 use yii\imagine\Image;
 use yii\rbac\ManagerInterface;
 use yii\web\UploadedFile;
+use app\models\User;
 
 /**
  * This is the model class for table "products".
@@ -238,6 +239,12 @@ class Products extends \yii\db\ActiveRecord
         return $query;
     }
 
+    public static function findP()
+    {
+        $query = parent::find();
+        return $query;
+    }
+
     public function afterFind()
     {
         $this->price = number_format($this->price, 2, '.', '');
@@ -287,6 +294,16 @@ class Products extends \yii\db\ActiveRecord
             return $getAttr ? 'price' : $this->price;
         } else {
             return $getAttr ? 'price2' : $this->price2;
+        }
+    }
+
+    public function getUserByIdPrice($id)
+    {
+        $user = User::findOne(['id' => $id]);
+        if ($user->profile->type == 1 || $user->profile->type == 3) {
+            return $this->price;
+        } else {
+            return $this->price2;
         }
     }
 
