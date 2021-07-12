@@ -225,7 +225,6 @@ class User extends \dektrium\user\models\User
 
 
             // $this->password = ($this->password == null && $this->module->enableGeneratingPassword) ? Password::generate(8) : $this->password;
-            // var_dump($this->password);die;
 
             $this->trigger(self::AFTER_CREATE);
 
@@ -278,7 +277,6 @@ class User extends \dektrium\user\models\User
     {
         $cnt = 0;
         foreach ($this->favorite as $favorite) {
-            // var_dump($favorite->product);
             if ($favorite->product && !$favorite->product->is_deleted) ++$cnt;
         }
 
@@ -348,14 +346,10 @@ class User extends \dektrium\user\models\User
         $sum = 0;
         foreach ($items as $item) {
             $product = Products::findP(['article_index' => $item->article])->one();
-            echo 'Product - ' . $product->id . PHP_EOL;
             if (!$product) continue;
             $quantity = $product->pack_quantity ? $product->pack_quantity : 1;
-            echo 'quantity - ' . $quantity . PHP_EOL;
             foreach ($item->details as $detail) {
-                echo 'detail - ' . $detail->id . PHP_EOL;
                 $sum += $product->getUserByIdPrice($this->id) * $quantity * $detail->amount;
-                echo 'price - ' . $product->getUserByIdPrice($this->id) . PHP_EOL;
             }
         }
         $this->cart_sum = $sum;

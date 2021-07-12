@@ -47,7 +47,6 @@ class Vk extends ActiveRecord {
 			}
 		}
 //		$user_name_vk  = explode("k.com/id", $this->vk_http);
-////print_r($user_name_vk); die();
 //		if (count($user_name_vk) == 1 ){ // Если VK аккаунт вида https://vk.com/ivan_ivanov
 //			$domain_arr  = explode("vk.com/", $this->vk_http);
 //			$domain = $domain_arr['1'];
@@ -122,7 +121,6 @@ class Vk extends ActiveRecord {
 			$url = 'https://api.vk.com/method/photos.getMessagesUploadServer?' . http_build_query($request_params);
 			$result = json_decode(file_get_contents($url), true);
 
-			//print_r($result);
 			$curl =curl_init();
 			//$file = __DIR__.'/gala.png';
 			$file = $new_file_name;
@@ -138,7 +136,6 @@ class Vk extends ActiveRecord {
 			$responce_image = json_decode(curl_exec($curl), true);
 			curl_close($curl);
 
-			//print_r($responce_image);
 
 			$request_params =[
 				'server'=>$responce_image['server'],

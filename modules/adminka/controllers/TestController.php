@@ -36,7 +36,6 @@ class TestController extends Controller
         //		if(!isset($data['suggestions'])){
         //
         //		}
-        print_r($response->data);
     }
 
     public function actionPhoto()

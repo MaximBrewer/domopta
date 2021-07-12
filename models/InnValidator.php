@@ -20,11 +20,11 @@ class InnValidator
 	{
 		if ($profile->type == 2) return true;
 
-		// $p = Profile::findOne(['inn' => $profile->inn]);
-		// if ($p) {
-		// 	$profile->addError('inn', 'Извините, но данный ИНН / ОГРН ' . $profile->inn . ' уже зарегистрирован на сайте. <br /> Возможно, это ошибка. <br /> Для решения данного вопроса обратитесь в Администрацию, по указанным телефонам на сайте.');
-		// 	return false;
-		// }
+		$p = Profile::findOne(['inn' => $profile->inn]);
+		if ($p) {
+			$profile->addError('inn', 'Извините, но данный ИНН / ОГРН ' . $profile->inn . ' уже зарегистрирован на сайте. <br /> Возможно, это ошибка. <br /> Для решения данного вопроса обратитесь в Администрацию, по указанным телефонам на сайте.');
+			return false;
+		}
 
 		// $curl = new Client();
 		// $response = $curl->createRequest()
@@ -43,7 +43,6 @@ class InnValidator
 		// 	return false;
 		// }
 		// $type = $data['suggestions'][0]['data']['type'];
-		//		echo '<pre>' . print_r($data['suggestions'][0]['data'], 1) . '</pre>'; die();
 		// if ($type == 'INDIVIDUAL') {
 		// 	$lastname = $data['suggestions'][0]['data']['fio']['surname'];
 		// 	if (mb_strtolower($profile->lastname) != mb_strtolower($lastname)) {

@@ -13,7 +13,6 @@ use app\models\Products;
 use yii\widgets\MaskedInput;
 
 // $this->registerJsFile('/js/cart.js', ['depends' => \yii\web\JqueryAsset::className()]);
-// var_dump($order->errors);
 $this->params['breadcrumbs'][] = 'Оформление';
 ?>
 

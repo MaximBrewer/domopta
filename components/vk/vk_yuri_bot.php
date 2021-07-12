@@ -7,7 +7,6 @@ if (!function_exists('curl_file_create')) {
     }
 }
 $user_name_vk  = explode("k.com/id", $_POST['vk_user_id']);
-//print_r($user_name_vk); die();
 if (count($user_name_vk) == 1 ){ // Если VK аккаунт вида https://vk.com/ivan_ivanov
 	$domain_arr  = explode("vk.com/", $_POST['vk_user_id']);
 	$domain = $domain_arr['1'];
@@ -35,7 +34,6 @@ if ($_FILES['upload_file']['error'] != 0){ // если не прикреплен
 } 
 elseif ($_FILES['upload_file']['error'] == 0) { // если в приложении идет картинка
 	
-	print_r($_FILES);
 	
 	// ограничение размера файла
     $limit_size = 3*1024*1024; // 3 Mb
@@ -82,7 +80,6 @@ elseif ($_FILES['upload_file']['error'] == 0) { // если в приложен�
 	$url = 'https://api.vk.com/method/photos.getMessagesUploadServer?' . http_build_query($request_params);
 	$result = json_decode(file_get_contents($url), true);
 	
-	//print_r($result);
 		$curl =curl_init();
 		//$file = __DIR__.'/gala.png'; 
 		$file = $new_file_name;
@@ -97,8 +94,6 @@ elseif ($_FILES['upload_file']['error'] == 0) { // если в приложен�
 		
 		$responce_image = json_decode(curl_exec($curl), true);
 		curl_close($curl);
-		
-		//print_r($responce_image);
 		
 		$request_params =[
 		'server'=>$responce_image['server'],

@@ -149,7 +149,6 @@ class Order extends \yii\db\ActiveRecord
 
             if ($order->validate() && $order->save()) {
                 foreach ($cart as $item) {
-                    //            	print_r($item->product); die();
                     foreach ($item->details as $detail) {
                         if ($detail->amount > 0) {
                             $order_details = new OrderDetails();

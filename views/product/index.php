@@ -39,7 +39,6 @@ $this->params['breadcrumbs'][] = ['label' => $model->name, 'class' => 'breadcrum
 //                slidesToShow: 6,
 //                slidesToScroll: 2
 //            });", \yii\web\View::POS_READY);
-// var_dump($model);
 $prev = $model->category->getPrevproduct($model->article_index);
 $next = $model->category->getNextproduct($model->article_index);
 ?>

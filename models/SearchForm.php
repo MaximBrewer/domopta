@@ -36,9 +36,7 @@ class SearchForm extends Model
             ->orWhere(['like', 'article_index', $trans])
             ->andWhere(['is_deleted' => 0])
             ->orderBy('article_index');
-
-        // var_dump($query->prepare(\Yii::$app->db->queryBuilder)->createCommand()->rawSql);
-        // die;
+            
         if (!\Yii::$app->user->isGuest && \Yii::$app->user->identity->flags == 1) {
             $query->andWhere(['ooo' => 1]);
         }

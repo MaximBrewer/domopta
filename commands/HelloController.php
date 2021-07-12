@@ -37,6 +37,5 @@ class HelloController extends Controller
 		//                  ->setUrl('https://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/party')
 		//                  ->send();
 		// $data = $response->data;$lastname = explode(' ',$data['suggestions'][0]['data']['name']['full'])[0];
-        // var_dump(mb_strtolower('НовакоВА') === mb_strtolower($lastname));
     }
 }
