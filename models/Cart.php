@@ -121,9 +121,6 @@ class Cart extends \yii\db\ActiveRecord
 
     public function afterDelete()
     {
-        $models = $this->details;
-        foreach ($models as $model) {
-            $model->delete();
-        }
+        \Yii::$app->db->createCommand('DELETE FROM cart_details WHERE cart_id = :id')->bindValue(':id' ,$this->id)->execute();
     }
 }

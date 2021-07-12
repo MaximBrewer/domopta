@@ -174,7 +174,6 @@ class Order extends \yii\db\ActiveRecord
                             $order_details->flag = 1;
                             $order_details->save();
                         }
-                        $detail->delete();
                     }
                     $item->delete();
                 }
