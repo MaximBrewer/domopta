@@ -142,51 +142,55 @@ class Order extends \yii\db\ActiveRecord
     public static function create($order, $cart)
     {
         if ($cart) {
-            $order->user_id = Yii::$app->user->id;
+            $user = User::findOne(Yii::$app->user->id);
+            $order->user_id = $user->id;
             $order->created_at = time();
             $mxOrder = Order::find()->where(['>', 'created_at', mktime(0, 0, 0, 1, 1, date("Y"))])->max('num');
             $order->num = (int) $mxOrder + 1;
 
+            $type = $user->profile->type;
+            
             if ($order->validate() && $order->save()) {
                 foreach ($cart as $item) {
+                    $product = $item->product;
                     foreach ($item->details as $detail) {
                         if ($detail->amount > 0) {
                             $order_details = new OrderDetails();
                             $order_details->order_id = $order->id;
                             $order_details->article = $item->article;
-                            $order_details->name = $item->product->name;
+                            $order_details->name = $product->name;
                             $order_details->color = $detail->color;
                             $order_details->memo = $item->memo;
                             $order_details->amount = $detail->amount;
-                            if (Yii::$app->user->identity->profile->type == 1) {
-                                $order_details->price = $item->product->price;
-                            } elseif (Yii::$app->user->identity->profile->type == 2) {
-                                $order_details->price = $item->product->price2;
+                            if ($type == 1) {
+                                $order_details->price = $product->price;
+                            } elseif ($type == 2) {
+                                $order_details->price = $product->price2;
                             } else {
-                                $order_details->price = $item->product->price;
+                                $order_details->price = $product->price;
                             }
-                            $quantity = $item->product->pack_quantity ? $item->product->pack_quantity : 1;
+                            $quantity = $product->pack_quantity ? $product->pack_quantity : 1;
                             $order_details->sum = $order_details->price * $quantity * $detail->amount;
                             $order_details->flag = 1;
                             $order_details->save();
                         }
-                        $detail->delete();
+                        // $detail->delete();
                     }
-                    $item->delete();
+                    // $item->delete();
                 }
-
                 $controller = new Controller('new', Module::className());
                 $body = $controller->renderPartial('@app/modules/adminka/views/orders/email/admin', ['order' => $order, 'status' => 'new']);
                 $model = new Self;
                 $model->mailer->sendEmail(Yii::$app->settings->get('Settings.adminEmail'), 'Уведомление о новом заказе', $body);
                 $model->mailer->sendEmail(Yii::$app->settings->get('Settings.sellEmail'), 'Уведомление о новом заказе', $body);
-                // $model->mailer->sendEmail('pimax1978@icloud.com', 'Новый заказ', $body);
+                $model->mailer->sendEmail('pimax1978@icloud.com', 'Новый заказ', $body);
 
-                if ($order->user->unconfirmed_email == 1) {
+                if ($user->unconfirmed_email == 1) {
                     $body = $controller->renderPartial('@app/modules/adminka/views/orders/email/customer', ['order' => $order, 'status' => 'new']); // @todo сделать письмо
-                    $model->mailer->sendEmail($order->user->email, 'Ваш Заказ успешно оформлен и отправлен в Отдел Заказов', $body);
+                    $model->mailer->sendEmail($user->email, 'Ваш Заказ успешно оформлен и отправлен в Отдел Заказов', $body);
                     // $model->mailer->sendEmail('pimax1978@icloud.com', 'Ваш Заказ успешно оформлен и отправлен в Отдел Заказов', $body);
                 }
+
                 return true;
             } else {
                 return $order->errors;

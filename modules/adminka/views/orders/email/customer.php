@@ -14,6 +14,7 @@ $types = [
     '2' => 'Мелкий Опт',
     '3' => 'Опт',
 ];
+$profile = $order->user->profile;
 ?>
 <div style="margin:0 auto;max-width:992px;">
     <table style="width: 100%;">
@@ -24,21 +25,21 @@ $types = [
                         Данный заказ отменён
                     </div>
                 <?php endif; ?>
-                <?php if ($order->user->profile->type == 3) : ?>
+                <?php if ($profile->type == 3) : ?>
                     <div style="font-size: 24px; font-weight: bold;text-transform:uppercase;">
-                        ООО <?php echo str_replace("ООО", "", $order->user->profile->organization_name); ?>
-                        <span style="font-weight: bold">(<?php echo $types[$order->user->profile->type] ?>)</span>
+                        ООО <?php echo str_replace("ООО", "", $profile->organization_name); ?>
+                        <span style="font-weight: bold">(<?php echo $types[$profile->type] ?>)</span>
                     </div>
                     <div style="font-size: 21px; font-weight: bold;text-transform:uppercase;">
-                        <?php echo $order->user->profile->lastname ?> <?php echo $order->user->profile->name ?> <?php echo $order->user->profile->surname ?>
+                        <?php echo $profile->lastname ?> <?php echo $profile->name ?> <?php echo $profile->surname ?>
                     </div>
                 <?php else : ?>
                     <div style="font-size: 24px; font-weight: bold;text-transform:uppercase;">
-                        <?php echo $order->user->profile->lastname ?> <?php echo $order->user->profile->name ?> <?php echo $order->user->profile->surname ?>
-                        <span style="font-weight: bold">(<?php echo $types[$order->user->profile->type] ?>)</span>
+                        <?php echo $profile->lastname ?> <?php echo $profile->name ?> <?php echo $profile->surname ?>
+                        <span style="font-weight: bold">(<?php echo $types[$profile->type] ?>)</span>
                     </div>
                     <div style="font-size: 22px; font-weight: bold;text-transform:uppercase;">
-                        <?php echo $order->user->profile->city; ?>, <?php echo $order->user->profile->region; ?>
+                        <?php echo $profile->city; ?>, <?php echo $profile->region; ?>
                     </div>
                 <?php endif; ?>
                 <table style="width: 100%;margin-top:4px;">
@@ -65,10 +66,10 @@ $types = [
                 <table style="vertical-align: top;" width="100%">
                     <tr>
                         <td style="font-size: 17px;">
-                            <?php if ($order->user->profile->type == 3) : ?>
-                                ИНН ООО: <?php echo $order->user->profile->inn; ?>
-                            <?php elseif ($order->user->profile->type == 1) : ?>
-                                ИНН ИП: <?php echo $order->user->profile->inn; ?>
+                            <?php if ($profile->type == 3) : ?>
+                                ИНН ООО: <?php echo $profile->inn; ?>
+                            <?php elseif ($profile->type == 1) : ?>
+                                ИНН ИП: <?php echo $profile->inn; ?>
                             <?php endif; ?>
                         </td>
                     </tr>
@@ -148,11 +149,11 @@ $types = [
                     $total_o = 0;
                     $total_t = 0;
                     foreach ($details as $detail) {
-                        //$cat_name = $detail->product->category->parent?$detail->product->category->parent->name . ' - ':'';
-                        if (!$detail->product->category) {
+                        //$cat_name = $dproduct->category->parent?$dproduct->category->parent->name . ' - ':'';
+                        if (!$dproduct->category) {
                             $cat_name = 'Без категории';
                         } else {
-                            $cat_name = $detail->product->category->name;
+                            $cat_name = $dproduct->category->name;
                         }
 
 
@@ -163,10 +164,10 @@ $types = [
                                 'sum' => 0
                             ];
                         }
-                        $arr[$cat_name]['amount'] = $arr[$cat_name]['amount'] + ($detail->amount * ($detail->product->pack_quantity ? $detail->product->pack_quantity : 1));
+                        $arr[$cat_name]['amount'] = $arr[$cat_name]['amount'] + ($detail->amount * ($dproduct->pack_quantity ? $dproduct->pack_quantity : 1));
                         $arr[$cat_name]['sum'] = $arr[$cat_name]['sum'] + $detail->sum;
                         $total += $detail->sum;
-                        if ($detail->product->ooo) {
+                        if ($dproduct->ooo) {
                             $total_o += $detail->sum;
                         } else {
                             $total_t += $detail->sum;
@@ -206,14 +207,16 @@ $types = [
         <?php $cat = ''; ?>
         <?php
         $old = false;
+        $utype = $profile->type;
+        $dproduct = $detail->product;
         foreach ($details as $i => $detail) : ?>
             <tr>
 
                 <?php
-                if (!$detail->product->category) {
+                if (!$dproduct->category) {
                     $cat_name = "Без категории";
                 } else {
-                    $cat_name = $detail->product->category->name;
+                    $cat_name = $dproduct->category->name;
                 }
                 if ($cat_name != $cat) :
                     $cat = $cat_name;
@@ -230,14 +233,14 @@ $types = [
             <td align="center"><?php echo $i + 1 ?></td>
             <td style="padding: 3px;"><?php echo $detail->name ?></td>
 
-            <td><b style="font-size: 13px;"><?php echo $detail->product->article ?></b></td>
+            <td><b style="font-size: 13px;"><?php echo $dproduct->article ?></b></td>
             <td><?php echo $detail->color == 'default' ? '' : $detail->color; ?></td>
             <td style="ont-weight:bold;"><?php if ($old != $detail->order_id . '___' . $detail->article) echo $detail->memo ?></td>
-            <td align="center"><?php echo $detail->product->pack_quantity ? $detail->product->pack_quantity : "" ?></td>
-            <?php if (Yii::$app->user->identity->profile->type == 2) : ?>
-                <td align="center"><?php echo (int) $detail->product->pack_price2 ? Products::formatEmailPrice($detail->product->pack_price2) : ''; ?></td>
+            <td align="center"><?php echo $dproduct->pack_quantity ? $dproduct->pack_quantity : "" ?></td>
+            <?php if ($utype == 2) : ?>
+                <td align="center"><?php echo (int) $dproduct->pack_price2 ? Products::formatEmailPrice($dproduct->pack_price2) : ''; ?></td>
             <?php else : ?>
-                <td align="center"><?php echo (int) $detail->product->pack_price ? Products::formatEmailPrice($detail->product->pack_price) : ''; ?></td>
+                <td align="center"><?php echo (int) $dproduct->pack_price ? Products::formatEmailPrice($dproduct->pack_price) : ''; ?></td>
             <?php endif; ?>
             <td align="center"><?php echo Products::formatEmailPrice($detail->price); ?></td>
             <td align="center" style="font-weight: bold;"><?php echo $detail->amount ?></td>

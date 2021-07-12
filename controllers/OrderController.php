@@ -45,13 +45,14 @@ class OrderController extends Controller
 		if (empty($cart)) return $this->redirect('/');
 
 		foreach ($cart as $item) {
-			if (!$item->product)
+			$product = $item->product;
+			if (!$product)
 				return $this->redirect('/cart');
-			foreach ($item->details as $detail) {
-				if ($detail->amount > 0) {
-					if (!$item->product->flag) {
-						return $this->redirect('/cart');
-					} elseif ($detail->color != 'default' && !$item->product->hasColor($detail->color)) {
+			if (!$product->flag) {
+				return $this->redirect('/cart');
+				foreach ($item->details as $detail) {
+					if ($detail->amount > 0) {
+					} elseif ($detail->color != 'default' && !$product->hasColor($detail->color)) {
 						return $this->redirect('/cart');
 					}
 				}
@@ -60,13 +61,6 @@ class OrderController extends Controller
 
 		if ($cart) {
 			$order = new Order();
-			$profile = Profile::find()->where(['user_id' => Yii::$app->user->id])->one();
-			$user = User::find()->where(['id' => Yii::$app->user->id])->one();
-			$profile = $user->profile;
-			// $order->fio = $profile->lastname . ' ' . $profile->name . ' ' . $profile->surname;
-			// $order->phone = $user->username;
-			// $order->city = $profile->city;
-			// $order->region = $profile->region;
 			if ($request->post('delivery_method')) {
 				$order->scenario = $request->post('delivery_method');
 				$order->delivery_method = $request->post('delivery_method');
