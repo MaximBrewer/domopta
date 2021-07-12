@@ -174,9 +174,9 @@ class Order extends \yii\db\ActiveRecord
                             $order_details->flag = 1;
                             $order_details->save();
                         }
-                        // $detail->delete();
+                        $detail->delete();
                     }
-                    // $item->delete();
+                    $item->delete();
                 }
                 $controller = new Controller('new', Module::className());
                 $body = $controller->renderPartial('@app/modules/adminka/views/orders/email/admin', ['order' => $order, 'status' => 'new']);
