@@ -149,6 +149,7 @@ $profile = $order->user->profile;
                     $total_o = 0;
                     $total_t = 0;
                     foreach ($details as $detail) {
+                        $dproduct = $detail->product;
                         //$cat_name = $dproduct->category->parent?$dproduct->category->parent->name . ' - ':'';
                         if (!$dproduct->category) {
                             $cat_name = 'Без категории';
@@ -208,8 +209,8 @@ $profile = $order->user->profile;
         <?php
         $old = false;
         $utype = $profile->type;
-        $dproduct = $detail->product;
-        foreach ($details as $i => $detail) : ?>
+        foreach ($details as $i => $detail) :
+            $dproduct = $detail->product; ?>
             <tr>
 
                 <?php
