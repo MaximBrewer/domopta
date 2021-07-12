@@ -35,7 +35,12 @@ use yii\bootstrap\Modal;
             'class' => ActionColumn::className(),
             'template' => '{update}',
         ],
-        'id',
+        [
+            'attribute' => 'id',
+            'value' => function ($model) {
+                return (string) $model->num;
+            },
+        ],
         [
             'label' => 'ФИО',
             'value' => function ($model) {
