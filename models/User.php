@@ -351,6 +351,7 @@ class User extends \dektrium\user\models\User
             $quantity = $product->pack_quantity ? $product->pack_quantity : 1;
             foreach ($item->details as $detail) {
                 // var_dump($detail);
+                var_dump($product->id);
                 var_dump($product->getUserByIdPrice($this->id));
                 var_dump($quantity);
                 var_dump($detail->amount);
