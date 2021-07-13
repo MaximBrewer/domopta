@@ -19,20 +19,18 @@ use yii\bootstrap\Alert;
 		<a href="/adminka/bigcart/xls" class="btn btn-success">Реестр Корзина от 3000 (XLS)</a>
 	</div>
 
-	<?php if ($module->enableFlashMessages) : ?>
-		<div class="row">
-			<div class="col-xs-12">
-				<?php foreach (Yii::$app->session->getAllFlashes() as $type => $message) : ?>
-					<?php if (in_array($type, ['success', 'danger', 'warning', 'info'])) : ?>
-						<?= Alert::widget([
-							'options' => ['class' => 'alert-dismissible alert-' . $type],
-							'body' => is_array($message) ? $message[0] : $message
-						]) ?>
-					<?php endif ?>
-				<?php endforeach ?>
-			</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<?php foreach (Yii::$app->session->getAllFlashes() as $type => $message) : ?>
+				<?php if (in_array($type, ['success', 'danger', 'warning', 'info'])) : ?>
+					<?= Alert::widget([
+						'options' => ['class' => 'alert-dismissible alert-' . $type],
+						'body' => is_array($message) ? $message[0] : $message
+					]) ?>
+				<?php endif ?>
+			<?php endforeach ?>
 		</div>
-	<?php endif ?>
+	</div>
 
 	<div class="nouse">
 		<?php echo GridView::widget([
