@@ -84,10 +84,10 @@ use yii\bootstrap\Alert;
 					'class' => ActionColumn::className(),
 					'template' => '{view} {order}',
 					'buttons' => [
-						'view' => function ($url, $model, $key) use ($category) {
+						'view' => function ($url, $model, $key) {
 							return Html::a("Смотреть содержимое корзины", ['/adminka/bigcart/cart', 'id' => $model->id], ['class' => 'btn btn-primary btn-sm']);
 						},
-						'order' => function ($url, $model, $key) use ($category) {
+						'order' => function ($url, $model, $key) {
 							return Html::a("Оформить заказ", ['/adminka/bigcart/order', 'id' => $model->id], ['class' => 'btn btn-primary btn-sm']);
 						},
 					]
