@@ -346,7 +346,7 @@ class User extends \dektrium\user\models\User
         $sum = 0;
         foreach ($items as $item) {
             // var_dump($item);
-            $product = Products::findP(['article_index' => $item->article])->one();
+            $product = Products::findP()->where(['article_index' => $item->article])->one();
             var_dump($product->article_index);
             var_dump($item->article);
             if (!$product) continue;
