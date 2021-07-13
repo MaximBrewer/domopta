@@ -7,7 +7,7 @@ use yii\helpers\Html;
 ?>
 <div class="container">
 	<div class="text-right">
-		<a href="/adminka/bigcart/xls" class="btn btn-success">Реестр Корзина от 5000 (XLS)</a>
+		<a href="/adminka/bigcart/xls" class="btn btn-success">Реестр Корзина от 3000 (XLS)</a>
 	</div>
 	<div class="nouse">
 		<?php echo GridView::widget([

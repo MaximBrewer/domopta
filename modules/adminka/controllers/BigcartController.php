@@ -23,7 +23,7 @@ class BigcartController extends Controller
 	public function actionIndex()
 	{
 		$dataProvider = new ActiveDataProvider([
-			'query' => User::find()->where('user.cart_sum >= 5000'),
+			'query' => User::find()->where('user.cart_sum >= 3000'),
 			'pagination' => false
 		]);
 		return $this->render('index', ['dataProvider' => $dataProvider]);

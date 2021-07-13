@@ -4,7 +4,7 @@ use yii\bootstrap\Nav;
 use app\models\Cart;
 use app\models\User;
 
-$count = User::find()->where('user.cart_sum >= 5000')->count();
+$count = User::find()->where('user.cart_sum >= 3000')->count();
 
 $s = date("Y-m-d H:i:s", strtotime("-1 months"));
 $f = date("Y-m-d H:i:s");
@@ -61,7 +61,7 @@ $users = User::find()
                 'visible' => in_array(Yii::$app->user->identity->role, ['admin', 'manager', 'contentmanager'])
             ],
             [
-                'label' => 'В корзине от 5000 (' . $count . ')',
+                'label' => 'В корзине от 3000 (' . $count . ')',
                 'url' => ['/adminka/bigcart'],
                 'active' => Yii::$app->controller->id == 'bigcart',
                 'visible' => in_array(Yii::$app->user->identity->role, ['admin', 'manager', 'contentmanager'])
