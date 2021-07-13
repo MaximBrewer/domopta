@@ -28,7 +28,7 @@ class BigcartController extends Controller
      */
     public function actionIndex()
     {
-        $users = User::find()->where(['id' => 13])->all();
+        $users = User::find()->all();
         foreach($users as $user){
             $user->updateCartSum();
         }
