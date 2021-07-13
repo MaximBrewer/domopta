@@ -347,11 +347,12 @@ class User extends \dektrium\user\models\User
         foreach ($items as $item) {
             // var_dump($item);
             $product = Products::findP(['article_index' => $item->article])->one();
+            var_dump($product->article_index);
+            var_dump($item->article);
             if (!$product) continue;
             $quantity = $product->pack_quantity ? $product->pack_quantity : 1;
             foreach ($item->details as $detail) {
                 // var_dump($detail);
-                var_dump($product->id);
                 var_dump($product->getUserByIdPrice($this->id));
                 var_dump($quantity);
                 var_dump($detail->amount);
