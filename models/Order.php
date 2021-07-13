@@ -182,7 +182,7 @@ class Order extends \yii\db\ActiveRecord
                 $model = new Self;
                 $model->mailer->sendEmail(Yii::$app->settings->get('Settings.adminEmail'), 'Уведомление о новом заказе', $body);
                 $model->mailer->sendEmail(Yii::$app->settings->get('Settings.sellEmail'), 'Уведомление о новом заказе', $body);
-                $model->mailer->sendEmail('pimax1978@icloud.com', 'Новый заказ', $body);
+                // $model->mailer->sendEmail('pimax1978@icloud.com', 'Новый заказ', $body);
 
                 if ($user->unconfirmed_email == 1) {
                     $body = $controller->renderPartial('@app/modules/adminka/views/orders/email/customer', ['order' => $order, 'status' => 'new']); // @todo сделать письмо
