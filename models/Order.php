@@ -139,10 +139,11 @@ class Order extends \yii\db\ActiveRecord
         return $amount;
     }
 
-    public static function create($order, $cart)
+    public static function create($order, $cart, $user_id = 0)
     {
         if ($cart) {
-            $user = User::findOne(Yii::$app->user->id);
+            $user_id = $user_id ? $user_id : Yii::$app->user->id;
+            $user = User::findOne($user_id);
             $order->user_id = $user->id;
             $order->created_at = time();
             $mxOrder = Order::find()->where(['>', 'created_at', mktime(0, 0, 0, 1, 1, date("Y"))])->max('num');

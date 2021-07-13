@@ -119,8 +119,15 @@ class Cart extends \yii\db\ActiveRecord
         return $this->hasOne(Products::className(), ['article_index' => 'article'])->where(['is_deleted' => 0]);
     }
 
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
     public function afterDelete()
     {
         \Yii::$app->db->createCommand('DELETE FROM cart_details WHERE cart_id = :id')->bindValue(':id' ,$this->id)->execute();
+        $user = User::findOne($this->user_id);
+        $user->updateCartSum();
     }
 }

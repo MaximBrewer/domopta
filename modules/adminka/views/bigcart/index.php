@@ -2,13 +2,38 @@
 /* @var $this \yii\web\View */
 /* @var $dataProvider \yii\data\ActiveDataProvider */
 
-use yii\grid\GridView;
+
 use yii\helpers\Html;
+use yii\grid\GridView;
+use yii\grid\CheckboxColumn;
+use yii\grid\ActionColumn;
+use yii\bootstrap\Modal;
+use execut\widget\TreeView;
+use yii\helpers\Url;
+use app\models\Products;
+use yii\widgets\ActiveForm;
+use yii\bootstrap\Alert;
 ?>
 <div class="container">
 	<div class="text-right">
 		<a href="/adminka/bigcart/xls" class="btn btn-success">Реестр Корзина от 3000 (XLS)</a>
 	</div>
+
+	<?php if ($module->enableFlashMessages) : ?>
+		<div class="row">
+			<div class="col-xs-12">
+				<?php foreach (Yii::$app->session->getAllFlashes() as $type => $message) : ?>
+					<?php if (in_array($type, ['success', 'danger', 'warning', 'info'])) : ?>
+						<?= Alert::widget([
+							'options' => ['class' => 'alert-dismissible alert-' . $type],
+							'body' => is_array($message) ? $message[0] : $message
+						]) ?>
+					<?php endif ?>
+				<?php endforeach ?>
+			</div>
+		</div>
+	<?php endif ?>
+
 	<div class="nouse">
 		<?php echo GridView::widget([
 			'dataProvider' => $dataProvider,
@@ -58,11 +83,16 @@ use yii\helpers\Html;
 					}
 				],
 				[
-					'label' => 'Корзина',
-					'value' => function ($model) {
-						return Html::a("Смотреть содержимое корзины", ['/adminka/bigcart/cart', 'id' => $model->id]);
-					},
-					'format' => 'raw'
+					'class' => ActionColumn::className(),
+					'template' => '{view} {order}',
+					'buttons' => [
+						'view' => function ($url, $model, $key) use ($category) {
+							return Html::a("Смотреть содержимое корзины", ['/adminka/bigcart/cart', 'id' => $model->id], ['class' => 'btn btn-primary btn-sm']);
+						},
+						'order' => function ($url, $model, $key) use ($category) {
+							return Html::a("Оформить заказ", ['/adminka/bigcart/order', 'id' => $model->id], ['class' => 'btn btn-primary btn-sm']);
+						},
+					]
 				]
 			]
 		]) ?>
