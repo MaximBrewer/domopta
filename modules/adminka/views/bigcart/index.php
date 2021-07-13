@@ -50,9 +50,11 @@ use yii\helpers\Html;
 					}
 				],
 				[
+					'attribute' => 'cart_sum',
 					'label' => 'Сумма',
+					'format' => 'raw',
 					'value' => function ($model) {
-						return $model->getCartSum();
+						return (int)$model->cart_sum;
 					}
 				],
 				[
