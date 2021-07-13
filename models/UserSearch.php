@@ -27,8 +27,10 @@ class UserSearch extends \dektrium\user\models\User
     {
         $rules = parent::rules();
         $rules[] = [['name', 'phone', 'organization', 'location', 'inn', 'demo', 'suspicious', 'is_active', 'blocked_at', 'is_ignored', 'not_confirmed', 'not_active'], 'safe'];
+        unset($rules['emailUnique']);
         return $rules;
     }
+    
 
     public function search($params)
     {

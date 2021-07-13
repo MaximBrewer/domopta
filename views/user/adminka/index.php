@@ -58,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php if (Yii::$app->user->identity->role == 'admin') : ?>
             <div class="form-group">
                 <?= Html::a('Удалить выбранных', '#', ['class' => 'btn btn-danger', 'data-toggle' => 'modal', 'data-target' => '#delete-modal']) ?>
-                <?= Html::hiddenInput('sendemail'); ?>
+                <? //= Html::hiddenInput('sendemail'); ?>
             </div>
         <?php endif; ?>
         <p>Активированных (<?php echo User::countActivated() ?>), Заблокировано (<?php echo User::countBlocked() ?>), Игнорировано (<?php echo User::countIgnored() ?>), Всего (<?php echo User::find()->count() ?>)</p>
