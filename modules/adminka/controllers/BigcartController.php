@@ -94,7 +94,7 @@ class BigcartController extends Controller
 			$order->fio = $user->profile->name . ' ' . $user->profile->lastname . ' ' . $user->profile->surname . '(Корзина 3000)';
 			$order->phone = '';
 			$errors = Order::create($order, $cart, $id);
-			if ($errors)
+			if ($errors !== true)
 				\Yii::$app->getSession()->setFlash('danger', $errors);
 			else
 				\Yii::$app->getSession()->setFlash('success', 'Заказ успешно оформлен');
