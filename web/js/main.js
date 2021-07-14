@@ -711,18 +711,16 @@ $(document).ready(function () {
     $(this).parent(".reg-pop-fav").remove();
   });
   $("body").on("click", ".input-color-minus", function () {
-    if (+$(this).siblings(".input-color").val() > 1) {
-      $(this)
-        .siblings(".input-color")
-        .val(+$(this).siblings(".input-color").val() - 1);
-    } else if (+$(this).siblings(".input-color").val() == 1) {
-      $(this).siblings(".input-color").val("");
-    }
+    alert(1);
+    var input = $(this).parent().find("input");
+    var value = $(input).val() * 1;
+    if(value > 1) $(input).val(value - 1);
+    else $(input).val("");
   });
   $("body").on("click", ".input-color-plus", function () {
-    $(this)
-      .siblings(".input-color")
-      .val(+$(this).siblings(".input-color").val() + 1);
+    var input = $(this).parent().find("input");
+    var value = $(input).val() * 1;
+    $(input).val(value + 1);
   });
   $(window).on("scroll", function () {
     if ($(".table-cart").length)
