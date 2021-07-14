@@ -5903,6 +5903,9 @@ img.reg-step2-item-img {
   font-size: 20px;
   outline: none;
   cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+  text-align: center;
   margin-top: 2px;
 }
 .input-color {
