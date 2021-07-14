@@ -711,7 +711,6 @@ $(document).ready(function () {
     $(this).parent(".reg-pop-fav").remove();
   });
   $("body").on("click", ".input-color-minus", function () {
-    alert(1);
     var input = $(this).parent().find("input");
     var value = $(input).val() * 1;
     if(value > 1) $(input).val(value - 1);
