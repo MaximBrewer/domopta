@@ -40,7 +40,7 @@ class BigcartController extends Controller
 		$reader = new \PhpOffice\PhpSpreadsheet\Reader\Html();
 
 		// return $this->renderPartial('xls', ['users' => $users]);
-		$spreadsheet = $reader->loadFromString($this->renderPartial('xls', ['users' => $users]));
+		$spreadsheet = $reader->loadFromString($this->renderPartial('xls', ['users' => User::find()->where('user.cart_sum >= 3000')]));
 		$spreadsheet->getDefaultStyle()->getFont()->setSize(10);
 
 		$style = $spreadsheet->getActiveSheet()->getStyle('A1:A' . $spreadsheet->getActiveSheet()->getHighestRow());
