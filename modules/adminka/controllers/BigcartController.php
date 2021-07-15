@@ -89,9 +89,9 @@ class BigcartController extends Controller
 
 		if ($cart) {
 			$order = new Order();
-			$order->delivery_method = 'pickup';
+			$order->delivery_method = 'unknown';
 			$order->scenario = 'pickup';
-			$order->fio = $user->profile->name . ' ' . $user->profile->lastname . ' ' . $user->profile->surname . '(Корзина 3000)';
+			$order->fio = $user->profile->name . ' ' . $user->profile->lastname . ' ' . $user->profile->surname;
 			$order->phone = '';
 			$errors = Order::create($order, $cart, $id);
 			if ($errors !== true)

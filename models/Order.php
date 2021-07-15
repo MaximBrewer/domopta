@@ -25,11 +25,13 @@ class Order extends \yii\db\ActiveRecord
     const SCENARIO_PICKUP = 'pickup';
     const SCENARIO_DELIVERY = 'delivery';
     const SCENARIO_SENDING = 'sending';
+    const SCENARIO_UNKNOWN = 'unknown';
 
     public static $methods = [
         'delivery' => 'Доставка по Крыму',
         'sending' => 'Отправка ТК',
         'pickup' => 'Самовывоз',
+        'unknown' => 'Уточнить способ доставки'
     ];
 
     public static $tcs = [
@@ -47,6 +49,7 @@ class Order extends \yii\db\ActiveRecord
         $scenarios[self::SCENARIO_PICKUP] = ['delivery_method', 'user_id', 'created_at'];
         $scenarios[self::SCENARIO_DELIVERY] = ['delivery_method', 'user_id', 'created_at', 'fio', 'locality', 'phone'];
         $scenarios[self::SCENARIO_SENDING] = ['delivery_method', 'user_id', 'fio', 'tc', 'passport_series', 'passport_id', 'city', 'region', 'phone', 'tc_name'];
+        $scenarios[self::SCENARIO_UNKNOWN] = ['delivery_method', 'user_id', 'created_at'];
         return $scenarios;
     }
     /**
@@ -150,7 +153,7 @@ class Order extends \yii\db\ActiveRecord
             $order->num = (int) $mxOrder + 1;
 
             $type = $user->profile->type;
-            
+
             if ($order->validate() && $order->save()) {
                 foreach ($cart as $item) {
                     $product = $item->product;
@@ -220,7 +223,6 @@ class Order extends \yii\db\ActiveRecord
             $detail->sum = $product->price * $quantity * $detail->amount;
             $detail->save();
         }
-
     }
 
     public function recountcancel()
