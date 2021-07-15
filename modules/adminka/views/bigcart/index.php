@@ -85,10 +85,10 @@ use yii\bootstrap\Alert;
 					'template' => '{view} {order}',
 					'buttons' => [
 						'view' => function ($url, $model, $key) {
-							return Html::a("Смотреть содержимое корзины", ['/adminka/bigcart/cart', 'id' => $model->id], ['class' => 'btn btn-primary btn-sm']);
+							return Html::a("Смотреть содержимое корзины", ['/adminka/bigcart/cart', 'id' => $model->id], ['class' => 'btn btn-link']);
 						},
 						'order' => function ($url, $model, $key) {
-							return Html::a("Оформить заказ", ['/adminka/bigcart/order', 'id' => $model->id], ['class' => 'btn btn-primary btn-sm']);
+							return Html::a("Оформить заказ", ['/adminka/bigcart/order', 'id' => $model->id], ['class' => 'btn btn-link']);
 						},
 					]
 				]
