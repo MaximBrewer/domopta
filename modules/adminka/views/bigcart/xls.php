@@ -31,7 +31,7 @@ use yii\helpers\Html;
 				<td valign="center" align="center" style="border: 1px solid black;"><?php echo $model->profile->region; ?></td>
 				<td valign="center" align="center" style="border: 1px solid black;"><?php echo $model->username; ?></td>
 				<td valign="center" align="center" style="border: 1px solid black;"><?php echo $model->profile->type == 2 ? 'Мелкий опт' : 'Опт' ?></td>
-				<td valign="center" align="center" style="border: 1px solid black;"><?php echo $model->getCartSum(); ?></td>
+				<td valign="center" align="center" style="border: 1px solid black;"><?php echo $model->cart_sum; ?></td>
 				<td valign="center" align="center" style="border: 1px solid black;"><?php echo $model->getLastCartAdd(); ?></td>
 			</tr>
 		<?php endforeach; ?>
