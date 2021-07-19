@@ -36,7 +36,7 @@ use yii\bootstrap\Modal;
             'template' => '{update}',
         ],
         [
-            'attribute' => 'id',
+            'attribute' => 'num',
             'value' => function ($model) {
                 return (string) $model->num;
             },
