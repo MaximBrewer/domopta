@@ -250,7 +250,6 @@ $profile = $order->user->profile;
         $utype = $profile->type;
         foreach ($details as $i => $detail) :
             $dproduct = $detail->product; ?>
-            <tr>
 
                 <?php
                 if (!$dproduct->category) {
@@ -261,6 +260,7 @@ $profile = $order->user->profile;
                 if ($cat_name != $cat) :
                     $cat = $cat_name;
                 ?>
+            <tr>
                     <td colspan="11" style="padding: 8px;"><?php
                                                             //if($cat->parent){
                                                             //echo mb_strtoupper($cat->parent->name) . ' - ';
@@ -268,8 +268,8 @@ $profile = $order->user->profile;
                                                             echo mb_strtoupper($cat);
                                                             ?></td>
             </tr>
-            <tr <?php var_dump($detail->flag); if (!$detail->flag) { ?>class="strikeout" <?php } ?>>
             <?php endif; ?>
+            <tr <?php if (!$detail->flag) { ?>class="strikeout" <?php } ?>>
             <td align="center"><?php echo $i + 1 ?></td>
             <td style="padding: 3px;"><?php echo $detail->name ?></td>
             <td align="center"><?php echo $dproduct->ooo ? 'О' : 'Р' ?></td>
