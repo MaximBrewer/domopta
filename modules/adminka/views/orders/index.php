@@ -18,7 +18,8 @@ use yii\bootstrap\Modal;
 <?php if (\Yii::$app->user->identity->role == 'admin') : ?>
     <div class="form-group">
         <?= Html::a('Удалить выбранные', '#', ['class' => 'btn btn-danger', 'data-toggle' => 'modal', 'data-target' => '#delete-modal']) ?>
-    </div>
+		<a href="javascript:;" onclick="console.log(9)" class="btn btn-success">Скачать реестр заказов (XLS)</a>
+	</div>
 <?php endif; ?>
 <?php echo GridView::widget([
     'dataProvider' => $dataProvider,
