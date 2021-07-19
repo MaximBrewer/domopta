@@ -35,12 +35,21 @@ use yii\bootstrap\Alert;
 	<div class="nouse">
 		<?php echo GridView::widget([
 			'dataProvider' => $dataProvider,
+			'filterModel' => $searchModel,
+			'layout' => '{summary} {pager} {items} {pager}',
 			'columns' => [
 				[
 					'label' => 'ФИО',
 					'value' => function ($model) {
-						return $model->profile->lastname . ' ' . $model->profile->name . ' ' . $model->profile->surname;
-					}
+						if ($model->profile) {
+							return implode(' ', [
+								$model->profile->lastname,
+								$model->profile->name,
+								$model->profile->surname,
+							]);
+						}
+					},
+					'attribute' => 'name'
 				],
 				[
 					'label' => 'Город',

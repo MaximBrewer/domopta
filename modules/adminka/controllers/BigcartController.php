@@ -12,6 +12,7 @@ namespace app\modules\adminka\controllers;
 use Yii;
 use app\models\Cart;
 use app\models\User;
+use app\models\BigCart;
 use app\models\Order;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
@@ -23,11 +24,14 @@ class BigcartController extends Controller
 
 	public function actionIndex()
 	{
-		$dataProvider = new ActiveDataProvider([
-			'query' => User::find()->where('user.cart_sum >= 3000'),
-			'pagination' => false
-		]);
-		return $this->render('index', ['dataProvider' => $dataProvider]);
+        $searchModel  = \Yii::createObject(BigCart::class);
+        $dataProvider = $searchModel->search(\Yii::$app->request->queryParams);
+        return $this->render('index', ['searchModel' => $searchModel, 'dataProvider' => $dataProvider]);
+		// $dataProvider = new ActiveDataProvider([
+		// 	'query' => User::find()->where('user.cart_sum >= 3000'),
+		// 	'pagination' => false
+		// ]);
+		// return $this->render('index', ['dataProvider' => $dataProvider]);
 	}
 
 	public function actionCart($id)

@@ -113,50 +113,52 @@ $profile = $order->user->profile;
                             </td>
                         </tr>
                     <?php endif; ?>
-                    <?php if ($order->tc) : ?>
+                    <?php if ($order->delivery_method != 'unknown') : ?>
+                        <?php if ($order->tc) : ?>
+                            <tr>
+                                <td style="font-size: 18px;">
+                                    <?php if ($order->tc && $order->tc != 'other') : ?>
+                                        <?php echo Order::$tcs[$order->tc]; ?>
+                                        <?php else : ?><?php echo $order->tc_name; ?><?php endif; ?><br>
+                                        <?php if ($order->city) : ?><?php echo $order->city; ?><?php if ($order->region) : ?>, <?php echo $order->region; ?><?php endif; ?><?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endif; ?>
+                        <?php if ($order->locality) : ?>
+                            <tr>
+                                <td style="font-size: 18px;">
+                                    <?php echo $order->locality; ?>
+                                </td>
+                            </tr>
+                        <?php endif; ?>
                         <tr>
                             <td style="font-size: 18px;">
-                                <?php if ($order->tc && $order->tc != 'other') : ?>
-                                    <?php echo Order::$tcs[$order->tc]; ?>
-                                    <?php else : ?><?php echo $order->tc_name; ?><?php endif; ?><br>
-                                    <?php if ($order->city) : ?><?php echo $order->city; ?><?php if ($order->region) : ?>, <?php echo $order->region; ?><?php endif; ?><?php endif; ?>
                             </td>
                         </tr>
-                    <?php endif; ?>
-                    <?php if ($order->locality) : ?>
-                        <tr>
-                            <td style="font-size: 18px;">
-                                <?php echo $order->locality; ?>
-                            </td>
-                        </tr>
-                    <?php endif; ?>
-                    <tr>
-                        <td style="font-size: 18px;">
-                        </td>
-                    </tr>
-                    <?php if ($order->fio) : ?>
-                        <tr>
-                            <td style="font-weight:bold;font-size: 18px;">Получатель заказа:</td>
-                        </tr>
-                        <tr>
-                            <td style="font-size: 18px;">
-                                <?php echo $order->fio; ?>
-                            </td>
-                        </tr>
-                    <?php endif; ?>
-                    <?php if ($order->phone) : ?>
-                        <tr>
-                            <td style="font-size: 18px;">
-                                <?php echo $order->phone; ?>
-                            </td>
-                        </tr>
-                    <?php endif; ?>
-                    <?php if ($order->passport_series) : ?>
-                        <tr>
-                            <td style="font-size: 18px;">
-                                Паспорт: <?php echo $order->passport_series; ?> <?php echo $order->passport_id; ?>
-                            </td>
-                        </tr>
+                        <?php if ($order->fio) : ?>
+                            <tr>
+                                <td style="font-weight:bold;font-size: 18px;">Получатель заказа:</td>
+                            </tr>
+                            <tr>
+                                <td style="font-size: 18px;">
+                                    <?php echo $order->fio; ?>
+                                </td>
+                            </tr>
+                        <?php endif; ?>
+                        <?php if ($order->phone) : ?>
+                            <tr>
+                                <td style="font-size: 18px;">
+                                    <?php echo $order->phone; ?>
+                                </td>
+                            </tr>
+                        <?php endif; ?>
+                        <?php if ($order->passport_series) : ?>
+                            <tr>
+                                <td style="font-size: 18px;">
+                                    Паспорт: <?php echo $order->passport_series; ?> <?php echo $order->passport_id; ?>
+                                </td>
+                            </tr>
+                        <?php endif; ?>
                     <?php endif; ?>
                     <?php if ($profile->order_comment) : ?>
                         <tr>

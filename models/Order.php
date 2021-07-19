@@ -93,7 +93,7 @@ class Order extends \yii\db\ActiveRecord
         return [
             'id' => 'Номер заказа',
             'user_id' => 'User ID',
-            'delivery_method' => 'Спопсоб доставки',
+            'delivery_method' => 'Способ доставки',
             'fio' => 'Фамилия Имя Отчество',
             'locality' => 'Укажите населенный пункт',
             'phone' => 'Телефон',
