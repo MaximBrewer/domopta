@@ -268,7 +268,7 @@ $profile = $order->user->profile;
                                                             echo mb_strtoupper($cat);
                                                             ?></td>
             </tr>
-            <tr <?php if (!$detail->flag || !$dproduct->article) { ?>class="strikeout" <?php } ?>>
+            <tr <?php if (!$detail->flag || !$product->flag) { ?>class="strikeout" <?php } ?>>
             <?php endif; ?>
             <td align="center"><?php echo $i + 1 ?></td>
             <td style="padding: 3px;"><?php echo $detail->name ?></td>
