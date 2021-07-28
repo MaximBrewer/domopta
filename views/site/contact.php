@@ -9,7 +9,7 @@ use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 use app\widgets\MyActiveField;
 
-$this->registerJsFile('/js/contact.js', ['depends' => \yii\web\JqueryAsset::className()]);
+$this->registerJsFile('/js/contact.js', ['depends' => \yii\web\JqueryAsset::class]);
 if($model->hasErrors()){
     $str = '';
     foreach ($model->getErrors() as $error){
@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'id' => 'contact-form',
                 'enableAjaxValidation' => false,
                 'enableClientValidation' => false,
-                'fieldClass' => MyActiveField::className(),
+                'fieldClass' => MyActiveField::class,
                 'options' => ['enctype' => 'multipart/form-data']
             ]); ?>
             <div class="contact-left fl">

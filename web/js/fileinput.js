@@ -7,7 +7,7 @@ function doSortable() {
       $(".fl-item-uploaded").each(function (index, obj) {
         ids[index] = $(obj).data("id");
       });
-      $.post("/adminka/catalog/sort2", { ids });
+      $.post("/"+window.moduleId+"/catalog/sort2", { ids });
     },
   });
 }
@@ -76,7 +76,7 @@ $(".fl-upload").on("click", function () {
   }
   $(".fl-progress").show();
   $.ajax({
-    url: "/adminka/test/upload?id=" + fl_model_id,
+    url: "/"+window.moduleId+"/test/upload?id=" + fl_model_id,
     data: formData,
     processData: false,
     contentType: false,
@@ -103,7 +103,7 @@ $("body").on("click", ".fl-item-notuploaded .fl-remove", function () {
 });
 $("body").on("click", ".fl-item-uploaded .fl-remove", function () {
   var id = $(this).parents(".fl-item-uploaded").data("id");
-  $.get("/adminka/catalog/deleteimage?id=" + id);
+  $.get("/"+window.moduleId+"/catalog/deleteimage?id=" + id);
   var id = $(this).parents(".fl-item-uploaded").remove();
 });
 $("body").on("click", ".fl-item img", function () {

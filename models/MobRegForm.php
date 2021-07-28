@@ -26,7 +26,7 @@ class MobRegForm extends Model
 		return [
 			['phone', 'required', 'message' => 'Введите номер телефона'],
 			['phone2', 'required'],
-			['phone', PhoneValidator::className(), 'country' => 'RU', 'notValidPhoneNumberMessage' => 'Не верный формат номера телефона', 'numberParseExceptionMessage' => 'Не верный формат номера телефона'],
+			['phone', PhoneValidator::class, 'country' => 'RU', 'notValidPhoneNumberMessage' => 'Не верный формат номера телефона', 'numberParseExceptionMessage' => 'Не верный формат номера телефона'],
 			['phone', 'checkUnique'],
 			['agree', 'required'],
 			['agree', 'compare', 'compareValue' => 1]

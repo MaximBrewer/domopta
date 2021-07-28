@@ -34,11 +34,11 @@ if(Yii::$app->session->hasFlash('login')){
 $categories = \app\models\Category::find()->where('parent_id IS NULL')->orderBy(['position' => SORT_ASC])->all();
 
 if(Yii::$app->user->isGuest){
-	$this->registerJsFile('/js/reg.js',['depends' => \yii\web\JqueryAsset::className()]);
+	$this->registerJsFile('/js/reg.js',['depends' => \yii\web\JqueryAsset::class]);
 }
 
-$this->registerJsFile('/js/magnifier.js',['depends' => \yii\web\JqueryAsset::className()]);
-$this->registerJsFile('/js/lightslider.js',['depends' => \yii\web\JqueryAsset::className()]);
+$this->registerJsFile('/js/magnifier.js',['depends' => \yii\web\JqueryAsset::class]);
+$this->registerJsFile('/js/lightslider.js',['depends' => \yii\web\JqueryAsset::class]);
 
 ?>
 <?php $this->beginPage() ?>

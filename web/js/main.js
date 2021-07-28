@@ -624,7 +624,7 @@ $(document).ready(function () {
           }
         } else {
           if (data.id == 1) {
-            window.location.href = "/adminka";
+            window.location.href = "/" + window.moduleId;
           } else {
             window.location.reload();
           }
@@ -713,7 +713,7 @@ $(document).ready(function () {
   $("body").on("click", ".input-color-minus", function () {
     var input = $(this).parent().find("input");
     var value = $(input).val() * 1;
-    if(value > 1) $(input).val(value - 1);
+    if (value > 1) $(input).val(value - 1);
     else $(input).val("");
   });
   $("body").on("click", ".input-color-plus", function () {

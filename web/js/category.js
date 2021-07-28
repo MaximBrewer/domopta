@@ -5,7 +5,7 @@ $('#getLink').on('click', function(e){
     var id = $('#category-id').val();
     if(string != ''){
         $.ajax({
-            url: '/adminka/catalog/slugcat?string=' + string + '&parent_id=' + parent_id + '&id=' + id,
+            url: '/'+window.moduleId+'/catalog/slugcat?string=' + string + '&parent_id=' + parent_id + '&id=' + id,
             success: function(data){
                 $('#category-slug').val(data);
             }

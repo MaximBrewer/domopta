@@ -6,7 +6,7 @@ var sort = function (event, params) {
     });
 
     $.ajax({
-        url: '/adminka/catalog/sort',
+        url: '/'+window.moduleId+'/catalog/sort',
         data: data,
         type: 'POST'
     })
@@ -18,7 +18,7 @@ $('#getLink').on('click', function(e){
     var id = $('#products-id').val();
     if(string != ''){
         $.ajax({
-            url: '/adminka/catalog/slug?string=' + string + '&id=' + id,
+            url: '/'+window.moduleId+'/catalog/slug?string=' + string + '&id=' + id,
             success: function(data){
                 $('#products-slug').val(data);
             }

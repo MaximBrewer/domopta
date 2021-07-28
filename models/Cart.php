@@ -46,7 +46,7 @@ class Cart extends \yii\db\ActiveRecord
     {
         return [
             [
-                'class' => TimestampBehavior::className()
+                'class' => TimestampBehavior::class
             ],
         ];
     }
@@ -67,7 +67,7 @@ class Cart extends \yii\db\ActiveRecord
 
     public function getDetails()
     {
-        return $this->hasMany(CartDetails::className(), ['cart_id' => 'id']);
+        return $this->hasMany(CartDetails::class, ['cart_id' => 'id']);
     }
     
 
@@ -116,12 +116,12 @@ class Cart extends \yii\db\ActiveRecord
 
     public function getProduct()
     {
-        return $this->hasOne(Products::className(), ['article_index' => 'article'])->where(['is_deleted' => 0]);
+        return $this->hasOne(Products::class, ['article_index' => 'article'])->where(['is_deleted' => 0]);
     }
 
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
     public function afterDelete()

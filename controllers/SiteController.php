@@ -43,7 +43,7 @@ class SiteController extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                'class' => AccessControl::class,
                 'only' => ['logout'],
                 'rules' => [
                     [
@@ -54,7 +54,7 @@ class SiteController extends Controller
                 ],
             ],
             //            'cache' => [
-            //                'class' => PageCache::className(),
+            //                'class' => PageCache::class,
             //                'only' => ['index'],
             //                'duration' => 60*60*24*30
             //            ]
@@ -94,7 +94,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $model = \Yii::createObject(\dektrium\user\models\LoginForm::className());
+        $model = \Yii::createObject(\dektrium\user\models\LoginForm::class);
         $event = $this->getFormEvent($model);
 
         $this->performAjaxValidation($model);

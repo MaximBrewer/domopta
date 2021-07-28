@@ -21,7 +21,7 @@ use yii\bootstrap\Nav;
     'items' => [
         [
             'label' => Yii::t('user', 'Users'),
-            'url' => ['/user/admin/index'],
+            'url' => ['/user/'.MODULE_ID.'/index'],
         ],
     ],
 ]) ?>

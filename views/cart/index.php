@@ -11,7 +11,7 @@ use yii\grid\ActionColumn;
 use app\components\Breadcrumbs;
 use app\models\Products;
 
-$this->registerJsFile('/js/cart.js?ver=2', ['depends' => \yii\web\JqueryAsset::className()]);
+$this->registerJsFile('/js/cart.js?ver=2', ['depends' => \yii\web\JqueryAsset::class]);
 $this->params['breadcrumbs'][] = 'Корзина';
 $total = \app\models\Cart::getAmount();
 $totalDamount = 0;

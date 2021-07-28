@@ -55,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'validateOnBlur' => false,
                     'validateOnType' => false,
                     'validateOnChange' => false,
-                    'fieldClass' => MyActiveField::className()
+                    'fieldClass' => MyActiveField::class
                 ]) ?>
             <div class="reg_left fl">
                 <?php if ($module->debug): ?>

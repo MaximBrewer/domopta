@@ -28,14 +28,20 @@ $config = [
             'class' => 'dektrium\user\Module',
             'enableGeneratingPassword' => true,
             'controllerMap' => [
-                'admin' => [
-                    'class' => 'app\modules\adminka\controllers\UserController',
+                'tkbpfdtnf' => [
+                    'class' => 'app\modules\admin\controllers\UserController',
+                    'on ' . \dektrium\user\controllers\AdminController::EVENT_BEFORE_ACTION => function ($e) {
+                        $e->action->controller->layout = '@app/views/layouts/admin';
+                    }
+                ],
+                'manager12' => [
+                    'class' => 'app\modules\manager\controllers\UserController',
                     'on ' . \dektrium\user\controllers\AdminController::EVENT_BEFORE_ACTION => function ($e) {
                         $e->action->controller->layout = '@app/views/layouts/admin';
                     }
                 ],
                 'registration' => [
-                    'class' => \dektrium\user\controllers\RegistrationController::className(),
+                    'class' => \dektrium\user\controllers\RegistrationController::class,
                     'on ' . \dektrium\user\controllers\RegistrationController::EVENT_AFTER_CONFIRM => function ($e) {
                         Yii::$app->user->identity->mailer->sendSuccessMessage(Yii::$app->user->identity);
                         if (!Yii::$app->user->identity->getIsActive()) {

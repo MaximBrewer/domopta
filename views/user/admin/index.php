@@ -30,7 +30,7 @@ Icon::map($this, Icon::FA);
  * @var ActiveForm $form
  */
 
-$this->registerJsFile('/js/users.js', ['depends' => \app\assets\AppAsset::className()]);
+$this->registerJsFile('/js/users.js', ['depends' => \app\assets\AppAsset::class]);
 
 $this->title = Yii::t('user', 'Manage users');
 $this->params['breadcrumbs'][] = $this->title;
@@ -39,23 +39,24 @@ $this->params['breadcrumbs'][] = $this->title;
 <?= $this->render('../../_alert', ['module' => Yii::$app->getModule('user')]) ?>
 
 <div class="row">
-    <div class="col-md-2">
-        <?php echo Nav::widget([
-            'items' => [
-                ['label' => 'Демо', 'url' => ['/user/admin', $searchModel->formName() . '[demo]' => 1]],
-                ['label' => 'Подозрительный тип', 'url' => ['/user/admin', $searchModel->formName() . '[suspicious]' => 1]],
-                ['label' => 'Активные', 'url' => ['/user/admin', $searchModel->formName() . '[is_active]' => 1]],
-                ['label' => 'Заблокированные', 'url' => ['/user/admin', $searchModel->formName() . '[blocked_at]' => 1]],
-                ['label' => 'Игнорированные', 'url' => ['/user/admin', $searchModel->formName() . '[is_ignored]' => 1]],
-                //['label' => 'Не подтвердили свой Email', 'url' => ['/user/admin', $searchModel->formName() . '[not_confirmed]' => 1]],
-                ['label' => 'Не активированные', 'url' => ['/user/admin', $searchModel->formName() . '[not_active]' => 1]],
-            ]
-        ]) ?>
-    </div>
-    <div class="col-md-10">
-
-        <?= Html::beginForm(['/user/admin/deletemultiply'], 'post', ['id' => 'deletemultiply-form']) ?>
-        <?php if (Yii::$app->user->identity->role == 'admin') : ?>
+    <?php if (MODULE_ID == 'tkbpfdtnf') : ?>
+        <div class="col-md-2">
+            <?php echo Nav::widget([
+                'items' => [
+                    ['label' => 'Демо', 'url' => ['/user/'.MODULE_ID, $searchModel->formName() . '[demo]' => 1]],
+                    ['label' => 'Подозрительный тип', 'url' => ['/user/'.MODULE_ID, $searchModel->formName() . '[suspicious]' => 1]],
+                    ['label' => 'Активные', 'url' => ['/user/'.MODULE_ID, $searchModel->formName() . '[is_active]' => 1]],
+                    ['label' => 'Заблокированные', 'url' => ['/user/'.MODULE_ID, $searchModel->formName() . '[blocked_at]' => 1]],
+                    ['label' => 'Игнорированные', 'url' => ['/user/'.MODULE_ID, $searchModel->formName() . '[is_ignored]' => 1]],
+                    //['label' => 'Не подтвердили свой Email', 'url' => ['/user/'.MODULE_ID, $searchModel->formName() . '[not_confirmed]' => 1]],
+                    ['label' => 'Не активированные', 'url' => ['/user/'.MODULE_ID, $searchModel->formName() . '[not_active]' => 1]],
+                ]
+            ]) ?>
+        </div>
+    <?php endif; ?>
+    <div class="<?php if (MODULE_ID == 'tkbpfdtnf') : ?>col-md-10<?php else : ?>col-md-10 col-md-push-1<?php endif; ?>">
+        <?= Html::beginForm(['/user/'.MODULE_ID.'/deletemultiply'], 'post', ['id' => 'deletemultiply-form']) ?>
+        <?php if (MODULE_ID == 'tkbpfdtnf') : ?>
             <div class="form-group">
                 <?= Html::a('Удалить выбранных', '#', ['class' => 'btn btn-danger', 'data-toggle' => 'modal', 'data-target' => '#delete-modal']) ?>
                 <?= Html::hiddenInput('sendemail'); ?>
@@ -68,7 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'layout'       => "{pager}\n{items}\n{pager}",
             'columns' => [
                 [
-                    'class' => \yii\grid\CheckboxColumn::className(),
+                    'class' => \yii\grid\CheckboxColumn::class,
                     'checkboxOptions' => function ($model) {
                         if ($model->not_delete == 1)
                             return ['disabled' => 'disabled'];
@@ -77,23 +78,23 @@ $this->params['breadcrumbs'][] = $this->title;
                 [
                     'class' => 'yii\grid\ActionColumn',
                     'header' => 'Действия',
-                    'template' => '{update} {activate} {block} {unblock} {info} {ignore} {unignore} {delete}',
+                    'template' => '<div style="display:flex;">{update} {activate} {block} {unblock} {info} {ignore} {unignore} {delete}</div>',
                     'visibleButtons' => [
-                        'update' => Yii::$app->user->identity->role == 'admin',
-                        'activate' => Yii::$app->user->identity->role == 'admin',
-                        'block' => Yii::$app->user->identity->role == 'admin',
-                        'unblock' => Yii::$app->user->identity->role == 'admin',
+                        'update' => MODULE_ID == 'tkbpfdtnf',
+                        'activate' => MODULE_ID == 'tkbpfdtnf',
+                        'block' => MODULE_ID == 'tkbpfdtnf',
+                        'unblock' => MODULE_ID == 'tkbpfdtnf',
                         'delete' => function ($model) {
-                            return $model->not_delete != 1 && Yii::$app->user->identity->role == 'admin';
+                            return $model->not_delete != 1 && MODULE_ID == 'tkbpfdtnf';
                         },
-                        'ignore' => Yii::$app->user->identity->role == 'admin',
-                        'unignore' => Yii::$app->user->identity->role == 'admin',
+                        'ignore' => MODULE_ID == 'tkbpfdtnf',
+                        'unignore' => MODULE_ID == 'tkbpfdtnf',
                     ],
                     'buttons' => [
                         'activate' => function ($url, $model, $key) {
                             if ($model->confirmed_at && $model->is_active == 0) {
                                 return '
-                    <a  href="' . Url::to(['/user/admin/activate', 'id' => $model->id]) . '">
+                    <a  href="' . Url::to(['/user/'.MODULE_ID.'/activate', 'id' => $model->id]) . '" style="margin-right:.3rem;">
                     <span title="Активировать пользователя" class="glyphicon glyphicon-ok">
                     </span> </a>';
                             }
@@ -101,16 +102,19 @@ $this->params['breadcrumbs'][] = $this->title;
                         'block' => function ($url, $model) {
                             if (!$model->blocked_at) {
                                 return '
-                            <a data-id="' . $model->id . '" data-toggle="modal" data-target="#block-modal" class="block_link" href="' . Url::to(['/user/admin/block', 'id' => $model->id]) . '">
+                            <a style="margin-right:.3rem;" data-id="' . $model->id . '" data-toggle="modal" data-target="#block-modal" class="block_link" href="' . Url::to(['/user/'.MODULE_ID.'/block', 'id' => $model->id]) . '">
                             <span title="Блокировать пользователя" class="fa fa-lock"></span>
 </a>
                         ';
                             }
                         },
+                        'update' => function ($url, $model) {
+                            return Html::a('<span class="fa fa-edit"></span>', $url, ['data-pjax' => '0', 'style' => "margin-right:.3rem;", 'aria-label' => 'Редактировать', 'title' => 'Редактировать']);
+                        },
                         'info' => function ($url, $model) {
                             if ($model->blocked_at) {
                                 return '
-                            <a data-id="' . $model->id . '" data-toggle="modal" data-target="#info-modal" class="info_link" data-text="' . $model->profile->admins_comment . '">
+                            <a style="margin-right:.3rem;" data-id="' . $model->id . '" data-toggle="modal" data-target="#info-modal" class="info_link" data-text="' . $model->profile->admins_comment . '">
                             <span title="Причина блокировки" class="glyphicon glyphicon-info-sign"></span>
 </a>
                         ';
@@ -119,7 +123,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'unblock' => function ($url, $model) {
                             if ($model->blocked_at) {
                                 return '
-                            <a data-method="POST" href="' . Url::to(['/user/admin/block', 'id' => $model->id]) . '">
+                            <a style="margin-right:.3rem;" data-method="POST" href="' . Url::to(['/user/'.MODULE_ID.'/block', 'id' => $model->id]) . '">
                             <span title="Разблокировать пользователя" class="fa fa-unlock"></span>
 </a>
                         ';
@@ -128,7 +132,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'ignore' => function ($url, $model) {
                             if (!$model->is_ignored) {
                                 return '
-                            <a data-method="POST" href="' . Url::to(['/user/admin/ignore', 'id' => $model->id]) . '">
+                            <a style="margin-right:.3rem;" data-method="POST" href="' . Url::to(['/user/'.MODULE_ID.'/ignore', 'id' => $model->id]) . '">
                             <span title="Игнорировать пользователя" class="glyphicon glyphicon-minus"></span>
 </a>
                         ';
@@ -137,7 +141,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'unignore' => function ($url, $model) {
                             if ($model->is_ignored) {
                                 return '
-                            <a data-method="POST" href="' . Url::to(['/user/admin/ignore', 'id' => $model->id]) . '">
+                            <a style="margin-right:.3rem;" data-method="POST" href="' . Url::to(['/user/'.MODULE_ID.'/ignore', 'id' => $model->id]) . '">
                             <span title="Не игнорировать пользователя" class="glyphicon glyphicon-plus"></span>
 </a>
                         ';
@@ -245,7 +249,7 @@ $this->params['breadcrumbs'][] = $this->title;
     'id' => 'block-modal',
     'header' => 'Блокировать пользователя'
 ]) ?>
-<?php $form = ActiveForm::begin(['method' => 'post', 'action' => Url::to(['/user/admin/block']), 'id' => 'block-form']); ?>
+<?php $form = ActiveForm::begin(['method' => 'post', 'action' => Url::to(['/user/'.MODULE_ID.'/block']), 'id' => 'block-form']); ?>
 <?php echo $form->field($blockForm, 'id')->label(false)->hiddenInput(); ?>
 <?php echo $form->field($blockForm, 'text')->textarea(); ?>
 <div class="form-group">

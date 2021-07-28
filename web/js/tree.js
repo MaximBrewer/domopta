@@ -8,7 +8,7 @@ $('#edit_tree').on('change', function (e) {
                     data[i] = $(obj).data('id');
                 });
                 $.ajax({
-                    url: '/adminka/catalog/tree',
+                    url: '/'+window.moduleId+'/catalog/tree',
                     data: data,
                     method: "POST",
                 });
@@ -21,7 +21,7 @@ $('#edit_tree').on('change', function (e) {
                     data[i] = $(obj).data('id');
                 });
                 $.ajax({
-                    url: '/adminka/catalog/tree',
+                    url: '/'+window.moduleId+'/catalog/tree',
                     data: data,
                     method: "POST",
                 });

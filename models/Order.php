@@ -3,7 +3,7 @@
 namespace app\models;
 
 use app\components\Mailer;
-use app\modules\adminka\Module;
+use app\modules\admin\Module;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -110,17 +110,17 @@ class Order extends \yii\db\ActiveRecord
 
     protected function getMailer()
     {
-        return \Yii::$container->get(Mailer::className());
+        return \Yii::$container->get(Mailer::class);
     }
 
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
     public function getDetiles()
     {
-        return $this->hasMany(OrderDetails::className(), ['order_id' => 'id'])->orderBy(['article' => SORT_ASC]);
+        return $this->hasMany(OrderDetails::class, ['order_id' => 'id'])->orderBy(['article' => SORT_ASC]);
     }
 
     public function getSum()
@@ -186,15 +186,15 @@ class Order extends \yii\db\ActiveRecord
                     }
                     $item->delete();
                 }
-                $controller = new Controller('new', Module::className());
-                $body = $controller->renderPartial('@app/modules/adminka/views/orders/email/admin', ['order' => $order, 'status' => 'new']);
+                $controller = new Controller('new', Module::class);
+                $body = $controller->renderPartial('@app/modules/admin/views/orders/email/admin', ['order' => $order, 'status' => 'new']);
                 $model = new Self;
                 $model->mailer->sendEmail(Yii::$app->settings->get('Settings.adminEmail'), 'Уведомление о новом заказе', $body);
                 $model->mailer->sendEmail(Yii::$app->settings->get('Settings.sellEmail'), 'Уведомление о новом заказе', $body);
                 // $model->mailer->sendEmail('pimax1978@icloud.com', 'Новый заказ', $body);
 
                 if ($user->unconfirmed_email == 1) {
-                    $body = $controller->renderPartial('@app/modules/adminka/views/orders/email/customer', ['order' => $order, 'status' => 'new']); // @todo сделать письмо
+                    $body = $controller->renderPartial('@app/modules/admin/views/orders/email/customer', ['order' => $order, 'status' => 'new']); // @todo сделать письмо
                     $model->mailer->sendEmail($user->email, 'Ваш Заказ успешно оформлен и отправлен в Отдел Заказов', $body);
                     // $model->mailer->sendEmail('pimax1978@icloud.com', 'Ваш Заказ успешно оформлен и отправлен в Отдел Заказов', $body);
                 }

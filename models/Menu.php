@@ -45,6 +45,6 @@ class Menu extends \yii\db\ActiveRecord
     }
 
     public function getPage(){
-        return $this->hasOne(Page::className(), ['id' => 'page_id']);
+        return $this->hasOne(Page::class, ['id' => 'page_id']);
     }
 }

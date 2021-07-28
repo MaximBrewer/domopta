@@ -21,7 +21,7 @@ class User extends \dektrium\user\models\User
 
     protected function getMailer()
     {
-        return \Yii::$container->get(Mailer::className());
+        return \Yii::$container->get(Mailer::class);
     }
 
 
@@ -161,7 +161,7 @@ class User extends \dektrium\user\models\User
 
     public function getOrders()
     {
-        return $this->hasMany(Order::className(), ['user_id' => 'id']);
+        return $this->hasMany(Order::class, ['user_id' => 'id']);
     }
 
 
@@ -290,7 +290,7 @@ class User extends \dektrium\user\models\User
 
     public function getFavorite()
     {
-        return $this->hasMany(Favorite::className(), ['user_id' => 'id']);
+        return $this->hasMany(Favorite::class, ['user_id' => 'id']);
     }
 
     public function beforeSave($insert)

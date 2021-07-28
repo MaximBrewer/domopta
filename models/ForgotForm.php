@@ -21,7 +21,7 @@ class ForgotForm extends Model
 
 	public function rules() {
 		return [
-			['recaptcha', ReCaptchaValidator::className(), 'message' => 'Подтвердите, что вы не робот'],
+			['recaptcha', ReCaptchaValidator::class, 'message' => 'Подтвердите, что вы не робот'],
 			['phone', 'required', 'message' => 'Введите номер телефона'],
 			['phone', 'checkPhone'],
 

@@ -15,7 +15,7 @@ use yii\widgets\ListView;
 use yii\data\Pagination;
 use yii\widgets\ActiveForm;
 
-$this->registerJsFile('/js/order.js', ['depends' => \yii\web\JqueryAsset::className()]);
+$this->registerJsFile('/js/order.js', ['depends' => \yii\web\JqueryAsset::class]);
 
 
 ?>

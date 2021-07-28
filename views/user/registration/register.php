@@ -22,7 +22,7 @@ use app\components\Breadcrumbs;
 
 $this->params['breadcrumbs'][] = 'Регистрация';
 
-$this->registerJsFile('/js/register.js', ['depends' => \yii\web\JqueryAsset::className()]);
+$this->registerJsFile('/js/register.js', ['depends' => \yii\web\JqueryAsset::class]);
 
 if($model->hasErrors()){
     $str = '';
@@ -59,7 +59,7 @@ if($model->hasErrors()){
                 'id' => 'registration-form',
                 'enableAjaxValidation' => false,
                 'enableClientValidation' => false,
-                'fieldClass' => MyActiveField::className()
+                'fieldClass' => MyActiveField::class
             ]); ?>
             <div class="reg_left fl">
                 <?= $form->field($model, 'lastname') ?>
@@ -70,7 +70,7 @@ if($model->hasErrors()){
                 <span class="field-register-form-organozation_name">
                     <?= $form->field($model, 'organization_name', ['options' => ['disabled' => true]]) ?>
                 </span>
-                <?= $form->field($model, 'phone')->widget(\yii\widgets\MaskedInput::className(),
+                <?= $form->field($model, 'phone')->widget(\yii\widgets\MaskedInput::class,
                     [
                         'mask' => '+7 (999) 999-99-99',
                         'options' => ['placeholder' => '+7']

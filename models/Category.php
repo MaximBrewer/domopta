@@ -82,7 +82,7 @@ class Category extends \yii\db\ActiveRecord
 
         return [
             [
-                'class' => UploadImageBehavior::className(),
+                'class' => UploadImageBehavior::class,
                 'attribute' => 'image',
                 'scenarios' => ['default'],
                 //                'placeholder' => '@app/modules/user/assets/images/userpic.jpg',
@@ -118,7 +118,7 @@ class Category extends \yii\db\ActiveRecord
 
     public function getParent()
     {
-        return $this->hasOne(Category::className(), ['id' => 'parent_id']);
+        return $this->hasOne(Category::class, ['id' => 'parent_id']);
     }
 
     public function getParents()
@@ -135,14 +135,14 @@ class Category extends \yii\db\ActiveRecord
 
     public function getProducts()
     {
-        $query = $this->hasMany(Products::className(), ['category_id' => 'id']);
+        $query = $this->hasMany(Products::class, ['category_id' => 'id']);
 
         return $query;
     }
 
     public function getRecCategory()
     {
-        return $this->hasOne(Category::className(), ['id' => 'rec_cat_id']);
+        return $this->hasOne(Category::class, ['id' => 'rec_cat_id']);
     }
 
     public function getNextproduct($article_index)

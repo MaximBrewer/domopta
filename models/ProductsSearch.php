@@ -65,7 +65,7 @@ class ProductsSearch extends Products
             $query->andWhere(['products.category_id' => $array_category]);
         }
 
-        if(\Yii::$app->controller->module->id == "admin"){
+        if(MODULE_ID == "admin"){
             $this->page_size = 50;
         }
 

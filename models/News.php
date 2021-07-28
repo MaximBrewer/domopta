@@ -32,10 +32,10 @@ class News extends \yii\db\ActiveRecord
     {
         return [
             [
-                'class' => TimestampBehavior::className()
+                'class' => TimestampBehavior::class
             ],
 	        [
-		        'class' => UploadImageBehavior::className(),
+		        'class' => UploadImageBehavior::class,
 		        'attribute' => 'image',
 		        'scenarios' => ['default'],
 //                'placeholder' => '@app/modules/user/assets/images/userpic.jpg',
@@ -48,7 +48,7 @@ class News extends \yii\db\ActiveRecord
 		        ],
 	        ],
 //            [
-//                'class' => SluggableBehavior::className(),
+//                'class' => SluggableBehavior::class,
 //                'attribute' => 'title',
 //                'slugAttribute' => 'slug',
 //                'ensureUnique' => true,

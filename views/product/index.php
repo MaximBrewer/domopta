@@ -12,8 +12,8 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\components\Breadcrumbs;
 
-$this->registerJsFile('/js/order.js?v=2', ['depends' => \yii\web\JqueryAsset::className()]);
-// $this->registerJsFile('/js/slick.min.js', ['depends' => \yii\web\JqueryAsset::className()]);
+$this->registerJsFile('/js/order.js?v=2', ['depends' => \yii\web\JqueryAsset::class]);
+// $this->registerJsFile('/js/slick.min.js', ['depends' => \yii\web\JqueryAsset::class]);
 // $this->registerCssFile('/js/slick-theme.css');
 
 $this->title = $model->name . ' | ' . $model->category->title;

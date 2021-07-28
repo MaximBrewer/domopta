@@ -20,7 +20,7 @@ class LoginForm extends Widget
 
     public function run()
     {
-        $model = \Yii::createObject(Form::className());
+        $model = \Yii::createObject(Form::class);
         echo $this->render('login', ['model' => $model]);
     }
 

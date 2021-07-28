@@ -27,7 +27,7 @@ class TelegramController extends Controller {
 	{
 		return [
 			'access' => [
-				'class' => AccessControl::className(),
+				'class' => AccessControl::class,
 				'only' => ['webhook'],
 				'rules' => [
 					[

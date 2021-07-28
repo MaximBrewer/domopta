@@ -12,6 +12,7 @@
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Html;
 
+use yii\bootstrap\Nav;
 /**
  * @var \yii\web\View $this
  * @var \dektrium\user\models\User $user
@@ -25,7 +26,20 @@ $this->params['breadcrumbs'][] = $this->title;
 <?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
 
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-2">
+        <?php echo Nav::widget([
+            'items' => [
+                ['label' => 'Демо', 'url' => ['/user/'.MODULE_ID, $searchModel->formName() . '[demo]' => 1]],
+                ['label' => 'Подозрительный тип', 'url' => ['/user/'.MODULE_ID, $searchModel->formName() . '[suspicious]' => 1]],
+                ['label' => 'Активные', 'url' => ['/user/'.MODULE_ID, $searchModel->formName() . '[is_active]' => 1]],
+                ['label' => 'Заблокированные', 'url' => ['/user/'.MODULE_ID, $searchModel->formName() . '[blocked_at]' => 1]],
+                ['label' => 'Игнорированные', 'url' => ['/user/'.MODULE_ID, $searchModel->formName() . '[is_ignored]' => 1]],
+                //['label' => 'Не подтвердили свой Email', 'url' => ['/user/'.MODULE_ID, $searchModel->formName() . '[not_confirmed]' => 1]],
+                ['label' => 'Не активированные', 'url' => ['/user/'.MODULE_ID, $searchModel->formName() . '[not_active]' => 1]],
+            ]
+        ]) ?>
+    </div>
+    <div class="col-md-10">
         <div class="panel panel-default">
             <div class="panel-body">
             <?php $form = ActiveForm::begin([
@@ -42,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($user->profile, 'city')->textInput() ?>
             <?= $form->field($user->profile, 'region')->textInput() ?>
             <?= $form->field($user->profile, 'organization_name')->textInput() ?>
-            <?= $form->field($user, 'email')->textInput(['readonly' => true]) ?>
+            <?= $form->field($user, 'email')->textInput() ?>
             <?= $form->field($user->profile, 'inn')->textInput(['readonly' => Yii::$app->user->identity->role != 'admin']) ?>
             <?= $form->field($user->profile, 'users_comment')->textInput() ?>
             <?= $form->field($user->profile, 'admins_comment')->textInput(['readonly' => Yii::$app->user->identity->role != 'admin']) ?>

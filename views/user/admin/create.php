@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'class' => 'nav-pills nav-stacked',
                     ],
                     'items' => [
-                        ['label' => Yii::t('user', 'Account details'), 'url' => ['/user/admin/create']],
+                        ['label' => Yii::t('user', 'Account details'), 'url' => ['/user/'.MODULE_ID.'/create']],
                         ['label' => Yii::t('user', 'Profile details'), 'options' => [
                             'class' => 'disabled',
                             'onclick' => 'return false;',

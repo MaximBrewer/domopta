@@ -41,7 +41,7 @@ AdminAsset::register($this);
         echo Nav::widget([
             'options' => ['class' => 'navbar-nav navbar-right'],
             'items' => [
-                ['label' => 'Сбросить кэш', 'url' => ['/adminka/cache/clear']],
+                ['label' => 'Сбросить кэш', 'url' => ['/' . MODULE_ID . '/cache/clear']],
                 ['label' => 'Перейти на сайт', 'url' => ['/site/index'], 'linkOptions' => ['target' => '_blank']],
                 Yii::$app->user->isGuest ? (['label' => 'Вход', 'url' => ['/site/login']]) : ('<li>'
                     . Html::beginForm(['/site/logout'], 'post')
@@ -57,22 +57,16 @@ AdminAsset::register($this);
         ?>
 
         <div class="container-fluid pt-50">
-            <?php echo $this->render('menu'); ?>
+            <?php if (MODULE_ID == 'manager12') : ?>
+                <?php echo $this->render('menu-manager'); ?>
+            <?php else : ?>
+                <?php echo $this->render('menu-admin'); ?>
+            <?php endif; ?>
         </div>
         <div class="container-fluid my-20">
             <?= $content ?>
         </div>
     </div>
-    <?php /**
-<footer class="footer-fluid">
-    <div class="container">
-        <p class="pull-left">&copy; Легкий ветер <?= date('Y') ?></p>
-
-        <p class="pull-right">Работает на <a href="http://www.yiiframework.com/" rel="external">Yii 2</a></p>
-    </div>
-</footer>
-     */
-    ?>
     <?php $this->endBody() ?>
 </body>
 

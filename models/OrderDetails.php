@@ -65,7 +65,7 @@ class OrderDetails extends \yii\db\ActiveRecord
     }
 
     public function getProduct(){
-        return $this->hasOne(Products::className(), ['article_index' => 'article'])->where(['is_deleted' => 0]);
+        return $this->hasOne(Products::class, ['article_index' => 'article'])->where(['is_deleted' => 0]);
     }
 
 }

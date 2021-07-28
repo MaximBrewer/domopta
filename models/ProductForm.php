@@ -19,7 +19,7 @@ class ProductForm extends Model
     public function rules()
     {
         return [
-            ['product_id', 'exist', 'targetClass' => Products::className(), 'targetAttribute' => 'id'],
+            ['product_id', 'exist', 'targetClass' => Products::class, 'targetAttribute' => 'id'],
             ['colors', 'each', 'rule' => ['integer', 'min' => 1, 'skipOnEmpty' => true]]
         ];
     }

@@ -22,7 +22,7 @@ use app\widgets\MyActiveField;
 $this->title = Yii::t('user', 'Sign up');
 $this->params['breadcrumbs'][] = $this->title;
 
-$this->registerJsFile('/js/register.js', ['depends' => \app\assets\AppAsset::className()]);
+$this->registerJsFile('/js/register.js', ['depends' => \app\assets\AppAsset::class]);
 
 ?>
 <div class="row">
@@ -36,7 +36,7 @@ $this->registerJsFile('/js/register.js', ['depends' => \app\assets\AppAsset::cla
                     'id' => 'registration-form',
                     'enableAjaxValidation' => false,
                     'enableClientValidation' => false,
-                    'fieldClass' => MyActiveField::className()
+                    'fieldClass' => MyActiveField::class
                 ]); ?>
 
                 <?= $form->field($model, 'type')->label(false)->radioList([
@@ -55,7 +55,7 @@ $this->registerJsFile('/js/register.js', ['depends' => \app\assets\AppAsset::cla
                 <?= $form->field($model, 'inn', ['options' => ['class' => 'hidden']]) ?>
                 <?= $form->field($model, 'users_comment') ?>
 
-                <?= $form->field($model, 'capcha')->widget(\yii\captcha\Captcha::className(),[
+                <?= $form->field($model, 'capcha')->widget(\yii\captcha\Captcha::class,[
                     'captchaAction' => ['/site/captcha']
                 ]) ?>
                 <?= $form->field($model, 'agree')->checkbox([

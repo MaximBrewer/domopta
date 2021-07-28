@@ -22,7 +22,7 @@ return [
         'toolbar1' => "undo redo | styleselect fontselect fontsizeselect forecolor backcolor | bold italic",
         'toolbar2' => "alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code",
         'image_advtab' => true,
-        'images_upload_url'=> '/adminka/default/upload',
+        'images_upload_url'=> '/admin/default/upload',
         // here we add custom filepicker only to Image dialog
         'file_picker_types'=>'image',
         'convert_urls' => false,

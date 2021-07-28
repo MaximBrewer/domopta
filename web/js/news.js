@@ -3,7 +3,7 @@ $('#getLink').on('click', function(e){
     var string = $('#news-name').val();
     if(string != ''){
         $.ajax({
-            url: '/adminka/news/slug?string=' + string,
+            url: '/'+window.moduleId+'/news/slug?string=' + string,
             success: function(data){
                 $('#news-slug').val(data);
             }

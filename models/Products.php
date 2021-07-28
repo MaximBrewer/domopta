@@ -101,19 +101,19 @@ class Products extends \yii\db\ActiveRecord
     {
         return ProductsImages::find()
             ->where(['folder' => $this->folder, 'category_id' => $this->category_id])->orderBy('order')->all();
-        // return $this->hasMany(ProductsImages::className(), ['product_id' => 'id'])->orderBy('order');
+        // return $this->hasMany(ProductsImages::class, ['product_id' => 'id'])->orderBy('order');
     }
 
     public function countPictures()
     {
         return ProductsImages::find()
             ->where(['folder' => $this->folder, 'category_id' => $this->category_id])->count();
-        // return $this->hasMany(ProductsImages::className(), ['product_id' => 'id'])->orderBy('order');
+        // return $this->hasMany(ProductsImages::class, ['product_id' => 'id'])->orderBy('order');
     }
 
     public function getCategory()
     {
-        return $this->hasOne(Category::className(), ['id' => 'category_id']);
+        return $this->hasOne(Category::class, ['id' => 'category_id']);
     }
 
     public function afterSave($insert, $changedAttributes)

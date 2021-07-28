@@ -105,7 +105,7 @@ class RegistrationForm extends BaseRegistrationForm
             'password' => $this->password,
         ]);
         /** @var Profile $profile */
-        $profile = \Yii::createObject(Profile::className());
+        $profile = \Yii::createObject(Profile::class);
         $profile->setAttributes([
             'type' => $this->type,
             'lastname' => $this->lastname,
