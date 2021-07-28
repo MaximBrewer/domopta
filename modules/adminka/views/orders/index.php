@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var $searchModel \app\models\OrderSearch
  * @var $dataProvider \yii\data\ActiveDataProvider
@@ -14,23 +15,23 @@ use yii\bootstrap\Modal;
 ?>
 <div class="container">
     <h2>Заказы</h2>
-    <?php if (\Yii::$app->user->identity->role == 'admin') : ?>
-        <div class="form-group">
+    <div class="form-group">
+        <?php if (\Yii::$app->user->identity->role == 'admin') : ?>
             <?= Html::a('Удалить выбранные', '#', ['class' => 'btn btn-danger', 'data-toggle' => 'modal', 'data-target' => '#delete-modal']) ?>
-            <?php
-            Modal::begin([
-                'id' => 'reestr-modal',
-                'header' => 'Укажите период для Реестра',
-                'toggleButton' => [
-                    'label' => 'Скачать реестр заказов (XLS)',
-                    'class' => 'btn btn-success'
-                ],
-            ]);
-            echo $this->render('/orders/_reestr', ['model' => new OrderReestrForm()]);
-            Modal::end();
-            ?>
-        </div>
-    <?php endif; ?>
+        <?php endif; ?>
+        <?php
+        Modal::begin([
+            'id' => 'reestr-modal',
+            'header' => 'Укажите период для Реестра',
+            'toggleButton' => [
+                'label' => 'Скачать реестр заказов (XLS)',
+                'class' => 'btn btn-success'
+            ],
+        ]);
+        echo $this->render('/orders/_reestr', ['model' => new OrderReestrForm()]);
+        Modal::end();
+        ?>
+    </div>
     <?= Html::beginForm(['delete'], 'post', ['id' => 'orders-multiply-form']) ?>
     <?php echo GridView::widget([
         'dataProvider' => $dataProvider,

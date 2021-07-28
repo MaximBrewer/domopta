@@ -15,10 +15,11 @@ use yii\widgets\ActiveForm;
 use yii\bootstrap\Alert;
 ?>
 <div class="container">
-	<div class="text-right">
-		<a href="/adminka/bigcart/xls" class="btn btn-success">Реестр Корзина от 3000 (XLS)</a>
-	</div>
-
+    <div class="form-group">
+        <?php if (in_array(\Yii::$app->user->identity->role, ['admin', 'manager'])) : ?>
+            <?= Html::a('Реестр Корзина от 3000 (XLS)', '/adminka/bigcart/xls', ['class' => 'btn btn-success']) ?>
+        <?php endif; ?>
+    </div>
 	<div class="row">
 		<div class="col-xs-12">
 			<?php foreach (Yii::$app->session->getAllFlashes() as $type => $message) : ?>

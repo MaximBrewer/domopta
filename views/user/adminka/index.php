@@ -53,10 +53,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]
             ]) ?>
         </div>
-        <div class="col-md-10">
-        <? else : ?>
-        <div class="col-md-12">
-        <? endif; ?>
+    <?php endif; ?>
+    <div class="<?php if (in_array(Yii::$app->user->identity->role, ['admin'])) : ?>col-md-10<?php else : ?>col-md-10 col-md-push-1<?php endif; ?>">
         <?= Html::beginForm(['/user/admin/deletemultiply'], 'post', ['id' => 'deletemultiply-form']) ?>
         <?php if (Yii::$app->user->identity->role == 'admin') : ?>
             <div class="form-group">
@@ -244,7 +242,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'tableOptions' => ['class' => 'table table-bordered']
         ]); ?>
         <?= Html::endForm(); ?>
-        </div>
+    </div>
 </div>
 
 <?php Modal::begin([
