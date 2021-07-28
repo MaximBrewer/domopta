@@ -28,14 +28,14 @@ class LoginController extends Controller {
 		$model->login = str_replace(')', '', $model->login);
 		$model->login = str_replace(' ', '', $model->login);
 		$model->login = str_replace('-', '', $model->login);
-
+		
 		$errors = ActiveForm::validate($model);
 		if(!empty($errors)) {
 			return Json::encode( $errors );
 		}
 		return Json::encode([
 			'success' => 1,
-			'role' => \Yii::$app->user->identity->role
+			'redirect' => \Yii::$app->user->identity->role == 'admin' ? 'tkbpfdtnf' : 'manager12'
 		]);
 	}
 

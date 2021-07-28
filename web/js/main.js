@@ -624,9 +624,8 @@ $(document).ready(function () {
             $("#loginform-password-error").html(data["loginform-password"]);
           }
         } else {
-          if (data.role == "admin") {
-          } else if (data.role == "manager") {
-            window.location.href = "/manager12";
+          if (!!data.redirect) {
+            window.location.href = data.redirect;
           } else {
             window.location.reload();
           }
