@@ -33,27 +33,27 @@ echo $this->render('menu');
 <?php echo $form->field($model, 'social_vk') ?>
 <?php echo $form->field($model, 'social_viber') ?>
 <?php echo $form->field($model, 'social_whatsapp') ?>
-<?php echo $form->field($model, 'addresses')->widget(TinyMce::className(),[
+<?php echo $form->field($model, 'addresses')->widget(TinyMce::class,[
 	'options' => ['rows' => 6],
 	'language' => 'ru',
 	'clientOptions' => Yii::$app->params['clientOptions']
 ]); ?>
-<?php echo $form->field($model, 'time')->widget(TinyMce::className(),[
+<?php echo $form->field($model, 'time')->widget(TinyMce::class,[
 	'options' => ['rows' => 6],
 	'language' => 'ru',
 	'clientOptions' => Yii::$app->params['clientOptions']
 ]); ?>
-<?php echo $form->field($model, 'schema')->widget(TinyMce::className(),[
+<?php echo $form->field($model, 'schema')->widget(TinyMce::class,[
 	'options' => ['rows' => 6],
 	'language' => 'ru',
 	'clientOptions' => Yii::$app->params['clientOptions']
 ]); ?>
-<?php echo $form->field($model, 'rekvizit')->widget(TinyMce::className(),[
+<?php echo $form->field($model, 'rekvizit')->widget(TinyMce::class,[
 	'options' => ['rows' => 6],
 	'language' => 'ru',
 	'clientOptions' => Yii::$app->params['clientOptions']
 ]); ?>
-<?php echo $form->field($model, 'footer')->widget(TinyMce::className(),[
+<?php echo $form->field($model, 'footer')->widget(TinyMce::class,[
     'options' => ['rows' => 6],
     'language' => 'ru',
     'clientOptions' => Yii::$app->params['clientOptions']
