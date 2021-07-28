@@ -77,7 +77,7 @@ class BigcartController extends Controller
 			ob_start();
 			$writer->save('php://output');
 			$content = ob_get_clean();
-			return Yii::$app->response->sendContentAsFile($content, "Реестр заказов" . "-" . date("d") . "-" . date("m") . "-" . date("Y") . ".xlsx", ['mimeType' => 'application/x-unknown']);
+			return Yii::$app->response->sendContentAsFile($content, "КорзинаОт3000" . "-" . date("d") . "-" . date("m") . "-" . date("Y") . ".xlsx", ['mimeType' => 'application/x-unknown']);
 		} catch (\PhpOffice\PhpSpreadsheet\Writer\Exception $e) {
 			echo $e->getMessage();
 		}
