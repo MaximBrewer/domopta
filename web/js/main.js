@@ -612,6 +612,7 @@ $(document).ready(function () {
       data: formData,
       dataType: "json",
       success: function (data) {
+        console.log(data);
         if (!data.success) {
           for (key in data) {
             $("#" + key).addClass("has-error");
@@ -623,8 +624,9 @@ $(document).ready(function () {
             $("#loginform-password-error").html(data["loginform-password"]);
           }
         } else {
-          if (data.id == 1) {
-            window.location.href = "/" + window.moduleId;
+          if (data.role == "admin") {
+          } else if (data.role == "manager") {
+            window.location.href = "/manager12";
           } else {
             window.location.reload();
           }

@@ -35,7 +35,7 @@ class LoginController extends Controller {
 		}
 		return Json::encode([
 			'success' => 1,
-			'id' => \Yii::$app->user->id
+			'role' => \Yii::$app->user->identity->role
 		]);
 	}
 
