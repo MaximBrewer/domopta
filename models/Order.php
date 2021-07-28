@@ -128,6 +128,11 @@ class Order extends \yii\db\ActiveRecord
         return $this->getDetiles()->where(['order_details.flag' => 1])->sum('sum');
     }
 
+    public function getDate()
+    {
+        return date('d.m.Y', $this->created_at);
+    }
+
     public function getOldSum()
     {
         return $this->getDetiles()->sum('sum_old');

@@ -75,7 +75,11 @@ class OrdersController extends Controller
         $timestampFrom = strtotime($from);
         $timestampTo = strtotime($to) + 24 * 3600;
 
-        $spreadsheet = $reader->loadFromString($this->renderPartial('reestr', ['orders' => Order::find()->where("created_at > $timestampFrom AND created_at < $timestampTo")->all()]));
+        $spreadsheet = $reader->loadFromString($this->renderPartial('reestr', [
+            'from' => $from,
+            'to' => $to,
+            'orders' => Order::find()->where("created_at > $timestampFrom AND created_at < $timestampTo")->all()
+        ]));
         $spreadsheet->getDefaultStyle()->getFont()->setSize(10);
 
         $style = $spreadsheet->getActiveSheet()->getStyle('A1:Z' . $spreadsheet->getActiveSheet()->getHighestRow());
