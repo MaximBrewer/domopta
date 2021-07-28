@@ -70,7 +70,7 @@ $users = User::find()
                 'label' => 'Скачали каталог (' . $users . ')',
                 'url' => ['/adminka/imports'],
                 'active' => Yii::$app->controller->id == 'imports',
-                'visible' => in_array(Yii::$app->user->identity->role, ['admin', 'manager', 'contentmanager'])
+                'visible' => in_array(Yii::$app->user->identity->role, ['admin'])
             ],
             [
                 'label' => 'Рассылка в мессенджеры',

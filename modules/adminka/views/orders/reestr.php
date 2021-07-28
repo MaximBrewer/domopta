@@ -23,8 +23,8 @@ use yii\helpers\Html;
 			<th width="16" align="center" valign="center" style="border: 1px solid black;font-size:12pt;font-weight:bold">Город</th>
 			<th width="16" align="center" valign="center" style="border: 1px solid black;font-size:12pt;font-weight:bold">Область</th>
 			<th width="20" align="center" valign="center" style="border: 1px solid black;font-size:12pt;font-weight:bold">Телефон</th>
-			<th width="16" align="center" valign="center" style="border: 1px solid black;font-size:12pt;font-weight:bold">Тип цен</th>
-			<th width="16" align="center" valign="center" style="border: 1px solid black;font-size:12pt;font-weight:bold">Сумма</th>
+			<th width="12" align="center" valign="center" style="border: 1px solid black;font-size:12pt;font-weight:bold">Тип цен</th>
+			<th width="12" align="center" valign="center" style="border: 1px solid black;font-size:12pt;font-weight:bold">Сумма</th>
 		</tr>
 	</thead>
 	<tbody>
