@@ -128,6 +128,6 @@ class Cart extends \yii\db\ActiveRecord
     {
         \Yii::$app->db->createCommand('DELETE FROM cart_details WHERE cart_id = :id')->bindValue(':id' ,$this->id)->execute();
         $user = User::findOne($this->user_id);
-        $user->updateCartSum();
+        if($user) $user->updateCartSum();
     }
 }
