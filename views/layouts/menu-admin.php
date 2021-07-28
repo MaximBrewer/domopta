@@ -5,6 +5,7 @@ use app\models\Cart;
 use app\models\User;
 
 $count = User::find()->where('user.cart_sum >= 3000')->count();
+$usc = User::find()->count();
 
 $s = date("Y-m-d H:i:s", strtotime("-1 months"));
 $f = date("Y-m-d H:i:s");
@@ -37,7 +38,7 @@ $users = User::find()
                 'visible' => in_array(Yii::$app->user->identity->role, ['admin', 'contentmanager'])
             ],
             [
-                'label' => 'Пользователи',
+                'label' => 'Пользователи (' . $usc . ')',
                 'url' => ['/user/'.MODULE_ID],
                 'active' => Yii::$app->controller->id == 'admin',
                 'visible' => in_array(Yii::$app->user->identity->role, ['admin', 'manager', 'contentmanager'])
