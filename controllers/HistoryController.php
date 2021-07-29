@@ -65,6 +65,8 @@ class HistoryController extends Controller
 	public function actionDetail($id)
 	{
 		$order = Order::findOne(['id' => $id, 'user_id' => Yii::$app->user->id]);
+		if (!$order)
+			return $this->redirect('/history');
 		return $this->render('detail', ['order' => $order]);
 	}
 
