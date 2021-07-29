@@ -13,7 +13,7 @@ class FileInputAssets extends AssetBundle
         'css/fileinput.css',
     ];
     public $js = [
-        'js/fileinput.js'
+        'js/fileinput.js?v=1.0.0'
     ];
     public $depends = [
         'yii\web\YiiAsset',
