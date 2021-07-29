@@ -76,7 +76,7 @@ $(".fl-upload").on("click", function () {
   }
   $(".fl-progress").show();
   $.ajax({
-    url: "/"+window.moduleId+"/test/upload?id=" + fl_model_id,
+    url: "/tkbpfdtnf/test/upload?id=" + fl_model_id,
     data: formData,
     processData: false,
     contentType: false,
