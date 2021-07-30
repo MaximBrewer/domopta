@@ -349,7 +349,11 @@ class User extends \dektrium\user\models\User
             if (!$product) continue;
             $quantity = $product->pack_quantity ? $product->pack_quantity : 1;
             foreach ($item->details as $detail) {
-                $sum += $product->getUserByIdPrice($this->id) * $quantity * $detail->amount;
+                $sold = false;
+                if (($detail->color != 'default' && !$cart->product->hasColor($detail->color)) || !$cart->product->flag) {
+                    $sold = true;
+                }
+                $sum += $sold ? 0 : $product->getUserByIdPrice($this->id) * $quantity * $detail->amount;
             }
         }
         $this->cart_sum = $sum;
