@@ -43,6 +43,6 @@ class Module extends \yii\base\Module
     public function init()
     {
         parent::init();
-        $this->layout = '@app/views/layouts/admin';
+        $this->layout = '@app/views/layouts/manager';
     }
 }
