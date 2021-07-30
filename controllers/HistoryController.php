@@ -59,6 +59,7 @@ class HistoryController extends Controller
 	public function actionIndex()
 	{
 		$orders = Order::find()->where(['user_id' => Yii::$app->user->id])->orderBy(['created_at' => SORT_DESC])->all();
+		var_dump(Order::find()->where(['user_id' => Yii::$app->user->id])->orderBy(['created_at' => SORT_DESC])->count());
 		return $this->render('index', ['orders' => $orders]);
 	}
 
