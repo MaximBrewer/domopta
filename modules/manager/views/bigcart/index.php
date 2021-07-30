@@ -92,13 +92,10 @@ use yii\bootstrap\Alert;
 				],
 				[
 					'class' => ActionColumn::class,
-					'template' => '{view} {order}',
+					'template' => '{view}',
 					'buttons' => [
 						'view' => function ($url, $model, $key) {
 							return Html::a("Смотреть содержимое корзины", ['/'.MODULE_ID.'/bigcart/cart', 'id' => $model->id], ['class' => 'btn btn-link']);
-						},
-						'order' => function ($url, $model, $key) {
-							return Html::a("Оформить заказ", ['/'.MODULE_ID.'/bigcart/order', 'id' => $model->id], ['class' => 'btn btn-link']);
 						},
 					]
 				]
