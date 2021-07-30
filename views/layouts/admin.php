@@ -21,6 +21,7 @@ AdminAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <script> var moduleId = 'tkbpfdtnf';</script>
 </head>
 
 <body>
