@@ -399,7 +399,7 @@ class User extends \dektrium\user\models\User
                 $retur .= "</td>";
                 $retur .= "<td class=\"text-center\">";
                 $sold = false;
-                if (($detail->color != 'default' || !$cart->product->flag) && !$cart->product->hasColor($detail->color)) {
+                if (($detail->color != 'default' && !$cart->product->hasColor($detail->color)) || !$cart->product->flag) {
                     $sold = true;
                 }
                 $retur .= !$sold ? 'В&nbsp;наличии' : '<span style="color:red;">Продан</span>';
