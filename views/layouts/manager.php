@@ -44,8 +44,6 @@ AdminAsset::register($this);
         echo Nav::widget([
             'options' => ['class' => 'navbar-nav navbar-right'],
             'items' => [
-                ['label' => 'Сбросить кэш', 'url' => ['/' . MODULE_ID . '/cache/clear']],
-                ['label' => 'Перейти на сайт', 'url' => ['/site/index'], 'linkOptions' => ['target' => '_blank']],
                 Yii::$app->user->isGuest ? (['label' => 'Вход', 'url' => ['/site/login']]) : ('<li>'
                     . Html::beginForm(['/site/logout'], 'post')
                     . Html::submitButton(
@@ -60,7 +58,7 @@ AdminAsset::register($this);
         ?>
 
         <div class="container-fluid pt-50">
-            <?php echo $this->render('menu-admin'); ?>
+            <?php echo $this->render('menu-manager'); ?>
         </div>
         <div class="container-fluid my-20">
             <?= $content ?>

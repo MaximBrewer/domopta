@@ -161,7 +161,7 @@ $config = [
                 'manager12' => [
                     'class' => 'app\modules\manager\controllers\UserController',
                     'on ' . \dektrium\user\controllers\AdminController::EVENT_BEFORE_ACTION => function ($e) {
-                        $e->action->controller->layout = '@app/views/layouts/admin';
+                        $e->action->controller->layout = '@app/views/layouts/manager';
                     }
                 ],
                 'registration' => [
