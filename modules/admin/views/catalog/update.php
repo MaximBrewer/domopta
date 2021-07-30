@@ -26,9 +26,9 @@ $next = $model->getNextproduct() ? $model->getNextproduct() : $model;
         <div class="">
             <div class="row">
                 <div class="col-lg-7 col-xl-6" style="margin-bottom:10px;">
-                    <a href="/".MODULE_ID."/catalog/index?id=<?php echo $model->category_id ?>" class="btn btn-success">Назад в категорию</a>
-                    <a href="/".MODULE_ID."/catalog/update?id=<?php echo $prev->id ?>" class="btn btn-success" <?php echo $prev->id == $model->id ? 'disabled="disabled"' : '' ?>>&lt; Предыдущий товар</a>
-                    <a href="/".MODULE_ID."/catalog/update?id=<?php echo $next->id ?>" class="btn btn-success" <?php echo $next->id == $model->id ? 'disabled="disabled"' : '' ?>>Следующий товар &gt;</a>
+                    <a href="/<?=MODULE_ID;?>/catalog/index?id=<?php echo $model->category_id ?>" class="btn btn-success">Назад в категорию</a>
+                    <a href="/<?=MODULE_ID;?>/catalog/update?id=<?php echo $prev->id ?>" class="btn btn-success" <?php echo $prev->id == $model->id ? 'disabled="disabled"' : '' ?>>&lt; Предыдущий товар</a>
+                    <a href="/<?=MODULE_ID;?>/catalog/update?id=<?php echo $next->id ?>" class="btn btn-success" <?php echo $next->id == $model->id ? 'disabled="disabled"' : '' ?>>Следующий товар &gt;</a>
                 </div>
                 <div class="col-lg-5 col-xl-6">
                     <?php $form = \yii\widgets\ActiveForm::begin(['method' => 'get', 'action' => 'index']) ?>
