@@ -11,6 +11,7 @@ use yii\console\Controller;
 use yii\httpclient\Client;
 
 use app\models\User;
+use app\models\Cart;
 
 /**
  * This command echoes the first argument that you have entered.
@@ -28,8 +29,13 @@ class BigcartController extends Controller
      */
     public function actionIndex()
     {
-        $users = User::find()->all();
-        foreach($users as $user){
+        $carts = Cart::find()->all();
+        $users = [];
+        foreach($carts as $cart){
+            $users[$cart->user_id] = 1;
+        }
+        foreach($users as $user_id => $flag){
+            $user = User::findOne($user_id);
             $user->updateCartSum();
         }
     }

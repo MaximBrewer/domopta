@@ -14,6 +14,7 @@ use yii\base\Model;
 use yii\helpers\ArrayHelper;
 use yii\helpers\StringHelper;
 use yii\web\UploadedFile;
+use app\models\Cart;
 
 class ImportForm extends Model
 {
@@ -162,6 +163,16 @@ class ImportForm extends Model
             ->execute();
 
         \YII::$app->cache->flush();
+
+        $carts = Cart::find()->all();
+        $users = [];
+        foreach($carts as $cart){
+            $users[$cart->user_id] = 1;
+        }
+        foreach($users as $user_id => $flag){
+            $user = User::findOne($user_id);
+            $user->updateCartSum();
+        }
 
         static::renewUrls($id);
     }

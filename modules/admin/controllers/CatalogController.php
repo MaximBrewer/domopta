@@ -23,6 +23,7 @@ use yii\web\NotFoundHttpException;
 use dektrium\user\filters\AccessRule;
 use yii\filters\AccessControl;
 use yii\web\UploadedFile;
+use app\models\User;
 
 class CatalogController extends Controller
 {
@@ -164,7 +165,6 @@ class CatalogController extends Controller
 
     public function actionUpdate($id)
     {
-        
         $model = Products::findOne($id);
         if (!$model) {
             throw new NotFoundHttpException('Товар не найден');
