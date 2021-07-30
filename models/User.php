@@ -408,7 +408,7 @@ class User extends \dektrium\user\models\User
                 $retur .= str_replace(" ", "&nbsp;", date("d.m.y  (H:i)", $cart->created_at));
                 $retur .= "</td>";
                 $retur .= "</tr>";
-                $sum += $detail->getSum();
+                $sum += $sold ? 0 : $detail->getSum();
                 $amm += $row_amount;
             }
         }
