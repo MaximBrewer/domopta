@@ -77,7 +77,6 @@ class CatalogController extends Controller
         $dataProvider = $search_model->search(\Yii::$app->request->queryParams, $id);
         if (!$id)
             $dataProvider = $search_model->search(\Yii::$app->request->queryParams, '99999999999');
-            \Yii::$app->runAction('bigcart/index');
         return $this->render('index', [
             'category' => $category,
             'category_list' => $category_list,
@@ -141,7 +140,6 @@ class CatalogController extends Controller
             $model->file = UploadedFile::getInstance($model, 'file');
             if ($model->file->extension == 'csv' && $model->validate()) {
                 $model->import($id);
-                \Yii::$app->runAction('bigcart/index');
                 \Yii::$app->session->setFlash('success', 'Импорт успешно завершен');
                 return $this->redirect(['/'.MODULE_ID.'/catalog/index', 'id' => $id]);
             }
