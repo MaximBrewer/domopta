@@ -18,6 +18,7 @@ $this->registerJsFile('/js/product.js', ['depends' => \app\assets\AdminAsset::cl
 $prev = $model->getPrevproduct() ? $model->getPrevproduct() : $model;
 $next = $model->getNextproduct() ? $model->getNextproduct() : $model;
 ?>
+<?php echo $this->render('../_alert', ['module' => \Yii::$app->getModule('user')]); ?>
 <div class="row">
     <div class="col-md-3">
         <?php echo $this->render('left_menu', ['category_list' => $category_list, 'searchModel' => $searchModel, 'category' => $category]) ?>

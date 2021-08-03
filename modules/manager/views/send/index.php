@@ -5,6 +5,10 @@
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use dosamigos\tinymce\TinyMce;
+use yii\helpers\Url;
+
+$clientOptions = Yii::$app->params['clientOptions'];
+$clientOptions['images_upload_url'] = Url::toRoute(['/' . MODULE_ID . '/default/upload']);
 ?>
 <div class="container">
 <?php $form = ActiveForm::begin(['method' => 'post', 'options' => ['enctype' => 'multipart/form-data']]) ?>
@@ -14,7 +18,7 @@ use dosamigos\tinymce\TinyMce;
 //echo $form->field($model, 'text')->widget(TinyMce::class,[
 //	'options' => ['rows' => 6],
 //	'language' => 'ru',
-//	'clientOptions' => Yii::$app->params['clientOptions']
+//	'clientOptions' => 	$clientOptions
 //])
 ?>
 

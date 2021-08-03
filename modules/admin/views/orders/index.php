@@ -14,6 +14,7 @@ use yii\widgets\ActiveForm;
 use yii\bootstrap\Modal;
 ?>
 <div class="container">
+    <?php echo $this->render('../_alert', ['module' => \Yii::$app->getModule('user')]); ?>
     <h2>Заказы</h2>
     <div class="form-group">
         <?php if (\Yii::$app->user->identity->role == 'admin') : ?>

@@ -11,6 +11,7 @@ use yii\grid\ActionColumn;
 use yii\bootstrap\Html;
 ?>
 <div class="container">
+    <?php echo $this->render('../_alert', ['module' => \Yii::$app->getModule('user')]); ?>
     <h2>Новости</h2>
     <div class="form-group">
         <?php echo Html::a('Добавить', ['add'], ['class' => 'btn btn-success']); ?>

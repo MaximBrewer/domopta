@@ -10,7 +10,8 @@ use dosamigos\tinymce\TinyMce;
 use yii\helpers\Url;
 
 $this->registerJsFile('/js/page.js', ['depends' => \app\assets\AppAsset::class]);
-
+$clientOptions = Yii::$app->params['clientOptions'];
+$clientOptions['images_upload_url'] = Url::toRoute(['/'.MODULE_ID.'/default/upload']);
 ?>
 <?php $form = ActiveForm::begin() ?>
 <?php echo $form->field($model, 'name'); ?>
@@ -19,12 +20,13 @@ $this->registerJsFile('/js/page.js', ['depends' => \app\assets\AppAsset::class])
 <?php echo $form->field($model, 'text')->widget(TinyMce::class,[
     'options' => ['rows' => 20],
     'language' => 'ru',
-    'clientOptions' => Yii::$app->params['clientOptions']
+    'clientOptions' => $clientOptions
 ]); ?>
-<?php echo $form->field($model, 'additional_text')->widget(TinyMce::class,[
+<?php 
+echo $form->field($model, 'additional_text')->widget(TinyMce::class,[
     'options' => ['rows' => 20],
     'language' => 'ru',
-    'clientOptions' => Yii::$app->params['clientOptions']
+    'clientOptions' => $clientOptions
 ]); ?>
 <?php echo $form->field($model, 'title'); ?>
 <?php echo $form->field($model, 'description'); ?>

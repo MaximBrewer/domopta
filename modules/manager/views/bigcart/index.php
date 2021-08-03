@@ -15,24 +15,12 @@ use yii\widgets\ActiveForm;
 use yii\bootstrap\Alert;
 ?>
 <div class="container">
-    <div class="form-group">
-        <?php if (in_array(\Yii::$app->user->identity->role, ['admin', 'manager'])) : ?>
-            <?= Html::a('Реестр Корзина от 3000 (XLS)', '/'.MODULE_ID.'/bigcart/xls', ['class' => 'btn btn-success']) ?>
-        <?php endif; ?>
-    </div>
-	<div class="row">
-		<div class="col-xs-12">
-			<?php foreach (Yii::$app->session->getAllFlashes() as $type => $message) : ?>
-				<?php if (in_array($type, ['success', 'danger', 'warning', 'info'])) : ?>
-					<?= Alert::widget([
-						'options' => ['class' => 'alert-dismissible alert-' . $type],
-						'body' => is_array($message) ? $message[0] : $message
-					]) ?>
-				<?php endif ?>
-			<?php endforeach ?>
-		</div>
+	<div class="form-group">
+		<?php if (in_array(\Yii::$app->user->identity->role, ['admin', 'manager'])) : ?>
+			<?= Html::a('Реестр Корзина от 3000 (XLS)', '/' . MODULE_ID . '/bigcart/xls', ['class' => 'btn btn-success']) ?>
+		<?php endif; ?>
 	</div>
-
+	<?php echo $this->render('../_alert', ['module' => \Yii::$app->getModule('user')]); ?>
 	<div class="nouse">
 		<?php echo GridView::widget([
 			'dataProvider' => $dataProvider,
@@ -69,7 +57,7 @@ use yii\bootstrap\Alert;
 					'label' => 'Телефон',
 					'value' => function ($model) {
 						if (\Yii::$app->user->identity->role == 'admin') {
-							return Html::a($model->username, ['/user/'.MODULE_ID.'/update', 'id' => $model->id]);
+							return Html::a($model->username, ['/user/' . MODULE_ID . '/update', 'id' => $model->id]);
 						} else {
 							return $model->username;
 						}
@@ -95,7 +83,7 @@ use yii\bootstrap\Alert;
 					'template' => '{view}',
 					'buttons' => [
 						'view' => function ($url, $model, $key) {
-							return Html::a("Смотреть содержимое корзины", ['/'.MODULE_ID.'/bigcart/cart', 'id' => $model->id], ['class' => 'btn btn-link']);
+							return Html::a("Смотреть содержимое корзины", ['/' . MODULE_ID . '/bigcart/cart', 'id' => $model->id], ['class' => 'btn btn-link']);
 						},
 					]
 				]

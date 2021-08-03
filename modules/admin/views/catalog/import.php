@@ -11,6 +11,7 @@ use yii\helpers\Html;
 
 $this->registerJsFile('/js/import.js', ['depends' => \yii\web\JqueryAsset::class]);
 ?>
+<?php echo $this->render('../_alert', ['module' => \Yii::$app->getModule('user')]); ?>
 <div class="row">
     <div class="col-md-3">
         <?php echo $this->render('left_menu', ['category_list' => $category_list, 'searchModel' => $searchModel, 'category' => $category]) ?>

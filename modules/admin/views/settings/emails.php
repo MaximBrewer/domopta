@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var $this \yii\web\View
  * @var $model \app\models\Settings;
@@ -10,65 +11,71 @@ use dosamigos\tinymce\TinyMce;
 use yii\bootstrap\Html;
 use yii\helpers\Url;
 
-echo $this->render('menu');
+$clientOptions = Yii::$app->params['clientOptions'];
+$clientOptions['images_upload_url'] = Url::toRoute(['/' . MODULE_ID . '/default/upload']);
+
 ?>
 <div class="container">
-<?php $form = ActiveForm::begin(); ?>
-<?php echo $form->field($model, 'email_active')->widget(TinyMce::class,[
-    'options' => ['rows' => 6],
-    'language' => 'ru',
-    'clientOptions' => Yii::$app->params['clientOptions']
-]); ?>
-
-<?php
-//echo $form->field($model, 'email_success')->widget(TinyMce::class,[
-//    'options' => ['rows' => 6],
-//    'language' => 'ru',
-//    'clientOptions' => Yii::$app->params['clientOptions']
-//]);
-?>
-<!--<p>{%link%} {%password%}</p>-->
-<?php echo $form->field($model, 'email_block')->widget(TinyMce::class,[
-    'options' => ['rows' => 6],
-    'language' => 'ru',
-    'clientOptions' => Yii::$app->params['clientOptions']
-]); ?>
-<p>{%comment%}</p>
-<?php echo $form->field($model, 'email_order')->widget(TinyMce::class,[
-    'options' => ['rows' => 6],
-    'language' => 'ru',
-    'clientOptions' => [
-        'height' => '700px',
-        'plugins' => [
-            "advlist autolink lists link charmap print preview anchor",
-            "searchreplace visualblocks code fullscreen",
-            "insertdatetime media table contextmenu paste "
-        ],
-        'toolbar' => "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code"
-    ]
-]); ?>
-
-<?php echo $form->field($model, 'email_unblock')->widget(TinyMce::class,[
-    'options' => ['rows' => 6],
-    'language' => 'ru',
-    'clientOptions' => Yii::$app->params['clientOptions']
-]); ?>
-
-<?php echo $form->field($model, 'email_delete')->widget(TinyMce::class,[
-    'options' => ['rows' => 6],
-    'language' => 'ru',
-    'clientOptions' => Yii::$app->params['clientOptions']
-]); ?>
-
-<?php
-echo $form->field($model, 'email_confirm')->widget(TinyMce::class,[
-    'options' => ['rows' => 6],
-    'language' => 'ru',
-    'clientOptions' => Yii::$app->params['clientOptions']
-]);
-?>
-<div class="form-group">
-    <?php echo Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+    <?php echo $this->render('../_alert', ['module' => \Yii::$app->getModule('user')]); ?>
 </div>
-<?php ActiveForm::end(); ?>
+<?php echo $this->render('menu'); ?>
+<div class="container">
+    <?php $form = ActiveForm::begin(); ?>
+    <?php echo $form->field($model, 'email_active')->widget(TinyMce::class, [
+        'options' => ['rows' => 6],
+        'language' => 'ru',
+        'clientOptions' =>     $clientOptions
+    ]); ?>
+
+    <?php
+    //echo $form->field($model, 'email_success')->widget(TinyMce::class,[
+    //    'options' => ['rows' => 6],
+    //    'language' => 'ru',
+    //    'clientOptions' => 	$clientOptions
+    //]);
+    ?>
+    <!--<p>{%link%} {%password%}</p>-->
+    <?php echo $form->field($model, 'email_block')->widget(TinyMce::class, [
+        'options' => ['rows' => 6],
+        'language' => 'ru',
+        'clientOptions' =>     $clientOptions
+    ]); ?>
+    <p>{%comment%}</p>
+    <?php echo $form->field($model, 'email_order')->widget(TinyMce::class, [
+        'options' => ['rows' => 6],
+        'language' => 'ru',
+        'clientOptions' => [
+            'height' => '700px',
+            'plugins' => [
+                "advlist autolink lists link charmap print preview anchor",
+                "searchreplace visualblocks code fullscreen",
+                "insertdatetime media table contextmenu paste "
+            ],
+            'toolbar' => "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | code"
+        ]
+    ]); ?>
+
+    <?php echo $form->field($model, 'email_unblock')->widget(TinyMce::class, [
+        'options' => ['rows' => 6],
+        'language' => 'ru',
+        'clientOptions' =>     $clientOptions
+    ]); ?>
+
+    <?php echo $form->field($model, 'email_delete')->widget(TinyMce::class, [
+        'options' => ['rows' => 6],
+        'language' => 'ru',
+        'clientOptions' =>     $clientOptions
+    ]); ?>
+
+    <?php
+    echo $form->field($model, 'email_confirm')->widget(TinyMce::class, [
+        'options' => ['rows' => 6],
+        'language' => 'ru',
+        'clientOptions' =>     $clientOptions
+    ]);
+    ?>
+    <div class="form-group">
+        <?php echo Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+    </div>
+    <?php ActiveForm::end(); ?>
 </div>

@@ -9,6 +9,9 @@ use yii\bootstrap\Html;
 use dosamigos\tinymce\TinyMce;
 use yii\helpers\Url;
 
+$clientOptions = Yii::$app->params['clientOptions'];
+$clientOptions['images_upload_url'] = Url::toRoute(['/' . MODULE_ID . '/default/upload']);
+
 $this->registerJsFile('/js/news.js', ['depends' => \app\assets\AppAsset::class]);
 
 ?>
@@ -19,7 +22,7 @@ $this->registerJsFile('/js/news.js', ['depends' => \app\assets\AppAsset::class])
 <?= $form->field($model, 'text')->widget(TinyMce::class, [
     'options' => ['rows' => 50],
     'language' => 'ru',
-    'clientOptions' => Yii::$app->params['clientOptions']
+    'clientOptions' => 	$clientOptions
 ]); ?>
 <?php echo $form->field($model, 'title'); ?>
 <?php //echo $form->field($model, 'keywords'); ?>

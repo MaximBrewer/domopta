@@ -11,6 +11,8 @@ use yii\helpers\Url;
 
 $this->registerJsFile('/js/news.js', ['depends' => \app\assets\AppAsset::class]);
 
+$clientOptions = Yii::$app->params['clientOptions'];
+$clientOptions['images_upload_url'] = Url::toRoute(['/' . MODULE_ID . '/default/upload']);
 ?>
 <?php $form = ActiveForm::begin() ?>
 <?php echo $form->field($model, 'name'); ?>
@@ -19,7 +21,7 @@ $this->registerJsFile('/js/news.js', ['depends' => \app\assets\AppAsset::class])
 <?= $form->field($model, 'text')->widget(TinyMce::class, [
     'options' => ['rows' => 50],
     'language' => 'ru',
-    'clientOptions' => Yii::$app->params['clientOptions']
+    'clientOptions' => $clientOptions
 ]); ?>
 <?php echo $form->field($model, 'title'); ?>
 <?php //echo $form->field($model, 'keywords'); ?>

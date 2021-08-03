@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var $searchModel \app\models\PageSearch
  * @var $dataProvider \yii\data\ActiveDataProvider
@@ -10,29 +11,30 @@ use yii\helpers\Url;
 use yii\helpers\Html;
 ?>
 <div class="container">
-<?php echo Html::a('Добавить', ['/'.MODULE_ID.'/pages/add'], ['class' => 'btn btn-success']) ?>
-<?php echo GridView::widget([
-    'dataProvider' => $dataProvider,
-    'columns' => [
-        [
-            'class' => ActionColumn::class,
-            'template' => '{update} {delete}',
-            'visibleButtons' => [
-                'delete' => function ($model, $key, $index) {
-                    return $model->module == 'pages';
-                }
-            ]
-        ],
-        'name',
-        [
-            'attribute' => 'slug',
-            'value' => function($model){
-                $url = $model->slug;
-                return Html::a($url, $url, ['target' => '_blank']);
-            },
-            'format' => 'raw'
-        ],
-        'created_at:date'
-    ]
-]) ?>
+    <?php echo $this->render('../_alert', ['module' => \Yii::$app->getModule('user')]); ?>
+    <?php echo Html::a('Добавить', ['/' . MODULE_ID . '/pages/add'], ['class' => 'btn btn-success']) ?>
+    <?php echo GridView::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => [
+            [
+                'class' => ActionColumn::class,
+                'template' => '{update} {delete}',
+                'visibleButtons' => [
+                    'delete' => function ($model, $key, $index) {
+                        return $model->module == 'pages';
+                    }
+                ]
+            ],
+            'name',
+            [
+                'attribute' => 'slug',
+                'value' => function ($model) {
+                    $url = $model->slug;
+                    return Html::a($url, $url, ['target' => '_blank']);
+                },
+                'format' => 'raw'
+            ],
+            'created_at:date'
+        ]
+    ]) ?>
 </div>

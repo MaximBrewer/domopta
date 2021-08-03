@@ -54,6 +54,10 @@ class CacheController extends Controller
     {
         \Yii::$app->cache->flush();
         \Yii::$app->session->setFlash('success', "Кэш очищен");
-        return $this->goBack('/'.MODULE_ID.'/orders');
+        if (\Yii::$app->request->referrer) {
+            return $this->redirect(\Yii::$app->request->referrer);
+        } else {
+            return $this->goBack('/' . MODULE_ID . '/catalog');
+        }
     }
 }
