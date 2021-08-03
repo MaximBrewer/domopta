@@ -28,6 +28,7 @@ use yii\bootstrap\Alert;
 			'layout' => '{summary} {pager} {items} {pager}',
 			'columns' => [
 				[
+					'attribute' => 'profiles.lastname',
 					'label' => 'ФИО',
 					'value' => function ($model) {
 						if ($model->profile) {
@@ -38,7 +39,7 @@ use yii\bootstrap\Alert;
 							]);
 						}
 					},
-					'attribute' => 'name'
+					'format' => 'raw'
 				],
 				[
 					'label' => 'Город',
@@ -67,7 +68,9 @@ use yii\bootstrap\Alert;
 					'format' => 'raw'
 				],
 				[
+					'attribute' => 'profiles.type',
 					'label' => 'Тип цен',
+					'format' => 'raw',
 					'value' => function ($model) {
 						return $model->profile->type == 2 ? 'Мелкий опт' : 'Опт';
 					}

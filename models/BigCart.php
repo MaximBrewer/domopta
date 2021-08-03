@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: resh
@@ -30,7 +31,7 @@ class BigCart extends \dektrium\user\models\User
         unset($rules['emailUnique']);
         return $rules;
     }
-    
+
 
     public function search($params)
     {
@@ -45,7 +46,16 @@ class BigCart extends \dektrium\user\models\User
             //$query->andWhere(['not', ['confirmed_at' => null]]);
             $dataProvider = new ActiveDataProvider([
                 'query' => $query,
-                // 'sort' => false,
+                'sort' => [
+                    'defaultOrder' => ['username' => SORT_ASC],
+                    'params' => \Yii::$app->getRequest()->get(),
+                    'attributes' => [
+                        'username',
+                        'profiles.lastname',
+                        'cart_sum',
+                        'profiles.type'
+                    ],
+                ],
                 'pagination' => [
                     'pageSize' => 50,
                 ],
@@ -54,9 +64,19 @@ class BigCart extends \dektrium\user\models\User
         }
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $query
-            // 'sort' => false,
+            'query' => $query,
+            'sort' => [
+                'defaultOrder' => ['username' => SORT_ASC],
+                'params' => \Yii::$app->getRequest()->get(),
+                'attributes' => [
+                    'username',
+                    'profiles.lastname',
+                    'cart_sum',
+                    'profiles.type'
+                ],
+            ],
         ]);
+
         if ($this->created_at !== null) {
             $date = strtotime($this->created_at);
             $query->andFilterWhere(['between', 'created_at', $date, $date + 3600 * 24]);
@@ -73,32 +93,31 @@ class BigCart extends \dektrium\user\models\User
             ->andFilterWhere(['like', 'profile.suspicious', $this->suspicious])
             ->andFilterWhere(['like', 'profile.organization_name', $this->organization]);
 
-        if($this->is_active){
+        if ($this->is_active) {
             $query->andFilterWhere(['is_active' => 1])
-            ->andWhere(['blocked_at' => null])
-            ->andWhere(['is_ignored' => null]);
+                ->andWhere(['blocked_at' => null])
+                ->andWhere(['is_ignored' => null]);
         }
 
-        if($this->not_active){
+        if ($this->not_active) {
             $query->andWhere(['is_active' => null])
-            ->andWhere(['blocked_at' => null])
-            ->andWhere(['is_ignored' => null]);
+                ->andWhere(['blocked_at' => null])
+                ->andWhere(['is_ignored' => null]);
             //->andWhere(['not', ['confirmed_at' => null]]);
         }
 
-        if($this->blocked_at){
+        if ($this->blocked_at) {
             $query->andWhere(['not', ['blocked_at' => null]]);
         }
 
-        if($this->is_ignored){
+        if ($this->is_ignored) {
             $query->andWhere(['is_ignored' => 1]);
         }
 
-        if($this->not_confirmed){
+        if ($this->not_confirmed) {
             $query->andWhere(['confirmed_at' => null]);
         }
 
         return $dataProvider;
     }
-
 }
