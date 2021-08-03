@@ -53,7 +53,9 @@ class BigCart extends \dektrium\user\models\User
                         'username',
                         'profile.lastname',
                         'cart_sum',
-                        'profile.type'
+                        'profile.type',
+                        'profile.city',
+                        'profile.region'
                     ],
                 ],
                 'pagination' => [
@@ -72,7 +74,9 @@ class BigCart extends \dektrium\user\models\User
                     'username',
                     'profile.lastname',
                     'cart_sum',
-                    'profile.type'
+                    'profile.type',
+                    'profile.city',
+                    'profile.region'
                 ],
             ],
         ]);

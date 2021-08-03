@@ -42,6 +42,7 @@ use yii\bootstrap\Alert;
 					'format' => 'raw'
 				],
 				[
+					'attribute' => 'profile.city',
 					'label' => 'Город',
 					'value' => function ($model) {
 						return $model->profile->city;
@@ -49,6 +50,7 @@ use yii\bootstrap\Alert;
 					'format' => 'raw'
 				],
 				[
+					'attribute' => 'profile.region',
 					'label' => 'Область',
 					'value' => function ($model) {
 						return $model->profile->region;
