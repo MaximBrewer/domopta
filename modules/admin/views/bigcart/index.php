@@ -44,13 +44,15 @@ use yii\bootstrap\Alert;
 					'label' => 'Город',
 					'value' => function ($model) {
 						return $model->profile->city;
-					}
+					},
+					'format' => 'raw'
 				],
 				[
 					'label' => 'Область',
 					'value' => function ($model) {
 						return $model->profile->region;
-					}
+					},
+					'format' => 'raw'
 				],
 				[
 					'attribute' => 'username',

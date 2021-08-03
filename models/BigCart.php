@@ -37,7 +37,7 @@ class BigCart extends \dektrium\user\models\User
         $query = $this->finder->getUserQuery();
         $query->where('user.cart_sum >= 3000');
         $query->joinWith('profile');
-        $query->orderBy(['created_at' => SORT_DESC]);
+        // $query->orderBy(['created_at' => SORT_DESC]);
 
 
 
@@ -45,7 +45,7 @@ class BigCart extends \dektrium\user\models\User
             //$query->andWhere(['not', ['confirmed_at' => null]]);
             $dataProvider = new ActiveDataProvider([
                 'query' => $query,
-                'sort' => false,
+                // 'sort' => false,
                 'pagination' => [
                     'pageSize' => 50,
                 ],
@@ -54,8 +54,8 @@ class BigCart extends \dektrium\user\models\User
         }
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'sort' => false
+            'query' => $query
+            // 'sort' => false,
         ]);
         if ($this->created_at !== null) {
             $date = strtotime($this->created_at);
