@@ -51,9 +51,9 @@ class BigCart extends \dektrium\user\models\User
                     'params' => \Yii::$app->getRequest()->get(),
                     'attributes' => [
                         'username',
-                        'profiles.lastname',
+                        'profile.lastname',
                         'cart_sum',
-                        'profiles.type'
+                        'profile.type'
                     ],
                 ],
                 'pagination' => [
@@ -70,9 +70,9 @@ class BigCart extends \dektrium\user\models\User
                 'params' => \Yii::$app->getRequest()->get(),
                 'attributes' => [
                     'username',
-                    'profiles.lastname',
+                    'profile.lastname',
                     'cart_sum',
-                    'profiles.type'
+                    'profile.type'
                 ],
             ],
         ]);

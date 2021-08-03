@@ -28,7 +28,7 @@ use yii\bootstrap\Alert;
 			'layout' => '{summary} {pager} {items} {pager}',
 			'columns' => [
 				[
-					'attribute' => 'profiles.lastname',
+					'attribute' => 'profile.lastname',
 					'label' => 'ФИО',
 					'value' => function ($model) {
 						if ($model->profile) {
@@ -68,7 +68,7 @@ use yii\bootstrap\Alert;
 					'format' => 'raw'
 				],
 				[
-					'attribute' => 'profiles.type',
+					'attribute' => 'profile.type',
 					'label' => 'Тип цен',
 					'format' => 'raw',
 					'value' => function ($model) {
