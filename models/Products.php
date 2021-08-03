@@ -128,16 +128,6 @@ class Products extends \yii\db\ActiveRecord
                 $image->delete();
             }
         }
-
-        $carts = Cart::find()->all();
-        $users = [];
-        foreach($carts as $cart){
-            $users[$cart->user_id] = 1;
-        }
-        foreach($users as $user_id => $flag){
-            $user = User::findOne($user_id);
-            $user->updateCartSum();
-        }
     }
 
     public function createThumb($path, $fname, $prefix, $suffix, $width, $height)

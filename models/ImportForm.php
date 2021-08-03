@@ -164,16 +164,6 @@ class ImportForm extends Model
 
         \YII::$app->cache->flush();
 
-        $carts = Cart::find()->all();
-        $users = [];
-        foreach($carts as $cart){
-            $users[$cart->user_id] = 1;
-        }
-        foreach($users as $user_id => $flag){
-            $user = User::findOne($user_id);
-            $user->updateCartSum();
-        }
-
         static::renewUrls($id);
     }
 }
