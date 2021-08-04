@@ -51,16 +51,15 @@ class BigCart extends \dektrium\user\models\User
             ],
         ]);
 
-        $query->andFilterWhere(['OR', [
-            ['like', 'profile.lastname', \Yii::$app->getRequest()->get('BigCart')['profile.lastname']],
-            ['like', 'profile.firstname', \Yii::$app->getRequest()->get('BigCart')['profile.lastname']],
-            ['like', 'profile.surname', \Yii::$app->getRequest()->get('BigCart')['profile.lastname']]
-        ]]);
 
 
         $query->andFilterWhere(['like', 'profile.city', \Yii::$app->getRequest()->get('BigCart')['profile.city']]);
         $query->andFilterWhere(['like', 'profile.region', \Yii::$app->getRequest()->get('BigCart')['profile.region']]);
         $query->andFilterWhere(['like', 'username', \Yii::$app->getRequest()->get('BigCart')['username']]);
+
+        $query->andFilterWhere(['like', 'profile.lastname', \Yii::$app->getRequest()->get('BigCart')['profile.lastname']]);
+        $query->orFilterWhere(['like', 'profile.firstname', \Yii::$app->getRequest()->get('BigCart')['profile.lastname']]);
+        $query->orFilterWhere(['like', 'profile.surname', \Yii::$app->getRequest()->get('BigCart')['profile.lastname']]);
 
         return $dataProvider;
     }
