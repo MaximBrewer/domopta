@@ -13,17 +13,7 @@ use yii\data\ActiveDataProvider;
 
 class BigCart extends \dektrium\user\models\User
 {
-
-    public $name;
-    public $phone;
-    public $organization;
-    public $location;
-    public $inn;
-    public $demo;
-    public $suspicious;
-    public $not_confirmed;
-    public $not_active;
-
+    
     public function attributes()
     {
         // делаем поле зависимости доступным для поиска
