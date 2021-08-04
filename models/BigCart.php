@@ -62,6 +62,9 @@ class BigCart extends \dektrium\user\models\User
                     'profile.region'
                 ],
             ],
+            'pagination' => [
+                'pageSize' => 50,
+            ],
         ]);
 
 
