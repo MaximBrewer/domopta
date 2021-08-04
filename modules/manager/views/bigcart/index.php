@@ -28,6 +28,7 @@ use yii\bootstrap\Alert;
 			'layout' => '{summary} {pager} {items} {pager}',
 			'columns' => [
 				[
+					'attribute' => 'profile.lastname',
 					'label' => 'ФИО',
 					'value' => function ($model) {
 						if ($model->profile) {
@@ -38,26 +39,30 @@ use yii\bootstrap\Alert;
 							]);
 						}
 					},
-					'attribute' => 'name'
+					'format' => 'raw'
 				],
 				[
+					'attribute' => 'profile.city',
 					'label' => 'Город',
 					'value' => function ($model) {
 						return $model->profile->city;
-					}
+					},
+					'format' => 'raw'
 				],
 				[
+					'attribute' => 'profile.region',
 					'label' => 'Область',
 					'value' => function ($model) {
 						return $model->profile->region;
-					}
+					},
+					'format' => 'raw'
 				],
 				[
 					'attribute' => 'username',
 					'label' => 'Телефон',
 					'value' => function ($model) {
 						if (\Yii::$app->user->identity->role == 'admin') {
-							return Html::a($model->username, ['/user/' . MODULE_ID . '/update', 'id' => $model->id]);
+							return Html::a($model->username, ['/user/'.MODULE_ID.'/update', 'id' => $model->id]);
 						} else {
 							return $model->username;
 						}
@@ -65,7 +70,9 @@ use yii\bootstrap\Alert;
 					'format' => 'raw'
 				],
 				[
+					'attribute' => 'profile.type',
 					'label' => 'Тип цен',
+					'format' => 'raw',
 					'value' => function ($model) {
 						return $model->profile->type == 2 ? 'Мелкий опт' : 'Опт';
 					}
@@ -83,8 +90,8 @@ use yii\bootstrap\Alert;
 					'template' => '{view}',
 					'buttons' => [
 						'view' => function ($url, $model, $key) {
-							return Html::a("Смотреть содержимое корзины", ['/' . MODULE_ID . '/bigcart/cart', 'id' => $model->id], ['class' => 'btn btn-link']);
-						},
+							return Html::a("Смотреть содержимое корзины", ['/'.MODULE_ID.'/bigcart/cart', 'id' => $model->id], ['class' => 'btn btn-link']);
+						}
 					]
 				]
 			]

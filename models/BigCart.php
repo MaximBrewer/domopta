@@ -24,10 +24,16 @@ class BigCart extends \dektrium\user\models\User
     public $not_confirmed;
     public $not_active;
 
+    public function attributes()
+    {
+        // делаем поле зависимости доступным для поиска
+        return array_merge(parent::attributes(), ['profile.lastname', 'profile.city', 'profile.region']);
+    }
+
     public function rules()
     {
         $rules = parent::rules();
-        $rules[] = [['name', 'phone', 'organization', 'location', 'inn', 'demo', 'suspicious', 'is_active', 'blocked_at', 'is_ignored', 'not_confirmed', 'not_active'], 'safe'];
+        $rules[] = [['profile.lastname', 'profile.city', 'profile.region'], 'safe'];
         unset($rules['emailUnique']);
         return $rules;
     }
