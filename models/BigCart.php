@@ -35,13 +35,13 @@ class BigCart extends \dektrium\user\models\User
         $query->where('user.cart_sum >= 3000');
         $query->joinWith('profile');
 
-        $query->orFilterWhere(['like', 'profile.city', \Yii::$app->getRequest()->get('BigCart')['profile.city']]);
-        $query->orFilterWhere(['like', 'profile.region', \Yii::$app->getRequest()->get('BigCart')['profile.region']]);
-        $query->orFilterWhere(['like', 'username', \Yii::$app->getRequest()->get('BigCart')['username']]);
+        $query->andFilterWhere(['like', 'profile.city', \Yii::$app->getRequest()->get('BigCart')['profile.city']]);
+        $query->andFilterWhere(['like', 'profile.region', \Yii::$app->getRequest()->get('BigCart')['profile.region']]);
+        $query->andFilterWhere(['like', 'username', \Yii::$app->getRequest()->get('BigCart')['username']]);
 
-        $query->orFilterWhere(['like', 'profile.lastname', \Yii::$app->getRequest()->get('BigCart')['profile.lastname']]);
-        $query->orFilterWhere(['like', 'profile.name', \Yii::$app->getRequest()->get('BigCart')['profile.lastname']]);
-        $query->orFilterWhere(['like', 'profile.surname', \Yii::$app->getRequest()->get('BigCart')['profile.lastname']]);
+        $query->andFilterWhere(['like', 'profile.lastname', \Yii::$app->getRequest()->get('BigCart')['profile.lastname']]);
+        $query->andFilterWhere(['or', ['like', 'profile.name', \Yii::$app->getRequest()->get('BigCart')['profile.lastname']]]);
+        $query->andFilterWhere(['or', ['like', 'profile.surname', \Yii::$app->getRequest()->get('BigCart')['profile.lastname']]]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
