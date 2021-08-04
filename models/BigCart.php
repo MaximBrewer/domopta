@@ -13,7 +13,7 @@ use yii\data\ActiveDataProvider;
 
 class BigCart extends \dektrium\user\models\User
 {
-    
+
     public function attributes()
     {
         // делаем поле зависимости доступным для поиска
@@ -53,7 +53,7 @@ class BigCart extends \dektrium\user\models\User
 
         var_dump(\Yii::$app->getRequest()->get());
 
-        $query->andFilterWhere(['like', 'profile.lastname', $this->profile->lastname]);
+        $query->andFilterWhere(['like', 'profile.lastname', $this->identity->profile->lastname]);
 
         return $dataProvider;
     }
