@@ -13,7 +13,7 @@ use yii\data\ActiveDataProvider;
 
 class BigCart extends \dektrium\user\models\User
 {
-    
+
     public function attributes()
     {
         // делаем поле зависимости доступным для поиска
@@ -51,9 +51,16 @@ class BigCart extends \dektrium\user\models\User
             ],
         ]);
 
-        $query->andFilterWhere(['like', 'profile.lastname', \Yii::$app->getRequest()->get('BigCart')['profile.lastname']]);
+        $query->andFilterWhere(['OR', [
+            ['like', 'profile.lastname', \Yii::$app->getRequest()->get('BigCart')['profile.lastname']],
+            ['like', 'profile.firstname', \Yii::$app->getRequest()->get('BigCart')['profile.lastname']],
+            ['like', 'profile.surname', \Yii::$app->getRequest()->get('BigCart')['profile.lastname']]
+        ]]);
+
+
         $query->andFilterWhere(['like', 'profile.city', \Yii::$app->getRequest()->get('BigCart')['profile.city']]);
         $query->andFilterWhere(['like', 'profile.region', \Yii::$app->getRequest()->get('BigCart')['profile.region']]);
+        $query->andFilterWhere(['like', 'username', \Yii::$app->getRequest()->get('BigCart')['username']]);
 
         return $dataProvider;
     }
