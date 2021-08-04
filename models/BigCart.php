@@ -51,9 +51,9 @@ class BigCart extends \dektrium\user\models\User
             ],
         ]);
 
-        var_dump(\Yii::$app->getRequest()->get());
-
-        $query->andFilterWhere(['like', 'profile.lastname', $this->lastname]);
+        $query->andFilterWhere(['like', 'profile.lastname', \Yii::$app->getRequest()->get('BigCart')['profile.lastname']]);
+        $query->andFilterWhere(['like', 'profile.city', \Yii::$app->getRequest()->get('BigCart')['profile.city']]);
+        $query->andFilterWhere(['like', 'profile.region', \Yii::$app->getRequest()->get('BigCart')['profile.region']]);
 
         return $dataProvider;
     }
